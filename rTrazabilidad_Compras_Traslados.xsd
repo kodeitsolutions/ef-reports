@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rTrazabilidad_Compras_Traslados" targetNamespace="http://tempuri.org/rTrazabilidad_Compras_Traslados.xsd" xmlns:mstns="http://tempuri.org/rTrazabilidad_Compras_Traslados.xsd" xmlns="http://tempuri.org/rTrazabilidad_Compras_Traslados.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rTrazabilidad_Compras_Traslados" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Articulo_Codigo" type="xs:string" minOccurs="0" />
+              <xs:element name="Articulo_Nombre" type="xs:string" minOccurs="0" />
+              <xs:element name="Compra_Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Compra_Proveedor" type="xs:string" minOccurs="0" />
+              <xs:element name="Compra_Documento" type="xs:string" minOccurs="0" />
+              <xs:element name="Compra_Renglon" type="xs:integer" minOccurs="0" />
+              <xs:element name="Compra_Almacen" type="xs:string" minOccurs="0" />
+              <xs:element name="Compra_Unidad" type="xs:string" minOccurs="0" />
+              <xs:element name="Compra_Cantidad" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Compra_Precio" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Compra_Bruto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Compra_Impuesto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Compra_Neto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Traslado_Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Traslado_Origen" type="xs:string" minOccurs="0" />
+              <xs:element name="Traslado_Destino" type="xs:string" minOccurs="0" />
+              <xs:element name="Traslado_Documento" type="xs:string" minOccurs="0" />
+              <xs:element name="Traslado_Renglon" type="xs:integer" minOccurs="0" />
+              <xs:element name="Traslado_Unidad" type="xs:string" minOccurs="0" />
+              <xs:element name="Traslado_Cantidad" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Traslado_Costo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="N_Compras_Total"        type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Compras_Anuladas"     type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Compras_Pendientes"   type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Compras_Confirmadas"  type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Compras_Afectadas"    type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Compras_Procesadas"   type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Traslados_Total"      type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Traslados_Anulados"   type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Traslados_Pendientes" type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Traslados_Confirmados" type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Traslados_Procesados" type="xs:integer" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

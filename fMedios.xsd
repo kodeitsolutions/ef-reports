@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="fMedios" targetNamespace="http://tempuri.org/fMedios.xsd" xmlns:mstns="http://tempuri.org/fMedios.xsd" xmlns="http://tempuri.org/fMedios.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="fMedios" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+				<xs:element name="cod_med" type="xs:string" minOccurs="0" />
+				<xs:element name="nom_med" type="xs:string" minOccurs="0" />
+				<xs:element name="status" type="xs:string" minOccurs="0" />
+				<xs:element name="fec_ini" type="xs:dateTime" minOccurs="0" />
+				<xs:element name="fec_fin" type="xs:dateTime" minOccurs="0" />
+				<xs:element name="tarifa" type="xs:decimal" minOccurs="0" />
+				<xs:element name="tiempo" type="xs:decimal" minOccurs="0" />
+				<xs:element name="ancho" type="xs:decimal" minOccurs="0" />
+				<xs:element name="alto" type="xs:decimal" minOccurs="0" />
+				<xs:element name="fondo" type="xs:decimal" minOccurs="0" />
+				<xs:element name="peso" type="xs:decimal" minOccurs="0" />
+				<xs:element name="volumen" type="xs:decimal" minOccurs="0" />
+				<xs:element name="espacio" type="xs:string" minOccurs="0" />
+				<xs:element name="alcance" type="xs:string" minOccurs="0" />
+				<xs:element name="tipo" type="xs:string" minOccurs="0" />
+				<xs:element name="clase" type="xs:string" minOccurs="0" />
+				<xs:element name="grupo" type="xs:string" minOccurs="0" />
+				<xs:element name="contacto" type="xs:string" minOccurs="0" />
+				<xs:element name="direccion" type="xs:string" minOccurs="0" />
+				<xs:element name="telefonos" type="xs:string" minOccurs="0" />
+				<xs:element name="directo" type="xs:string" minOccurs="0" />
+				<xs:element name="fax" type="xs:string" minOccurs="0" />
+				<xs:element name="correo" type="xs:string" minOccurs="0" />
+				<xs:element name="correo2" type="xs:string" minOccurs="0" />
+				<xs:element name="correo3" type="xs:string" minOccurs="0" />
+				<xs:element name="web" type="xs:string" minOccurs="0" />
+				<xs:element name="comentario" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

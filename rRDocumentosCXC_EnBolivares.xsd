@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rRDocumentosCXC_EnBolivares" targetNamespace="http://tempuri.org/rRDocumentosCXC_EnBolivares.xsd" xmlns:mstns="http://tempuri.org/rRDocumentosCXC_EnBolivares.xsd" xmlns="http://tempuri.org/rRDocumentosCXC_EnBolivares.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rRDocumentosCXC_EnBolivares" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Nota_Credito" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Nota_Debito" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cheques_Devueltos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Retenciones_ISRL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Adelentos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Giros" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cambios_Facturas_Giros" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Ajustes_positivos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Ajustes_Negativos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Retencion_Impuesto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Retencion_Patente" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Facturas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Nota_Credito" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Nota_Debito" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Cheques_Devueltos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Retenciones_ISRL" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Adelentos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Giros" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Cambios_Facturas_Giros" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Ajustes_positivos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Ajustes_Negativos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Retencion_Impuesto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Retencion_Patente" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Facturas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Documento" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cheque" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Deposito" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Efectivo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Tarjeta" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Ticket" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Transferencia" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Cheque" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Deposito" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Efectivo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Tarjeta" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Ticket" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Transferencia" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Total_Mon_Cob" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Total_Doc_Cob" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Total_Mon" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Total_Doc" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

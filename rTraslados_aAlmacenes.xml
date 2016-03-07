@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Parametros>
+  <Documento></Documento>
+  <Cod_Art></Cod_Art>
+  <Nom_Art></Nom_Art>
+  <Fec_Ini></Fec_Ini>
+  <Fec_Fin></Fec_Fin>
+  <Alm_Ori></Alm_Ori>
+  <Alm_Des></Alm_Des>
+  <Can_Art1></Can_Art1>
+  <Status></Status>
+</Parametros>

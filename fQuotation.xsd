@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="fQuotation" targetNamespace="http://tempuri.org/fQuotation.xsd" xmlns:mstns="http://tempuri.org/fQuotation.xsd" xmlns="http://tempuri.org/fQuotation.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="fQuotation" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Cod_Cli" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Cli" type="xs:string" minOccurs="0" />
+              <xs:element name="Rif" type="xs:string" minOccurs="0" />
+              <xs:element name="Nit" type="xs:string" minOccurs="0" />
+              <xs:element name="Dir_Fis" type="xs:string" minOccurs="0" />
+              <xs:element name="Dir_Ent" type="xs:string" minOccurs="0" />
+              <xs:element name="Telefonos" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Mon" msdata:Caption="Fax" type="xs:string" minOccurs="0" />
+              <xs:element name="Fax" type="xs:string" minOccurs="0" />
+              <xs:element name="Nombre_Generico" type="xs:string" minOccurs="0" />
+              <xs:element name="Rif_Generico" type="xs:string" minOccurs="0" />
+              <xs:element name="Nit_Generico" type="xs:string" minOccurs="0" />
+              <xs:element name="Dir_Fis_Generico" type="xs:string" minOccurs="0" />
+              <xs:element name="Telefonos_Generico" type="xs:string" minOccurs="0" />
+              <xs:element name="Documento" type="xs:string" minOccurs="0" />
+              <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Fin" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Mon_Bru" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Imp1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Por_Imp1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Net" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Por_Des1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Des" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Por_Rec1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Rec" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cod_For" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_For" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Ven" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Ven" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Art" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Art" type="xs:string" minOccurs="0" />
+              <xs:element name="Renglon" type="xs:int" minOccurs="0" />
+              <xs:element name="Can_Art1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cod_Uni" type="xs:string" minOccurs="0" />
+              <xs:element name="Precio1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Neto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cod_Imp" type="xs:string" minOccurs="0" />
+              <xs:element name="Impuesto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Por_Imp" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Tra" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Alm" type="xs:string" minOccurs="0" />
+              <xs:element name="Garantia" type="xs:string" minOccurs="0" />
+              <xs:element name="Notas" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Ubi" type="xs:string" minOccurs="0" />
+              <xs:element name="Peso" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Volumen" type="xs:decimal" minOccurs="0" />
+              <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

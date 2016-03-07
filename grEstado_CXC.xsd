@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="grEstado_CXC" targetNamespace="http://tempuri.org/grEstado_CXC.xsd" xmlns:mstns="http://tempuri.org/grEstado_CXC.xsd" xmlns="http://tempuri.org/grEstado_CXC.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="grEstado_CXC" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Grafico" type="xs:decimal" minOccurs="0" />
+              <xs:element name="G1_Cod_Tip" type="xs:string" minOccurs="0" />
+              <xs:element name="G1_Nom_Tip" type="xs:string" minOccurs="0" />
+              <xs:element name="G1_Cant_Doc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="G1_Mon_Bas1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="G1_Mon_Imp1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="G1_Mon_Net" type="xs:decimal" minOccurs="0" />
+              <xs:element name="G1_Mon_Sal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="G2_Dias" type="xs:string" minOccurs="0" />
+              <xs:element name="G2_Mon_Net" type="xs:decimal" minOccurs="0" />
+              <xs:element name="G3_Cod_Ven" type="xs:string" minOccurs="0" />
+              <xs:element name="G3_Nom_ven" type="xs:string" minOccurs="0" />
+              <xs:element name="G3_Mon_Bru" type="xs:decimal" minOccurs="0" />
+              <xs:element name="G3_Mon_Imp1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="G3_Mon_Net" type="xs:decimal" minOccurs="0" />
+              <xs:element name="G3_Mon_Sal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="G4_Dias" type="xs:string" minOccurs="0" />
+              <xs:element name="G4_Mon_Sal" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

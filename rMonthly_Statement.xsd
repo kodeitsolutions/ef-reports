@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rMonthly_Statement" targetNamespace="http://tempuri.org/rMonthly_Statement.xsd" xmlns:mstns="http://tempuri.org/rMonthly_Statement.xsd" xmlns="http://tempuri.org/rMonthly_Statement.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rMonthly_Statement" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Cod_Dep" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Nom_Dep" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:length value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Nom_Art" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Cli" type="xs:string" minOccurs="0" />
+              <xs:element name="Telefonos" type="xs:string" minOccurs="0" />
+              <xs:element name="Fax" type="xs:string" minOccurs="0" />
+              <xs:element name="Dir_Fis" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Cli" type="xs:string" minOccurs="0" />
+              <xs:element name="Factura" type="xs:string" minOccurs="0" />
+              <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Cod_Imp" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_Imp1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Imp1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Bru" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Net" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Adelanto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Fecha_Pago" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Saldo_Anterior" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Pago_en_curso" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cantidad_Pagado" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Fecha_Vencimiento" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Pagos_Restantes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Fecha_Ultimo_Cobro_Factura" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Monto_Ultimo_Cobro_Factura" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Fecha_Ultimo_Cobro_Giro" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Mon_Net_Ultimo_Cobro_Giro" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Bru_Ultimo_Cobro_Giro" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Otr_Ultimo_Cobro_Giro" type="xs:decimal" minOccurs="0" />
+              <xs:element name="LogoEmpresa1" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="LogoEmpresa2" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="grCxC_MensualesSucursal" targetNamespace="http://tempuri.org/grCxC_MensualesSucursal.xsd" xmlns:mstns="http://tempuri.org/grCxC_MensualesSucursal.xsd" xmlns="http://tempuri.org/grCxC_MensualesSucursal.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="grCxC_MensualesSucursal" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+				      <xs:element name="Año" type="xs:integer" minOccurs="0" />
+				      <xs:element name="Mes" type="xs:integer" minOccurs="0" />
+              <xs:element name="Num_Meses" type="xs:integer" minOccurs="0" />
+              <xs:element name="Cod_Suc" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Suc" type="xs:string" minOccurs="0" />
+              <xs:element name="Debito" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Debito_Mes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Credito" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Credito_Mes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cobro" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cobro_Mes" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Saldo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Saldo_Ini" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

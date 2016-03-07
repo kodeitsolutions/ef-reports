@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rLAjustes_aMes" targetNamespace="http://tempuri.org/rLAjustes_aMes.xsd" xmlns:mstns="http://tempuri.org/rLAjustes_aMes.xsd" xmlns="http://tempuri.org/rLAjustes_aMes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rLAjustes_aMes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Renglon" type="xs:decimal" minOccurs="0" />
+              <xs:element name="cod_dep" type="xs:string" minOccurs="0" />
+              <xs:element name="nom_dep" type="xs:string" minOccurs="0" />
+              <xs:element name="ent_ene" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ent_feb" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ent_mar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ent_abr" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ent_may" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ent_jun" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ent_jul" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ent_ago" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ent_sep" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ent_oct" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ent_nov" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ent_dic" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sal_ene" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sal_feb" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sal_mar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sal_abr" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sal_may" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sal_jun" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sal_jul" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sal_ago" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sal_sep" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sal_oct" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sal_nov" type="xs:decimal" minOccurs="0" />
+              <xs:element name="sal_dic" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dif_ene" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dif_feb" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dif_mar" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dif_abr" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dif_may" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dif_jun" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dif_jul" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dif_ago" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dif_sep" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dif_oct" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dif_nov" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dif_dic" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tot_ent" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tot_sal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tot_dif" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

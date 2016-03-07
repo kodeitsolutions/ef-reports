@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rClientes_Campos_Extras" targetNamespace="http://tempuri.org/rClientes_Campos_Extras.xsd" xmlns:mstns="http://tempuri.org/rClientes_Campos_Extras.xsd" xmlns="http://tempuri.org/rClientes_Campos_Extras.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rClientes_Campos_Extras" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Cod_Cli" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Cli" type="xs:string" minOccurs="0" />
+              <xs:element name="Logico10" msdata:Caption="Logico" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Logico9" msdata:Caption="Logico" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Logico8" msdata:Caption="Logico" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Logico7" msdata:Caption="Logico" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Logico6" msdata:Caption="Logico" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Logico5" msdata:Caption="Logico" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Logico4" msdata:Caption="Logico" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Logico3" msdata:Caption="Logico" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Logico2" msdata:Caption="Logico" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Logico1" msdata:Caption="Logico" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Caracter10" msdata:Caption="Caracter" type="xs:string" minOccurs="0" />
+              <xs:element name="Caracter9" msdata:Caption="Caracter" type="xs:string" minOccurs="0" />
+              <xs:element name="Caracter8" msdata:Caption="Caracter" type="xs:string" minOccurs="0" />
+              <xs:element name="Caracter7" msdata:Caption="Caracter" type="xs:string" minOccurs="0" />
+              <xs:element name="Caracter6" msdata:Caption="Caracter" type="xs:string" minOccurs="0" />
+              <xs:element name="Caracter5" msdata:Caption="Caracter" type="xs:string" minOccurs="0" />
+              <xs:element name="Caracter4" msdata:Caption="Caracter" type="xs:string" minOccurs="0" />
+              <xs:element name="Caracter3" msdata:Caption="Caracter" type="xs:string" minOccurs="0" />
+              <xs:element name="Caracter2" msdata:Caption="Caracter" type="xs:string" minOccurs="0" />
+              <xs:element name="Caracter1" msdata:Caption="Caracter" type="xs:string" minOccurs="0" />
+              <xs:element name="Fecha5" msdata:Caption="Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fecha4" msdata:Caption="Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fecha3" msdata:Caption="Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fecha2" msdata:Caption="Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fecha1" msdata:Caption="Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Memo10" msdata:Caption="Memo" type="xs:string" minOccurs="0" />
+              <xs:element name="Memo9" msdata:Caption="Memo" type="xs:string" minOccurs="0" />
+              <xs:element name="Memo8" msdata:Caption="Memo" type="xs:string" minOccurs="0" />
+              <xs:element name="Memo7" msdata:Caption="Memo" type="xs:string" minOccurs="0" />
+              <xs:element name="Memo6" msdata:Caption="Memo" type="xs:string" minOccurs="0" />
+              <xs:element name="Memo5" msdata:Caption="Memo" type="xs:string" minOccurs="0" />
+              <xs:element name="Memo4" msdata:Caption="Memo" type="xs:string" minOccurs="0" />
+              <xs:element name="Memo3" msdata:Caption="Memo" type="xs:string" minOccurs="0" />
+              <xs:element name="Memo2" msdata:Caption="Memo" type="xs:string" minOccurs="0" />
+              <xs:element name="Memo1" msdata:Caption="Memo" type="xs:string" minOccurs="0" />
+              <xs:element name="Doble10" msdata:Caption="Doble" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doble9" msdata:Caption="Doble" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doble8" msdata:Caption="Doble" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doble7" msdata:Caption="Doble" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doble6" msdata:Caption="Doble" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doble5" msdata:Caption="Doble" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doble4" msdata:Caption="Doble" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doble3" msdata:Caption="Doble" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doble2" msdata:Caption="Doble" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doble1" msdata:Caption="Doble" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

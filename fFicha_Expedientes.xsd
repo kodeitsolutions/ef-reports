@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="fFicha_Expedientes" targetNamespace="http://tempuri.org/fFicha_Expedientes.xsd" xmlns:mstns="http://tempuri.org/fFicha_Expedientes.xsd" xmlns="http://tempuri.org/fFicha_Expedientes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="fFicha_Expedientes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Origen" type="xs:string" minOccurs="0" />
+              <xs:element name="Documento" type="xs:string" minOccurs="0" />
+              <xs:element name="Inc_Imp" type="xs:int" minOccurs="0" />
+              <xs:element name="status" type="xs:string" minOccurs="0" />
+              <xs:element name="Expediente" type="xs:string" minOccurs="0" />
+              <xs:element name="Importacion" type="xs:string" minOccurs="0" />
+              <xs:element name="Factura" type="xs:string" minOccurs="0" />
+              <xs:element name="Control" type="xs:string" minOccurs="0" />
+              <xs:element name="Declaracion" type="xs:string" minOccurs="0" />
+              <xs:element name="Pla_Liq" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Log" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Log" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Reg" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Reg" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Cli" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Cli" type="xs:string" minOccurs="0" />
+              <xs:element name="Tipo" type="xs:string" minOccurs="0" />
+              <xs:element name="Clase" type="xs:string" minOccurs="0" />
+              <xs:element name="Descripcion" type="xs:string" minOccurs="0" />
+              <xs:element name="Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Fin" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Rec" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Lle" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Pag" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Reg" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Adi1" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Adi2" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Adi3" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Adi4" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Adi5" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Containers" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Num_Bul" type="xs:string" minOccurs="0" />
+              <xs:element name="Bultos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cajas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Nom_Mon" msdata:Caption="Unidades" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Mon" msdata:Caption="Unidades" type="xs:string" minOccurs="0" />
+              <xs:element name="Tasa" msdata:Caption="Unidades" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Unidades" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cod_Ven" type="xs:string" minOccurs="0" />
+              <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="Nom_Ven" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Usu" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Gru" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_Eje" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Etapa" type="xs:string" minOccurs="0" />
+              <xs:element name="Prioridad" type="xs:string" minOccurs="0" />
+              <xs:element name="Importancia" type="xs:string" minOccurs="0" />
+              <xs:element name="Nivel" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Ord_Com" type="xs:string" minOccurs="0" />
+              <xs:element name="Ord_Tra" type="xs:string" minOccurs="0" />
+              <xs:element name="Defecto" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Logico1" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Logico2" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Logico3" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Logico4" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Logico5" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Fecha1" msdata:Caption="Fec_Adi1" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fecha2" msdata:Caption="Fec_Adi5" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fecha3" msdata:Caption="Fec_Adi4" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fecha4" msdata:Caption="Fec_Adi3" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fecha5" msdata:Caption="Fec_Adi2" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Caracter1" type="xs:string" minOccurs="0" />
+              <xs:element name="Caracter2" type="xs:string" minOccurs="0" />
+              <xs:element name="Caracter3" type="xs:string" minOccurs="0" />
+              <xs:element name="Caracter4" type="xs:string" minOccurs="0" />
+              <xs:element name="Caracter5" type="xs:string" minOccurs="0" />
+              <xs:element name="Numerico1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Numerico2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Numerico3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Numerico4" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Numerico5" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Fec_Aut_Leg" msdata:Caption="Fec_Adi1" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Pre_Leg" msdata:Caption="Fec_Adi2" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Not_Pre_Leg" msdata:Caption="Fec_Adi3" type="xs:string" minOccurs="0" />
+              <xs:element name="Fec_Rec_Leg" msdata:Caption="Fec_Adi4" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Act_Ret" msdata:Caption="Fec_Adi5" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Env_Act" msdata:Caption="Fec_Adi5" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Art_Renglon" msdata:Caption="Doc_Renglon" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Renglon" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Tip_Ren" msdata:Caption="Doc_Tip_Doc" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Tip_Doc" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Referencia" type="xs:string" />
+              <xs:element name="Doc_Detalle" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Status" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Control" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Completo" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Doc_Fec_Ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Doc_Fec_Fin" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Art_Comentario" msdata:Caption="Doc_Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Nom_Art" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Cod_Imp" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Mon_Imp1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Por_Imp1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Cod_Uni" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Mon_Net" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Precio2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Precio1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Can_Art1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Cod_Alm" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Cod_Art" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Prioridad" type="xs:string" minOccurs="0" />
+              <xs:element name="Emb_Renglon" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Emb_Tip_tra" type="xs:string" minOccurs="0" />
+              <xs:element name="Emb_Factura" type="xs:string" minOccurs="0" />
+              <xs:element name="Emb_Control" type="xs:string" minOccurs="0" />
+              <xs:element name="Emb_Referencia" type="xs:string" minOccurs="0" />
+              <xs:element name="Emb_Transporte" type="xs:string" minOccurs="0" />
+              <xs:element name="Emb_Vehiculo" type="xs:string" minOccurs="0" />
+              <xs:element name="Emb_Lug_Emb" type="xs:string" minOccurs="0" />
+              <xs:element name="Emb_Containers" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Emb_Bultos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Emb_Cajas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Emb_Unidades" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Emb_Peso" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Emb_Volumen" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Emb_Cod_Uni" type="xs:string" minOccurs="0" />
+              <xs:element name="Emb_Nom_uni" type="xs:string" minOccurs="0" />
+              <xs:element name="Emb_Can_Art" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Emb_Detalle" type="xs:string" minOccurs="0" />
+              <xs:element name="Emb_Status" type="xs:string" minOccurs="0" />
+              <xs:element name="Emb_Fec_Ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Emb_Fec_Fin" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Emb_Fec_Emb" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Emb_Fec_Lle" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Emb_Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Con_Renglon" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Con_Cod_Tip" type="xs:string" minOccurs="0" />
+              <xs:element name="Con_Nom_Tip" type="xs:string" minOccurs="0" />
+              <xs:element name="Con_Numero" type="xs:string" minOccurs="0" />
+              <xs:element name="Con_Control" type="xs:string" minOccurs="0" />
+              <xs:element name="Con_Referencia" type="xs:string" minOccurs="0" />
+              <xs:element name="Con_Detalle" type="xs:string" minOccurs="0" />
+              <xs:element name="Con_Status" type="xs:string" minOccurs="0" />
+              <xs:element name="Con_Peso" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Con_Volumen" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Con_Color" type="xs:string" minOccurs="0" />
+              <xs:element name="Con_Fec_Ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Con_Fec_Fin" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Con_Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Gas_Renglon" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Gas_Cod_Con" type="xs:string" minOccurs="0" />
+              <xs:element name="Gas_Nom_Con" type="xs:string" minOccurs="0" />
+              <xs:element name="Gas_Mon_Deb" msdata:Caption="Gas_Mon_Hab" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Gas_Mon_Hab" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Gas_Cod_Imp" type="xs:string" minOccurs="0" />
+              <xs:element name="Gas_Por_Imp1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Gas_Mon_imp1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Gas_Mon_Net" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Gas_Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Seg_Renglon" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Seg_Fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Seg_Seguimientos" type="xs:string" minOccurs="0" />
+              <xs:element name="Seg_Status" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

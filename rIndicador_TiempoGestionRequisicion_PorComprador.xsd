@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rIndicador_TiempoGestionRequisicion_PorComprador" targetNamespace="http://tempuri.org/rIndicador_TiempoGestionRequisicion_PorComprador.xsd" xmlns:mstns="http://tempuri.org/rIndicador_TiempoGestionRequisicion_PorComprador.xsd" xmlns="http://tempuri.org/rIndicador_TiempoGestionRequisicion_PorComprador.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rIndicador_TiempoGestionRequisicion_PorComprador" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Requisicion" type="xs:string" minOccurs="0" />
+              <xs:element name="Estatus" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Pro" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Ven" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Ven" type="xs:string" minOccurs="0" />
+              <xs:element name="Requisicion_Fecha" type="xs:date" minOccurs="0" />
+              <xs:element name="Presupuesto" type="xs:string" minOccurs="0" />
+              <xs:element name="Presupuesto_Fecha" type="xs:date" minOccurs="0" />
+              <xs:element name="Orden_Compra" type="xs:string" minOccurs="0" />
+              <xs:element name="OrdenCompra_Fecha" type="xs:date" minOccurs="0" />
+              <xs:element name="Recepcion" type="xs:string" minOccurs="0" />
+              <xs:element name="Recepcion_Fecha" type="xs:date" minOccurs="0" />
+              <xs:element name="Compra" type="xs:string" minOccurs="0" />
+              <xs:element name="Compra_Fecha" type="xs:date" minOccurs="0" />
+              <xs:element name="Recibido" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Fecha_Recibido" type="xs:date" minOccurs="0" />
+              <xs:element name="Dias_Recibido" type="xs:integer" minOccurs="0" />
+              <xs:element name="Dias_Antiguedad" type="xs:integer" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="fComprobante_ISLR" targetNamespace="http://tempuri.org/fComprobante_ISLR.xsd" xmlns:mstns="http://tempuri.org/fComprobante_ISLR.xsd" xmlns="http://tempuri.org/fComprobante_ISLR.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="fComprobante_ISLR" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Documento" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Tip" type="xs:string" minOccurs="0" />
+              <xs:element name="Factura" type="xs:string" minOccurs="0" />
+              <xs:element name="Control" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Pro" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Ven" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="Fec_Ini" type="xs:string" minOccurs="0" />
+              <xs:element name="Fec_Fin" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Tra" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_For" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Mon" type="xs:string" minOccurs="0" />
+              <xs:element name="Tasa" type="xs:double" minOccurs="0" />
+              <xs:element name="Mon_Bru" type="xs:double" minOccurs="0" />
+              <xs:element name="Por_Imp" type="xs:double" minOccurs="0" />
+              <xs:element name="Mon_Imp" type="xs:double" minOccurs="0" />
+              <xs:element name="Mon_Net" type="xs:double" minOccurs="0" />
+              <xs:element name="Saldo" type="xs:double" minOccurs="0" />
+              <xs:element name="Por_Rec" type="xs:double" minOccurs="0" />
+              <xs:element name="Mon_Rec" type="xs:double" minOccurs="0" />
+              <xs:element name="Por_Des" type="xs:double" minOccurs="0" />
+              <xs:element name="Mon_Des" type="xs:double" minOccurs="0" />
+              <xs:element name="Mon_Otr" type="xs:double" minOccurs="0" />
+              <xs:element name="Cod_Imp" type="xs:string" minOccurs="0" />
+              <xs:element name="Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Tip_Ori" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Ori" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Pro" type="xs:string" minOccurs="0" />
+              <xs:element name="Rif" type="xs:string" minOccurs="0" />
+              <xs:element name="Dir_Fis" type="xs:string" minOccurs="0" />
+              <xs:element name="Telefonos" type="xs:string" minOccurs="0" />
+              <xs:element name="Fax" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Ven" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_For" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Tra" type="xs:string" minOccurs="0" />
+              <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="Ori_Doc" type="xs:string" minOccurs="0" />
+              <xs:element name="Ori_Obj" type="xs:double" minOccurs="0" />
+              <xs:element name="Ori_Bas" type="xs:double" minOccurs="0" />
+              <xs:element name="Ori_Imp" type="xs:double" minOccurs="0" />
+              <xs:element name="Ori_Net" type="xs:double" minOccurs="0" />
+              <xs:element name="Ori_Sus" type="xs:double" minOccurs="0" />
+              <xs:element name="Ori_Por" type="xs:double" minOccurs="0" />
+              <xs:element name="Ori_Ret" type="xs:double" minOccurs="0" />
+              <xs:element name="Ori_Con" type="xs:string" minOccurs="0" />
+              <xs:element name="Ori_Fac" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Parametros>
+  <Documento></Documento>
+  <Cod_Ven></Cod_Ven>
+  <Cod_Cli></Cod_Cli>
+  <Nom_Ven></Nom_Ven>
+  <Nom_Cli></Nom_Cli>
+  <Fec_Ini></Fec_Ini>
+  <Fec_Fin></Fec_Fin>
+  <Mon_Net></Mon_Net>
+  <Status></Status>
+</Parametros>

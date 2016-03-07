@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="fFicha_DatosCompetencia" targetNamespace="http://tempuri.org/fFicha_DatosCompetencia.xsd" xmlns:mstns="http://tempuri.org/fFicha_DatosCompetencia.xsd" xmlns="http://tempuri.org/fFicha_DatosCompetencia.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="fFicha_DatosCompetencia" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+				<xs:element name="cod_com" type="xs:string" minOccurs="0" />
+				<xs:element name="nom_com" type="xs:string" minOccurs="0" />
+				<xs:element name="status" type="xs:string" minOccurs="0" />
+				<xs:element name="abc" type="xs:string" minOccurs="0" />
+				<xs:element name="tip_pag" type="xs:string" minOccurs="0" />
+				<xs:element name="nit" type="xs:string" minOccurs="0" />
+				<xs:element name="rif" type="xs:string" minOccurs="0" />
+				<xs:element name="movil" type="xs:string" minOccurs="0" />
+				<xs:element name="web" type="xs:string" minOccurs="0" />
+				<xs:element name="telefonos" type="xs:string" minOccurs="0" />
+				<xs:element name="fax" type="xs:string" minOccurs="0" />
+				<xs:element name="fec_fin" type="xs:dateTime" minOccurs="0" />
+				<xs:element name="correo" type="xs:string" minOccurs="0" />
+				<xs:element name="correo2" type="xs:string" minOccurs="0" />
+				<xs:element name="correo3" type="xs:string" minOccurs="0" />
+				<xs:element name="contacto" type="xs:string" minOccurs="0" />
+				<xs:element name="cod_zon" type="xs:string" minOccurs="0" />
+				<xs:element name="cod_pai" type="xs:string" minOccurs="0" />
+				<xs:element name="cod_est" type="xs:string" minOccurs="0" />
+				<xs:element name="cod_ciu" type="xs:string" minOccurs="0" />
+				<xs:element name="cod_cla" type="xs:string" minOccurs="0" />
+				<xs:element name="cod_for" type="xs:string" minOccurs="0" />
+				<xs:element name="cod_ven" type="xs:string" minOccurs="0" />
+				<xs:element name="cod_tra" type="xs:string" minOccurs="0" />
+				<xs:element name="dir_fis" type="xs:string" minOccurs="0" />
+				<xs:element name="dir_exa" type="xs:string" minOccurs="0" />
+				<xs:element name="dir_otr" type="xs:string" minOccurs="0" />
+				<xs:element name="dir_ent" type="xs:string" minOccurs="0" />
+				<xs:element name="fec_nac" type="xs:dateTime" minOccurs="0" />
+				<xs:element name="comentario" type="xs:string" minOccurs="0" />
+				<xs:element name="hor_caj" type="xs:string" minOccurs="0" />
+				<xs:element name="fiscal" type="xs:string" minOccurs="0" />
+				<xs:element name="crm_pos" type="xs:decimal" minOccurs="0" />
+				<xs:element name="pol_com" type="xs:string" minOccurs="0" />
+				<xs:element name="mon_sal" type="xs:decimal" minOccurs="0" />
+				<xs:element name="mon_cre" type="xs:decimal" minOccurs="0" />
+				<xs:element name="kilometros" type="xs:decimal" minOccurs="0" />
+				<xs:element name="tip_con" type="xs:string" minOccurs="0" />
+				<xs:element name="tipo" type="xs:string" minOccurs="0" />
+				<xs:element name="clase" type="xs:string" minOccurs="0" />
+				<xs:element name="Nom_Tip" type="xs:string" minOccurs="0" />
+				<xs:element name="Nom_Zon" type="xs:string" minOccurs="0" />
+				<xs:element name="Nom_Pai" type="xs:string" minOccurs="0" />
+				<xs:element name="Nom_Est" type="xs:string" minOccurs="0" />
+				<xs:element name="Nom_Ciu" type="xs:string" minOccurs="0" />
+				<xs:element name="Nom_Cla" type="xs:string" minOccurs="0" />
+				<xs:element name="Nom_For" type="xs:string" minOccurs="0" />
+				<xs:element name="Nom_Ven" type="xs:string" minOccurs="0" />
+				<xs:element name="Nom_Tra" type="xs:string" minOccurs="0" />
+
+				<xs:element name="directo" type="xs:string" minOccurs="0" />
+				<xs:element name="tip_emp" type="xs:string" minOccurs="0" />
+				<xs:element name="mar_rec" type="xs:string" minOccurs="0" />
+				<xs:element name="can_emp" type="xs:decimal" minOccurs="0" />
+				<xs:element name="ven_men" type="xs:decimal" minOccurs="0" />
+				<xs:element name="pos_mer" type="xs:decimal" minOccurs="0" />
+				<xs:element name="perfil" type="xs:string" minOccurs="0" />
+				<xs:element name="pun_fue" type="xs:string" minOccurs="0" />
+				<xs:element name="pun_deb" type="xs:string" minOccurs="0" />
+				<xs:element name="clientes" type="xs:decimal" minOccurs="0" />
+				<xs:element name="det_cli" type="xs:string" minOccurs="0" />
+				<xs:element name="grupo" type="xs:string" minOccurs="0" />
+				<xs:element name="valor1" type="xs:decimal" minOccurs="0" />
+				<xs:element name="valor2" type="xs:decimal" minOccurs="0" />
+				<xs:element name="valor3" type="xs:decimal" minOccurs="0" />
+				<xs:element name="valor4" type="xs:decimal" minOccurs="0" />
+				<xs:element name="valor5" type="xs:decimal" minOccurs="0" />
+				<xs:element name="nivel" type="xs:decimal" minOccurs="0" />
+				<xs:element name="prioridad" type="xs:string" minOccurs="0" />
+				<xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

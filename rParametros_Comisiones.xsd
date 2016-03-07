@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rParametros_Comisiones" targetNamespace="http://tempuri.org/rParametros_Comisiones.xsd" xmlns:mstns="http://tempuri.org/rParametros_Comisiones.xsd" xmlns="http://tempuri.org/rParametros_Comisiones.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rParametros_Comisiones" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cod_par" type="xs:string" minOccurs="0" />
+              <xs:element name="nom_par" type="xs:string" minOccurs="0" />
+              <xs:element name="status" type="xs:string" minOccurs="0" />
+              <xs:element name="cod_ven" type="xs:string" minOccurs="0" />
+              <xs:element name="nom_ven" type="xs:string" minOccurs="0" />
+              <xs:element name="dia_des" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dia_has" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mon_des" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mon_has" type="xs:decimal" minOccurs="0" />
+              <xs:element name="can_des" type="xs:decimal" minOccurs="0" />
+              <xs:element name="can_has" type="xs:decimal" minOccurs="0" />
+              <xs:element name="tip_com" type="xs:string" minOccurs="0" />
+              <xs:element name="por_com1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_com2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_com3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mon_com1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mon_com2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mon_com3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_otr1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_otr2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_otr3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mon_otr1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mon_otr2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mon_otr3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="logico1" type="xs:boolean" minOccurs="0" />
+              <xs:element name="logico2" type="xs:boolean" minOccurs="0" />
+              <xs:element name="logico3" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

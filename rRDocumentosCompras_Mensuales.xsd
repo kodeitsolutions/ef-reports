@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rRDocumentosCompras_Mensuales" targetNamespace="http://tempuri.org/rRDocumentosCompras_Mensuales.xsd" xmlns:mstns="http://tempuri.org/rRDocumentosCompras_Mensuales.xsd" xmlns="http://tempuri.org/rRDocumentosCompras_Mensuales.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rRDocumentosCompras_Mensuales" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Doc_Req" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Can_Art1_Req" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Net_Req" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_OC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Can_Art1_OC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Net_OC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_Com" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Can_Art1_Com" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Net_Com" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Doc_DPro" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Can_Art1_DPro" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Net_DPro" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Año" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mes" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

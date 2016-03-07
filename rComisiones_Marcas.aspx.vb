@@ -1,0 +1,293 @@
+﻿'-------------------------------------------------------------------------------------------'
+' Inicio del codigo
+'-------------------------------------------------------------------------------------------'
+' Importando librerias 
+'-------------------------------------------------------------------------------------------'
+Imports System.Data
+
+'-------------------------------------------------------------------------------------------'
+' Inicio de clase "rComisiones_Marcas"
+'-------------------------------------------------------------------------------------------'
+Partial Class rComisiones_Marcas
+    Inherits vis2formularios.frmReporte
+
+    Dim loObjetoReporte As CrystalDecisions.CrystalReports.Engine.ReportDocument
+
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+        Try
+
+            Dim lcParametro0Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(0))
+            Dim lcParametro0Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(0))
+            Dim lcParametro1Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(1))
+            Dim lcParametro1Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(1))
+            Dim lcParametro2Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(2), goServicios.enuOpcionesRedondeo.KN_FechaInicioDelDia)
+            Dim lcParametro2Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(2), goServicios.enuOpcionesRedondeo.KN_FechaFinDelDia)
+            Dim lcParametro3Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(3))
+            Dim lcParametro3Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(3))
+            Dim lcParametro4Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(4))
+            Dim lcParametro4Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(4))
+            Dim lcParametro5Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(5))
+            Dim lcParametro5Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(5))
+            Dim lcParametro6Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(6))
+            Dim lcParametro6Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(6))
+            Dim lcParametro7Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(7))
+            Dim lcParametro7Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(7))
+            Dim lcParametro8Desde As String = goServicios.mObtenerListaFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(8))
+            Dim lcParametro9Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(9))
+            Dim lcParametro9Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(9))
+            Dim lcParametro10Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(10))
+            Dim lcParametro10Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(10))
+
+            Dim lcParametro11Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(11))
+            Dim lcParametro11Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(11))
+            Dim lcParametro12Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(12))
+            Dim lcParametro12Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(12))
+            Dim lcParametro13Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(13))
+            Dim lcParametro13Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(13))
+            Dim lcParametro14Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(14))
+            Dim lcParametro14Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(14))
+            Dim lcParametro15Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(15))
+            Dim lcParametro15Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(15))
+
+            Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
+            Dim lcCosto As String = ""
+
+
+
+            Dim llGananciasRespectoAlCosto As Boolean = goOpciones.mObtener("GANCOSPRE", "L")
+
+            Dim loComandoSeleccionar As New StringBuilder()
+
+            loComandoSeleccionar.AppendLine("CREATE TABLE #tmpGanancia(	Cod_Mar		CHAR(30),			")
+            loComandoSeleccionar.AppendLine("							Nom_Mar		CHAR(100),			")
+            loComandoSeleccionar.AppendLine("							Can_Fac		DECIMAL(28, 10),	")
+            loComandoSeleccionar.AppendLine("							Can_Dev		DECIMAL(28, 10),	")
+            loComandoSeleccionar.AppendLine("							Base_A		DECIMAL(28, 10),	")
+            loComandoSeleccionar.AppendLine("							Base_B		DECIMAL(28, 10))	")
+            loComandoSeleccionar.AppendLine("															")
+            loComandoSeleccionar.AppendLine("CREATE TABLE #tmpFinal(	Cod_Mar		CHAR(30),			")
+            loComandoSeleccionar.AppendLine("							Nom_Mar		CHAR(100),			")
+            loComandoSeleccionar.AppendLine("							Can_Fac		DECIMAL(28, 10),	")
+            loComandoSeleccionar.AppendLine("							Can_Dev		DECIMAL(28, 10),	")
+            loComandoSeleccionar.AppendLine("							Base_A		DECIMAL(28, 10),	")
+            loComandoSeleccionar.AppendLine("							Base_B		DECIMAL(28, 10),	")
+            loComandoSeleccionar.AppendLine("							Ganancia_A	DECIMAL(28, 10),	")
+            loComandoSeleccionar.AppendLine("							Ganancia_B	DECIMAL(28, 10))	")
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("/*------------------------------------------------------------------------------------------*/")
+            loComandoSeleccionar.AppendLine("/* Datos de Venta									 										*/")
+            loComandoSeleccionar.AppendLine("/*------------------------------------------------------------------------------------------*/")
+            loComandoSeleccionar.AppendLine("INSERT INTO #tmpGanancia(Cod_Mar, Nom_Mar, Can_Fac, Can_Dev, Base_A, Base_B)")
+            loComandoSeleccionar.AppendLine("SELECT		Marcas.Cod_Mar														AS Cod_Mar,")
+            loComandoSeleccionar.AppendLine("			Marcas.Nom_Mar														AS Nom_Mar,")
+            loComandoSeleccionar.AppendLine("			COUNT(DISTINCT Facturas.Documento) 									AS Can_Fac,")
+            loComandoSeleccionar.AppendLine("			0								 									AS Can_Dev,")
+            loComandoSeleccionar.AppendLine("			SUM(  Renglones_Facturas.Mon_Net")
+            loComandoSeleccionar.AppendLine("			    *(1-Facturas.por_des1/100+facturas.por_rec1/100) ")
+            loComandoSeleccionar.AppendLine("			    *(1+")
+            loComandoSeleccionar.AppendLine("			        CASE WHEN Facturas.Mon_Bru>0 ")
+            loComandoSeleccionar.AppendLine("			            THEN (Facturas.mon_otr1+Facturas.mon_otr2+Facturas.mon_otr3)/Facturas.Mon_Bru")
+            loComandoSeleccionar.AppendLine("			            ELSE 0")
+            loComandoSeleccionar.AppendLine("			        END")
+            loComandoSeleccionar.AppendLine("			    )) AS Base_A,")
+            loComandoSeleccionar.AppendLine("			0								 									AS Base_B")
+            loComandoSeleccionar.AppendLine("FROM		Clientes")
+            loComandoSeleccionar.AppendLine(" 	JOIN 	Facturas ")
+            loComandoSeleccionar.AppendLine(" 		ON	Facturas.Cod_Cli = Clientes.Cod_Cli")
+            loComandoSeleccionar.AppendLine(" 	JOIN 	Renglones_Facturas ")
+            loComandoSeleccionar.AppendLine(" 		ON	Renglones_Facturas.Documento = Facturas.Documento")
+            loComandoSeleccionar.AppendLine(" 	JOIN 	Vendedores ")
+            loComandoSeleccionar.AppendLine(" 		ON	Vendedores.Cod_Ven = Facturas.Cod_Ven")
+            loComandoSeleccionar.AppendLine(" 	JOIN	Articulos ")
+            loComandoSeleccionar.AppendLine(" 		ON	Renglones_Facturas.Cod_Art = Articulos.Cod_Art")
+            loComandoSeleccionar.AppendLine(" 	JOIN	Marcas ")
+            loComandoSeleccionar.AppendLine(" 		ON	Marcas.Cod_Mar = Articulos.Cod_Mar")
+            loComandoSeleccionar.AppendLine("WHERE		Marcas.Cod_Mar				BETWEEN " & lcParametro0Desde & " AND " & lcParametro0Hasta)
+            loComandoSeleccionar.AppendLine("		    AND Facturas.Documento				BETWEEN " & lcParametro1Desde & " AND " & lcParametro1Hasta)
+            loComandoSeleccionar.AppendLine("			AND Facturas.Fec_Ini 			BETWEEN " & lcParametro2Desde & " AND " & lcParametro2Hasta)
+            loComandoSeleccionar.AppendLine("			AND Facturas.Cod_Cli 			BETWEEN " & lcParametro3Desde & " AND " & lcParametro3Hasta)
+            loComandoSeleccionar.AppendLine("			AND Clientes.Cod_Tip 			BETWEEN " & lcParametro4Desde & " AND " & lcParametro4Hasta)
+            loComandoSeleccionar.AppendLine("			AND Clientes.Cod_Cla 			BETWEEN " & lcParametro5Desde & " AND " & lcParametro5Hasta)
+            loComandoSeleccionar.AppendLine("			AND Facturas.Cod_Ven 			BETWEEN " & lcParametro6Desde & " AND " & lcParametro6Hasta)
+            loComandoSeleccionar.AppendLine("			AND Vendedores.Cod_Tip			BETWEEN " & lcParametro7Desde & " AND " & lcParametro7Hasta)
+            loComandoSeleccionar.AppendLine("			AND Facturas.Status IN (" & lcParametro8Desde & ")")
+            'loComandoSeleccionar.AppendLine("			AND Facturas.Status IN ('Confirmado', 'Afectado', 'Procesado')")
+            loComandoSeleccionar.AppendLine("			AND Renglones_Facturas.Cod_Art	BETWEEN " & lcParametro9Desde & " AND " & lcParametro9Hasta)
+            loComandoSeleccionar.AppendLine("			AND Articulos.Cod_Dep			BETWEEN " & lcParametro10Desde & " AND " & lcParametro10Hasta)
+            loComandoSeleccionar.AppendLine("			AND Facturas.Cod_Mon 			BETWEEN " & lcParametro11Desde & " AND " & lcParametro11Hasta)
+            loComandoSeleccionar.AppendLine("			AND Facturas.Cod_Tra 			BETWEEN " & lcParametro12Desde & " AND " & lcParametro12Hasta)
+            loComandoSeleccionar.AppendLine("			AND Facturas.Cod_For 			BETWEEN " & lcParametro13Desde & " AND " & lcParametro13Hasta)
+            loComandoSeleccionar.AppendLine("			AND Facturas.Cod_Rev 			BETWEEN " & lcParametro14Desde & " AND " & lcParametro14Hasta)
+            loComandoSeleccionar.AppendLine("			AND Facturas.Cod_Suc 			BETWEEN " & lcParametro15Desde & " AND " & lcParametro15Hasta)
+            loComandoSeleccionar.AppendLine("GROUP BY	Marcas.Cod_Mar, Marcas.Nom_Mar")
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("/*------------------------------------------------------------------------------------------*/")
+            loComandoSeleccionar.AppendLine("/* Datos de Devoluciones							 										*/")
+            loComandoSeleccionar.AppendLine("/*------------------------------------------------------------------------------------------*/")
+            loComandoSeleccionar.AppendLine("INSERT INTO #tmpGanancia(Cod_Mar, Nom_Mar, Can_Fac, Can_Dev, Base_A, Base_B)")
+            loComandoSeleccionar.AppendLine("SELECT		Marcas.Cod_Mar														AS Cod_Art,")
+            loComandoSeleccionar.AppendLine("			Marcas.Nom_Mar														AS Nom_Art,")
+            loComandoSeleccionar.AppendLine("			0								 									AS Can_Fac,")
+            loComandoSeleccionar.AppendLine("			COUNT(DISTINCT Devoluciones_Clientes.Documento) 					AS Can_Dev,")
+            loComandoSeleccionar.AppendLine("			0								 									AS Base_A,")
+            loComandoSeleccionar.AppendLine("			SUM(  Renglones_dClientes.Mon_Net")
+            loComandoSeleccionar.AppendLine("			    *(1-Devoluciones_Clientes.por_des1/100+Devoluciones_Clientes.por_rec1/100) ")
+            loComandoSeleccionar.AppendLine("			    *(1+")
+            loComandoSeleccionar.AppendLine("			        CASE WHEN Devoluciones_Clientes.Mon_Bru>0 ")
+            loComandoSeleccionar.AppendLine("			            THEN (Devoluciones_Clientes.mon_otr1+Devoluciones_Clientes.mon_otr2+Devoluciones_Clientes.mon_otr3)/Devoluciones_Clientes.Mon_Bru")
+            loComandoSeleccionar.AppendLine("			            ELSE 0")
+            loComandoSeleccionar.AppendLine("			        END")
+            loComandoSeleccionar.AppendLine("			    )) AS Base_B			    ")
+            loComandoSeleccionar.AppendLine("FROM		Clientes")
+            loComandoSeleccionar.AppendLine(" 	JOIN 	Devoluciones_Clientes ")
+            loComandoSeleccionar.AppendLine(" 		ON	Devoluciones_Clientes.Cod_Cli = Clientes.Cod_Cli")
+            loComandoSeleccionar.AppendLine(" 	JOIN 	Renglones_dClientes ")
+            loComandoSeleccionar.AppendLine(" 		ON	Renglones_dClientes.Documento = Devoluciones_Clientes.Documento")
+            loComandoSeleccionar.AppendLine(" 		AND	Renglones_dClientes.tip_Ori = 'Facturas'")
+            loComandoSeleccionar.AppendLine(" 	JOIN 	Vendedores ")
+            loComandoSeleccionar.AppendLine(" 		ON	Vendedores.Cod_Ven = Devoluciones_Clientes.Cod_Ven")
+            loComandoSeleccionar.AppendLine(" 	JOIN	Articulos ")
+            loComandoSeleccionar.AppendLine(" 		ON	Renglones_dClientes.Cod_Art = Articulos.Cod_Art")
+            loComandoSeleccionar.AppendLine(" 	JOIN	Marcas ")
+            loComandoSeleccionar.AppendLine(" 		ON	Marcas.Cod_Mar = Articulos.Cod_Mar")
+            loComandoSeleccionar.AppendLine("WHERE		Marcas.Cod_Mar		BETWEEN " & lcParametro0Desde & " AND " & lcParametro0Hasta)
+            loComandoSeleccionar.AppendLine("           AND Devoluciones_Clientes.Documento	BETWEEN " & lcParametro1Desde & " AND " & lcParametro1Hasta)
+            loComandoSeleccionar.AppendLine("			AND Devoluciones_Clientes.Fec_Ini 	BETWEEN " & lcParametro2Desde & " AND " & lcParametro2Hasta)
+            loComandoSeleccionar.AppendLine("			AND Devoluciones_Clientes.Cod_Cli 	BETWEEN " & lcParametro3Desde & " AND " & lcParametro3Hasta)
+            loComandoSeleccionar.AppendLine("			AND Clientes.Cod_Tip 				BETWEEN " & lcParametro4Desde & " AND " & lcParametro4Hasta)
+            loComandoSeleccionar.AppendLine("			AND Clientes.Cod_Cla 				BETWEEN " & lcParametro5Desde & " AND " & lcParametro5Hasta)
+            loComandoSeleccionar.AppendLine("			AND Devoluciones_Clientes.Cod_Ven	BETWEEN " & lcParametro6Desde & " AND " & lcParametro6Hasta)
+            loComandoSeleccionar.AppendLine("			AND Vendedores.Cod_Tip				BETWEEN " & lcParametro7Desde & " AND " & lcParametro7Hasta)
+            loComandoSeleccionar.AppendLine("			AND Devoluciones_Clientes.Status IN (" & lcParametro8Desde & ")")
+            'loComandoSeleccionar.AppendLine("			AND Devoluciones_Clientes.Status IN ('Confirmado', 'Afectado', 'Procesado')")
+            loComandoSeleccionar.AppendLine("			AND Renglones_dClientes.Cod_Art		BETWEEN " & lcParametro9Desde & " AND " & lcParametro9Hasta)
+            loComandoSeleccionar.AppendLine("			AND Articulos.Cod_Dep				BETWEEN " & lcParametro10Desde & " AND " & lcParametro10Hasta)
+            loComandoSeleccionar.AppendLine("			AND Devoluciones_Clientes.Cod_Mon 	BETWEEN " & lcParametro11Desde & " AND " & lcParametro11Hasta)
+            loComandoSeleccionar.AppendLine("			AND Devoluciones_Clientes.Cod_Tra 	BETWEEN " & lcParametro12Desde & " AND " & lcParametro12Hasta)
+            loComandoSeleccionar.AppendLine("			AND Devoluciones_Clientes.Cod_For 	BETWEEN " & lcParametro13Desde & " AND " & lcParametro13Hasta)
+            loComandoSeleccionar.AppendLine("			AND Devoluciones_Clientes.Cod_Rev 	BETWEEN " & lcParametro14Desde & " AND " & lcParametro14Hasta)
+            loComandoSeleccionar.AppendLine("			AND Devoluciones_Clientes.Cod_Suc 	BETWEEN " & lcParametro15Desde & " AND " & lcParametro15Hasta)
+            loComandoSeleccionar.AppendLine("GROUP BY	Marcas.Cod_Mar, Marcas.Nom_Mar")
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("/*------------------------------------------------------------------------------------------*/")
+            loComandoSeleccionar.AppendLine("/* Cálculo de ganancia								 										*/ ")
+            loComandoSeleccionar.AppendLine("/*------------------------------------------------------------------------------------------*/")
+            loComandoSeleccionar.AppendLine("INSERT INTO #tmpFinal(Cod_Mar, Nom_Mar, Can_Fac, Can_Dev, Base_A, Base_B, Ganancia_A, Ganancia_B)")
+            loComandoSeleccionar.AppendLine("SELECT	Cod_Mar				AS Cod_Mar,")
+            loComandoSeleccionar.AppendLine("		Nom_Mar				AS Nom_Mar,")
+            loComandoSeleccionar.AppendLine("		SUM(Can_Fac)		AS Can_Fac,")
+            loComandoSeleccionar.AppendLine("		SUM(Can_Dev)		AS Can_Dev,")
+            loComandoSeleccionar.AppendLine("		SUM(Base_A)			AS Base_A,")
+            loComandoSeleccionar.AppendLine("		SUM(Base_B)			AS Base_B,")
+            loComandoSeleccionar.AppendLine("		0					AS Ganancia_A,")
+            loComandoSeleccionar.AppendLine("		0					AS Ganancia_B")
+            loComandoSeleccionar.AppendLine("FROM	#tmpGanancia")
+            loComandoSeleccionar.AppendLine("GROUP BY	Cod_Mar, Nom_Mar")
+            loComandoSeleccionar.AppendLine("")
+            'If llGananciasRespectoAlCosto Then
+            '    loComandoSeleccionar.AppendLine("UPDATE		#tmpFinal")
+            '    loComandoSeleccionar.AppendLine("SET		Ganancia_A = (Base_A -Base_B) - (Costo_A - Costo_B),")
+            '    loComandoSeleccionar.AppendLine("			Ganancia_B = (	CASE	")
+            '    loComandoSeleccionar.AppendLine("								WHEN (Costo_A - Costo_B) <> 0")
+            '    loComandoSeleccionar.AppendLine("								THEN ( (Base_A -Base_B) - (Costo_A - Costo_B))*100 / (Costo_A - Costo_B)")
+            '    loComandoSeleccionar.AppendLine("								ELSE 0")
+            '    loComandoSeleccionar.AppendLine("							END)")
+            'Else
+            '    loComandoSeleccionar.AppendLine("UPDATE		#tmpFinal")
+            '    loComandoSeleccionar.AppendLine("SET		Ganancia_A = (Base_A -Base_B) - (Costo_A - Costo_B),")
+            '    loComandoSeleccionar.AppendLine("			Ganancia_B = (	CASE	")
+            '    loComandoSeleccionar.AppendLine("								WHEN (Base_A - Base_B) <> 0")
+            '    loComandoSeleccionar.AppendLine("								THEN ( (Base_A -Base_B) - (Costo_A - Costo_B))*100 / (Base_A - Base_B)")
+            '    loComandoSeleccionar.AppendLine("								ELSE 0")
+            '    loComandoSeleccionar.AppendLine("							END)")
+            'End If
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("SELECT	Cod_Mar				AS Cod_Mar,")
+            loComandoSeleccionar.AppendLine("		Nom_Mar				AS Nom_Mar,")
+            loComandoSeleccionar.AppendLine("		Can_Fac				AS Can_Fac,")
+            loComandoSeleccionar.AppendLine("		Can_Dev				AS Can_Dev,")
+            loComandoSeleccionar.AppendLine("		Base_A				AS Base_A,")
+            loComandoSeleccionar.AppendLine("		Base_B				AS Base_B,")
+            loComandoSeleccionar.AppendLine("       Base_A - Base_B	AS Base_Comision,")
+            loComandoSeleccionar.AppendLine("       COALESCE(Renglones_Series.val_num,0) AS Comision,")
+            loComandoSeleccionar.AppendLine("       (Base_A - Base_B)* COALESCE(Renglones_Series.val_num,0) / 100 AS Monto_Com")
+            'If llGananciasRespectoAlCosto Then
+            '    loComandoSeleccionar.AppendLine("		CAST(1 AS BIT)			AS Ganancia_SobreCosto")
+            'Else
+            '    loComandoSeleccionar.AppendLine("		CAST(0 AS BIT)			AS Ganancia_SobreCosto")
+            'End If
+            loComandoSeleccionar.AppendLine("FROM	#tmpFinal")
+            loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Series ON Renglones_Series.cod_ser = 'COMIMARCA'")
+            loComandoSeleccionar.AppendLine("       AND Renglones_Series.car_ini = Cod_Mar")
+            'Select Case lcParametro15Desde
+            '    Case "Mayor"
+            '        loComandoSeleccionar.AppendLine("WHERE Ganancia_B > " & lcParametro16Desde)
+            '    Case "Menor"
+            '        loComandoSeleccionar.AppendLine("WHERE Ganancia_B < " & lcParametro16Desde)
+            '    Case "Igual"
+            '        loComandoSeleccionar.AppendLine("WHERE Ganancia_B = " & lcParametro16Desde)
+            '    Case "Todos"
+            '        'No filtra por Ganancia_B
+            'End Select
+            loComandoSeleccionar.AppendLine("ORDER BY      " & lcOrdenamiento)
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("DROP TABLE #tmpFinal")
+            loComandoSeleccionar.AppendLine("DROP TABLE #tmpGanancia")
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("")
+            'Me.mEscribirConsulta(loComandoSeleccionar.ToString())
+            Dim loServicios As New cusDatos.goDatos
+
+            Dim laDatosReporte As DataSet = loServicios.mObtenerTodosSinEsquema(loComandoSeleccionar.ToString, "curReportes")
+
+            loObjetoReporte = cusAplicacion.goReportes.mCargarReporte("rComisiones_Marcas", laDatosReporte)
+
+            '-------------------------------------------------------------------------------------------------------
+            ' Verificando si el select (tabla nº0) trae registros
+            '-------------------------------------------------------------------------------------------------------
+
+            If (laDatosReporte.Tables(0).Rows.Count <= 0) Then
+                Me.WbcAdministradorMensajeModal.mMostrarMensajeModal("Información", _
+                                          "No se Encontraron Registros para los Parámetros Especificados. ", _
+                                           vis3Controles.wbcAdministradorMensajeModal.enumTipoMensaje.KN_Informacion, _
+                                           "350px", _
+                                           "200px")
+            End If
+
+            Me.mTraducirReporte(loObjetoReporte)
+            Me.mFormatearCamposReporte(loObjetoReporte)
+            Me.crvrComisiones_Marcas.ReportSource = loObjetoReporte
+
+        Catch loExcepcion As Exception
+
+            Me.WbcAdministradorMensajeModal.mMostrarMensajeModal("Error", _
+                 "No se pudo Completar el Proceso: " & loExcepcion.Message, _
+                  vis3Controles.wbcAdministradorMensajeModal.enumTipoMensaje.KN_Error, _
+                  "auto", _
+                  "auto")
+
+        End Try
+
+    End Sub
+
+    Protected Sub Page_Unload(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Unload
+
+        Try
+
+            loObjetoReporte.Close()
+
+        Catch loExcepcion As Exception
+
+        End Try
+
+    End Sub
+End Class
+'-------------------------------------------------------------------------------------------'
+' Fin del codigo
+'-------------------------------------------------------------------------------------------'
+' EAG: 01/09/15: Codigo inicial
+'-------------------------------------------------------------------------------------------'

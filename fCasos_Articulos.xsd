@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="fCasos_Articulos" targetNamespace="http://tempuri.org/fCasos_Articulos.xsd" xmlns:mstns="http://tempuri.org/fCasos_Articulos.xsd" xmlns="http://tempuri.org/fCasos_Articulos.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="fCasos_Articulos" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cod_art" type="xs:string" minOccurs="0" />
+              <xs:element name="nom_art" type="xs:string" minOccurs="0" />
+              <xs:element name="can_art" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cod_Reg" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Reg" type="xs:string" minOccurs="0" />
+              <xs:element name="Documento" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Fin" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Dias" type="xs:integer" minOccurs="0" />
+              <xs:element name="Asunto" type="xs:string" minOccurs="0" />
+              <xs:element name="Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Prioridad" type="xs:string" minOccurs="0" />
+              <xs:element name="Clase" type="xs:string" minOccurs="0" />
+              <xs:element name="Grupo" type="xs:string" minOccurs="0" />
+              <xs:element name="Interno" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Cod_Coo" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Coo" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Eje" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Eje" type="xs:string" minOccurs="0" />
+              <xs:element name="Etapa" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_Ava" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Departamento" type="xs:string" minOccurs="0" />
+              <xs:element name="Origen" type="xs:string" minOccurs="0" />
+              <xs:element name="Principal" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Renglon" type="xs:integer" minOccurs="0" />
+              <xs:element name="Renglon_Fec_Ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Renglon_Hor_Ini" type="xs:string" minOccurs="0" />
+              <xs:element name="Renglon_Hor_Fin" type="xs:string" minOccurs="0" />
+              <xs:element name="Renglon_Duracion" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Renglon_Actividad" type="xs:string" minOccurs="0" />
+              <xs:element name="Renglon_Control" type="xs:string" minOccurs="0" />
+              <xs:element name="Renglon_Cod_Eje" type="xs:string" minOccurs="0" />
+              <xs:element name="Renglon_Facturable" type="xs:boolean" minOccurs="0" />
+              <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

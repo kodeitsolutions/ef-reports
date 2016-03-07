@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rVendedores_VNumericos" targetNamespace="http://tempuri.org/rVendedores_VNumericos.xsd" xmlns:mstns="http://tempuri.org/rVendedores_VNumericos.xsd" xmlns="http://tempuri.org/rVendedores_VNumericos.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rVendedores_VNumericos" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="cod_ven" type="xs:string" minOccurs="0" />
+              <xs:element name="nom_ven" type="xs:string" minOccurs="0" />
+              <xs:element name="Status_Vend" type="xs:string" minOccurs="0" />
+              <xs:element name="por_ven" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_cob" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_des" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_imp" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_rec" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_ret" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_lic" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_men" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_mas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_otr1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_otr2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_otr3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_otr4" type="xs:decimal" minOccurs="0" />
+              <xs:element name="por_otr5" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mon_otr1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mon_otr2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mon_otr3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mon_otr4" type="xs:decimal" minOccurs="0" />
+              <xs:element name="mon_otr5" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

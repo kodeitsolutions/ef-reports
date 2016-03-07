@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rfAnalisis_compras" targetNamespace="http://tempuri.org/rfAnalisis_compras.xsd" xmlns:mstns="http://tempuri.org/rfAnalisis_compras.xsd" xmlns="http://tempuri.org/rfAnalisis_compras.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rfAnalisis_compras" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Documento" type="xs:string" minOccurs="0" />
+				<xs:element name="Documento1" type="xs:string" minOccurs="0" />
+              <xs:element name="Documento2" type="xs:string" minOccurs="0" />
+              <xs:element name="Documento3" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Pro" type="xs:string" minOccurs="0" />
+				<xs:element name="Cod_Pro1" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Pro2" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Pro3" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Art" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Art1" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Art2" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Art3" type="xs:string" minOccurs="0" />
+              <xs:element name="Precio11" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Precio12" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Precio13 " type="xs:decimal" minOccurs="0" />
+              <xs:element name="Can_Art11" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Can_Art12" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Can_Art13" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cod_Uni" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Uni1" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Uni2" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Uni3" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_Des1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Por_Des2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Por_Des3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Net1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Net2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Net3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Nom_Art" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Art1" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Art2" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Art3" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Pro" type="xs:string" minOccurs="0" />
+			  <xs:element name="Nom_Pro1" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Pro2" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Pro3" type="xs:string" minOccurs="0" />
+              <xs:element name="Mon_Net_Enc1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Net_Enc2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Net_Enc3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Bru_Enc1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Bru_Enc2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Bru_Enc3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Des_Enc1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Des_Enc2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Des_Enc3" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Dis_Imp" type="xs:decimal" minOccurs="0" />
+				<xs:element name="Dis_Imp1" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Dis_Imp2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Dis_Imp3" type="xs:string" minOccurs="0" />
+              <xs:element name="Comentario1" type="xs:string" minOccurs="0" />
+              <xs:element name="Comentario2" type="xs:string" minOccurs="0" />
+              <xs:element name="Comentario3" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

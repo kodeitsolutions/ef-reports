@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rTrazabilidad_CyT_TipoArticulo" targetNamespace="http://tempuri.org/rTrazabilidad_CyT_TipoArticulo.xsd" xmlns:mstns="http://tempuri.org/rTrazabilidad_CyT_TipoArticulo.xsd" xmlns="http://tempuri.org/rTrazabilidad_CyT_TipoArticulo.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rTrazabilidad_CyT_TipoArticulo" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Articulo_Nom_Tip" type="xs:string" minOccurs="0" />
+              <xs:element name="Articulo_Cod_Tip" type="xs:string" minOccurs="0" />
+              <xs:element name="Compra_Cantidad" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Compra_Bruto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Compra_Impuesto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Compra_Neto" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Traslado_Cantidad" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Traslado_Costo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="N_Compras_Total"        type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Compras_Anuladas"     type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Compras_Pendientes"   type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Compras_Confirmadas"  type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Compras_Afectadas"    type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Compras_Procesadas"   type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Traslados_Total"      type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Traslados_Anulados"   type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Traslados_Pendientes" type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Traslados_Confirmados" type="xs:integer" minOccurs="0" />
+              <xs:element name="N_Traslados_Procesados" type="xs:integer" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

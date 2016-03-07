@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="fExpedientes" targetNamespace="http://tempuri.org/fExpedientes.xsd" xmlns:mstns="http://tempuri.org/fExpedientes.xsd" xmlns="http://tempuri.org/fExpedientes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="fExpedientes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="documento" type="xs:string" minOccurs="0" />
+              <xs:element name="expediente" type="xs:string" minOccurs="0" />
+              <xs:element name="tipo" type="xs:string" minOccurs="0" />
+              <xs:element name="clase" type="xs:string" minOccurs="0" />
+              <xs:element name="status" type="xs:string" minOccurs="0" />
+              <xs:element name="importacion" type="xs:string" minOccurs="0" />
+              <xs:element name="cod_log" type="xs:string" minOccurs="0" />
+              <xs:element name="nom_log" type="xs:string" minOccurs="0" />
+              <xs:element name="fec_ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="fec_fin" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="fec_rec" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="seguimientos" type="xs:string" minOccurs="0" />
+              <xs:element name="comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="prioridad" type="xs:string" minOccurs="0" />
+              <xs:element name="nivel" type="xs:string" minOccurs="0" />
+              <xs:element name="re_renglon" type="xs:decimal" minOccurs="0" />
+              <xs:element name="re_tip_doc" type="xs:string" minOccurs="0" />
+              <xs:element name="re_referencia" type="xs:string" minOccurs="0" />
+              <xs:element name="re_detalle" type="xs:string" minOccurs="0" />
+              <xs:element name="re_status" type="xs:string" minOccurs="0" />
+              <xs:element name="re_control" type="xs:string" minOccurs="0" />
+              <xs:element name="re_completo" type="xs:boolean" minOccurs="0" />
+              <xs:element name="re_fec_ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="re_fec_fin" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="re_comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="re_prioridad" type="xs:string" minOccurs="0" />
+              <xs:element name="de_renglon" type="xs:decimal" minOccurs="0" />
+              <xs:element name="de_tip_tra" type="xs:string" minOccurs="0" />
+              <xs:element name="de_factura" type="xs:string" minOccurs="0" />
+              <xs:element name="de_control" type="xs:string" minOccurs="0" />
+              <xs:element name="de_referencia" type="xs:string" minOccurs="0" />
+              <xs:element name="de_transporte" type="xs:string" minOccurs="0" />
+              <xs:element name="de_vehiculo" type="xs:string" minOccurs="0" />
+              <xs:element name="de_fec_emb" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="de_lug_emb" type="xs:string" minOccurs="0" />
+              <xs:element name="de_fec_lle" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="de_containers" type="xs:decimal" minOccurs="0" />
+              <xs:element name="de_bultos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="de_cajas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="de_unidades" type="xs:decimal" minOccurs="0" />
+              <xs:element name="de_peso" type="xs:decimal" minOccurs="0" />
+              <xs:element name="de_volumen" type="xs:decimal" minOccurs="0" />
+              <xs:element name="de_cod_uni" type="xs:string" minOccurs="0" />
+              <xs:element name="de_can_art" type="xs:decimal" minOccurs="0" />
+              <xs:element name="de_detalle" type="xs:string" minOccurs="0" />
+              <xs:element name="de_status" type="xs:string" minOccurs="0" />
+              <xs:element name="de_fec_ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="de_fec_fin" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="de_comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="se_renglon" type="xs:decimal" minOccurs="0" />
+              <xs:element name="se_fecha" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="se_seguimiento" type="xs:string" minOccurs="0" />
+              <xs:element name="se_status" type="xs:string" minOccurs="0" />
+              <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

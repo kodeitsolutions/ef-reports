@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rCampanasConParticipantes" targetNamespace="http://tempuri.org/rCampanasConParticipantes.xsd" xmlns:mstns="http://tempuri.org/rCampanasConParticipantes.xsd" xmlns="http://tempuri.org/rCampanasConParticipantes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rCampanasConParticipantes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Documento" type="xs:string" minOccurs="0" />
+              <xs:element name="Nombre" type="xs:string" minOccurs="0" />
+              <xs:element name="Responsable" type="xs:string" minOccurs="0" />
+              <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_fin" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Por_Eje" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="Tipo_Renglon" type="xs:string" minOccurs="0" />
+              <xs:element name="Renglon" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Nombre_Reng" type="xs:string" minOccurs="0" />
+              <xs:element name="Fec_Ini_reng" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Fin_reng" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Telefonos" type="xs:string" minOccurs="0" />
+              <xs:element name="Correo" type="xs:string" minOccurs="0" />
+
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

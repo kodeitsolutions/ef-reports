@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rRDeclaracion_pImpuestos" targetNamespace="http://tempuri.org/rRDeclaracion_pImpuestos.xsd"
+		   xmlns:mstns="http://tempuri.org/rRDeclaracion_pImpuestos.xsd" xmlns="http://tempuri.org/rRDeclaracion_pImpuestos.xsd"
+		   xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified"
+		   elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+			<DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public"
+						SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+				<Connections>
+				</Connections>
+				<Tables>
+				</Tables>
+				<Sources>
+				</Sources>
+			</DataSource>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="rRDeclaracion_pImpuestos" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="curReportes">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Tipo"			type="xs:integer" minOccurs="0" />
+							<xs:element name="Nacional"		type="xs:boolean" minOccurs="0" />
+							<xs:element name="V_Codigo"		type="xs:string" minOccurs="0" />
+							<xs:element name="V_Porcentaje" type="xs:decimal" minOccurs="0" />
+							<xs:element name="V_Base"		type="xs:decimal" minOccurs="0" />
+							<xs:element name="V_Impuesto" 	type="xs:decimal" minOccurs="0" />
+							<xs:element name="C_Codigo"		type="xs:string" minOccurs="0" />
+							<xs:element name="C_Porcentaje" type="xs:decimal" minOccurs="0" />
+							<xs:element name="C_Base"		type="xs:decimal" minOccurs="0" />
+							<xs:element name="C_Impuesto"	type="xs:decimal" minOccurs="0" />
+							<xs:element name="Excedente_CF" type="xs:decimal" minOccurs="0" />
+							<xs:element name="RetProveedor" type="xs:decimal" minOccurs="0" />
+							<xs:element name="RetCliente"	type="xs:decimal" minOccurs="0" />
+							<xs:element name="Acumulado_CF" type="xs:decimal" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

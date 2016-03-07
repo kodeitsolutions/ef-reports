@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rSeguimientos_lCotizaciones" targetNamespace="http://tempuri.org/rSeguimientos_lCotizaciones.xsd" xmlns:mstns="http://tempuri.org/rSeguimientos_lCotizaciones.xsd" xmlns="http://tempuri.org/rSeguimientos_lCotizaciones.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+			<DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+				<Connections>
+				</Connections>
+				<Tables>
+				</Tables>
+				<Sources>
+				</Sources>
+			</DataSource>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="rSeguimientos_lCotizaciones" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="curReportes">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Documento"		type="xs:string" minOccurs="0" />
+							<xs:element name="Fec_Ini"			type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Fec_Fin"			type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Status"			type="xs:string" minOccurs="0" />
+							<xs:element name="Cod_Cli" 			type="xs:string" minOccurs="0" />
+							<xs:element name="Nom_Cli" 			type="xs:string" minOccurs="0" />
+							<xs:element name="Mon_Net" 			type="xs:decimal" minOccurs="0" />
+
+							<xs:element name="For_Env" 			type="xs:string" minOccurs="0" />
+							<xs:element name="Tip_Env" 			type="xs:string" minOccurs="0" />
+							<xs:element name="Dir_Ent" 			type="xs:string" minOccurs="0" />
+							<xs:element name="Grupo" 			type="xs:string" minOccurs="0" />
+
+							<xs:element name="Tl_Renglon" 		type="xs:integer" minOccurs="0" />
+							<xs:element name="Tl_Actividad" 	type="xs:string" minOccurs="0" />
+							<xs:element name="Tl_Inicio" 		type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Tl_Hor_Ini" 		type="xs:string" minOccurs="0" />
+							<xs:element name="Tl_Comentario" 	type="xs:string" minOccurs="0" />
+							<xs:element name="Tl_Por_Eje" 		type="xs:decimal" minOccurs="0" />
+
+							<xs:element name="Em_Renglon" 		type="xs:integer" minOccurs="0" />
+							<xs:element name="Em_Tipo" 			type="xs:string" minOccurs="0" />
+							<xs:element name="Em_Cantidad" 		type="xs:decimal" minOccurs="0" />
+							<xs:element name="Em_Peso" 			type="xs:decimal" minOccurs="0" />
+							<xs:element name="Em_Unidad" 		type="xs:string" minOccurs="0" />
+							<xs:element name="Em_Comentario" 	type="xs:string" minOccurs="0" />
+
+							<xs:element name="Ta_Renglon" 		type="xs:integer" minOccurs="0" />
+							<xs:element name="Ta_Transporte" 	type="xs:string" minOccurs="0" />
+							<xs:element name="Ta_Referencia" 	type="xs:string" minOccurs="0" />
+							<xs:element name="Ta_Inicio" 		type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Ta_Hor_Ini" 		type="xs:string" minOccurs="0" />
+							<xs:element name="Ta_Cantidad" 		type="xs:decimal" minOccurs="0" />
+							<xs:element name="Ta_For_Env" 		type="xs:string" minOccurs="0" />
+							<xs:element name="Ta_Operador" 		type="xs:string" minOccurs="0" />
+
+							<xs:element name="Sl_Renglon" 		type="xs:integer" minOccurs="0" />
+							<xs:element name="Sl_Fecha" 		type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Sl_Hora" 			type="xs:string" minOccurs="0" />
+							<xs:element name="Sl_Contacto" 		type="xs:string" minOccurs="0" />
+							<xs:element name="Sl_Accion" 		type="xs:string" minOccurs="0" />
+							<xs:element name="Sl_Medio" 		type="xs:string" minOccurs="0" />
+							<xs:element name="Sl_Comentario" 	type="xs:string" minOccurs="0" />
+							<xs:element name="Sl_Prioridad" 	type="xs:string" minOccurs="0" />
+
+							<xs:element name="Do_Renglon" 		type="xs:integer" minOccurs="0" />
+							<xs:element name="Do_Nom_Doc" 		type="xs:string" minOccurs="0" />
+							<xs:element name="Do_Archivo" 		type="xs:string" minOccurs="0" />
+							<xs:element name="Do_Ruta" 			type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
