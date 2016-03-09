@@ -27,7 +27,6 @@ Partial Class CGS_rMCajas_Fechas
 
             loComandoSeleccionar.AppendLine(" SELECT    Movimientos_Cajas.Documento, ")
             loComandoSeleccionar.AppendLine("		   Movimientos_Cajas.Cod_Caj, ")
-            loComandoSeleccionar.AppendLine("		   Cajas.nom_caj, ")
             loComandoSeleccionar.AppendLine("		   Cajas.mon_max, ")
             loComandoSeleccionar.AppendLine("		   Movimientos_Cajas.Comentario, ")
             loComandoSeleccionar.AppendLine("		   Movimientos_Cajas.Fec_Ini, ")
@@ -37,8 +36,7 @@ Partial Class CGS_rMCajas_Fechas
             loComandoSeleccionar.AppendLine("		   SUBSTRING(Movimientos_Cajas.Tip_Ori,1,20) AS Tip_Ori, ")
             loComandoSeleccionar.AppendLine("		   Movimientos_Cajas.Doc_Ori, ")
             loComandoSeleccionar.AppendLine("		   Conceptos.Nom_Con, ")
-            loComandoSeleccionar.AppendLine("		   Cajas.Nom_Caj   AS  Nombre, ")
-            loComandoSeleccionar.AppendLine("		   CASE WHEN Movimientos_Cajas.Tipo = 'Efectivo' THEN 'Efectivo' ELSE 'Ticket' END AS  Tip_Mov ")
+            loComandoSeleccionar.AppendLine("		   Cajas.Nom_Caj   AS  Nombre ")
             loComandoSeleccionar.AppendLine("FROM Movimientos_Cajas ")
             loComandoSeleccionar.AppendLine(" JOIN Cajas ON  Movimientos_Cajas.Cod_Caj		=   Cajas.Cod_Caj ")
             loComandoSeleccionar.AppendLine(" JOIN Conceptos ON Movimientos_Cajas.Cod_Con   =   Conceptos.Cod_Con")
