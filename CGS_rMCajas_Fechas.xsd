@@ -23,10 +23,9 @@
               <xs:element name="Comentario" type="xs:string" minOccurs="0" />
               <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Status" type="xs:string" minOccurs="0" />
-              <xs:element name="Referencia" type="xs:string" minOccurs="0" />
               <xs:element name="Mon_Deb" type="xs:double" minOccurs="0" />
               <xs:element name="Mon_Hab" type="xs:double" minOccurs="0" />
-              <xs:element name="mon_max" type="xs:double" minOccurs="0" />
+              <xs:element name="mon_max" type="xs:decimal" minOccurs="0" />
               <xs:element name="Tip_Ori" type="xs:string" minOccurs="0" />
               <xs:element name="Doc_Ori" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Con" type="xs:string" minOccurs="0" />

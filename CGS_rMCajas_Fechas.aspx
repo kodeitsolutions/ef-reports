@@ -1,4 +1,4 @@
-<%@ page language="VB" autoeventwireup="false" CodeFile="CGS_rMCajas_Fechas.aspx.vb" inherits="CGS_rMCajas_Fechas" %>
+<%@ Page Language="VB" AutoEventWireup="false" CodeFile="CGS_rMCajas_Fechas.aspx.vb" Inherits="CGS_rMCajas_Fechas" %>
 
 <%@ Register Assembly="vis2Controles" Namespace="vis2Controles" TagPrefix="vis2Controles" %>
 <%@ Register Assembly="vis1Controles" Namespace="vis1Controles" TagPrefix="vis1Controles" %>
@@ -12,47 +12,46 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>Relación de Caja Chica</title>
+    <title>Reporte de Movimientos de Cajas por Fechas</title>
     <link href="~/Framework/cssEstilosFramework.css" rel="stylesheet" type="text/css" />
     <link href="~/Administrativo/cssEstilosAdministrativo.css" rel="stylesheet" type="text/css" />
+    <link href="/aspnet_client/System_Web/2_0_50727/CrystalReportWebFormViewer3/css/default.css"
+        rel="stylesheet" type="text/css" />
+    <link href="/aspnet_client/System_Web/2_0_50727/CrystalReportWebFormViewer3/css/default.css"
+        rel="stylesheet" type="text/css" />
+    <link href="/aspnet_client/System_Web/2_0_50727/CrystalReportWebFormViewer3/css/default.css"
+        rel="stylesheet" type="text/css" />
+    <link href="/aspnet_client/System_Web/2_0_50727/CrystalReportWebFormViewer3/css/default.css"
+        rel="stylesheet" type="text/css" />
     <link href="/aspnet_client/System_Web/2_0_50727/CrystalReportWebFormViewer3/css/default.css"
         rel="stylesheet" type="text/css" />
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-        <CR:CrystalReportViewer ID="crvCGS_rMCajas_Fechas" runat="server" AutoDataBind="true"
-            EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" HasCrystalLogo="False" DisplayGroupTree="False" HasPrintButton="False" />
-       <asp:ScriptManager ID="ScriptManager1" runat="server">
-            <Scripts>
-            </Scripts>
-        </asp:ScriptManager>
-       
-         <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-         <ContentTemplate>
-            <vis3Controles:wbcImpresoraReportes runat="server" ID="wbcImpresoraDeReportes" 
-            plMostrarBotonImprimir='True' />
+        <CR:CrystalReportViewer ID="crvCGS_rMCajas_Fechas" runat="server" AutoDataBind="true" EnableDatabaseLogonPrompt="False"
+            EnableParameterPrompt="False" HasCrystalLogo="False" 
+            HasPrintButton="False" HasViewList="False" DisplayGroupTree="False" />
 
-            <vis3Controles:pnlVentanaModal ID="PnlVentanaModalPrincipal" runat="server" 
-                      pcEstiloBotonCerrar="BotonCerrarVentanaModal" pcEstiloFondo="FondoVentanaModal" 
-                      pcEstiloMarco="MarcoVentanaModal" pcTextoBotonCerrar="Cerrar"
-                      plMostrarBotonCerrar="false" poAlto="520px" poAncho="550px" Style="left: -24px;
-                        top: 61px" />
-
-            <vis3Controles:pnlMensajeModal ID="PnlMensajeModal" runat="server" 
-                   pcEstiloContenido="ContenidoMensajeModal" pcEstiloFondo="FondoVentanaModal" 
-                   pcEstiloTitulo="TituloMensajeModal" pcEstiloVentana="MarcoMensajeModal"
-                   poAlto="400px" poAncho="750px" poArriba="20%" poIzquierda="30%" 
-                   style="left: -24px; top: 61px" />
-
-            <vis3Controles:wbcAdministradorMensajeModal ID="WbcAdministradorMensajeModal" 
-                     runat="server" style="left: -24px; top: 61px" />
-
-        <vis3Controles:wbcAdministradorVentanaModal ID="WbcAdministradorVentanaModal" 
-                      runat="server" style="left: -24px; top: 61px" />
-
-    </ContentTemplate>
-    </asp:UpdatePanel>
+            <asp:ScriptManager ID="ScriptManager1" runat="server">
+                <Scripts>
+                    
+                </Scripts>
+            </asp:ScriptManager>            
+            <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                <ContentTemplate>
+                    <vis3Controles:wbcImpresoraReportes runat="server" ID="wbcImpresoraDeReportes" plMostrarBotonImprimir='True' />    
+                    <vis3Controles:pnlVentanaModal ID="PnlVentanaModalPrincipal" runat="server" pcEstiloBotonCerrar="BotonCerrarVentanaModal"
+                        pcEstiloFondo="FondoVentanaModal" pcEstiloMarco="MarcoVentanaModal" pcTextoBotonCerrar="Cerrar"
+                        plMostrarBotonCerrar="false" poAlto="520px" poAncho="550px" Style="left: -16px;
+                        top: 50px" />
+                    <vis3Controles:pnlMensajeModal ID="PnlMensajeModal" runat="server" pcEstiloContenido="ContenidoMensajeModal"
+                        pcEstiloFondo="FondoVentanaModal" pcEstiloTitulo="TituloMensajeModal" pcEstiloVentana="MarcoMensajeModal"
+                        poAlto="400px" poAncho="750px" poArriba="20%" poIzquierda="30%" />
+                    <vis3Controles:wbcAdministradorMensajeModal ID="WbcAdministradorMensajeModal" runat="server" />
+                    <vis3Controles:wbcAdministradorVentanaModal ID="WbcAdministradorVentanaModal" runat="server" />
+                </ContentTemplate>
+            </asp:UpdatePanel>
     </div>
     </form>
 </body>
