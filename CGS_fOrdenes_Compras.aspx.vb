@@ -1,13 +1,4 @@
-﻿'-------------------------------------------------------------------------------------------'
-' Inicio del codigo
-'-------------------------------------------------------------------------------------------'
-' Importando librerias 
-'-------------------------------------------------------------------------------------------'
-Imports System.Data
-
-'-------------------------------------------------------------------------------------------'
-' Inicio de clase "CGS_fOrdenes_Compras"
-'-------------------------------------------------------------------------------------------'
+﻿Imports System.Data
 Partial Class CGS_fOrdenes_Compras
     Inherits vis2formularios.frmReporte
 
@@ -44,7 +35,7 @@ Partial Class CGS_fOrdenes_Compras
             'loComandoSeleccionar.AppendLine("           Proveedores.Nit, ")
             'loComandoSeleccionar.AppendLine("           Proveedores.Dir_Fis, ")
             'loComandoSeleccionar.AppendLine("           Proveedores.Telefonos, ")
-            loComandoSeleccionar.AppendLine("           Proveedores.Fax, ")
+            loComandoSeleccionar.AppendLine("           Proveedores.Correo, ")
             loComandoSeleccionar.AppendLine("           Ordenes_Compras.Nom_Pro         As Nom_Gen, ")
             loComandoSeleccionar.AppendLine("           Ordenes_Compras.Rif             As Rif_Gen, ")
             loComandoSeleccionar.AppendLine("           Ordenes_Compras.Nit             As Nit_Gen, ")
@@ -67,6 +58,7 @@ Partial Class CGS_fOrdenes_Compras
             loComandoSeleccionar.AppendLine("           Ordenes_Compras.Mon_Net, ")
             loComandoSeleccionar.AppendLine("           Ordenes_Compras.Cod_For, ")
             loComandoSeleccionar.AppendLine("           Ordenes_Compras.Comentario, ")
+            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Status, ")
             loComandoSeleccionar.AppendLine("           Formas_Pagos.Nom_For, ")
             loComandoSeleccionar.AppendLine("           Ordenes_Compras.Cod_Ven, ")
             loComandoSeleccionar.AppendLine("           Renglones_OCompras.Cod_Art, ")
@@ -196,6 +188,4 @@ End Class
 ' CMS: 17/03/10: Se aplicaron los metodos carga de imagen y validacion de registro cero
 '-------------------------------------------------------------------------------------------'
 ' MAT: 02/09/11: Adición de Comentario en Renglones
-'-------------------------------------------------------------------------------------------'
-' JJD: 09/03/15: Adecuacion segun solicitud del cliente. CEGASA
 '-------------------------------------------------------------------------------------------'
