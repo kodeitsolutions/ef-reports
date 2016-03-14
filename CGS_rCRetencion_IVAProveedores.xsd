@@ -42,6 +42,7 @@
 							<xs:element name="Monto_BaseDoc" type="xs:decimal" minOccurs="0" />
 							<xs:element name="Porcentaje_ImpuestoDoc" type="xs:decimal" minOccurs="0" />
 							<xs:element name="Monto_ImpuestoDoc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Fecha_Recepcion" type="xs:dateTime" minOccurs="0" />
 							<xs:element name="Anio" type="xs:short" minOccurs="0" />
 							<xs:element name="Mes" type="xs:short" minOccurs="0" />
 							<xs:element name="Numero_ControlDoc" type="xs:string" />

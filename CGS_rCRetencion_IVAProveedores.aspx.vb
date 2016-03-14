@@ -30,11 +30,9 @@ Partial Class CGS_rCRetencion_IVAProveedores
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
 			Dim lcAño As String = CStr(CDate(cusAplicacion.goReportes.paParametrosIniciales(0)).Year)
-			Dim lcMes As String = CStr(CDate(cusAplicacion.goReportes.paParametrosIniciales(0)).Month)
+            Dim lcMes As String = CStr(CDate(cusAplicacion.goReportes.paParametrosIniciales(0)).Month)
+
             Dim loComandoSeleccionar As New StringBuilder()
-
-
-
 
             loComandoSeleccionar.AppendLine("SELECT			Cuentas_Pagar.Tip_Ori				AS Tipo_Origen,")
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Fec_Ini				AS Fecha_Retencion,")
@@ -50,6 +48,7 @@ Partial Class CGS_rCRetencion_IVAProveedores
             loComandoSeleccionar.AppendLine("				Documentos.Mon_Bas1					AS Monto_BaseDoc,				")
             loComandoSeleccionar.AppendLine("				Documentos.Por_Imp1					AS Porcentaje_ImpuestoDoc,		")
             loComandoSeleccionar.AppendLine("				Documentos.Mon_Imp1					AS Monto_ImpuestoDoc,			")
+            loComandoSeleccionar.AppendLine("				Documentos.Fec_Ini					AS Fecha_Recepcion,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Bas		AS Base_Retencion,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Por_Ret		AS Porcentaje_Retenido,")
             loComandoSeleccionar.AppendLine("				RTRIM(Retenciones.Cod_Ret) + ': ' + Retenciones.Nom_Ret	AS Concepto,")
@@ -81,7 +80,7 @@ Partial Class CGS_rCRetencion_IVAProveedores
             loComandoSeleccionar.AppendLine("WHERE			Cuentas_Pagar.Cod_Tip = 'RETIVA'")
             loComandoSeleccionar.AppendLine("			AND	Cuentas_Pagar.Status <> 'Anulado'")
             loComandoSeleccionar.AppendLine("			AND	Cuentas_Pagar.Tip_Ori = 'Pagos'")
-											  
+
             loComandoSeleccionar.AppendLine("           AND Cuentas_Pagar.Fec_Ini BETWEEN " & lcParametro0Desde)
             loComandoSeleccionar.AppendLine("         		AND " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("           AND Cuentas_Pagar.Cod_Pro BETWEEN " & lcParametro1Desde)
@@ -92,7 +91,7 @@ Partial Class CGS_rCRetencion_IVAProveedores
             loComandoSeleccionar.AppendLine("         		AND " & lcParametro3Hasta)
 
             loComandoSeleccionar.AppendLine("UNION ALL		")
-            
+
             loComandoSeleccionar.AppendLine("SELECT			Cuentas_Pagar.Tip_Ori				AS Tipo_Origen,")
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Fec_Ini				AS Fecha_Retencion,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Num_Com		AS Numero_Comprobante,				")
@@ -107,6 +106,7 @@ Partial Class CGS_rCRetencion_IVAProveedores
             loComandoSeleccionar.AppendLine("				Documentos.Mon_Bas1					AS Monto_BaseDoc,					")
             loComandoSeleccionar.AppendLine("				Documentos.Por_Imp1					AS Porcentaje_ImpuestoDoc,			")
             loComandoSeleccionar.AppendLine("				Documentos.Mon_Imp1					AS Monto_ImpuestoDoc,				")
+            loComandoSeleccionar.AppendLine("				Documentos.Fec_Ini					AS Fecha_Recepcion,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Bas		AS Base_Retencion,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Por_Ret		AS Porcentaje_Retenido,")
             loComandoSeleccionar.AppendLine("				RTRIM(Retenciones.Cod_Ret) + ': ' + Retenciones.Nom_Ret	AS Concepto,")
@@ -132,7 +132,7 @@ Partial Class CGS_rCRetencion_IVAProveedores
             loComandoSeleccionar.AppendLine("WHERE			Cuentas_Pagar.Cod_Tip = 'RETIVA'")
             loComandoSeleccionar.AppendLine("			AND	Cuentas_Pagar.Status <> 'Anulado'")
             loComandoSeleccionar.AppendLine("			AND	Cuentas_Pagar.Tip_Ori = 'cuentas_pagar'")
-											 
+
             loComandoSeleccionar.AppendLine("       	    AND Cuentas_Pagar.Fec_Ini BETWEEN " & lcParametro0Desde)
             loComandoSeleccionar.AppendLine("       	  		AND " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("       	    AND Cuentas_Pagar.Cod_Pro BETWEEN " & lcParametro1Desde)
@@ -144,7 +144,7 @@ Partial Class CGS_rCRetencion_IVAProveedores
 
             loComandoSeleccionar.AppendLine("ORDER BY " & lcOrdenamiento & ", Fecha_Retencion ASC")
 
-
+            'Me.mEscribirConsulta(loComandoSeleccionar.ToString)
             Dim loServicios As New cusDatos.goDatos
 
             Dim laDatosReporte As DataSet = loServicios.mObtenerTodosSinEsquema(loComandoSeleccionar.ToString, "curReportes")
