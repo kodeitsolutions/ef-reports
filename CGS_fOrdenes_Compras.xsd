@@ -59,6 +59,8 @@
               <xs:element name="Por_Rec1_Enc" type="xs:decimal" minOccurs="0" />
               <xs:element name="Mon_Rec1_Enc" type="xs:decimal" minOccurs="0" />
               <xs:element name="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="Generico" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Notas" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
