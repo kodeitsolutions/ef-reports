@@ -38,6 +38,7 @@
 							<xs:element name="Rif" type="xs:string" minOccurs="0" />
 							<xs:element name="Nit" type="xs:string" minOccurs="0" />
 							<xs:element name="Direccion" type="xs:string" minOccurs="0" />
+              <xs:element name="Agrupar" type="xs:string" minOccurs="0" />
 							<xs:element name="Sustraendo_Retenido" type="xs:decimal" />
 						</xs:sequence>
 					</xs:complexType>
