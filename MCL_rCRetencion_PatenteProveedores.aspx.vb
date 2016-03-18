@@ -28,6 +28,8 @@ Partial Class MCL_rCRetencion_PatenteProveedores
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
+            Dim Concepto As String = "'Retención Impuesto Municipal'"
+
             Dim loComandoSeleccionar As New StringBuilder()
 
             loComandoSeleccionar.AppendLine("SELECT			Cuentas_Pagar.Tip_Ori				AS Tipo_Origen,")
@@ -43,7 +45,7 @@ Partial Class MCL_rCRetencion_PatenteProveedores
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Bas		AS Base_Retencion,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Por_Ret		AS Porcentaje_Retenido,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Sus		AS Sustraendo_Retenido,")
-            loComandoSeleccionar.AppendLine("				RTRIM(Retenciones.Cod_Ret) + ': ' + Retenciones.Nom_Ret	AS Concepto,")
+            loComandoSeleccionar.AppendLine("               " & Concepto & "                    AS Concepto,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Ret		AS Monto_Retenido,")
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Cod_Pro				AS Cod_Pro,")
             loComandoSeleccionar.AppendLine("				Proveedores.Nom_Pro					AS Nom_Pro,")
@@ -95,7 +97,7 @@ Partial Class MCL_rCRetencion_PatenteProveedores
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Bas		AS Base_Retencion,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Por_Ret		AS Porcentaje_Retenido,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Sus		AS Sustraendo_Retenido,")
-            loComandoSeleccionar.AppendLine("				RTRIM(Retenciones.Cod_Ret) + ': ' + Retenciones.Nom_Ret	AS Concepto,")
+            loComandoSeleccionar.AppendLine("               " & Concepto & "                    AS Concepto,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Ret		AS Monto_Retenido,")
             loComandoSeleccionar.AppendLine("				Ordenes_Pagos.Cod_Pro				AS Cod_Pro,")
             loComandoSeleccionar.AppendLine("				Proveedores.Nom_Pro					AS Nom_Pro,")
@@ -133,7 +135,7 @@ Partial Class MCL_rCRetencion_PatenteProveedores
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Bas		AS Base_Retencion,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Por_Ret		AS Porcentaje_Retenido,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Sus		AS Sustraendo_Retenido,")
-            loComandoSeleccionar.AppendLine("				RTRIM(Retenciones.Cod_Ret) + ': ' + Retenciones.Nom_Ret	AS Concepto,")
+            loComandoSeleccionar.AppendLine("               " & Concepto & "                    AS Concepto,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Ret		AS Monto_Retenido,")
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Cod_Pro				AS Cod_Pro,")
             loComandoSeleccionar.AppendLine("				Proveedores.Nom_Pro					AS Nom_Pro,")
