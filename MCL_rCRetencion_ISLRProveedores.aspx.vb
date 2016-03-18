@@ -19,20 +19,16 @@ Partial Class MCL_rCRetencion_ISLRProveedores
 
             Dim lcParametro0Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(0), goServicios.enuOpcionesRedondeo.KN_FechaInicioDelDia)
             Dim lcParametro0Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(0), goServicios.enuOpcionesRedondeo.KN_FechaFinDelDia)
-            Dim lcParametro1Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(1), goServicios.enuOpcionesRedondeo.KN_FechaInicioDelDia)
-            Dim lcParametro1Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(1), goServicios.enuOpcionesRedondeo.KN_FechaFinDelDia)
-            Dim lcParametro2Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(2), goServicios.enuOpcionesRedondeo.KN_FechaInicioDelDia)
-            Dim lcParametro2Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(2), goServicios.enuOpcionesRedondeo.KN_FechaFinDelDia)
-            Dim lcParametro3Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(3), goServicios.enuOpcionesRedondeo.KN_FechaInicioDelDia)
-            Dim lcParametro3Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(3), goServicios.enuOpcionesRedondeo.KN_FechaFinDelDia)
-
+            Dim lcParametro1Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(1))
+            Dim lcParametro1Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(1))
+            Dim lcParametro2Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(2))
+            Dim lcParametro2Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(2))
+            Dim lcParametro3Desde As String = goServicios.mObtenerListaFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(3))
+            Dim lcParametro4Desde As String = goServicios.mObtenerListaFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(4))
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
             Dim loComandoSeleccionar As New StringBuilder()
-
-
-
 
             loComandoSeleccionar.AppendLine("SELECT			Cuentas_Pagar.Tip_Ori				AS Tipo_Origen,")
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Fec_Ini				AS Fecha_Retencion,")
@@ -41,6 +37,7 @@ Partial Class MCL_rCRetencion_ISLRProveedores
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Doc_Ori		AS Numero_Documento,")
             loComandoSeleccionar.AppendLine("				Renglones_Pagos.Control				AS Control_Documento,")
             loComandoSeleccionar.AppendLine("				Renglones_Pagos.Factura				AS Factura_Documento,")
+            loComandoSeleccionar.AppendLine("				Renglones_Pagos.Fec_Ini			    AS Fecha_Factura,")
             loComandoSeleccionar.AppendLine("				Renglones_Pagos.Mon_Net				AS Monto_Documento,")
             loComandoSeleccionar.AppendLine("				Renglones_Pagos.Mon_Abo				AS Monto_Abonado,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Bas		AS Base_Retencion,")
@@ -52,7 +49,8 @@ Partial Class MCL_rCRetencion_ISLRProveedores
             loComandoSeleccionar.AppendLine("				Proveedores.Nom_Pro					AS Nom_Pro,")
             loComandoSeleccionar.AppendLine("				Proveedores.Rif						AS Rif,")
             loComandoSeleccionar.AppendLine("				Proveedores.Nit						AS Nit,")
-            loComandoSeleccionar.AppendLine("				Proveedores.Dir_Fis					AS Direccion")
+            loComandoSeleccionar.AppendLine("				Proveedores.Dir_Fis					AS Direccion,")
+            loComandoSeleccionar.AppendLine("               " & lcParametro4Desde & " AS Agrupar")
             loComandoSeleccionar.AppendLine("FROM			Cuentas_Pagar")
             loComandoSeleccionar.AppendLine("		JOIN	Pagos ON Pagos.documento = Cuentas_Pagar.Doc_Ori")
             loComandoSeleccionar.AppendLine("		JOIN	Retenciones_Documentos ON Retenciones_Documentos.Documento = Pagos.documento")
@@ -63,20 +61,27 @@ Partial Class MCL_rCRetencion_ISLRProveedores
             loComandoSeleccionar.AppendLine("		JOIN	Proveedores ON Proveedores.Cod_Pro = Cuentas_Pagar.Cod_Pro")
             loComandoSeleccionar.AppendLine("	LEFT JOIN Retenciones ON Retenciones.Cod_Ret = Retenciones_Documentos.Cod_Ret")
             loComandoSeleccionar.AppendLine("WHERE			Cuentas_Pagar.Cod_Tip = 'ISLR'")
-            loComandoSeleccionar.AppendLine("			AND	Cuentas_Pagar.Status <> 'Anulado'")
+            loComandoSeleccionar.AppendLine("			AND	(Cuentas_Pagar.Status IN (" & lcParametro3Desde & ")")
+            loComandoSeleccionar.AppendLine("			    AND Cuentas_Pagar.Status IN (SELECT Documentos.status")
+            loComandoSeleccionar.AppendLine("               FROM cuentas_pagar")
+            loComandoSeleccionar.AppendLine("			    JOIN retenciones_documentos ON cuentas_pagar.documento = retenciones_documentos.doc_ori")
+            loComandoSeleccionar.AppendLine("			        AND cuentas_pagar.cod_tip = 'FACT'")
+            loComandoSeleccionar.AppendLine("			    JOIN cuentas_pagar AS Documentos ON retenciones_documentos.doc_des = Documentos.documento")
+            loComandoSeleccionar.AppendLine("			        AND Documentos.cod_tip = 'ISLR'")
+            loComandoSeleccionar.AppendLine("			    WHERE cuentas_pagar.factura BETWEEN " & lcParametro2Desde)
+            loComandoSeleccionar.AppendLine("         		    AND " & lcParametro2Hasta)
+            loComandoSeleccionar.AppendLine("			        AND Documentos.doc_ori = retenciones_documentos.documento))")
             loComandoSeleccionar.AppendLine("			AND	Cuentas_Pagar.Tip_Ori = 'Pagos'")
 
             loComandoSeleccionar.AppendLine("           AND Cuentas_Pagar.Fec_Ini BETWEEN " & lcParametro0Desde)
             loComandoSeleccionar.AppendLine("         		AND " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("           AND Cuentas_Pagar.Cod_Pro BETWEEN " & lcParametro1Desde)
             loComandoSeleccionar.AppendLine("         		AND " & lcParametro1Hasta)
-            loComandoSeleccionar.AppendLine("           AND Pagos.Cod_Mon BETWEEN " & lcParametro2Desde)
+            loComandoSeleccionar.AppendLine("           AND Renglones_Pagos.Factura BETWEEN " & lcParametro2Desde)
             loComandoSeleccionar.AppendLine("         		AND " & lcParametro2Hasta)
-            loComandoSeleccionar.AppendLine("           AND Pagos.Cod_Suc BETWEEN " & lcParametro3Desde)
-            loComandoSeleccionar.AppendLine("         		AND " & lcParametro3Hasta)
 
             loComandoSeleccionar.AppendLine("UNION ALL		")
-            
+
             loComandoSeleccionar.AppendLine("SELECT			Retenciones_Documentos.Tip_Ori		AS Tipo_Origen,")
             loComandoSeleccionar.AppendLine("				Ordenes_Pagos.Fec_Ini				AS Fecha_Retencion,")
             loComandoSeleccionar.AppendLine("				''									AS Numero_Pago,")
@@ -84,6 +89,7 @@ Partial Class MCL_rCRetencion_ISLRProveedores
             loComandoSeleccionar.AppendLine("				Ordenes_Pagos.Documento				AS Numero_Documento,")
             loComandoSeleccionar.AppendLine("				''								    AS Control_Documento,")
             loComandoSeleccionar.AppendLine("				''									AS Factura_Documento,")
+            loComandoSeleccionar.AppendLine("				Ordenes_Pagos.Fec_Ini               AS Fecha_Factura,")
             loComandoSeleccionar.AppendLine("				Ordenes_Pagos.Mon_Net				AS Monto_Documento,")
             loComandoSeleccionar.AppendLine("				Ordenes_Pagos.Mon_Net				AS Monto_Abonado,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Bas		AS Base_Retencion,")
@@ -95,7 +101,8 @@ Partial Class MCL_rCRetencion_ISLRProveedores
             loComandoSeleccionar.AppendLine("				Proveedores.Nom_Pro					AS Nom_Pro,")
             loComandoSeleccionar.AppendLine("				Proveedores.Rif						AS Rif,")
             loComandoSeleccionar.AppendLine("				Proveedores.Nit						AS Nit,")
-            loComandoSeleccionar.AppendLine("				Proveedores.Dir_Fis					AS Direccion")
+            loComandoSeleccionar.AppendLine("				Proveedores.Dir_Fis					AS Direccion,")
+            loComandoSeleccionar.AppendLine("               " & lcParametro4Desde & " AS Agrupar")
             loComandoSeleccionar.AppendLine("FROM			Retenciones_Documentos")
             loComandoSeleccionar.AppendLine("	JOIN		Ordenes_Pagos ON Ordenes_Pagos.Documento = Retenciones_Documentos.documento")
             loComandoSeleccionar.AppendLine("	JOIN		Proveedores ON Proveedores.Cod_Pro = Ordenes_Pagos.Cod_Pro")
@@ -108,14 +115,11 @@ Partial Class MCL_rCRetencion_ISLRProveedores
             loComandoSeleccionar.AppendLine("         		AND " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("           AND Ordenes_Pagos.Cod_Pro BETWEEN " & lcParametro1Desde)
             loComandoSeleccionar.AppendLine("         		AND " & lcParametro1Hasta)
-            loComandoSeleccionar.AppendLine("           AND Ordenes_Pagos.Cod_Mon BETWEEN " & lcParametro2Desde)
+            loComandoSeleccionar.AppendLine("           AND Ordenes_Pagos.factura BETWEEN " & lcParametro2Desde)
             loComandoSeleccionar.AppendLine("         		AND " & lcParametro2Hasta)
-            loComandoSeleccionar.AppendLine("           AND Ordenes_Pagos.Cod_Suc BETWEEN " & lcParametro3Desde)
-            loComandoSeleccionar.AppendLine("         		AND " & lcParametro3Hasta)
-            
 
             loComandoSeleccionar.AppendLine("UNION ALL		")
-            
+
             loComandoSeleccionar.AppendLine("SELECT			Cuentas_Pagar.Tip_Ori				AS Tipo_Origen,")
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Fec_Ini				AS Fecha_Retencion,")
             loComandoSeleccionar.AppendLine("				''									AS Numero_Pago,")
@@ -123,6 +127,7 @@ Partial Class MCL_rCRetencion_ISLRProveedores
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Doc_Ori		AS Numero_Documento,")
             loComandoSeleccionar.AppendLine("				Documentos.Control				    AS Control_Documento,")
             loComandoSeleccionar.AppendLine("				Documentos.Factura				    AS Factura_Documento,")
+            loComandoSeleccionar.AppendLine("				Documentos.Fec_Ini				    AS Fecha_Factura,")
             loComandoSeleccionar.AppendLine("				Documentos.Mon_Net					AS Monto_Documento,")
             loComandoSeleccionar.AppendLine("				Documentos.Mon_Net					AS Monto_Abonado,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Bas		AS Base_Retencion,")
@@ -134,7 +139,8 @@ Partial Class MCL_rCRetencion_ISLRProveedores
             loComandoSeleccionar.AppendLine("				Proveedores.Nom_Pro					AS Nom_Pro,")
             loComandoSeleccionar.AppendLine("				Proveedores.Rif						AS Rif,")
             loComandoSeleccionar.AppendLine("				Proveedores.Nit						AS Nit,")
-            loComandoSeleccionar.AppendLine("				Proveedores.Dir_Fis					AS Direccion")
+            loComandoSeleccionar.AppendLine("				Proveedores.Dir_Fis					AS Direccion,")
+            loComandoSeleccionar.AppendLine("               " & lcParametro4Desde & " AS Agrupar")
             loComandoSeleccionar.AppendLine("FROM			Cuentas_Pagar")
             loComandoSeleccionar.AppendLine("		JOIN	Cuentas_Pagar AS Documentos ON Documentos.documento = Cuentas_Pagar.Doc_Ori")
             loComandoSeleccionar.AppendLine("			AND Documentos.Cod_Tip = Cuentas_Pagar.Cla_Ori")
@@ -143,19 +149,18 @@ Partial Class MCL_rCRetencion_ISLRProveedores
             loComandoSeleccionar.AppendLine("		JOIN	Proveedores ON Proveedores.Cod_Pro = Cuentas_Pagar.Cod_Pro")
             loComandoSeleccionar.AppendLine("	LEFT JOIN	Retenciones ON Retenciones.Cod_Ret = Retenciones_Documentos.Cod_Ret")
             loComandoSeleccionar.AppendLine("WHERE			Cuentas_Pagar.Cod_Tip = 'ISLR'")
-            loComandoSeleccionar.AppendLine("			AND	Cuentas_Pagar.Status <> 'Anulado'")
+            loComandoSeleccionar.AppendLine("			AND	Cuentas_Pagar.Status IN  (" & lcParametro3Desde & ")")
             loComandoSeleccionar.AppendLine("			AND	Cuentas_Pagar.Tip_Ori = 'cuentas_pagar'")
             loComandoSeleccionar.AppendLine("       	    AND Cuentas_Pagar.Fec_Ini BETWEEN " & lcParametro0Desde)
             loComandoSeleccionar.AppendLine("       	  		AND " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("       	    AND Cuentas_Pagar.Cod_Pro BETWEEN " & lcParametro1Desde)
             loComandoSeleccionar.AppendLine("       	  		AND " & lcParametro1Hasta)
-            loComandoSeleccionar.AppendLine("       	    AND Cuentas_Pagar.Cod_Mon BETWEEN " & lcParametro2Desde)
+            loComandoSeleccionar.AppendLine("       	    AND Documentos.factura BETWEEN " & lcParametro2Desde)
             loComandoSeleccionar.AppendLine("       	  		AND " & lcParametro2Hasta)
-            loComandoSeleccionar.AppendLine("       	    AND Cuentas_Pagar.Cod_Suc BETWEEN " & lcParametro3Desde)
-            loComandoSeleccionar.AppendLine("       	  		AND " & lcParametro3Hasta)
 
-            loComandoSeleccionar.AppendLine("ORDER BY " & lcOrdenamiento)
+            'loComandoSeleccionar.AppendLine("ORDER BY " & lcOrdenamiento)
 
+            'Me.mEscribirConsulta(loComandoSeleccionar.ToString)
 
             Dim loServicios As New cusDatos.goDatos
 
