@@ -29,6 +29,11 @@
               <xs:element name="Rif" type="xs:string" minOccurs="0" />
               <xs:element name="Fecha_De" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Fecha_Hasta" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Recibo" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Mon_Ret" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Porcentaje" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Tra" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Tra" type="xs:string" minOccurs="0" />
               <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
 					</xs:complexType>

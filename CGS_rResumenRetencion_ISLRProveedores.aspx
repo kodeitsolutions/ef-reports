@@ -11,7 +11,7 @@ CodeFile="CGS_rResumenRetencion_ISLRProveedores.aspx.vb" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>Resumen de Retención de ISLR de Proveedores (CEGASA)</title>
+    <title>Resumen de Retención de ISLR (CEGASA)</title>
     <link href="~/Framework/cssEstilosFramework.css" rel="stylesheet" type="text/css" />
     <link href="~/Administrativo/cssEstilosAdministrativo.css" rel="stylesheet" type="text/css" />
     <link href="/aspnet_client/System_Web/2_0_50727/CrystalReportWebFormViewer3/css/default.css" rel="stylesheet" type="text/css" />
