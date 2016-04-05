@@ -46,6 +46,27 @@ Partial Class CGS_rMCajas_Fechas
             loComandoSeleccionar.AppendLine("		   And Movimientos_Cajas.Fec_Ini       = " & lcParametro1Desde)
             loComandoSeleccionar.AppendLine("           And Movimientos_Cajas.Status        IN  (" & lcParametro2Desde & ")")
 
+            loComandoSeleccionar.AppendLine("UNION ALL")
+
+            loComandoSeleccionar.AppendLine(" SELECT    Movimientos_Cajas.Documento, ")
+            loComandoSeleccionar.AppendLine("		   Movimientos_Cajas.Cod_Caj, ")
+            loComandoSeleccionar.AppendLine("		   Movimientos_Cajas.Comentario, ")
+            loComandoSeleccionar.AppendLine("		   Movimientos_Cajas.Fec_Ini, ")
+            loComandoSeleccionar.AppendLine("		   Movimientos_Cajas.Status, ")
+            loComandoSeleccionar.AppendLine("		   Movimientos_Cajas.Mon_Deb, ")
+            loComandoSeleccionar.AppendLine("		   Movimientos_Cajas.Mon_Hab, ")
+            loComandoSeleccionar.AppendLine("		   Cajas.mon_max, ")
+            loComandoSeleccionar.AppendLine("		   SUBSTRING(Movimientos_Cajas.Tip_Ori,1,20) AS Tip_Ori, ")
+            loComandoSeleccionar.AppendLine("		   Movimientos_Cajas.Doc_Ori, ")
+            loComandoSeleccionar.AppendLine("		   Conceptos.Nom_Con, ")
+            loComandoSeleccionar.AppendLine("		   Cajas.Nom_Caj   AS  Nombre ")
+            loComandoSeleccionar.AppendLine("FROM Movimientos_Cajas ")
+            loComandoSeleccionar.AppendLine(" JOIN Cajas ON  Movimientos_Cajas.Cod_Caj		=   Cajas.Cod_Caj ")
+            loComandoSeleccionar.AppendLine(" JOIN Conceptos ON Movimientos_Cajas.Cod_Con   =   Conceptos.Cod_Con")
+            loComandoSeleccionar.AppendLine(" WHERE    ((Movimientos_Cajas.tip_ori = 'Ordenes_Pagos') OR (Movimientos_Cajas.tip_ori = ' ')) ")
+            loComandoSeleccionar.AppendLine("		   And Movimientos_Cajas.Cod_Caj       = " & lcParametro0Desde)
+            loComandoSeleccionar.AppendLine("		   And Movimientos_Cajas.Fec_Ini       = " & lcParametro1Desde)
+            loComandoSeleccionar.AppendLine("           And Movimientos_Cajas.Status        IN  (" & lcParametro2Desde & ")")
             'Me.mEscribirConsulta(loComandoSeleccionar.ToString)
             Dim loServicios As New cusDatos.goDatos
 
