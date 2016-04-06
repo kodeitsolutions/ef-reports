@@ -8,88 +8,98 @@ Partial Class CGS_fOrdenes_Compras
 
         Try
 
-            Dim loComandoSeleccionar As New StringBuilder()
+            Dim loComandoSeleccionar1 As New StringBuilder()
 
-            loComandoSeleccionar.AppendLine(" SELECT    Ordenes_Compras.Cod_Pro, ")
-            'loComandoSeleccionar.AppendLine("           (CASE WHEN (Proveedores.Generico = 0) THEN Proveedores.Nom_Pro ELSE ")
-            'loComandoSeleccionar.AppendLine("               (CASE WHEN (Ordenes_Compras.Nom_Pro = '') THEN Proveedores.Nom_Pro ELSE Ordenes_Compras.Nom_Pro END) END) AS  Nom_Pro, ")
-            'loComandoSeleccionar.AppendLine("           (CASE WHEN (Proveedores.Generico = 0) THEN Proveedores.Rif ELSE ")
-            'loComandoSeleccionar.AppendLine("               (CASE WHEN (Ordenes_Compras.Rif = '') THEN Proveedores.Rif ELSE Ordenes_Compras.Rif END) END) AS  Rif, ")
-            'loComandoSeleccionar.AppendLine("           Proveedores.Nit, ")
-            'loComandoSeleccionar.AppendLine("           (CASE WHEN (Proveedores.Generico = 0) THEN SUBSTRING(Proveedores.Dir_Fis,1, 200) ELSE ")
-            'loComandoSeleccionar.AppendLine("               (CASE WHEN (SUBSTRING(Ordenes_Compras.Dir_Fis,1, 200) = '') THEN SUBSTRING(Proveedores.Dir_Fis,1, 200) ELSE SUBSTRING(Ordenes_Compras.Dir_Fis,1, 200) END) END) AS  Dir_Fis, ")
-            'loComandoSeleccionar.AppendLine("           (CASE WHEN (Proveedores.Generico = 0) THEN Proveedores.Telefonos ELSE ")
-            'loComandoSeleccionar.AppendLine("               (CASE WHEN (Ordenes_Compras.Telefonos = '') THEN Proveedores.Telefonos ELSE Ordenes_Compras.Telefonos END) END) AS  Telefonos, ")
+            loComandoSeleccionar1.AppendLine(" SELECT  Ordenes_Compras.Usu_Cre ")
+            loComandoSeleccionar1.AppendLine("FROM      Ordenes_Compras")
+            loComandoSeleccionar1.AppendLine("	JOIN Renglones_OCompras")
+            loComandoSeleccionar1.AppendLine("		ON Ordenes_Compras.Documento = Renglones_OCompras.Documento")
+            loComandoSeleccionar1.AppendLine("    JOIN Proveedores")
+            loComandoSeleccionar1.AppendLine("		ON  Ordenes_Compras.Cod_Pro = Proveedores.Cod_Pro")
+            loComandoSeleccionar1.AppendLine("    JOIN Formas_Pagos")
+            loComandoSeleccionar1.AppendLine("		ON Ordenes_Compras.Cod_For = Formas_Pagos.Cod_For")
+            loComandoSeleccionar1.AppendLine("    JOIN Articulos ")
+            loComandoSeleccionar1.AppendLine("		ON Articulos.Cod_Art = Renglones_OCompras.Cod_Art")
+            loComandoSeleccionar1.AppendLine("WHERE " & cusAplicacion.goFormatos.pcCondicionPrincipal)
 
-            loComandoSeleccionar.AppendLine("           (CASE WHEN (Proveedores.Generico = 0 AND Ordenes_Compras.Nom_Pro = '') THEN Proveedores.Nom_Pro ELSE ")
-            loComandoSeleccionar.AppendLine("               (CASE WHEN (Ordenes_Compras.Nom_Pro = '') THEN Proveedores.Nom_Pro ELSE Ordenes_Compras.Nom_Pro END) END) AS  Nom_Pro, ")
-            loComandoSeleccionar.AppendLine("           (CASE WHEN (Proveedores.Generico = 0 AND Ordenes_Compras.Nom_Pro = '') THEN Proveedores.Rif ELSE ")
-            loComandoSeleccionar.AppendLine("               (CASE WHEN (Ordenes_Compras.Rif = '') THEN Proveedores.Rif ELSE Ordenes_Compras.Rif END) END) AS  Rif, ")
-            loComandoSeleccionar.AppendLine("           Proveedores.Nit, ")
-            loComandoSeleccionar.AppendLine("           (CASE WHEN (Proveedores.Generico = 0 AND Ordenes_Compras.Nom_Pro = '') THEN SUBSTRING(Proveedores.Dir_Fis,1, 200) ELSE ")
-            loComandoSeleccionar.AppendLine("               (CASE WHEN (SUBSTRING(Ordenes_Compras.Dir_Fis,1, 200) = '') THEN SUBSTRING(Proveedores.Dir_Fis,1, 200) ELSE SUBSTRING(Ordenes_Compras.Dir_Fis,1, 200) END) END) AS  Dir_Fis, ")
-            loComandoSeleccionar.AppendLine("           (CASE WHEN (Proveedores.Generico = 0 AND Ordenes_Compras.Nom_Pro = '') THEN Proveedores.Telefonos ELSE ")
-            loComandoSeleccionar.AppendLine("               (CASE WHEN (Ordenes_Compras.Telefonos = '') THEN Proveedores.Telefonos ELSE Ordenes_Compras.Telefonos END) END) AS  Telefonos, ")
-            'loComandoSeleccionar.AppendLine("           Proveedores.Nom_Pro, ")
-            'loComandoSeleccionar.AppendLine("           Proveedores.Rif, ")
-            'loComandoSeleccionar.AppendLine("           Proveedores.Nit, ")
-            'loComandoSeleccionar.AppendLine("           Proveedores.Dir_Fis, ")
-            'loComandoSeleccionar.AppendLine("           Proveedores.Telefonos, ")
-            loComandoSeleccionar.AppendLine("           Proveedores.Correo, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Nom_Pro         As Nom_Gen, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Rif             As Rif_Gen, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Nit             As Nit_Gen, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Dir_Fis         As Dir_Gen, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Telefonos       As Tel_Gen, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Documento, ")
+            Dim loServicios1 As New cusDatos.goDatos
 
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Por_Des1 AS Por_Des1_Enc, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Mon_Des1 AS Mon_Des1_Enc, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Por_Rec1 AS Por_Rec1_Enc, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Mon_Rec1 AS Mon_Rec1_Enc, ")
+            Dim laDatosReporte1 As DataSet = loServicios1.mObtenerTodosSinEsquema(loComandoSeleccionar1.ToString, "usuario")
 
-            loComandoSeleccionar.AppendLine("           Renglones_OCompras.Cod_Uni, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Fec_Ini, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Fec_Fin, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Mon_Bru, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Por_Imp1, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Dis_Imp, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Mon_Imp1, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Mon_Net, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Cod_For, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Comentario, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Status, ")
-            loComandoSeleccionar.AppendLine("           Formas_Pagos.Nom_For, ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Cod_Ven, ")
-            loComandoSeleccionar.AppendLine("           Renglones_OCompras.Cod_Art, ")
-            loComandoSeleccionar.AppendLine("           Articulos.Nom_Art               AS Nom_Art, ")
-            loComandoSeleccionar.AppendLine("			Articulos.Generico              AS Generico,")
-            loComandoSeleccionar.AppendLine("			Renglones_OCompras.Notas        AS Notas,")
-            loComandoSeleccionar.AppendLine("           Renglones_OCompras.Renglon, ")
-            loComandoSeleccionar.AppendLine("           Renglones_OCompras.Can_Art1, ")
-            loComandoSeleccionar.AppendLine("           Renglones_OCompras.Por_Des      As Por_Des1, ")
-            loComandoSeleccionar.AppendLine("           Renglones_OCompras.Precio1      As Precio1, ")
-            loComandoSeleccionar.AppendLine("           Renglones_OCompras.Precio1      As Precio1, ")
-            loComandoSeleccionar.AppendLine("           Renglones_OCompras.Comentario   As Comentario_Renglon, ")
-            loComandoSeleccionar.AppendLine("           Renglones_OCompras.Mon_Net      As Neto, ")
-            loComandoSeleccionar.AppendLine("           Renglones_OCompras.Cod_Imp      As Cod_Imp, ")
-            loComandoSeleccionar.AppendLine("           Renglones_OCompras.Por_Imp1     As Por_Imp, ")
-            loComandoSeleccionar.AppendLine("           Renglones_OCompras.Mon_Imp1     As Impuesto ")
-            loComandoSeleccionar.AppendLine(" FROM      Ordenes_Compras, ")
-            loComandoSeleccionar.AppendLine("           Renglones_OCompras, ")
-            loComandoSeleccionar.AppendLine("           Proveedores, ")
-            loComandoSeleccionar.AppendLine("           Formas_Pagos, ")
-            loComandoSeleccionar.AppendLine("           Articulos ")
-            loComandoSeleccionar.AppendLine(" WHERE     Ordenes_Compras.Documento   =   Renglones_OCompras.Documento AND ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Cod_Pro     =   Proveedores.Cod_Pro AND ")
-            loComandoSeleccionar.AppendLine("           Ordenes_Compras.Cod_For     =   Formas_Pagos.Cod_For AND ")
-            loComandoSeleccionar.AppendLine("           Articulos.Cod_Art           =   Renglones_OCompras.Cod_Art AND " & cusAplicacion.goFormatos.pcCondicionPrincipal)
+            Dim aString As String = laDatosReporte1.Tables(0).Rows(0).Item(0)
+            aString = Trim(aString)
 
+            Dim loComandoSeleccionar2 As New StringBuilder()
 
+            loComandoSeleccionar2.AppendLine(" SELECT    Nom_Usu ")
+            loComandoSeleccionar2.AppendLine(" FROM      Usuarios ")
+            loComandoSeleccionar2.AppendLine(" WHERE     Cod_Usu = '" & aString & "'")
+            loComandoSeleccionar2.AppendLine("		    AND Cod_Cli  = " & goServicios.mObtenerCampoFormatoSQL(goCliente.pcCodigo))
 
-            Dim loServicios As New cusDatos.goDatos
+            Dim loServicios2 As New cusDatos.goDatos
 
-            Dim laDatosReporte As DataSet = loServicios.mObtenerTodosSinEsquema(loComandoSeleccionar.ToString, "curReportes")
+            goDatos.pcNombreAplicativoExterno = "Framework"
+
+            Dim laDatosReporte2 As DataSet = loServicios2.mObtenerTodosSinEsquema(loComandoSeleccionar2.ToString, "nombreUsuario")
+            Dim aString2 As String = laDatosReporte2.Tables("nombreUsuario").Rows(0).Item(0)
+            aString2 = RTrim(aString2)
+
+            Dim loComandoSeleccionar3 As New StringBuilder()
+
+            loComandoSeleccionar3.AppendLine(" SELECT    Ordenes_Compras.Cod_Pro, ")
+            loComandoSeleccionar3.AppendLine("        (CASE WHEN (Proveedores.Generico = 0 AND Ordenes_Compras.Nom_Pro = '') THEN Proveedores.Nom_Pro ELSE ")
+            loComandoSeleccionar3.AppendLine("            (CASE WHEN (Ordenes_Compras.Nom_Pro = '') THEN Proveedores.Nom_Pro ELSE Ordenes_Compras.Nom_Pro END) END) AS  Nom_Pro, ")
+            loComandoSeleccionar3.AppendLine("        (CASE WHEN (Proveedores.Generico = 0 AND Ordenes_Compras.Nom_Pro = '') THEN Proveedores.Rif ELSE ")
+            loComandoSeleccionar3.AppendLine("            (CASE WHEN (Ordenes_Compras.Rif = '') THEN Proveedores.Rif ELSE Ordenes_Compras.Rif END) END) AS  Rif, ")
+            loComandoSeleccionar3.AppendLine("        Proveedores.Nit, ")
+            loComandoSeleccionar3.AppendLine("        (CASE WHEN (Proveedores.Generico = 0 AND Ordenes_Compras.Nom_Pro = '') THEN SUBSTRING(Proveedores.Dir_Fis,1, 200) ELSE ")
+            loComandoSeleccionar3.AppendLine("            (CASE WHEN (SUBSTRING(Ordenes_Compras.Dir_Fis,1, 200) = '') THEN SUBSTRING(Proveedores.Dir_Fis,1, 200) ELSE SUBSTRING(Ordenes_Compras.Dir_Fis,1, 200) END) END) AS  Dir_Fis, ")
+            loComandoSeleccionar3.AppendLine("        (CASE WHEN (Proveedores.Generico = 0 AND Ordenes_Compras.Nom_Pro = '') THEN Proveedores.Telefonos ELSE ")
+            loComandoSeleccionar3.AppendLine("            (CASE WHEN (Ordenes_Compras.Telefonos = '') THEN Proveedores.Telefonos ELSE Ordenes_Compras.Telefonos END) END) AS  Telefonos, ")
+            loComandoSeleccionar3.AppendLine("        Proveedores.Correo, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Documento, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Por_Des1 AS Por_Des1_Enc, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Mon_Des1 AS Mon_Des1_Enc, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Por_Rec1 AS Por_Rec1_Enc, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Mon_Rec1 AS Mon_Rec1_Enc, ")
+            loComandoSeleccionar3.AppendLine("        Renglones_OCompras.Cod_Uni, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Fec_Ini, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Fec_Fin, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Mon_Bru, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Por_Imp1, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Dis_Imp, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Mon_Imp1, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Mon_Net, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Comentario, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Status,")
+            loComandoSeleccionar3.AppendLine("		  '" & aString2 & "' AS Usuario,")
+            loComandoSeleccionar3.AppendLine("        Formas_Pagos.Nom_For, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Cod_Ven, ")
+            loComandoSeleccionar3.AppendLine("        Renglones_OCompras.Cod_Art, ")
+            loComandoSeleccionar3.AppendLine("        Articulos.Nom_Art               AS Nom_Art, ")
+            loComandoSeleccionar3.AppendLine("        Articulos.Generico              AS Generico,")
+            loComandoSeleccionar3.AppendLine("        Renglones_OCompras.Notas        AS Notas,")
+            loComandoSeleccionar3.AppendLine("        Renglones_OCompras.Can_Art1, ")
+            loComandoSeleccionar3.AppendLine("        Renglones_OCompras.Precio1      As Precio1, ")
+            loComandoSeleccionar3.AppendLine("        Renglones_OCompras.Mon_Net      As Neto, ")
+            loComandoSeleccionar3.AppendLine("        Renglones_OCompras.Doc_Ori, ")
+            loComandoSeleccionar3.AppendLine("        Ordenes_Compras.Registro        As Fec_Cre ")
+            loComandoSeleccionar3.AppendLine("FROM      Ordenes_Compras")
+            loComandoSeleccionar3.AppendLine("	JOIN Renglones_OCompras")
+            loComandoSeleccionar3.AppendLine("		ON Ordenes_Compras.Documento = Renglones_OCompras.Documento")
+            loComandoSeleccionar3.AppendLine("    JOIN Proveedores")
+            loComandoSeleccionar3.AppendLine("		ON  Ordenes_Compras.Cod_Pro = Proveedores.Cod_Pro")
+            loComandoSeleccionar3.AppendLine("    JOIN Formas_Pagos")
+            loComandoSeleccionar3.AppendLine("		ON Ordenes_Compras.Cod_For = Formas_Pagos.Cod_For")
+            loComandoSeleccionar3.AppendLine("    JOIN Articulos ")
+            loComandoSeleccionar3.AppendLine("		ON Articulos.Cod_Art = Renglones_OCompras.Cod_Art")
+            loComandoSeleccionar3.AppendLine("WHERE " & cusAplicacion.goFormatos.pcCondicionPrincipal)
+
+            'Me.mEscribirConsulta(loComandoSeleccionar3.ToString())
+
+            Dim loServicios3 As New cusDatos.goDatos
+
+            Dim laDatosReporte3 As DataSet = loServicios3.mObtenerTodosSinEsquema(loComandoSeleccionar3.ToString, "curReportes")
 
             Dim lcXml As String = "<impuesto></impuesto>"
             Dim lcPorcentajesImpueto As String
@@ -98,8 +108,8 @@ Partial Class CGS_fOrdenes_Compras
             lcPorcentajesImpueto = "("
 
             'Recorre cada renglon de la tabla
-            For lnNumeroFila As Integer = 0 To laDatosReporte.Tables(0).Rows.Count - 1
-                lcXml = laDatosReporte.Tables(0).Rows(lnNumeroFila).Item("dis_imp")
+            For lnNumeroFila As Integer = 0 To laDatosReporte3.Tables(0).Rows.Count - 1
+                lcXml = laDatosReporte3.Tables(0).Rows(lnNumeroFila).Item("dis_imp")
 
                 If String.IsNullOrEmpty(lcXml.Trim()) Then
                     Continue For
@@ -109,7 +119,7 @@ Partial Class CGS_fOrdenes_Compras
 
                 'En cada renglón lee el contenido de la distribució de impuestos
                 For Each loImpuesto As System.Xml.XmlNode In loImpuestos.SelectNodes("impuestos/impuesto")
-                    If lnNumeroFila = laDatosReporte.Tables(0).Rows.Count - 1 Then
+                    If lnNumeroFila = laDatosReporte3.Tables(0).Rows.Count - 1 Then
                         If CDec(loImpuesto.SelectSingleNode("porcentaje").InnerText) <> 0 Then
                             lcPorcentajesImpueto = lcPorcentajesImpueto & ", " & CDec(loImpuesto.SelectSingleNode("porcentaje").InnerText) & "%"
                         End If
@@ -124,13 +134,13 @@ Partial Class CGS_fOrdenes_Compras
             '--------------------------------------------------'
             ' Carga la imagen del logo en cusReportes            '
             '--------------------------------------------------'
-            Me.mCargarLogoEmpresa(laDatosReporte.Tables(0), "LogoEmpresa")
+            Me.mCargarLogoEmpresa(laDatosReporte3.Tables(0), "LogoEmpresa")
 
             '-------------------------------------------------------------------------------------------------------
             ' Verificando si el select (tabla nº0) trae registros
             '-------------------------------------------------------------------------------------------------------
 
-            If (laDatosReporte.Tables(0).Rows.Count <= 0) Then
+            If (laDatosReporte3.Tables(0).Rows.Count <= 0) Then
                 Me.WbcAdministradorMensajeModal.mMostrarMensajeModal("Información", _
                                           "No se Encontraron Registros para los Parámetros Especificados. ", _
                                            vis3Controles.wbcAdministradorMensajeModal.enumTipoMensaje.KN_Informacion, _
@@ -139,7 +149,7 @@ Partial Class CGS_fOrdenes_Compras
             End If
 
 
-            loObjetoReporte = cusAplicacion.goFormatos.mCargarInforme("CGS_fOrdenes_Compras", laDatosReporte)
+            loObjetoReporte = cusAplicacion.goFormatos.mCargarInforme("CGS_fOrdenes_Compras", laDatosReporte3)
             lcPorcentajesImpueto = lcPorcentajesImpueto.Replace(".", ",")
             CType(loObjetoReporte.ReportDefinition.ReportObjects("Text25"), CrystalDecisions.CrystalReports.Engine.TextObject).Text = lcPorcentajesImpueto.ToString
 
