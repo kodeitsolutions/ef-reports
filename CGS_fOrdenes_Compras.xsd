@@ -49,6 +49,7 @@
               <xs:element name="Notas" type="xs:string" minOccurs="0" />
               <xs:element name="Usuario" type="xs:string" minOccurs="0" />
               <xs:element name="Fec_Cre" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Aut" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Doc_Ori" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
