@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="rCRetencion_ISLRIVAProveedores" targetNamespace="http://tempuri.org/CGS_rCRetencion_IVAProveedores.xsd" xmlns:mstns="http://tempuri.org/CGS_rCRetencion_IVAProveedores.xsd" xmlns="http://tempuri.org/CGS_rCRetencion_IVAProveedores.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:NameSpace1="urn:schemas-microsoft-com:xml-msdatasource" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="CGS_rCRetencion_IVAProveedores" targetNamespace="http://tempuri.org/CGS_rCRetencion_IVAProveedores.xsd" xmlns:mstns="http://tempuri.org/CGS_rCRetencion_IVAProveedores.xsd" xmlns="http://tempuri.org/CGS_rCRetencion_IVAProveedores.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:NameSpace1="urn:schemas-microsoft-com:xml-msdatasource" attributeFormDefault="qualified" elementFormDefault="qualified">
 	<xs:annotation>
 		<xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
 			<DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -12,7 +12,7 @@
 			</DataSource>
 		</xs:appinfo>
 	</xs:annotation>
-	<xs:element name="rCRetencion_ISLRIVAProveedores" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+	<xs:element name="CGS_rCRetencion_IVAProveedores" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
 		<xs:complexType>
 			<xs:choice minOccurs="0" maxOccurs="unbounded">
 				<xs:element name="curReportes">

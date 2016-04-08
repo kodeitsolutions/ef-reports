@@ -23,9 +23,6 @@ Partial Class CGS_rCRetencion_IVAProveedores
             Dim lcParametro1Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(1), goServicios.enuOpcionesRedondeo.KN_FechaFinDelDia)
             Dim lcParametro2Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(2), goServicios.enuOpcionesRedondeo.KN_FechaInicioDelDia)
             Dim lcParametro2Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(2), goServicios.enuOpcionesRedondeo.KN_FechaFinDelDia)
-            Dim lcParametro3Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(3), goServicios.enuOpcionesRedondeo.KN_FechaInicioDelDia)
-            Dim lcParametro3Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(3), goServicios.enuOpcionesRedondeo.KN_FechaFinDelDia)
-
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
@@ -85,10 +82,8 @@ Partial Class CGS_rCRetencion_IVAProveedores
             loComandoSeleccionar.AppendLine("         		AND " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("           AND Cuentas_Pagar.Cod_Pro BETWEEN " & lcParametro1Desde)
             loComandoSeleccionar.AppendLine("         		AND " & lcParametro1Hasta)
-            loComandoSeleccionar.AppendLine("           AND Pagos.Cod_Mon BETWEEN " & lcParametro2Desde)
+            loComandoSeleccionar.AppendLine("           AND Documentos.Factura BETWEEN " & lcParametro2Desde)
             loComandoSeleccionar.AppendLine("         		AND " & lcParametro2Hasta)
-            loComandoSeleccionar.AppendLine("           AND Pagos.Cod_Suc BETWEEN " & lcParametro3Desde)
-            loComandoSeleccionar.AppendLine("         		AND " & lcParametro3Hasta)
 
             loComandoSeleccionar.AppendLine("UNION ALL		")
 
@@ -137,10 +132,8 @@ Partial Class CGS_rCRetencion_IVAProveedores
             loComandoSeleccionar.AppendLine("       	  		AND " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("       	    AND Cuentas_Pagar.Cod_Pro BETWEEN " & lcParametro1Desde)
             loComandoSeleccionar.AppendLine("       	  		AND " & lcParametro1Hasta)
-            loComandoSeleccionar.AppendLine("       	    AND Cuentas_Pagar.Cod_Mon BETWEEN " & lcParametro2Desde)
+            loComandoSeleccionar.AppendLine("       	    AND Documentos.Factura BETWEEN " & lcParametro2Desde)
             loComandoSeleccionar.AppendLine("       	  		AND " & lcParametro2Hasta)
-            loComandoSeleccionar.AppendLine("       	    AND Cuentas_Pagar.Cod_Suc BETWEEN " & lcParametro3Desde)
-            loComandoSeleccionar.AppendLine("       	  		AND " & lcParametro3Hasta)
 
             loComandoSeleccionar.AppendLine("ORDER BY " & lcOrdenamiento & ", Fecha_Retencion ASC")
 
