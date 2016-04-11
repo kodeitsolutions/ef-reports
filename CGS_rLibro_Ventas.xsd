@@ -19,10 +19,11 @@
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element name="Documento"		type="xs:string" minOccurs="0" />
-              <xs:element name="Num" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Num"          type="xs:decimal" minOccurs="0" />
 							<xs:element name="Fec_Ini"			type="xs:dateTime" minOccurs="0" />
 							<xs:element name="Nom_Cli"			type="xs:string" minOccurs="0" />
-							<xs:element name="Rif"				  type="xs:string" minOccurs="0" />
+              <xs:element name="Rif"				  type="xs:string" minOccurs="0" />
+              <xs:element name="Control"			type="xs:string" minOccurs="0" />
 							<xs:element name="Cod_Tip"			type="xs:string" minOccurs="0" />
 							<xs:element name="Doc_Ori" 			type="xs:string" minOccurs="0" />
 							<xs:element name="Por_Rec" 			type="xs:decimal" minOccurs="0" />
@@ -44,8 +45,8 @@
               <xs:element name="Por_Imp1_Anu"	type="xs:decimal" minOccurs="0" />
               <xs:element name="Mon_Imp1_Anu" type="xs:decimal" minOccurs="0" />
 							<xs:element name="Impuestos"		type="xs:string" minOccurs="0" />
-              <xs:element name="Fecha_Desde"			type="xs:dateTime" minOccurs="0" />
-              <xs:element name="Fecha_Hasta"			type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Mes"    			type="xs:string" minOccurs="0" />
+              <xs:element name="Anio"   			type="xs:int" minOccurs="0" />
               <xs:element name="LogoEmpresa"  type="xs:base64Binary" minOccurs="0" />
 						</xs:sequence>
 					</xs:complexType>
