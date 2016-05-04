@@ -47,6 +47,11 @@
 							<xs:element name="Mes" type="xs:short" minOccurs="0" />
 							<xs:element name="Numero_ControlDoc" type="xs:string" />
               <xs:element name="Numero_FacturaDoc" type="xs:string" />
+              <xs:element name="Cod_Ter" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Ter" type="xs:string" minOccurs="0" />
+              <xs:element name="Rif_Ter" type="xs:string" minOccurs="0" />
+              <xs:element name="Nit_Ter" type="xs:string" minOccurs="0" />
+              <xs:element name="Direccion_Ter" type="xs:string" minOccurs="0" />
             </xs:sequence>
 					</xs:complexType>
 				</xs:element>
