@@ -29,8 +29,6 @@
               <xs:element name="Mon_Deb" type="xs:double" minOccurs="0" />
               <xs:element name="Mon_Hab" type="xs:double" minOccurs="0" />
               <xs:element name="Comentario" type="xs:string" minOccurs="0" />
-              <xs:element name="Ref_Pago" type="xs:string" minOccurs="0" />
-              <xs:element name="Status" type="xs:string" minOccurs="0" />
               <xs:element name="Fec_Desde" type="xs:string" minOccurs="0" />
               <xs:element name="Fec_Hasta" type="xs:string" minOccurs="0" />
               <xs:element name="Sal_Ini" type="xs:double" minOccurs="0" />
