@@ -22,19 +22,24 @@
               <xs:element name="Cod_Cue" type="xs:string" minOccurs="0" />
               <xs:element name="Num_Cue" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Ban" type="xs:string" minOccurs="0" />
-              <xs:element name="Cargos_Con" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Abonos_Con" type="xs:decimal" minOccurs="0" />
               <xs:element name="Sal_Ini_Con" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cargos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Abonos" type="xs:decimal" minOccurs="0" />
               <xs:element name="Sal_Fin_Con" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Sal_Inicial" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Cargos_NoCon" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Abonos_NoCon" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Sal_Libro" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Sal_Fin_NoCon" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Saldo_Cuenta" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Sal_Debe" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Sal_Haber" type="xs:decimal" minOccurs="0" />
-            </xs:sequence>
+              <xs:element name="CargosNC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AbonosNC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Sal_Fin_No_Con" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Diferencia" msdata:Caption="Sal_Edo_Cta" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Sal_Edo_Cta" type="xs:string" minOccurs="0" />
+              <xs:element name="Saldo_Libro" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Saldo_Abonos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Saldo_Cargos" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Referencia" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Pro" type="xs:string" minOccurs="0" />
+              <xs:element name="Mon_Deb" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Mon_Hab" type="xs:decimal" minOccurs="0" />
+           </xs:sequence>
           </xs:complexType>
         </xs:element>
       </xs:choice>
