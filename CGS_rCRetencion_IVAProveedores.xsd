@@ -18,26 +18,16 @@
 				<xs:element name="curReportes">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="Tipo_Origen" type="xs:string" minOccurs="0" />
 							<xs:element name="Fecha_Retencion" type="xs:dateTime" minOccurs="0" />
-							<xs:element name="Numero_Pago" type="xs:string" minOccurs="0" />
-							<xs:element name="Tipo_Documento" type="xs:string" minOccurs="0" />
-							<xs:element name="Rif_Pro" type="xs:string" minOccurs="0" />
-							<xs:element name="Numero_Documento" type="xs:string" minOccurs="0" />
 							<xs:element name="Monto_Documento" type="xs:decimal" minOccurs="0" />
-							<xs:element name="Monto_Abonado" type="xs:decimal" minOccurs="0" />
 							<xs:element name="Base_Retencion" type="xs:decimal" minOccurs="0" />
 							<xs:element name="Porcentaje_Retenido" type="xs:decimal" minOccurs="0" />
-							<xs:element name="Concepto" type="xs:string" minOccurs="0" />
 							<xs:element name="Monto_Retenido" type="xs:decimal" minOccurs="0" />
-							<xs:element name="Cod_Pro" type="xs:string" minOccurs="0" />
 							<xs:element name="Nom_Pro" type="xs:string" minOccurs="0" />
 							<xs:element name="Rif" type="xs:string" minOccurs="0" />
 							<xs:element name="Nit" type="xs:string" minOccurs="0" />
 							<xs:element name="Direccion" type="xs:string" minOccurs="0" />
 							<xs:element name="Numero_Comprobante" type="xs:string" minOccurs="0" />
-							<xs:element name="Numero_DocumentoRet" type="xs:string" minOccurs="0" />
-							<xs:element name="Numero_ControlRet" type="xs:string" minOccurs="0" />
 							<xs:element name="Monto_ExentoDoc" type="xs:decimal" minOccurs="0" />
 							<xs:element name="Monto_BaseDoc" type="xs:decimal" minOccurs="0" />
 							<xs:element name="Porcentaje_ImpuestoDoc" type="xs:decimal" minOccurs="0" />
@@ -47,11 +37,6 @@
 							<xs:element name="Mes" type="xs:short" minOccurs="0" />
 							<xs:element name="Numero_ControlDoc" type="xs:string" />
               <xs:element name="Numero_FacturaDoc" type="xs:string" />
-              <xs:element name="Cod_Ter" type="xs:string" minOccurs="0" />
-              <xs:element name="Nom_Ter" type="xs:string" minOccurs="0" />
-              <xs:element name="Rif_Ter" type="xs:string" minOccurs="0" />
-              <xs:element name="Nit_Ter" type="xs:string" minOccurs="0" />
-              <xs:element name="Direccion_Ter" type="xs:string" minOccurs="0" />
             </xs:sequence>
 					</xs:complexType>
 				</xs:element>
