@@ -153,22 +153,11 @@ Partial Class rRConciliacion_Bancaria
             loComandoSeleccionar.AppendLine("DROP TABLE #tmpNoConciliado")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("")
 
 
             Dim loServicios As New cusDatos.goDatos
 
-			'Me.mEscribirConsulta(loComandoSeleccionar.ToString())
+            'Me.mEscribirConsulta(loComandoSeleccionar.ToString())
 			
             Dim laDatosReporte As DataSet = loServicios.mObtenerTodosSinEsquema(loComandoSeleccionar.ToString(), "curReportes")
             
