@@ -87,7 +87,7 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             loComandoSeleccionar.AppendLine("JOIN	Proveedores ON Proveedores.Cod_Pro = Pagos.Cod_Pro")
             loComandoSeleccionar.AppendLine("WHERE	Pagos.Status IN ('Confirmado')")
             loComandoSeleccionar.AppendLine("			AND Pagos.Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
-            loComandoSeleccionar.AppendLine("GROUP BY Proveedores.Cod_Pro, Pagos.Mon_Ret, Pagos.Mon_Des")
+            loComandoSeleccionar.AppendLine("GROUP BY Proveedores.Cod_Pro,Pagos.Mon_Ret,Pagos.Mon_Des")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("--Movimientos")
             loComandoSeleccionar.AppendLine("SELECT	'Cuentas_Pagar'									AS Tabla,")
@@ -230,18 +230,113 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             Me.mCargarLogoEmpresa(laDatosReporte.Tables(0), "LogoEmpresa")
 
             If (laDatosReporte.Tables(0).Rows.Count <= 0) Then
-                Me.WbcAdministradorMensajeModal.mMostrarMensajeModal("Información", _
-                                          "No se Encontraron Registros para los Parámetros Especificados. ", _
-                                           vis3Controles.wbcAdministradorMensajeModal.enumTipoMensaje.KN_Informacion, _
-                                           "350px", _
-                                           "200px")
+
+                Dim loComandoSeleccionar1 As New StringBuilder()
+
+                loComandoSeleccionar1.AppendLine("DECLARE	@sp_FecIni			AS DATETIME")
+                loComandoSeleccionar1.AppendLine("DECLARE	@sp_FecFin			AS DATETIME")
+                loComandoSeleccionar1.AppendLine("DECLARE	@sp_CodPro_Desde	AS VARCHAR(10)")
+                loComandoSeleccionar1.AppendLine("DECLARE	@sp_CodPro_Hasta	AS VARCHAR(10)")
+                loComandoSeleccionar1.AppendLine("")
+                loComandoSeleccionar1.AppendLine("SET	@sp_FecIni          = " & lcParametro0Desde)
+                loComandoSeleccionar1.AppendLine("SET	@sp_FecFin          = " & lcParametro0Hasta)
+                loComandoSeleccionar1.AppendLine("SET	@sp_CodPro_Desde    = " & lcParametro1Desde)
+                loComandoSeleccionar1.AppendLine("SET	@sp_CodPro_Hasta    = " & lcParametro1Hasta)
+                loComandoSeleccionar1.AppendLine("")
+                loComandoSeleccionar1.AppendLine("DECLARE @lnCero	AS DECIMAL(28, 10)	;")
+                loComandoSeleccionar1.AppendLine("DECLARE @lcVacio	AS VARCHAR(10)	;")
+                loComandoSeleccionar1.AppendLine("SET @lnCero		= 0")
+                loComandoSeleccionar1.AppendLine("SET @lcVacio		= ''")
+                loComandoSeleccionar1.AppendLine("")
+                loComandoSeleccionar1.AppendLine("--Saldo Inicial")
+                loComandoSeleccionar1.AppendLine("SELECT	Proveedores.Cod_Pro,")
+                loComandoSeleccionar1.AppendLine("		SUM(CASE WHEN Cuentas_Pagar.Tip_Doc = 'Debito' ")
+                loComandoSeleccionar1.AppendLine("				THEN Cuentas_Pagar.Mon_Net")
+                loComandoSeleccionar1.AppendLine("				ELSE -Cuentas_Pagar.Mon_Net	")
+                loComandoSeleccionar1.AppendLine("			END) AS Sal_Ini")
+                loComandoSeleccionar1.AppendLine("INTO	#tmpSaldos_Iniciales")
+                loComandoSeleccionar1.AppendLine("FROM	Cuentas_Pagar")
+                loComandoSeleccionar1.AppendLine("JOIN	Proveedores  ON Cuentas_Pagar.Cod_Pro = Proveedores.Cod_Pro")
+                loComandoSeleccionar1.AppendLine("WHERE	Cuentas_Pagar.Cod_Tip = 'FACT'")
+                loComandoSeleccionar1.AppendLine("		AND Cuentas_Pagar.Fec_Reg < @sp_FecIni")
+                loComandoSeleccionar1.AppendLine("		AND Cuentas_Pagar.Status <> 'Anulado'")
+                loComandoSeleccionar1.AppendLine("			AND Cuentas_Pagar.Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
+                loComandoSeleccionar1.AppendLine("GROUP BY Proveedores.Cod_Pro")
+                loComandoSeleccionar1.AppendLine("")
+                loComandoSeleccionar1.AppendLine("UNION ALL")
+                loComandoSeleccionar1.AppendLine("SELECT	Proveedores.Cod_Pro,")
+                loComandoSeleccionar1.AppendLine("		SUM(CASE WHEN Cuentas_Pagar.Tip_Doc = 'Debito' ")
+                loComandoSeleccionar1.AppendLine("				THEN Cuentas_Pagar.Mon_Net")
+                loComandoSeleccionar1.AppendLine("				ELSE -Cuentas_Pagar.Mon_Net	")
+                loComandoSeleccionar1.AppendLine("			END) AS Sal_Ini")
+                loComandoSeleccionar1.AppendLine("FROM	Cuentas_Pagar")
+                loComandoSeleccionar1.AppendLine("JOIN	Proveedores  ON Cuentas_Pagar.Cod_Pro = Proveedores.Cod_Pro")
+                loComandoSeleccionar1.AppendLine("WHERE	Cuentas_Pagar.Cod_Tip <> 'FACT'")
+                loComandoSeleccionar1.AppendLine("		AND Cuentas_Pagar.Fec_Ini < @sp_FecIni")
+                loComandoSeleccionar1.AppendLine("		AND Cuentas_Pagar.Status <> 'Anulado'")
+                loComandoSeleccionar1.AppendLine("			AND Cuentas_Pagar.Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
+                loComandoSeleccionar1.AppendLine("GROUP BY Proveedores.Cod_Pro")
+                loComandoSeleccionar1.AppendLine("")
+                loComandoSeleccionar1.AppendLine("UNION ALL")
+                loComandoSeleccionar1.AppendLine("")
+                loComandoSeleccionar1.AppendLine("SELECT")
+                loComandoSeleccionar1.AppendLine("		Proveedores.Cod_Pro,")
+                loComandoSeleccionar1.AppendLine("		SUM(CASE WHEN Renglones_Pagos.Tip_Doc = 'Debito' ")
+                loComandoSeleccionar1.AppendLine("				THEN -Renglones_Pagos.Mon_Abo")
+                loComandoSeleccionar1.AppendLine("				ELSE Renglones_Pagos.Mon_Abo	")
+                loComandoSeleccionar1.AppendLine("			END) +(Pagos.Mon_Ret + Pagos.Mon_Des) AS Sal_Ini")
+                loComandoSeleccionar1.AppendLine("FROM	Pagos")
+                loComandoSeleccionar1.AppendLine("JOIN	Renglones_Pagos ON Pagos.Documento = Renglones_Pagos.Documento")
+                loComandoSeleccionar1.AppendLine("		AND	Pagos.Fec_Ini < @sp_FecIni")
+                loComandoSeleccionar1.AppendLine("		AND Pagos.Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
+                loComandoSeleccionar1.AppendLine("		AND Pagos.Automatico = 0")
+                loComandoSeleccionar1.AppendLine("JOIN	Proveedores ON Proveedores.Cod_Pro = Pagos.Cod_Pro")
+                loComandoSeleccionar1.AppendLine("WHERE	Pagos.Status IN ('Confirmado')")
+                loComandoSeleccionar1.AppendLine("			AND Pagos.Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
+                loComandoSeleccionar1.AppendLine("GROUP BY Proveedores.Cod_Pro,Pagos.Mon_Ret,Pagos.Mon_Des")
+                loComandoSeleccionar1.AppendLine("")
+                loComandoSeleccionar1.AppendLine("SELECT	'' AS Orden, '' AS Tabla, #tmpSaldos_Iniciales.Cod_Pro, Proveedores.Nom_Pro AS Nom_Pro, 'NR' AS Cod_Tip, ")
+                loComandoSeleccionar1.AppendLine("		'' AS Documento, '' AS Fec_Ini, '' AS Registro, '' AS Referencia, Sal_Ini,")
+                loComandoSeleccionar1.AppendLine("		0 AS Mon_Deb,0 AS Mon_Hab, 0 AS Sal_Doc,")
+                loComandoSeleccionar1.AppendLine("       @sp_FecIni AS Desde, @sp_FecFin	AS Hasta")
+                loComandoSeleccionar1.AppendLine("FROM #tmpSaldos_Iniciales")
+                loComandoSeleccionar1.AppendLine("  JOIN Proveedores")
+                loComandoSeleccionar1.AppendLine("      ON #tmpSaldos_Iniciales.Cod_Pro = Proveedores.Cod_Pro")
+                loComandoSeleccionar1.AppendLine("DROP TABLE #tmpSaldos_Iniciales")
+
+                'Me.mEscribirConsulta(loComandoSeleccionar1.ToString())
+                Dim loServicios1 As New cusDatos.goDatos
+                Dim laDatosReporte1 As DataSet = loServicios1.mObtenerTodosSinEsquema(loComandoSeleccionar1.ToString(), "curReportes")
+
+                Me.mCargarLogoEmpresa(laDatosReporte1.Tables(0), "LogoEmpresa")
+
+                loObjetoReporte = cusAplicacion.goReportes.mCargarReporte("CGS_rLEstadoCuenta_HistoricoCompras", laDatosReporte1)
+
+                Me.mTraducirReporte(loObjetoReporte)
+                Me.mFormatearCamposReporte(loObjetoReporte)
+                Me.crvCGS_rLEstadoCuenta_HistoricoCompras.ReportSource = loObjetoReporte
+
+                If (laDatosReporte1.Tables(0).Rows.Count <= 0) Then
+
+                    Me.WbcAdministradorMensajeModal.mMostrarMensajeModal("Información", _
+                                              "No se Encontraron Registros para los Parámetros Especificados. ", _
+                                               vis3Controles.wbcAdministradorMensajeModal.enumTipoMensaje.KN_Informacion, _
+                                               "350px", _
+                                               "200px")
+                End If
+            Else
+                loObjetoReporte = cusAplicacion.goReportes.mCargarReporte("CGS_rLEstadoCuenta_HistoricoCompras", laDatosReporte)
+
+                Me.mTraducirReporte(loObjetoReporte)
+                Me.mFormatearCamposReporte(loObjetoReporte)
+                Me.crvCGS_rLEstadoCuenta_HistoricoCompras.ReportSource = loObjetoReporte
             End If
 
-            loObjetoReporte = cusAplicacion.goReportes.mCargarReporte("CGS_rLEstadoCuenta_HistoricoCompras", laDatosReporte)
+            'loObjetoReporte = cusAplicacion.goReportes.mCargarReporte("CGS_rLEstadoCuenta_HistoricoCompras", laDatosReporte)
 
-            Me.mTraducirReporte(loObjetoReporte)
-            Me.mFormatearCamposReporte(loObjetoReporte)
-            Me.crvCGS_rLEstadoCuenta_HistoricoCompras.ReportSource = loObjetoReporte
+            'Me.mTraducirReporte(loObjetoReporte)
+            'Me.mFormatearCamposReporte(loObjetoReporte)
+            'Me.crvCGS_rLEstadoCuenta_HistoricoCompras.ReportSource = loObjetoReporte
 
         Catch loExcepcion As Exception
 
