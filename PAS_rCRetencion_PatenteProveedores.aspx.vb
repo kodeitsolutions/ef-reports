@@ -28,8 +28,6 @@ Partial Class PAS_rCRetencion_PatenteProveedores
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
-            Dim Concepto As String = "'Retención Impuesto Municipal'"
-
             Dim loComandoSeleccionar As New StringBuilder()
 
             loComandoSeleccionar.AppendLine("SELECT			Cuentas_Pagar.Tip_Ori				AS Tipo_Origen,")
@@ -45,19 +43,18 @@ Partial Class PAS_rCRetencion_PatenteProveedores
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Bas		AS Base_Retencion,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Por_Ret		AS Porcentaje_Retenido,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Sus		AS Sustraendo_Retenido,")
-            loComandoSeleccionar.AppendLine("               " & Concepto & "                    AS Concepto,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Ret		AS Monto_Retenido,")
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Cod_Pro				AS Cod_Pro,")
             loComandoSeleccionar.AppendLine("				Proveedores.Nom_Pro					AS Nom_Pro,")
             loComandoSeleccionar.AppendLine("				Proveedores.Rif						AS Rif,")
             loComandoSeleccionar.AppendLine("				Proveedores.Nit						AS Nit,")
             loComandoSeleccionar.AppendLine("				Proveedores.Dir_Fis					AS Direccion,")
-            loComandoSeleccionar.AppendLine("               " & lcParametro4Desde & " AS Agrupar")
+            loComandoSeleccionar.AppendLine("               " & lcParametro4Desde & "           AS Agrupar")
             loComandoSeleccionar.AppendLine("FROM			Cuentas_Pagar")
             loComandoSeleccionar.AppendLine("		JOIN	Pagos ON Pagos.documento = Cuentas_Pagar.Doc_Ori")
             loComandoSeleccionar.AppendLine("		JOIN	Retenciones_Documentos ON Retenciones_Documentos.Documento = Pagos.documento")
             loComandoSeleccionar.AppendLine("			AND Retenciones_Documentos.doc_des = Cuentas_Pagar.documento")
-            loComandoSeleccionar.AppendLine("			AND Retenciones_Documentos.clase = 'ISLR'")
+            loComandoSeleccionar.AppendLine("			AND Retenciones_Documentos.clase = 'PATENTE'")
             loComandoSeleccionar.AppendLine("		JOIN	Renglones_Pagos ON Renglones_Pagos.Documento = Pagos.documento")
             loComandoSeleccionar.AppendLine("			AND Renglones_Pagos.Doc_Ori = Retenciones_Documentos.Doc_Ori")
             loComandoSeleccionar.AppendLine("		JOIN	Proveedores ON Proveedores.Cod_Pro = Cuentas_Pagar.Cod_Pro")
@@ -97,14 +94,13 @@ Partial Class PAS_rCRetencion_PatenteProveedores
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Bas		AS Base_Retencion,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Por_Ret		AS Porcentaje_Retenido,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Sus		AS Sustraendo_Retenido,")
-            loComandoSeleccionar.AppendLine("               " & Concepto & "                    AS Concepto,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Ret		AS Monto_Retenido,")
             loComandoSeleccionar.AppendLine("				Ordenes_Pagos.Cod_Pro				AS Cod_Pro,")
             loComandoSeleccionar.AppendLine("				Proveedores.Nom_Pro					AS Nom_Pro,")
             loComandoSeleccionar.AppendLine("				Proveedores.Rif						AS Rif,")
             loComandoSeleccionar.AppendLine("				Proveedores.Nit						AS Nit,")
             loComandoSeleccionar.AppendLine("				Proveedores.Dir_Fis					AS Direccion,")
-            loComandoSeleccionar.AppendLine("               " & lcParametro4Desde & " AS Agrupar")
+            loComandoSeleccionar.AppendLine("               " & lcParametro4Desde & "           AS Agrupar")
             loComandoSeleccionar.AppendLine("FROM			Retenciones_Documentos")
             loComandoSeleccionar.AppendLine("	JOIN		Ordenes_Pagos ON Ordenes_Pagos.Documento = Retenciones_Documentos.documento")
             loComandoSeleccionar.AppendLine("	JOIN		Proveedores ON Proveedores.Cod_Pro = Ordenes_Pagos.Cod_Pro")
@@ -135,14 +131,13 @@ Partial Class PAS_rCRetencion_PatenteProveedores
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Bas		AS Base_Retencion,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Por_Ret		AS Porcentaje_Retenido,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Sus		AS Sustraendo_Retenido,")
-            loComandoSeleccionar.AppendLine("               " & Concepto & "                    AS Concepto,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Ret		AS Monto_Retenido,")
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Cod_Pro				AS Cod_Pro,")
             loComandoSeleccionar.AppendLine("				Proveedores.Nom_Pro					AS Nom_Pro,")
             loComandoSeleccionar.AppendLine("				Proveedores.Rif						AS Rif,")
             loComandoSeleccionar.AppendLine("				Proveedores.Nit						AS Nit,")
             loComandoSeleccionar.AppendLine("				Proveedores.Dir_Fis					AS Direccion,")
-            loComandoSeleccionar.AppendLine("               " & lcParametro4Desde & " AS Agrupar")
+            loComandoSeleccionar.AppendLine("               " & lcParametro4Desde & "           AS Agrupar")
             loComandoSeleccionar.AppendLine("FROM			Cuentas_Pagar")
             loComandoSeleccionar.AppendLine("		JOIN	Cuentas_Pagar AS Documentos ON Documentos.documento = Cuentas_Pagar.Doc_Ori")
             loComandoSeleccionar.AppendLine("			AND Documentos.Cod_Tip = Cuentas_Pagar.Cla_Ori")
@@ -159,7 +154,9 @@ Partial Class PAS_rCRetencion_PatenteProveedores
             loComandoSeleccionar.AppendLine("       	  		AND " & lcParametro1Hasta)
             loComandoSeleccionar.AppendLine("       	    AND Documentos.factura BETWEEN " & lcParametro2Desde)
             loComandoSeleccionar.AppendLine("       	  		AND " & lcParametro2Hasta)
-
+            loComandoSeleccionar.AppendLine(" ")
+            loComandoSeleccionar.AppendLine("UNION ALL ")
+            loComandoSeleccionar.AppendLine(" ")
             loComandoSeleccionar.AppendLine("SELECT			Cuentas_Pagar.Tip_Ori				AS Tipo_Origen,")
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Fec_Ini				AS Fecha_Retencion,")
             loComandoSeleccionar.AppendLine("				''									AS Numero_Pago,")
@@ -173,7 +170,6 @@ Partial Class PAS_rCRetencion_PatenteProveedores
             loComandoSeleccionar.AppendLine("				Retenciones_Renglones.Mon_Bas		AS Base_Retencion,")
             loComandoSeleccionar.AppendLine("				Retenciones_Renglones.Por_Ret		AS Porcentaje_Retenido,")
             loComandoSeleccionar.AppendLine("				Retenciones_Renglones.Mon_Sus		AS Sustraendo_Retenido,")
-            loComandoSeleccionar.AppendLine("               " & Concepto & "                    AS Concepto,")
             loComandoSeleccionar.AppendLine("				Retenciones_Renglones.Mon_Ret		AS Monto_Retenido,")
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Cod_Pro				AS Cod_Pro,")
             loComandoSeleccionar.AppendLine("				Proveedores.Nom_Pro					AS Nom_Pro,")
@@ -203,6 +199,8 @@ Partial Class PAS_rCRetencion_PatenteProveedores
             Dim loServicios As New cusDatos.goDatos
 
             Dim laDatosReporte As DataSet = loServicios.mObtenerTodosSinEsquema(loComandoSeleccionar.ToString(), "curReportes")
+
+            Me.mCargarLogoEmpresa(laDatosReporte.Tables(0), "LogoEmpresa")
 
             '-------------------------------------------------------------------------------------------------------
             ' Verificando si el select (tabla nº 0) trae registros
