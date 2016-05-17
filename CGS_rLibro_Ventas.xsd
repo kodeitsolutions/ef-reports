@@ -39,12 +39,7 @@
 							<xs:element name="Com_Ret"			type="xs:string" minOccurs="0" />
 							<xs:element name="Fec_Ret"			type="xs:dateTime" minOccurs="0" />
 							<xs:element name="Mon_Ret" 			type="xs:decimal" minOccurs="0" />
-              <xs:element name="Mon_Net_Anu" 	type="xs:decimal" minOccurs="0" />
-              <xs:element name="Mon_Bru_Anu" 	type="xs:decimal" minOccurs="0" />
-              <xs:element name="Mon_Exe_Anu"	type="xs:decimal" minOccurs="0" />
-              <xs:element name="Por_Imp1_Anu"	type="xs:decimal" minOccurs="0" />
-              <xs:element name="Mon_Imp1_Anu" type="xs:decimal" minOccurs="0" />
-							<xs:element name="Impuestos"		type="xs:string" minOccurs="0" />
+              <xs:element name="Impuestos"		type="xs:string" minOccurs="0" />
               <xs:element name="Mes"    			type="xs:string" minOccurs="0" />
               <xs:element name="Anio"   			type="xs:int" minOccurs="0" />
               <xs:element name="LogoEmpresa"  type="xs:base64Binary" minOccurs="0" />
