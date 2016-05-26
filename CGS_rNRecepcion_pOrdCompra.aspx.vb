@@ -54,6 +54,8 @@ Partial Class CGS_rNRecepcion_pOrdCompra
             lcComandoSeleccionar.AppendLine("	JOIN Operaciones_Lotes ON Operaciones_Lotes.Num_Doc = Renglones_Recepciones.Documento")
             lcComandoSeleccionar.AppendLine("		AND Renglones_Recepciones.Cod_Art = Operaciones_Lotes.Cod_Art")
             lcComandoSeleccionar.AppendLine("		AND SUBSTRING(Operaciones_Lotes.Notas,2, LEN(Operaciones_Lotes.Notas)) = CAST(Renglones_Recepciones.Renglon AS NVARCHAR(255))")
+            lcComandoSeleccionar.AppendLine("       AND Operaciones_Lotes.Tip_Doc = 'Recepciones'")
+            lcComandoSeleccionar.AppendLine("       AND Operaciones_Lotes.Tip_Ope = 'Entrada'")
             lcComandoSeleccionar.AppendLine("WHERE	Recepciones.Fec_Ini	Between	" & lcParametro0Desde)
             lcComandoSeleccionar.AppendLine("	        AND " & lcParametro0Hasta)
             lcComandoSeleccionar.AppendLine("		AND Recepciones.Cod_Pro	Between	" & lcParametro1Desde)
