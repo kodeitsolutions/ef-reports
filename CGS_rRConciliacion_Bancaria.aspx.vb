@@ -124,6 +124,7 @@ Partial Class CGS_rRConciliacion_Bancaria
             loComandoSeleccionar.AppendLine("           AND Movimientos_Cuentas.Cod_Cue = @lcCuenta")
             loComandoSeleccionar.AppendLine("           AND (Movimientos_Cuentas.Fec_Cil NOT BETWEEN @ldFechaInicio AND @ldFechaFin")
             loComandoSeleccionar.AppendLine("           OR Movimientos_Cuentas.Doc_Cil     =   '0') ")
+            loComandoSeleccionar.AppendLine("           AND Movimientos_Cuentas.Status = 'Confirmado'")
 
             loComandoSeleccionar.AppendLine("UNION ALL")
 
@@ -144,6 +145,7 @@ Partial Class CGS_rRConciliacion_Bancaria
             loComandoSeleccionar.AppendLine("           AND Movimientos_Cuentas.Cod_Cue = @lcCuenta")
             loComandoSeleccionar.AppendLine("           AND (Movimientos_Cuentas.Fec_Cil NOT BETWEEN @ldFechaInicio AND @ldFechaFin")
             loComandoSeleccionar.AppendLine("           OR Movimientos_Cuentas.Doc_Cil     =   '0') ")
+            loComandoSeleccionar.AppendLine("           AND Movimientos_Cuentas.Status = 'Confirmado'")
 
             loComandoSeleccionar.AppendLine("UNION ALL")
 
@@ -163,6 +165,7 @@ Partial Class CGS_rRConciliacion_Bancaria
             loComandoSeleccionar.AppendLine("           AND Movimientos_Cuentas.Cod_Cue = @lcCuenta")
             loComandoSeleccionar.AppendLine("           AND (Movimientos_Cuentas.Fec_Cil NOT BETWEEN @ldFechaInicio AND @ldFechaFin")
             loComandoSeleccionar.AppendLine("           OR Movimientos_Cuentas.Doc_Cil     =   '0') ")
+            loComandoSeleccionar.AppendLine("           AND Movimientos_Cuentas.Status = 'Confirmado'")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("SELECT		#tmpCuenta.Cod_Cue									    AS Cod_Cue,")
             loComandoSeleccionar.AppendLine("           #tmpCuenta.Num_Cue									    AS Num_Cue,")
