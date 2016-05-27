@@ -31,6 +31,7 @@
               <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Cod_Art" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Art" type="xs:string" minOccurs="0" />
+              <xs:element name="Generico" type="xs:boolean" minOccurs="0" />
               <xs:element name="Can_Art1" type="xs:double" minOccurs="0" />
               <xs:element name="Precio" type="xs:double" minOccurs="0" />
               <xs:element name="Monto" type="xs:double" minOccurs="0" />
