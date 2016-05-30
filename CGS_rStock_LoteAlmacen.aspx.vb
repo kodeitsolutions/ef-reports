@@ -64,7 +64,7 @@ Partial Class CGS_rStock_LoteAlmacen
             loComandoSeleccionar.AppendLine(" 		Articulos.Nom_Art, ")
             loComandoSeleccionar.AppendLine(" 		Articulos.Cod_Uni1,")
             loComandoSeleccionar.AppendLine("		Departamentos.Nom_Dep,")
-            loComandoSeleccionar.AppendLine("		Secciones.Cod_Sec, ")
+            loComandoSeleccionar.AppendLine("		Secciones.Nom_Sec, ")
             loComandoSeleccionar.AppendLine(" 		Renglones_Lotes.Exi_Act1, ")
             loComandoSeleccionar.AppendLine(" 		Renglones_Lotes.Cod_Lot 		")
             loComandoSeleccionar.AppendLine(" FROM Lotes ")
