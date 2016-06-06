@@ -19,6 +19,8 @@ Partial Class CGS_rListado_CedulasProduccion
         Dim lcParametro0Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(0))
         Dim lcParametro1Desde As String = goServicios.mObtenerListaFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(1))
         'Dim lcParametro1Hasta As String = goServicios.mObtenerListaFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(1))
+        Dim lcParametro2Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(2))
+        Dim lcParametro2Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(2))
 
         Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
@@ -49,6 +51,8 @@ Partial Class CGS_rListado_CedulasProduccion
             lcComandoSeleccionar.AppendLine("WHERE Formulas.Documento BETWEEN " & lcParametro0Desde)
             lcComandoSeleccionar.AppendLine("       AND " & lcParametro0Hasta)
             lcComandoSeleccionar.AppendLine("       AND Formulas.Status IN ( " & lcParametro1Desde & ")")
+            lcComandoSeleccionar.AppendLine("       AND Renglones_Formulas.Cod_Art BETWEEN " & lcParametro2Desde)
+            lcComandoSeleccionar.AppendLine("       AND " & lcParametro2Hasta)
             lcComandoSeleccionar.AppendLine("ORDER BY Formulas.Documento")
 
 
