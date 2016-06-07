@@ -31,6 +31,7 @@
 				      <xs:element name="Can_Art1" type="xs:double" minOccurs="0" />
 				      <xs:element name="Cod_Uni" type="xs:string" minOccurs="0" />
 				      <xs:element name="Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" type="xs:string" minOccurs="0" />
               <xs:element name="Com_Ren" type="xs:string" minOccurs="0" />
               <xs:element name="Notas" type="xs:string" minOccurs="0" />
 				      <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />

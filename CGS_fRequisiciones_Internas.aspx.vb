@@ -34,59 +34,28 @@ Partial Class CGS_fRequisiciones_Internas
             loComandoSeleccionar.AppendLine("        Requisiciones.Documento,")
             loComandoSeleccionar.AppendLine("        Requisiciones.Fec_Ini,      ")
             loComandoSeleccionar.AppendLine("        Requisiciones.Comentario, ")
-            loComandoSeleccionar.AppendLine("		Renglones_Requisiciones.Cod_Art, ")
+            loComandoSeleccionar.AppendLine("        Requisiciones.Status, ")
+            loComandoSeleccionar.AppendLine("		 Renglones_Requisiciones.Cod_Art, ")
             loComandoSeleccionar.AppendLine("        Renglones_Requisiciones.Comentario		AS Com_Ren,")
-            loComandoSeleccionar.AppendLine("		Renglones_Requisiciones.Notas			AS Notas, ")
-            loComandoSeleccionar.AppendLine("        Articulos.Nom_Art						AS Nom_Art,  ")
+            loComandoSeleccionar.AppendLine("		 Renglones_Requisiciones.Notas, ")
+            loComandoSeleccionar.AppendLine("        Articulos.Nom_Art,  ")
             loComandoSeleccionar.AppendLine("        Renglones_Requisiciones.Can_Art1, ")
             loComandoSeleccionar.AppendLine("        Renglones_Requisiciones.Cod_Uni ")
-            loComandoSeleccionar.AppendLine("FROM      Requisiciones ")
-            loComandoSeleccionar.AppendLine("JOIN Renglones_Requisiciones	ON Requisiciones.Documento  =   Renglones_Requisiciones.Documento ")
-            loComandoSeleccionar.AppendLine("JOIN Proveedores				ON Requisiciones.Cod_Pro    =   Proveedores.Cod_Pro ")
-            loComandoSeleccionar.AppendLine("JOIN Formas_Pagos				ON Requisiciones.Cod_For    =   Formas_Pagos.Cod_For ")
-            loComandoSeleccionar.AppendLine("JOIN Vendedores				    ON Requisiciones.Cod_Ven    =   Vendedores.Cod_Ven ")
-            loComandoSeleccionar.AppendLine("JOIN Articulos					ON Articulos.Cod_Art		=   Renglones_Requisiciones.Cod_Art ")
-            loComandoSeleccionar.AppendLine("LEFT JOIN Campos_Propiedades	ON Requisiciones.Documento	=   Campos_Propiedades.Cod_Reg ")
-            loComandoSeleccionar.AppendLine("    AND Campos_Propiedades.Cod_Pro  = 'REQINT_MOT' ")
-            loComandoSeleccionar.AppendLine("    AND Campos_Propiedades.Origen   = 'Requisiciones' ")
+            loComandoSeleccionar.AppendLine("FROM    Requisiciones ")
+            loComandoSeleccionar.AppendLine("JOIN Renglones_Requisiciones ON Requisiciones.Documento = Renglones_Requisiciones.Documento ")
+            loComandoSeleccionar.AppendLine("JOIN Proveedores ON Requisiciones.Cod_Pro = Proveedores.Cod_Pro ")
+            loComandoSeleccionar.AppendLine("JOIN Formas_Pagos ON Requisiciones.Cod_For = Formas_Pagos.Cod_For ")
+            loComandoSeleccionar.AppendLine("JOIN Vendedores ON Requisiciones.Cod_Ven = Vendedores.Cod_Ven ")
+            loComandoSeleccionar.AppendLine("JOIN Articulos ON Articulos.Cod_Art = Renglones_Requisiciones.Cod_Art ")
+            loComandoSeleccionar.AppendLine("LEFT JOIN Campos_Propiedades ON Requisiciones.Documento = Campos_Propiedades.Cod_Reg ")
+            loComandoSeleccionar.AppendLine("    AND Campos_Propiedades.Cod_Pro = 'REQINT_MOT' ")
+            loComandoSeleccionar.AppendLine("    AND Campos_Propiedades.Origen = 'Requisiciones' ")
             loComandoSeleccionar.AppendLine("WHERE     " & cusAplicacion.goFormatos.pcCondicionPrincipal)
-
-
-
 
             'Me.mEscribirConsulta(loComandoSeleccionar.ToString())
 
-
-
             Dim loServicios As New cusDatos.goDatos
             Dim laDatosReporte As DataSet = loServicios.mObtenerTodosSinEsquema(loComandoSeleccionar.ToString, "curReportes")
-
-            'Dim lcXml As String = "<impuesto></impuesto>"
-            'Dim lcPorcentajesImpueto As String
-            'Dim loImpuestos As New System.Xml.XmlDocument()
-
-            'lcPorcentajesImpueto = "("
-
-            'Recorre cada renglon de la tabla
-            'For lnNumeroFila As Integer = 0 To laDatosReporte.Tables(0).Rows.Count - 1
-            '    lcXml = laDatosReporte.Tables(0).Rows(lnNumeroFila).Item("dis_imp")
-
-            '    If String.IsNullOrEmpty(lcXml.Trim()) Then
-            '        Continue For
-            '    End If
-
-            '    loImpuestos.LoadXml(lcXml)
-
-            '    'En cada renglón lee el contenido de la distribució de impuestos
-            '    For Each loImpuesto As System.Xml.XmlNode In loImpuestos.SelectNodes("impuestos/impuesto")
-            '        If lnNumeroFila = laDatosReporte.Tables(0).Rows.Count - 1 Then
-            '            lcPorcentajesImpueto = lcPorcentajesImpueto & ", " & goServicios.mObtenerFormatoCadena(CDec(loImpuesto.SelectSingleNode("porcentaje").InnerText)) & "%"
-            '        End If
-            '    Next loImpuesto
-            'Next lnNumeroFila
-
-            'lcPorcentajesImpueto = lcPorcentajesImpueto & ")"
-            'lcPorcentajesImpueto = lcPorcentajesImpueto.Replace("(,", "(")
 
             '-------------------------------------------------------------------------------------------'
             ' Carga la imagen del logo en cusReportes                                                   '
@@ -106,8 +75,6 @@ Partial Class CGS_fRequisiciones_Internas
             End If
 
             loObjetoReporte = cusAplicacion.goFormatos.mCargarInforme("CGS_fRequisiciones_Internas", laDatosReporte)
-
-            'CType(loObjetoReporte.ReportDefinition.ReportObjects("Text29"), CrystalDecisions.CrystalReports.Engine.TextObject).Text = lcPorcentajesImpueto.ToString
 
             Me.mTraducirReporte(loObjetoReporte)
             Me.mFormatearCamposReporte(loObjetoReporte)
