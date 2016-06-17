@@ -96,7 +96,7 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("WHERE Cuentas_Cobrar.Cod_Tip = 'RETIVA'")
             loComandoSeleccionar.AppendLine("	AND	Cuentas_Cobrar.Status <> 'Anulado'")
             loComandoSeleccionar.AppendLine("	AND	Cuentas_Cobrar.Tip_Ori = 'cuentas_cobrar'")
-            loComandoSeleccionar.AppendLine("	AND Cuentas_Cobrar.Fec_Ini BETWEEN @sp_FecIni AND @sp_FecFin")
+            loComandoSeleccionar.AppendLine("	AND Cuentas_Cobrar.Fec_Reg BETWEEN @sp_FecIni AND @sp_FecFin")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("SELECT #tmpExentoC.TotalExentoC,")
             loComandoSeleccionar.AppendLine("		#tmpBaseC.TotalBaseC,")
