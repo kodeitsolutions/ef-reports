@@ -26,9 +26,6 @@ Partial Class CGS_rCRetencion_IVAProveedores
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
-			Dim lcAño As String = CStr(CDate(cusAplicacion.goReportes.paParametrosIniciales(0)).Year)
-            Dim lcMes As String = CStr(CDate(cusAplicacion.goReportes.paParametrosIniciales(0)).Month)
-
             Dim loComandoSeleccionar As New StringBuilder()
 
             loComandoSeleccionar.AppendLine("SELECT			Cuentas_Pagar.Tip_Ori				AS Tipo_Origen,")
@@ -57,8 +54,8 @@ Partial Class CGS_rCRetencion_IVAProveedores
             loComandoSeleccionar.AppendLine("				Proveedores.Rif						AS Rif,")
             loComandoSeleccionar.AppendLine("				Proveedores.Nit						AS Nit,")
             loComandoSeleccionar.AppendLine("				Proveedores.Dir_Fis					AS Direccion,")
-            loComandoSeleccionar.AppendLine("				" & lcAño & "						AS Anio,")
-            loComandoSeleccionar.AppendLine("				" & lcMes & "						AS Mes")
+            loComandoSeleccionar.AppendLine("				YEAR(Cuentas_Pagar.Fec_Ini)			AS Anio,")
+            loComandoSeleccionar.AppendLine("				MONTH(Cuentas_Pagar.Fec_Ini)		AS Mes")
             loComandoSeleccionar.AppendLine("INTO			#tabRetenciones")
             loComandoSeleccionar.AppendLine("FROM			Cuentas_Pagar")
             loComandoSeleccionar.AppendLine("		JOIN	Pagos")
@@ -116,8 +113,8 @@ Partial Class CGS_rCRetencion_IVAProveedores
             loComandoSeleccionar.AppendLine("				Proveedores.Rif						AS Rif,")
             loComandoSeleccionar.AppendLine("				Proveedores.Nit						AS Nit,")
             loComandoSeleccionar.AppendLine("				Proveedores.Dir_Fis					AS Direccion,")
-            loComandoSeleccionar.AppendLine("				" & lcAño & "						AS Anio,")
-            loComandoSeleccionar.AppendLine("				" & lcMes & "						AS Mes")
+            loComandoSeleccionar.AppendLine("				YEAR(Cuentas_Pagar.Fec_Ini)			AS Anio,")
+            loComandoSeleccionar.AppendLine("				MONTH(Cuentas_Pagar.Fec_Ini)		AS Mes")
             loComandoSeleccionar.AppendLine("FROM			Cuentas_Pagar")
             loComandoSeleccionar.AppendLine("		JOIN	Cuentas_Pagar AS Documentos ")
             loComandoSeleccionar.AppendLine("			ON	Documentos.documento = Cuentas_Pagar.Doc_Ori")
