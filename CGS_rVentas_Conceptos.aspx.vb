@@ -21,14 +21,7 @@ Partial Class CGS_rVentas_Conceptos
             Dim lcParametro0Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(0))
             Dim lcParametro1Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(1), goServicios.enuOpcionesRedondeo.KN_FechaInicioDelDia)
             Dim lcParametro1Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(1), goServicios.enuOpcionesRedondeo.KN_FechaFinDelDia)
-            'Dim lcParametro2Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(2))
-            'Dim lcParametro2Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(2))
-            'Dim lcParametro3Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(3))
-            'Dim lcParametro3Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(3))
-            'Dim lcParametro4Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(4))
-            'Dim lcParametro4Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(4))
-
-
+            
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
             Dim loComandoSeleccionar As New StringBuilder()
@@ -40,14 +33,19 @@ Partial Class CGS_rVentas_Conceptos
             loComandoSeleccionar.AppendLine("		  FROM Cuentas_Contables")
             loComandoSeleccionar.AppendLine("		  WHERE Cod_Cue=SUBSTRING(Conceptos.Contable, 141,12) ")
             loComandoSeleccionar.AppendLine("		),'')									AS CCNom_Con,")
-            loComandoSeleccionar.AppendLine("		Cuentas_Cobrar.Comentario,")
+            loComandoSeleccionar.AppendLine("		CASE WHEN CHARINDEX('/', Cuentas_Cobrar.Comentario) = 0")
+            loComandoSeleccionar.AppendLine("	        THEN Cuentas_Cobrar.Comentario")
+            loComandoSeleccionar.AppendLine("           ELSE SUBSTRING(Cuentas_Cobrar.Comentario, 0, CHARINDEX('/', Cuentas_Cobrar.Comentario)) ")
+            loComandoSeleccionar.AppendLine("       END										AS Comentario,")
             loComandoSeleccionar.AppendLine("		Cuentas_Cobrar.Documento,")
             loComandoSeleccionar.AppendLine("		Cuentas_Cobrar.Factura,")
             loComandoSeleccionar.AppendLine("		Cuentas_Cobrar.Control,")
             loComandoSeleccionar.AppendLine("		Cuentas_Cobrar.Cod_Cli,")
             loComandoSeleccionar.AppendLine("		Clientes.Nom_Cli,")
             loComandoSeleccionar.AppendLine("		Cuentas_Cobrar.Fec_Ini,")
-            loComandoSeleccionar.AppendLine("		Cuentas_Cobrar.Mon_Net")
+            loComandoSeleccionar.AppendLine("		Cuentas_Cobrar.Mon_Net,")
+            loComandoSeleccionar.AppendLine("       Cuentas_Cobrar.Mon_Bas1,")
+            loComandoSeleccionar.AppendLine("       Cuentas_Cobrar.Mon_Imp1")
             loComandoSeleccionar.AppendLine("FROM Conceptos")
             loComandoSeleccionar.AppendLine("	JOIN Cuentas_Cobrar ON Cuentas_Cobrar.Cod_Con = Conceptos.Cod_Con")
             loComandoSeleccionar.AppendLine("	JOIN Clientes ON Clientes.Cod_Cli = Cuentas_Cobrar.Cod_Cli")
