@@ -22,6 +22,7 @@
 							<xs:element name="Control_Documento" type="xs:string" minOccurs="0" />
               <xs:element name="Factura_Documento" type="xs:string" minOccurs="0" />
               <xs:element name="Fecha_Factura" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Comprobante" type="xs:dateTime" minOccurs="0" />
 							<xs:element name="Base_Retencion" type="xs:decimal" minOccurs="0" />
 							<xs:element name="Porcentaje_Retenido" type="xs:decimal" minOccurs="0" />
 							<xs:element name="Monto_Retenido" type="xs:decimal" minOccurs="0" />

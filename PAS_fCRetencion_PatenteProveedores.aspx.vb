@@ -29,6 +29,7 @@ Partial Class PAS_fCRetencion_PatenteProveedores
             loComandoSeleccionar.AppendLine("				Renglones_Pagos.Fec_Ini			    AS Fecha_Factura,")
             loComandoSeleccionar.AppendLine("				Renglones_Pagos.Mon_Net				AS Monto_Documento,")
             loComandoSeleccionar.AppendLine("				Renglones_Pagos.Mon_Abo				AS Monto_Abonado,")
+            loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Num_Com		AS Comprobante,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Bas		AS Base_Retencion,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Por_Ret		AS Porcentaje_Retenido,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Sus		AS Sustraendo_Retenido,")
