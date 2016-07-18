@@ -30,6 +30,7 @@
               <xs:element name="Mon_Hab" type="xs:double" minOccurs="0" />
               <xs:element name="Sal_Ini" type="xs:double" minOccurs="0" />
               <xs:element name="Sal_Doc" type="xs:double" minOccurs="0" />
+              <xs:element name="Pendientes" type="xs:int" minOccurs="0" />
               <xs:element name="Desde" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Hasta" type="xs:dateTime" minOccurs="0" />
               <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
