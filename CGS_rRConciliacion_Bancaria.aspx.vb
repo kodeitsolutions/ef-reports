@@ -29,10 +29,6 @@ Partial Class CGS_rRConciliacion_Bancaria
 
             Dim loComandoSeleccionar As New StringBuilder()
 
-            '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-            '''' OBTIENE EL SALDO INICIAL CONCILIADO ANTES DE LA FECHA INDICADA EN LOS PARAMETROS''''
-            '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-
             loComandoSeleccionar.AppendLine("DECLARE @lcCuenta      	VARCHAR(10)")
             loComandoSeleccionar.AppendLine("DECLARE @ldFechaInicio		DATETIME")
             loComandoSeleccionar.AppendLine("DECLARE @ldFechaFin		DATETIME")
@@ -52,6 +48,15 @@ Partial Class CGS_rRConciliacion_Bancaria
             loComandoSeleccionar.AppendLine("FROM Cuentas_Bancarias")
             loComandoSeleccionar.AppendLine("    JOIN Bancos ON Cuentas_Bancarias.Cod_Ban = Bancos.Cod_Ban")
             loComandoSeleccionar.AppendLine("WHERE Cuentas_Bancarias.Cod_Cue = @lcCuenta")
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("--Saldo Inicial")
+            loComandoSeleccionar.AppendLine("SELECT      Movimientos_Cuentas.Cod_Cue                                 AS Cod_Cue, ")
+            loComandoSeleccionar.AppendLine("            SUM(Movimientos_Cuentas.Mon_Deb - Movimientos_Cuentas.Mon_Hab)  AS Mon_Sal_Ini")
+            loComandoSeleccionar.AppendLine("INTO        #tmpSaldoInicial")
+            loComandoSeleccionar.AppendLine("FROM        Movimientos_Cuentas")
+            loComandoSeleccionar.AppendLine("WHERE       Movimientos_Cuentas.Fec_Ini < @ldFechaInicio")
+            loComandoSeleccionar.AppendLine("        AND Movimientos_Cuentas.Cod_Cue = @lcCuenta")
+            loComandoSeleccionar.AppendLine("GROUP BY    Movimientos_Cuentas.Cod_Cue")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("--Saldo Inicial Conciliado")
             loComandoSeleccionar.AppendLine("SELECT		Movimientos_Cuentas.Cod_Cue										AS Cod_Cue, ")
@@ -220,6 +225,7 @@ Partial Class CGS_rRConciliacion_Bancaria
             loComandoSeleccionar.AppendLine("SELECT		#tmpCuenta.Cod_Cue									    AS Cod_Cue,")
             loComandoSeleccionar.AppendLine("           #tmpCuenta.Num_Cue									    AS Num_Cue,")
             loComandoSeleccionar.AppendLine("			#tmpCuenta.Nom_Ban									    AS Nom_Ban,")
+            loComandoSeleccionar.AppendLine("			#tmpSaldoInicial.Mon_Sal_Ini							AS Saldo_Inicial,")
             loComandoSeleccionar.AppendLine("			#tmpConciliado.Sal_Ini_Con								AS Sal_Ini_Con,")
             loComandoSeleccionar.AppendLine("			ISNULL(#tmpConciliado.Cargos,@lnCero) 					AS Cargos,")
             loComandoSeleccionar.AppendLine("			ISNULL(#tmpConciliado.Abonos,@lnCero) 					AS Abonos,")
@@ -245,6 +251,7 @@ Partial Class CGS_rRConciliacion_Bancaria
             loComandoSeleccionar.AppendLine("           #tmpTransito.Nom_Pro,")
             loComandoSeleccionar.AppendLine("           @ldFechaInicio                                          AS Fec_Cil")
             loComandoSeleccionar.AppendLine("FROM		#tmpConciliado")
+            loComandoSeleccionar.AppendLine("	FULL JOIN #tmpSaldoInicial ON #tmpSaldoInicial.Cod_Cue = #tmpConciliado.Cod_Cue")
             loComandoSeleccionar.AppendLine("	FULL JOIN #tmpNoConciliado ON #tmpConciliado.Cod_Cue =  #tmpNoConciliado.Cod_Cue")
             loComandoSeleccionar.AppendLine("   FULL JOIN #tmpTransito ON #tmpConciliado.Cod_Cue =  #tmpTransito.Cod_Cue")
             loComandoSeleccionar.AppendLine("   FULL JOIN #tmpCuenta ON #tmpConciliado.Cod_Cue = #tmpCuenta.Cod_Cue")

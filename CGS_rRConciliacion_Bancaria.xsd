@@ -22,6 +22,7 @@
               <xs:element name="Cod_Cue" type="xs:string" minOccurs="0" />
               <xs:element name="Num_Cue" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Ban" type="xs:string" minOccurs="0" />
+              <xs:element name="Saldo_Inicial" type="xs:decimal" minOccurs="0" />
               <xs:element name="Sal_Ini_Con" type="xs:decimal" minOccurs="0" />
               <xs:element name="Cargos" type="xs:decimal" minOccurs="0" />
               <xs:element name="Abonos" type="xs:decimal" minOccurs="0" />
