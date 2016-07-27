@@ -25,6 +25,7 @@ Partial Class CGS_rMayor_Analitico
             Dim lcParametro2Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(2))
             Dim lcParametro3Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(3))
             Dim lcParametro3Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(3))
+            Dim lcParametro4Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(4))
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
@@ -113,14 +114,15 @@ Partial Class CGS_rMayor_Analitico
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("SELECT	A.Orden, A.Documento, A.Fecha_Comprobante, A.Renglon, A.Cod_Cuenta, A.Nom_Cuenta, A.Auxiliar,")
             loComandoSeleccionar.AppendLine("		A.Saldo_Inicial, A.Categoria, A.Fecha, A.Debe, A.Haber, SUM(B.Saldo) +  A.Saldo_Inicial AS Sal_Doc,")
-            loComandoSeleccionar.AppendLine("       @sp_FecIni AS Desde, @sp_FecFin	AS Hasta, A.Comentario")
+            loComandoSeleccionar.AppendLine("       @sp_FecIni AS Desde, @sp_FecFin	AS Hasta, A.Comentario," & lcParametro4Desde & " AS Agrupar")
             loComandoSeleccionar.AppendLine("FROM	#tmpMovimientos AS A")
             loComandoSeleccionar.AppendLine("	JOIN #tmpMovimientos AS B")
             loComandoSeleccionar.AppendLine("		ON B.Cod_Cuenta = A.Cod_Cuenta")
             loComandoSeleccionar.AppendLine("		AND B.Orden <= A.Orden")
             loComandoSeleccionar.AppendLine("GROUP BY A.Orden, A.Documento, A.Fecha_Comprobante, A.Renglon, A.Cod_Cuenta, A.Nom_Cuenta, ")
             loComandoSeleccionar.AppendLine("		A.Auxiliar, A.Categoria, A.Fecha, A.Debe, A.Haber, A.Saldo_Inicial, A.Comentario")
-            loComandoSeleccionar.AppendLine("ORDER BY Documento ASC, Cod_Cuenta ASC, Renglon ASC")
+            'loComandoSeleccionar.AppendLine("ORDER BY Documento ASC, Cod_Cuenta ASC, Renglon ASC")
+            loComandoSeleccionar.AppendLine("ORDER BY FECHA ASC, Renglon ASC")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("DROP TABLE #tmpSaldos_Iniciales")
