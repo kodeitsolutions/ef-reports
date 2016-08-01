@@ -22,6 +22,8 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             Dim lcParametro1Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(1))
             Dim lcParametro1Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(1))
            
+            Dim Empresa As String = goServicios.mObtenerCampoFormatoSQL(goEmpresa.pcCodigo)
+
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
             Dim loComandoSeleccionar As New StringBuilder()
@@ -172,7 +174,11 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             loComandoSeleccionar.AppendLine("		SUM(CASE WHEN Renglones_Pagos.Tip_Doc = 'Debito' ")
             loComandoSeleccionar.AppendLine("				THEN	@lnCero")
             loComandoSeleccionar.AppendLine("				ELSE	Renglones_Pagos.Mon_Abo	")
-            loComandoSeleccionar.AppendLine("			END) -(Pagos.Mon_Ret + Pagos.Mon_Des) 		AS Mon_Hab,")
+            If Empresa = "'Cegasa'" Then
+                loComandoSeleccionar.AppendLine("			END) -(Pagos.Mon_Ret + Pagos.Mon_Des) 		AS Mon_Hab,")
+            Else
+                loComandoSeleccionar.AppendLine("			END) + Pagos.Mon_Ret - Pagos.Mon_Des 		AS Mon_Hab,")
+            End If
             loComandoSeleccionar.AppendLine("		@lnCero											AS Mon_Sal")
             loComandoSeleccionar.AppendLine("FROM	Pagos")
             loComandoSeleccionar.AppendLine("JOIN	Renglones_Pagos ON Pagos.Documento = Renglones_Pagos.Documento")
@@ -231,7 +237,7 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             loComandoSeleccionar.AppendLine("DROP TABLE #tmpSaldos_Iniciales")
             loComandoSeleccionar.AppendLine("DROP TABLE #tmpMovimientos")
             loComandoSeleccionar.AppendLine("DROP TABLE #tmpMovPendientes")
-         
+
 
             'Me.mEscribirConsulta(loComandoSeleccionar.ToString())
 
