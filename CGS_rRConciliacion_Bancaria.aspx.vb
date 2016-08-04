@@ -56,6 +56,7 @@ Partial Class CGS_rRConciliacion_Bancaria
             loComandoSeleccionar.AppendLine("FROM        Movimientos_Cuentas")
             loComandoSeleccionar.AppendLine("WHERE       Movimientos_Cuentas.Fec_Ini < @ldFechaInicio")
             loComandoSeleccionar.AppendLine("        AND Movimientos_Cuentas.Cod_Cue = @lcCuenta")
+            loComandoSeleccionar.AppendLine("        AND Movimientos_Cuentas.Status = 'Confirmado'")
             loComandoSeleccionar.AppendLine("GROUP BY    Movimientos_Cuentas.Cod_Cue")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("--Saldo Inicial Conciliado")
