@@ -23,6 +23,7 @@
               <xs:element name="Rif" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Pro" type="xs:string" minOccurs="0" />
               <xs:element name="Num_Factura" type="xs:string" minOccurs="0" />
+              <xs:element name="Control" type="xs:string" minOccurs="0" />
               <xs:element name="Num_Comprobante" type="xs:string" minOccurs="0" />
               <xs:element name="Factura_Afect" type="xs:string" minOccurs="0" />
               <xs:element name="Total_Doc" type="xs:decimal" minOccurs="0" />
@@ -30,6 +31,9 @@
               <xs:element name="Base_Imponible" type="xs:decimal" minOccurs="0" />
               <xs:element name="Impuesto" type="xs:decimal" minOccurs="0" />
               <xs:element name="Monto_Imp" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Base_Imponible2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Impuesto2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Monto_Imp2" type="xs:decimal" minOccurs="0" />
               <xs:element name="Monto_Ret" type="xs:decimal" minOccurs="0" />
               <!--<xs:element name="Fecha_Comp" type="xs:dateTime" minOccurs="0" />-->
               <xs:element name="Fecha_De" type="xs:dateTime" minOccurs="0" />
