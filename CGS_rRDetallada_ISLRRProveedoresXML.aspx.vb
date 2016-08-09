@@ -114,11 +114,11 @@ Partial Class CGS_rRDetallada_ISLRRProveedoresXML
 
             loConsulta.AppendLine("SELECT	CASE WHEN DAY(Recibos.Fecha) <= 15")
             loConsulta.AppendLine("              THEN CONCAT('15',REPLACE(RIGHT(CONVERT(VARCHAR(10),Recibos.Fecha, 103), 7),'/',''))")
-            loConsulta.AppendLine("              ELSE CONCAT('30',REPLACE(RIGHT(CONVERT(VARCHAR(10),Recibos.Fecha, 103), 7),'/',''))")
+            loConsulta.AppendLine("              ELSE CONCAT(CAST(DAY(DATEADD(MS,- 3,DATEADD(MM,0,DATEADD(M,DATEDIFF(MM,0,Recibos.Fecha)+1,0)))) AS VARCHAR(2)),REPLACE(RIGHT(CONVERT(VARCHAR(10),Recibos.Fecha, 103), 7),'/',''))")
             loConsulta.AppendLine("         END															AS Factura_Origen,")
             loConsulta.AppendLine("     	CASE WHEN DAY(Recibos.Fecha) <= 15")
             loConsulta.AppendLine("              THEN CONCAT('15',REPLACE(RIGHT(CONVERT(VARCHAR(10),Recibos.Fecha, 103), 7),'/',''))")
-            loConsulta.AppendLine("              ELSE CONCAT('30',REPLACE(RIGHT(CONVERT(VARCHAR(10),Recibos.Fecha, 103), 7),'/',''))")
+            loConsulta.AppendLine("              ELSE CONCAT(CAST(DAY(DATEADD(MS,- 3,DATEADD(MM,0,DATEADD(M,DATEDIFF(MM,0,Recibos.Fecha)+1,0)))) AS VARCHAR(2)),REPLACE(RIGHT(CONVERT(VARCHAR(10),Recibos.Fecha, 103), 7),'/',''))")
             loConsulta.AppendLine("         END															AS Control_Origen,")
             loConsulta.AppendLine("			Recibos.Fecha													AS Fecha_Retencion,")
             loConsulta.AppendLine("			'-'																AS Tipo_Pago,")
