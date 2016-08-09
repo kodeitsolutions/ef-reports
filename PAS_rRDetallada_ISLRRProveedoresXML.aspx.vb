@@ -190,7 +190,7 @@ Partial Class PAS_rRDetallada_ISLRRProveedoresXML
 
             Me.Response.Clear()
             Me.Response.ContentEncoding = System.Text.Encoding.UTF8
-            Me.Response.AppendHeader("content-disposition", "attachment; filename=RelacionRetencionesISLR" & lcPeriodo & ".xml")
+            Me.Response.AppendHeader("content-disposition", "attachment; filename=RelacionRetencionesISLR_PAS_" & lcPeriodo & ".xml")
             Me.Response.ContentType = "application/xml"
             Me.Response.Write(loSalida.ToString())
             'Me.Response.Write(Strings.Space(20))
