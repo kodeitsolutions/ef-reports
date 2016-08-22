@@ -20,7 +20,6 @@
 						<xs:sequence>
 							<xs:element name="Factura_Documento" type="xs:string" minOccurs="0" />
               <xs:element name="Fec_Factura" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="Monto_Documento" type="xs:decimal" minOccurs="0" />
               <xs:element name="Base_Retencion" type="xs:decimal" minOccurs="0" />
               <xs:element name="Porcentaje_Retenido" type="xs:decimal" minOccurs="0" />
               <xs:element name="Monto_Retenido" type="xs:decimal" minOccurs="0" />
@@ -34,6 +33,7 @@
               <xs:element name="Porcentaje" type="xs:string" minOccurs="0" />
               <xs:element name="Rif_Tra" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Tra" type="xs:string" minOccurs="0" />
+              <xs:element name="Tipo" type="xs:string" minOccurs="0" />
               <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
 					</xs:complexType>
