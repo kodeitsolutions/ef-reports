@@ -27,6 +27,7 @@ Partial Class CGS_fFormulas
             loComandoSeleccionar.AppendLine("           Formulas.Mon_Net                                            AS Mon_Net,")
             loComandoSeleccionar.AppendLine("           Formulas.Cos_Uni                                            AS Costo_Uni,")
             loComandoSeleccionar.AppendLine("           Formulas.Caracter1                                          AS Lote,")
+            loComandoSeleccionar.AppendLine("           Formulas.Clase                                              AS Clase,")
             loComandoSeleccionar.AppendLine("           Renglones_Formulas.Renglon                                  AS Renglon,")
             loComandoSeleccionar.AppendLine("           Renglones_Formulas.Cod_Art                                  AS Codigo,")
             loComandoSeleccionar.AppendLine("           Renglones_Formulas.Can_Art1                                 AS Cantidad,")

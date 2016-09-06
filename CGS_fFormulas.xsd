@@ -28,6 +28,7 @@
               <xs:element name="Mon_Net" type="xs:double" minOccurs="0" />
               <xs:element name="Costo_Uni" type="xs:double" minOccurs="0" />
               <xs:element name="Lote" type="xs:string" minOccurs="0" />
+              <xs:element name="Clase" type="xs:string" minOccurs="0" />
 				      <xs:element name="Cantidad" type="xs:double" minOccurs="0" />
 				      <xs:element name="Unidad" type="xs:string" minOccurs="0" />
 				      <xs:element name="Costo" type="xs:double" minOccurs="0" />
