@@ -25,17 +25,24 @@
 				      <xs:element name="Renglon" type="xs:int" minOccurs="0" />
 				      <xs:element name="Codigo" type="xs:string" minOccurs="0" />
               <xs:element name="Referencia" type="xs:string" minOccurs="0" />
-              <xs:element name="Mon_Net" type="xs:double" minOccurs="0" />
-              <xs:element name="Costo_Uni" type="xs:double" minOccurs="0" />
+              <xs:element name="Obtenido" type="xs:double" minOccurs="0" />
+              <xs:element name="Costo_Act" type="xs:double" minOccurs="0" />
+              <xs:element name="Costo_Std" type="xs:double" minOccurs="0" />
+              <xs:element name="Total_Act" type="xs:double" minOccurs="0" />
+              <xs:element name="Total_Std" type="xs:double" minOccurs="0" />
               <xs:element name="Lote" type="xs:string" minOccurs="0" />
-              <xs:element name="Clase" type="xs:string" minOccurs="0" />
-				      <xs:element name="Cantidad" type="xs:double" minOccurs="0" />
+				      <xs:element name="Cant_Act" type="xs:double" minOccurs="0" />
+              <xs:element name="Cant_Std" type="xs:double" minOccurs="0" />
 				      <xs:element name="Unidad" type="xs:string" minOccurs="0" />
-				      <xs:element name="Costo" type="xs:double" minOccurs="0" />
-				      <xs:element name="Descripcion" type="xs:string" minOccurs="0" />
+				      <xs:element name="RengCosto_Act" type="xs:double" minOccurs="0" />
+              <xs:element name="RengCosto_Std" type="xs:double" minOccurs="0" />
+              <xs:element name="Unitario_Act" type="xs:double" minOccurs="0" />
+              <xs:element name="Unitario_Std" type="xs:double" minOccurs="0" />
+              <xs:element name="Monto_Act" type="xs:double" minOccurs="0" />
+              <xs:element name="Monto_Std" type="xs:double" minOccurs="0" />
+              <xs:element name="Descripcion" type="xs:string" minOccurs="0" />
               <xs:element name="Notas" type="xs:string" minOccurs="0" />
 				      <xs:element name="Nom_Art" type="xs:string" minOccurs="0" />
-				      <xs:element name="Total" type="xs:double" minOccurs="0" />
 				      <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
