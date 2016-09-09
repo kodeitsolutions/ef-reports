@@ -48,7 +48,7 @@ Partial Class PAS_rTrabajadores
             lcComandoSeleccionar.AppendLine("SET @Fecha_Fin = " & lcParametro5Hasta)
             lcComandoSeleccionar.AppendLine("")
             lcComandoSeleccionar.AppendLine("SELECT  DISTINCT ")
-            lcComandoSeleccionar.AppendLine("		Trabajadores.Cod_Tra		AS Cod_Tra,")
+            lcComandoSeleccionar.AppendLine("		Trabajadores.Rif		AS Cod_Tra,")
             lcComandoSeleccionar.AppendLine("		Trabajadores.Nom_Tra		AS Nom_Tra,")
             lcComandoSeleccionar.AppendLine("		Cargos.Nom_Car				AS Cargo,")
             lcComandoSeleccionar.AppendLine("		Trabajadores.Fec_Ini		AS Ingreso,")
@@ -69,7 +69,7 @@ Partial Class PAS_rTrabajadores
             lcComandoSeleccionar.AppendLine("	AND Departamentos_Nomina.Cod_Dep BETWEEN @Dep_Ini AND @Dep_Fin")
             lcComandoSeleccionar.AppendLine("	AND Cargos.Cod_Car BETWEEN @Cargo_Ini AND @Cargo_Fin")
             lcComandoSeleccionar.AppendLine("   AND Trabajadores.Status IN (" & lcParametro1Desde & " )")
-            lcComandoSeleccionar.AppendLine("ORDER BY Trabajadores.Cod_Tra, Trabajadores.Nom_Tra")
+            lcComandoSeleccionar.AppendLine("ORDER BY Trabajadores.Rif, Trabajadores.Nom_Tra")
 
             'Me.mEscribirConsulta(lcComandoSeleccionar.ToString())
 
