@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rContabilizaciones_Numeros" targetNamespace="http://tempuri.org/rContabilizaciones_Numeros.xsd" xmlns:mstns="http://tempuri.org/rContabilizaciones_Numeros.xsd" xmlns="http://tempuri.org/rContabilizaciones_Numeros.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:NameSpace1="urn:schemas-microsoft-com:xml-msdatasource" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+			<DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+				<Connections>
+				</Connections>
+				<Tables>
+				</Tables>
+				<Sources>
+				</Sources>
+			</DataSource>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="rContabilizaciones_Numeros" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="curReportes">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Documento" type="xs:string" minOccurs="0" />
+							<xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Status" type="xs:string" minOccurs="0" />
+							<xs:element name="Comentario" type="xs:string" minOccurs="0" />
+							<xs:element name="Int_Ini" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Int_Fin" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="Doc_Des" type="xs:string" minOccurs="0" />
+							<xs:element name="Fec_Com" type="xs:dateTime" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

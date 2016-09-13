@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rEstimaciones_Sueldos" targetNamespace="http://tempuri.org/rEstimaciones_Sueldos.xsd" xmlns:mstns="http://tempuri.org/rEstimaciones_Sueldos.xsd" xmlns="http://tempuri.org/rEstimaciones_Sueldos.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections></Connections>
+        <Tables></Tables>
+        <Sources></Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rEstimaciones_Sueldos" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Cod_Tra" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Tra" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="Ultimo_Sueldo_Mensual" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Prestaciones_Fondo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Prestaciones_Ultimo_Sueldo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Porcentaje_Aumento" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Monto_Aumento" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Nuevo_Sueldo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Prestaciones_Nuevo_Sueldo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Diferencia_Pre_Nuevo_Sueldo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Saldo_Intereses" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Total_Deuda" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

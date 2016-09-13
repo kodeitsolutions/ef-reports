@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rLibro_Inventarios" targetNamespace="http://tempuri.org/rLibro_Inventarios.xsd" xmlns:mstns="http://tempuri.org/rLibro_Inventarios.xsd" xmlns="http://tempuri.org/rLibro_Inventarios.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rLibro_Inventarios" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Cod_Art" type="xs:string" minOccurs="0" />
+              <xs:element name="nom_art" type="xs:string" minOccurs="0" />
+              <xs:element name="unidad" type="xs:string" minOccurs="0" />
+              <xs:element name="stock_inicial" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Costo_stock_inicial" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Compras" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Unitario_Compras" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Total_Compras" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Entradas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Unitario_Entradas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Total_Entradas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Ventas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Unitario_Ventas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="total_Ventas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Salidas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Unitario_Salidas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Total_Salidas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Costo_Stock_Final" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Unitario_final" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Inventario_final" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

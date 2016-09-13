@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Este archivo lo genera de forma automática el Diseñador de esquemas XML. Contiene información de diseño para componentes de la superficie de diseño.-->
+<XSDDesignerLayout Style="LeftRight" layoutVersion="2" viewPortLeft="0" viewPortTop="0" zoom="100">
+    <rContabilizaciones_Numeros_XmlElement left="5074" top="3423" width="5292" height="2831" selected="0" zOrder="0" index="0" expanded="1">
+        <curReportes_XmlElement left="11000" top="1941" width="8334" height="5795" selected="0" zOrder="1" index="0" expanded="1" />
+    </rContabilizaciones_Numeros_XmlElement>
+</XSDDesignerLayout>

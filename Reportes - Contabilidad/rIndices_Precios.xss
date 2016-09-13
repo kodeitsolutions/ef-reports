@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="rIndices_Precios" targetNamespace="http://tempuri.org/rIndices_Precios.xsd" xmlns:mstns="http://tempuri.org/rIndices_Precios.xsd" xmlns="http://tempuri.org/rIndices_Precios.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="rIndices_Precios" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Año" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_Ene" type="xs:string" minOccurs="0" />
+              <xs:element name="Mon_Ene" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_Feb" type="xs:string" minOccurs="0" />
+              <xs:element name="Mon_Feb" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_Mar" type="xs:string" minOccurs="0" />
+              <xs:element name="Mon_Mar" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_Abr" type="xs:string" minOccurs="0" />
+              <xs:element name="Mon_Abr" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_May" type="xs:string" minOccurs="0" />
+              <xs:element name="Mon_May" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_Jun" type="xs:string" minOccurs="0" />
+              <xs:element name="Mon_Jun" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_Jul" type="xs:string" minOccurs="0" />
+              <xs:element name="Mon_Jul" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_Ago" type="xs:string" minOccurs="0" />
+              <xs:element name="Mon_Ago" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_Sep" type="xs:string" minOccurs="0" />
+              <xs:element name="Mon_Sep" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_Oct" type="xs:string" minOccurs="0" />
+              <xs:element name="Mon_Oct" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_Nov" type="xs:string" minOccurs="0" />
+              <xs:element name="Mon_Nov" type="xs:string" minOccurs="0" />
+              <xs:element name="Por_Dic" type="xs:string" minOccurs="0" />
+              <xs:element name="Mon_Dic" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
