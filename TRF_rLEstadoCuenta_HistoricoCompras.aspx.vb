@@ -248,7 +248,7 @@ Partial Class TRF_rLEstadoCuenta_HistoricoCompras
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("SELECT  0 AS Orden, 'Saldo Inicial' AS Tabla, #tmpSaldos_Iniciales.Cod_Pro, Proveedores.Nom_Pro AS Nom_Pro, 'NR' AS Cod_Tip, ")
             loComandoSeleccionar.AppendLine("		@lcVacio AS Documento, @lcVacio AS Fec_Ini, @lcVacio AS Registro, SUM(Sal_Ini) AS Sal_Ini,")
-            loComandoSeleccionar.AppendLine("		@lnCero AS Mon_Deb, @lnCero AS Mon_Hab, @lcVacio AS Referencia, @lnCero AS Sal_Doc,")
+            loComandoSeleccionar.AppendLine("		@lnCero AS Mon_Deb, @lnCero AS Mon_Hab, 'SIN MOVIMIENTOS' AS Referencia, @lnCero AS Sal_Doc,")
             loComandoSeleccionar.AppendLine("		@sp_FecIni AS Desde, @sp_FecFin	AS Hasta, ")
             loComandoSeleccionar.AppendLine("	    COALESCE(#tmpMovPendientesFact.Pendientes, @lnCero) AS PendientesFact,")
             loComandoSeleccionar.AppendLine("	    COALESCE(#tmpMovPendientesAdel.Pendientes, @lnCero) AS PendientesAdel")
