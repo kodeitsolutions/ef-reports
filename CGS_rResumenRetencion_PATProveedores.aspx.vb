@@ -117,7 +117,7 @@ Partial Class CGS_rResumenRetencion_PATProveedores
             loComandoSeleccionar.AppendLine("           AND Cuentas_Pagar.Cod_Pro BETWEEN " & lcParametro1Desde)
             loComandoSeleccionar.AppendLine("                AND " & lcParametro1Hasta)
 
-            loComandoSeleccionar.AppendLine("UNION ALL		")
+            loComandoSeleccionar.AppendLine("UNION 		")
 
             loComandoSeleccionar.AppendLine("SELECT			Documentos.Factura		            AS Factura_Documento,")
             loComandoSeleccionar.AppendLine("				Documentos.Fec_Ini					AS Fec_Factura,")
