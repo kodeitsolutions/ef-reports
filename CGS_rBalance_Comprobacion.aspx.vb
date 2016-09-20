@@ -140,8 +140,8 @@ Partial Class CGS_rBalance_Comprobacion
             loComandoSeleccionar.AppendLine("			#tmpMovimientos.Cod_Niv_5, ")
             loComandoSeleccionar.AppendLine("			#tmpMovimientos.Auxiliar,")
             loComandoSeleccionar.AppendLine("           #tmpMovimientos.Nom_Auxiliar")
-            If llSoloMovimientos Then
-                'loComandoSeleccionar.AppendLine("HAVING	ABS(SUM(#tmpMovimientos.Saldo)) + ABS(SUM(#tmpMovimientos.Debe)) + ABS(SUM(#tmpMovimientos.Haber)) > 0")
+            If Not (llSoloMovimientos) Then
+                '    loComandoSeleccionar.AppendLine("HAVING	ABS(SUM(#tmpMovimientos.Saldo)) + ABS(SUM(#tmpMovimientos.Debe)) + ABS(SUM(#tmpMovimientos.Haber)) > 0")
                 loComandoSeleccionar.AppendLine("HAVING	ABS(SUM(#tmpMovimientos.Monto + #tmpMovimientos.Saldo)) > 0")
             End If
             loComandoSeleccionar.AppendLine("ORDER BY	Cod_Cue")
