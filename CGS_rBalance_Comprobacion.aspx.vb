@@ -24,11 +24,8 @@ Partial Class CGS_rBalance_Comprobacion
             Dim lcCuentaContableHasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(1))
             Dim lcAuxiliarDesde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(2))
             Dim lcAuxiliarHasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(2))
-            Dim lcTipoAuxiliar As String = goServicios.mObtenerListaFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(3))
-            Dim lcCentroCostoDesde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(4))
-            Dim lcCentroCostoHasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(4))
-            Dim llSoloMovimientos As Boolean = CStr(cusAplicacion.goReportes.paParametrosIniciales(5)).Trim().ToUpper().Equals("SI")
-            Dim lnNivelMax As Integer = CInt(cusAplicacion.goReportes.paParametrosIniciales(6))
+            Dim llSoloMovimientos As Boolean = CStr(cusAplicacion.goReportes.paParametrosIniciales(3)).Trim().ToUpper().Equals("SI")
+            Dim lnNivelMax As Integer = CInt(cusAplicacion.goReportes.paParametrosIniciales(4))
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
@@ -55,8 +52,6 @@ Partial Class CGS_rBalance_Comprobacion
             loComandoSeleccionar.AppendLine("DECLARE @lcCuentaHasta VARCHAR(30) = " & lcCuentaContableHasta)
             loComandoSeleccionar.AppendLine("DECLARE @lcAuxDesde VARCHAR(30) = " & lcAuxiliarDesde)
             loComandoSeleccionar.AppendLine("DECLARE @lcAuxHasta VARCHAR(30) = " & lcAuxiliarHasta)
-            loComandoSeleccionar.AppendLine("DECLARE @lcCentroDesde VARCHAR(30) = " & lcCentroCostoDesde)
-            loComandoSeleccionar.AppendLine("DECLARE @lcCentroHasta VARCHAR(30) = " & lcCentroCostoHasta)
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("DECLARE @lnNivelMax INT = " & lnNivelMax)
             loComandoSeleccionar.AppendLine("DECLARE @lnLongMax INT = " & lnLongMax)
@@ -101,12 +96,9 @@ Partial Class CGS_rBalance_Comprobacion
             loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.Fec_Ini <= @lcFechaHasta)")
             loComandoSeleccionar.AppendLine("		LEFT JOIN Auxiliares ON Renglones_Comprobantes.Cod_Aux = Auxiliares.Cod_Aux")
             loComandoSeleccionar.AppendLine("WHERE	CC.Movimiento=1")
+            loComandoSeleccionar.AppendLine("   AND CC.Categoria IN ('Activos', 'Pasivos', 'Capital')")
             loComandoSeleccionar.AppendLine("	AND	CC.Cod_Cue						BETWEEN @lcCuentaDesde	AND	@lcCuentaHasta")
-            loComandoSeleccionar.AppendLine("	AND Renglones_Comprobantes.Cod_Cen	BETWEEN @lcCentroDesde	AND	@lcCentroHasta")
             loComandoSeleccionar.AppendLine("	AND Renglones_Comprobantes.Cod_Aux	BETWEEN @lcAuxDesde	AND	@lcAuxHasta")
-            If lcTipoAuxiliar <> "'Todos'" Then
-                loComandoSeleccionar.AppendLine("	AND Auxiliares.Grupo = " & lcTipoAuxiliar)
-            End If
             loComandoSeleccionar.AppendLine("GROUP BY CC.Cod_Cue, Renglones_Comprobantes.Cod_Aux, Auxiliares.Nom_Aux")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("SELECT		Cuentas_Contables.Cod_Cue							AS Cod_Cue,")
@@ -141,7 +133,6 @@ Partial Class CGS_rBalance_Comprobacion
             loComandoSeleccionar.AppendLine("			#tmpMovimientos.Auxiliar,")
             loComandoSeleccionar.AppendLine("           #tmpMovimientos.Nom_Auxiliar")
             If Not (llSoloMovimientos) Then
-                '    loComandoSeleccionar.AppendLine("HAVING	ABS(SUM(#tmpMovimientos.Saldo)) + ABS(SUM(#tmpMovimientos.Debe)) + ABS(SUM(#tmpMovimientos.Haber)) > 0")
                 loComandoSeleccionar.AppendLine("HAVING	ABS(SUM(#tmpMovimientos.Monto + #tmpMovimientos.Saldo)) > 0")
             End If
             loComandoSeleccionar.AppendLine("ORDER BY	Cod_Cue")
