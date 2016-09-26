@@ -26,6 +26,7 @@ Partial Class CGS_rBalance_Comprobacion
             Dim lcAuxiliarHasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(2))
             Dim llSoloMovimientos As Boolean = CStr(cusAplicacion.goReportes.paParametrosIniciales(3)).Trim().ToUpper().Equals("SI")
             Dim lnNivelMax As Integer = CInt(cusAplicacion.goReportes.paParametrosIniciales(4))
+            Dim lcMostrarAux As String = CStr(cusAplicacion.goReportes.paParametrosIniciales(5))
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
@@ -52,6 +53,7 @@ Partial Class CGS_rBalance_Comprobacion
             loComandoSeleccionar.AppendLine("DECLARE @lcCuentaHasta VARCHAR(30) = " & lcCuentaContableHasta)
             loComandoSeleccionar.AppendLine("DECLARE @lcAuxDesde VARCHAR(30) = " & lcAuxiliarDesde)
             loComandoSeleccionar.AppendLine("DECLARE @lcAuxHasta VARCHAR(30) = " & lcAuxiliarHasta)
+            loComandoSeleccionar.AppendLine("DECLARE @lcMostrarAux VARCHAR(12) = '" & lcMostrarAux & "'")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("DECLARE @lnNivelMax INT = " & lnNivelMax)
             loComandoSeleccionar.AppendLine("DECLARE @lnLongMax INT = " & lnLongMax)
@@ -103,8 +105,10 @@ Partial Class CGS_rBalance_Comprobacion
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("SELECT		Cuentas_Contables.Cod_Cue							AS Cod_Cue,")
             loComandoSeleccionar.AppendLine("			Cuentas_Contables.Nom_Cue							AS Nom_Cue,")
-            loComandoSeleccionar.AppendLine("			#tmpMovimientos.Auxiliar							AS Auxiliar,")
-            loComandoSeleccionar.AppendLine("           #tmpMovimientos.Nom_Auxiliar						AS Nom_Auxiliar,")
+            If lnNivelMax = 5 Then
+                loComandoSeleccionar.AppendLine("			#tmpMovimientos.Auxiliar							AS Auxiliar,")
+                loComandoSeleccionar.AppendLine("           #tmpMovimientos.Nom_Auxiliar						AS Nom_Auxiliar,")
+            End If
             loComandoSeleccionar.AppendLine("			#tmpMovimientos.Cod_Niv_1, ")
             loComandoSeleccionar.AppendLine("			(SELECT TOP 1 Nom_Cue FROM Cuentas_Contables WHERE Cuentas_Contables.Cod_Cue = #tmpMovimientos.Cod_Niv_1) AS Nom_Niv_1,")
             loComandoSeleccionar.AppendLine("			#tmpMovimientos.Cod_Niv_2, ")
@@ -119,6 +123,7 @@ Partial Class CGS_rBalance_Comprobacion
             loComandoSeleccionar.AppendLine("			SUM(#tmpMovimientos.Debe)							AS Debe,")
             loComandoSeleccionar.AppendLine("			SUM(#tmpMovimientos.Haber)							AS Haber,")
             loComandoSeleccionar.AppendLine("			SUM(#tmpMovimientos.Monto + #tmpMovimientos.Saldo)	AS Saldo_Actual")
+            loComandoSeleccionar.AppendLine("INTO #tmpBalance")
             loComandoSeleccionar.AppendLine("FROM		#tmpMovimientos")
             loComandoSeleccionar.AppendLine("	JOIN	Cuentas_Contables")
             loComandoSeleccionar.AppendLine("		ON	Cuentas_Contables.Cod_Cue = #tmpMovimientos.Cod_Cue")
@@ -129,14 +134,48 @@ Partial Class CGS_rBalance_Comprobacion
             loComandoSeleccionar.AppendLine("			#tmpMovimientos.Cod_Niv_2, ")
             loComandoSeleccionar.AppendLine("			#tmpMovimientos.Cod_Niv_3,")
             loComandoSeleccionar.AppendLine("			#tmpMovimientos.Cod_Niv_4, ")
-            loComandoSeleccionar.AppendLine("			#tmpMovimientos.Cod_Niv_5, ")
-            loComandoSeleccionar.AppendLine("			#tmpMovimientos.Auxiliar,")
-            loComandoSeleccionar.AppendLine("           #tmpMovimientos.Nom_Auxiliar")
+            If lnNivelMax = 5 Then
+                loComandoSeleccionar.AppendLine("			#tmpMovimientos.Cod_Niv_5, ")
+                loComandoSeleccionar.AppendLine("			#tmpMovimientos.Auxiliar,")
+                loComandoSeleccionar.AppendLine("           #tmpMovimientos.Nom_Auxiliar")
+            Else
+                loComandoSeleccionar.AppendLine("			#tmpMovimientos.Cod_Niv_5 ")
+            End If
             If Not (llSoloMovimientos) Then
                 loComandoSeleccionar.AppendLine("HAVING	ABS(SUM(#tmpMovimientos.Monto + #tmpMovimientos.Saldo)) > 0")
             End If
             loComandoSeleccionar.AppendLine("ORDER BY	Cod_Cue")
+            If lcMostrarAux <> "Todos" And lnNivelMax = 5 Then
+                loComandoSeleccionar.AppendLine("UPDATE #tmpBalance SET Auxiliar = '', Nom_Auxiliar = '' WHERE Cod_Cue <> @lcMostrarAux")
+                loComandoSeleccionar.AppendLine("")
+                loComandoSeleccionar.AppendLine("SELECT Cod_Cue, Nom_Cue, SUM(Saldo_Inicial) AS Saldo_Inicial,")
+                loComandoSeleccionar.AppendLine("       SUM(Debe) AS Debe, SUM(Haber) AS Haber, SUM(Saldo_Actual) AS Saldo_Actual")
+                loComandoSeleccionar.AppendLine("INTO #tmpUpdate")
+                loComandoSeleccionar.AppendLine("FROM #tmpBalance")
+                loComandoSeleccionar.AppendLine("WHERE Cod_Cue <> @lcMostrarAux")
+                loComandoSeleccionar.AppendLine("GROUP BY Cod_Cue, Nom_Cue")
+                loComandoSeleccionar.AppendLine("ORDER BY Cod_Cue")
+                loComandoSeleccionar.AppendLine("")
+                loComandoSeleccionar.AppendLine("UPDATE #tmpBalance SET Saldo_Inicial = (SELECT Saldo_Inicial FROM #tmpUpdate WHERE #tmpUpdate.Cod_Cue = #tmpBalance.Cod_Cue) ")
+                loComandoSeleccionar.AppendLine("WHERE Cod_Cue <> @lcMostrarAux")
+                loComandoSeleccionar.AppendLine("UPDATE #tmpBalance SET Debe = (SELECT Debe FROM #tmpUpdate WHERE #tmpUpdate.Cod_Cue = #tmpBalance.Cod_Cue) ")
+                loComandoSeleccionar.AppendLine("WHERE Cod_Cue <> @lcMostrarAux")
+                loComandoSeleccionar.AppendLine("UPDATE #tmpBalance SET Haber = (SELECT Haber FROM #tmpUpdate WHERE #tmpUpdate.Cod_Cue = #tmpBalance.Cod_Cue) ")
+                loComandoSeleccionar.AppendLine("WHERE Cod_Cue <> @lcMostrarAux")
+                loComandoSeleccionar.AppendLine("UPDATE #tmpBalance SET Saldo_Actual = (SELECT Saldo_Actual FROM #tmpUpdate WHERE #tmpUpdate.Cod_Cue = #tmpBalance.Cod_Cue) ")
+                loComandoSeleccionar.AppendLine("WHERE Cod_Cue <> @lcMostrarAux ")
+                loComandoSeleccionar.AppendLine("")
+                loComandoSeleccionar.AppendLine("DROP TABLE #tmpUpdate")
+            End If
+            loComandoSeleccionar.AppendLine("")
+            If lnNivelMax = 5 Then
+                loComandoSeleccionar.AppendLine("SELECT DISTINCT * FROM #tmpBalance ORDER BY Cod_Cue")
+            Else
+                loComandoSeleccionar.AppendLine("SELECT DISTINCT *, '' AS Auxiliar, '' AS Nom_Auxiliar FROM #tmpBalance ORDER BY Cod_Cue")
+            End If
+            loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("DROP TABLE #tmpMovimientos")
+            loComandoSeleccionar.AppendLine("DROP TABLE #tmpBalance")
             loComandoSeleccionar.AppendLine("")
 
             'Me.mEscribirConsulta(loComandoSeleccionar.ToString())
