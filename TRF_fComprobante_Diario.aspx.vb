@@ -28,6 +28,7 @@ Partial Class TRF_fComprobante_Diario
             loComandoSeleccionar.AppendLine("		Renglones_Comprobantes.Mon_Deb			AS Debe, ")
             loComandoSeleccionar.AppendLine("		Renglones_Comprobantes.Mon_Hab			AS Haber, ")
             loComandoSeleccionar.AppendLine("		Renglones_Comprobantes.Doc_Ori			AS Doc_Ori, ")
+            loComandoSeleccionar.AppendLine("		Renglones_Comprobantes.Tip_Ori			AS Tip_Ori, ")
             loComandoSeleccionar.AppendLine("		Renglones_Comprobantes.Comentario		AS Comentario ")
             loComandoSeleccionar.AppendLine("FROM Comprobantes")
             loComandoSeleccionar.AppendLine("	JOIN Renglones_Comprobantes ON Comprobantes.Documento = Renglones_Comprobantes.Documento")
