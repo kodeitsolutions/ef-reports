@@ -29,7 +29,7 @@ Partial Class CGS_rResumenRetencion_PATProveedores
             loComandoSeleccionar.AppendLine("SELECT			Renglones_Pagos.Factura		        AS Factura_Documento,")
             loComandoSeleccionar.AppendLine("				( SELECT Fec_Ini")
             loComandoSeleccionar.AppendLine("				FROM Cuentas_Pagar")
-            loComandoSeleccionar.AppendLine("				WHERE Factura= Renglones_Pagos.Factura")
+            loComandoSeleccionar.AppendLine("				WHERE Documento = Renglones_Pagos.Doc_Ori AND Cuentas_Pagar.Cod_Tip = 'FACT'")
             loComandoSeleccionar.AppendLine("				) AS Fec_Factura,")
             loComandoSeleccionar.AppendLine("            	Renglones_Pagos.Mon_Net				AS Monto_Documento,")
             loComandoSeleccionar.AppendLine("            	Retenciones_Documentos.Mon_Bas		AS Base_Retencion,")
@@ -52,20 +52,15 @@ Partial Class CGS_rResumenRetencion_PATProveedores
             loComandoSeleccionar.AppendLine("WHERE			Cuentas_Pagar.Cod_Tip = 'RETPAT'")
             loComandoSeleccionar.AppendLine("            AND	Cuentas_Pagar.Status <> 'Anulado'")
             loComandoSeleccionar.AppendLine("            AND	Cuentas_Pagar.Tip_Ori = 'Pagos'")
-
             loComandoSeleccionar.AppendLine("            AND Cuentas_Pagar.Fec_Ini BETWEEN " & lcParametro0Desde)
             loComandoSeleccionar.AppendLine("               AND " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("           AND Cuentas_Pagar.Cod_Pro BETWEEN " & lcParametro1Desde)
             loComandoSeleccionar.AppendLine("                AND " & lcParametro1Hasta)
-
-
-            loComandoSeleccionar.AppendLine("UNION ALL		")
-
+            loComandoSeleccionar.AppendLine(" ")
+            loComandoSeleccionar.AppendLine("UNION")
+            loComandoSeleccionar.AppendLine(" ")
             loComandoSeleccionar.AppendLine("SELECT			Ordenes_Pagos.Documento		        AS Factura_Documento,")
-            loComandoSeleccionar.AppendLine("				( SELECT Fec_Ini")
-            loComandoSeleccionar.AppendLine("				FROM Cuentas_Pagar")
-            loComandoSeleccionar.AppendLine("				WHERE Factura= Ordenes_Pagos.Documento")
-            loComandoSeleccionar.AppendLine("				) AS Fec_Factura,")
+            loComandoSeleccionar.AppendLine("				Ordenes_Pagos.Fec_Ini               AS Fec_Factura,")
             loComandoSeleccionar.AppendLine("            	Ordenes_Pagos.Mon_Net				AS Monto_Documento,")
             loComandoSeleccionar.AppendLine("            	Retenciones_Documentos.Mon_Bas		AS Base_Retencion,")
             loComandoSeleccionar.AppendLine("            	Retenciones_Documentos.Por_Ret		AS Porcentaje_Retenido,")
@@ -82,15 +77,13 @@ Partial Class CGS_rResumenRetencion_PATProveedores
             loComandoSeleccionar.AppendLine("WHERE		Ordenes_Pagos.Status = 'Confirmado'")
             loComandoSeleccionar.AppendLine("            AND	Retenciones_Documentos.Tip_Ori	= 'Ordenes_Pagos'")
             loComandoSeleccionar.AppendLine("            AND Retenciones_Documentos.clase	= 'RETPAT'")
-
             loComandoSeleccionar.AppendLine("           AND Ordenes_Pagos.Fec_Ini BETWEEN " & lcParametro0Desde)
             loComandoSeleccionar.AppendLine("                AND " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("           AND Ordenes_Pagos.Cod_Pro BETWEEN " & lcParametro1Desde)
             loComandoSeleccionar.AppendLine("                AND " & lcParametro1Hasta)
-
-
-            loComandoSeleccionar.AppendLine("UNION ALL		")
-
+            loComandoSeleccionar.AppendLine(" ")
+            loComandoSeleccionar.AppendLine("UNION")
+            loComandoSeleccionar.AppendLine(" ")
             loComandoSeleccionar.AppendLine("SELECT			Documentos.Factura		            AS Factura_Documento,")
             loComandoSeleccionar.AppendLine("				Documentos.Fec_Ini					AS Fec_Factura,")
             loComandoSeleccionar.AppendLine("            	Documentos.Mon_Net					AS Monto_Documento,")
@@ -116,9 +109,9 @@ Partial Class CGS_rResumenRetencion_PATProveedores
             loComandoSeleccionar.AppendLine("                AND " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("           AND Cuentas_Pagar.Cod_Pro BETWEEN " & lcParametro1Desde)
             loComandoSeleccionar.AppendLine("                AND " & lcParametro1Hasta)
-
-            loComandoSeleccionar.AppendLine("UNION 		")
-
+            loComandoSeleccionar.AppendLine(" ")
+            loComandoSeleccionar.AppendLine("UNION")
+            loComandoSeleccionar.AppendLine(" ")
             loComandoSeleccionar.AppendLine("SELECT			Documentos.Factura		            AS Factura_Documento,")
             loComandoSeleccionar.AppendLine("				Documentos.Fec_Ini					AS Fec_Factura,")
             loComandoSeleccionar.AppendLine("            	Documentos.Mon_Net					AS Monto_Documento,")
@@ -144,7 +137,7 @@ Partial Class CGS_rResumenRetencion_PATProveedores
             loComandoSeleccionar.AppendLine("                AND " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("           AND Cuentas_Pagar.Cod_Pro BETWEEN " & lcParametro1Desde)
             loComandoSeleccionar.AppendLine("                AND " & lcParametro1Hasta)
-
+            loComandoSeleccionar.AppendLine(" ")
             loComandoSeleccionar.AppendLine("ORDER BY Fec_Factura ASC")
 
             'Me.mEscribirConsulta(loComandoSeleccionar.ToString())
