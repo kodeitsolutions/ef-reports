@@ -17,7 +17,7 @@ Partial Class TRF_rLibro_Ventas
             Dim lcParametro0Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(0), goServicios.enuOpcionesRedondeo.KN_FechaInicioDelDia)
             Dim lcParametro0Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(0), goServicios.enuOpcionesRedondeo.KN_FechaFinDelDia)
 
-            Dim Empresa As String = goServicios.mObtenerCampoFormatoSQL(goEmpresa.pcCodigo)
+            'Dim Empresa As String = goServicios.mObtenerCampoFormatoSQL(goEmpresa.pcCodigo)
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
             Dim loComandoSeleccionar As New StringBuilder()
@@ -28,7 +28,7 @@ Partial Class TRF_rLibro_Ventas
             loComandoSeleccionar.AppendLine("SET	@sp_FecIni          = " & lcParametro0Desde)
             loComandoSeleccionar.AppendLine("SET	@sp_FecFin          = " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("SELECT	ROW_NUMBER() OVER (ORDER BY Registros.Fec_Ini, Registros.Documento ASC) AS Num," & Empresa & " AS Empresa,*")
+            loComandoSeleccionar.AppendLine("SELECT	ROW_NUMBER() OVER (ORDER BY CAST(Registros.Fec_Ini AS DATE), Registros.Documento ASC) AS Num,*")
             loComandoSeleccionar.AppendLine("FROM(")
             loComandoSeleccionar.AppendLine("		/*Facturas*/")
             loComandoSeleccionar.AppendLine("		SELECT		Cuentas_Cobrar.Documento								AS Documento,")
