@@ -169,9 +169,9 @@ Partial Class CGS_rBalance_General
             End If
             loComandoSeleccionar.AppendLine("")
             If lnNivelMax = 5 Then
-                loComandoSeleccionar.AppendLine("SELECT DISTINCT * FROM #tmpBalance ORDER BY Cod_Cue")
+                loComandoSeleccionar.AppendLine("SELECT DISTINCT *, @lcFechaHasta AS Hasta FROM #tmpBalance ORDER BY Cod_Cue")
             Else
-                loComandoSeleccionar.AppendLine("SELECT DISTINCT *, '' AS Auxiliar, '' AS Nom_Auxiliar FROM #tmpBalance ORDER BY Cod_Cue")
+                loComandoSeleccionar.AppendLine("SELECT DISTINCT *, '' AS Auxiliar, '' AS Nom_Auxiliar, @lcFechaHasta AS Hasta FROM #tmpBalance ORDER BY Cod_Cue")
             End If
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("DROP TABLE #tmpMovimientos")
