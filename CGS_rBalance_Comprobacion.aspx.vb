@@ -98,7 +98,6 @@ Partial Class CGS_rBalance_Comprobacion
             loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.Fec_Ini <= @lcFechaHasta)")
             loComandoSeleccionar.AppendLine("		LEFT JOIN Auxiliares ON Renglones_Comprobantes.Cod_Aux = Auxiliares.Cod_Aux")
             loComandoSeleccionar.AppendLine("WHERE	CC.Movimiento=1")
-            loComandoSeleccionar.AppendLine("   AND CC.Categoria IN ('Activos', 'Pasivos', 'Capital')")
             loComandoSeleccionar.AppendLine("	AND	CC.Cod_Cue						BETWEEN @lcCuentaDesde	AND	@lcCuentaHasta")
             loComandoSeleccionar.AppendLine("	AND Renglones_Comprobantes.Cod_Aux	BETWEEN @lcAuxDesde	AND	@lcAuxHasta")
             loComandoSeleccionar.AppendLine("GROUP BY CC.Cod_Cue, Renglones_Comprobantes.Cod_Aux, Auxiliares.Nom_Aux")
