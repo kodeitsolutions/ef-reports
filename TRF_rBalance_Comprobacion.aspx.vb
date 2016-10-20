@@ -98,7 +98,6 @@ Partial Class TRF_rBalance_Comprobacion
             loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.Fec_Ini <= @lcFechaHasta)")
             loComandoSeleccionar.AppendLine("		LEFT JOIN Auxiliares ON Renglones_Comprobantes.Cod_Aux = Auxiliares.Cod_Aux")
             loComandoSeleccionar.AppendLine("WHERE	CC.Movimiento=1")
-            loComandoSeleccionar.AppendLine("   AND CC.Categoria IN ('Activos', 'Pasivos', 'Capital')")
             loComandoSeleccionar.AppendLine("	AND	CC.Cod_Cue						BETWEEN @lcCuentaDesde	AND	@lcCuentaHasta")
             loComandoSeleccionar.AppendLine("	AND Renglones_Comprobantes.Cod_Aux	BETWEEN @lcAuxDesde	AND	@lcAuxHasta")
             loComandoSeleccionar.AppendLine("GROUP BY CC.Cod_Cue, Renglones_Comprobantes.Cod_Aux, Auxiliares.Nom_Aux")
@@ -169,9 +168,9 @@ Partial Class TRF_rBalance_Comprobacion
             End If
             loComandoSeleccionar.AppendLine("")
             If lnNivelMax = 5 Then
-                loComandoSeleccionar.AppendLine("SELECT DISTINCT * FROM #tmpBalance ORDER BY Cod_Cue")
+                loComandoSeleccionar.AppendLine("SELECT DISTINCT *, @lcFechaDesde AS Desde, @lcFechaHasta AS Hasta FROM #tmpBalance ORDER BY Cod_Cue")
             Else
-                loComandoSeleccionar.AppendLine("SELECT DISTINCT *, '' AS Auxiliar, '' AS Nom_Auxiliar FROM #tmpBalance ORDER BY Cod_Cue")
+                loComandoSeleccionar.AppendLine("SELECT DISTINCT *, '' AS Auxiliar, '' AS Nom_Auxiliar, @lcFechaDesde AS Desde, @lcFechaHasta AS Hasta FROM #tmpBalance ORDER BY Cod_Cue")
             End If
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("DROP TABLE #tmpMovimientos")
