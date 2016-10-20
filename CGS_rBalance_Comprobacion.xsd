@@ -36,6 +36,8 @@
               <xs:element name="Debe" type="xs:decimal" minOccurs="0" />
               <xs:element name="Haber" type="xs:decimal" minOccurs="0" />
               <xs:element name="Saldo_Actual" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Desde" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Hasta" type="xs:dateTime" minOccurs="0" />
               <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
