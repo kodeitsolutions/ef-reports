@@ -18,7 +18,9 @@ Partial Class CGS_rMCajas_Fechas
 
         Try
             Dim lcParametro0Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(0))
+            Dim lcParametro0Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(0))
             Dim lcParametro1Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(1), goServicios.enuOpcionesRedondeo.KN_FechaInicioDelDia)
+            Dim lcParametro1Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(1), goServicios.enuOpcionesRedondeo.KN_FechaFinDelDia)
             Dim lcParametro2Desde As String = goServicios.mObtenerListaFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(2))
 
 
@@ -26,7 +28,7 @@ Partial Class CGS_rMCajas_Fechas
 
             Dim loComandoSeleccionar As New StringBuilder()
 
-            loComandoSeleccionar.AppendLine(" SELECT    Movimientos_Cajas.Documento, ")
+            loComandoSeleccionar.AppendLine(" SELECT   Movimientos_Cajas.Documento, ")
             loComandoSeleccionar.AppendLine("		   Movimientos_Cajas.Cod_Caj, ")
             loComandoSeleccionar.AppendLine("		   Movimientos_Cajas.Comentario, ")
             loComandoSeleccionar.AppendLine("		   Movimientos_Cajas.Fec_Ini, ")
@@ -41,9 +43,11 @@ Partial Class CGS_rMCajas_Fechas
             loComandoSeleccionar.AppendLine("FROM Movimientos_Cajas ")
             loComandoSeleccionar.AppendLine(" JOIN Cajas ON  Movimientos_Cajas.Cod_Caj		=   Cajas.Cod_Caj ")
             loComandoSeleccionar.AppendLine(" JOIN Conceptos ON Movimientos_Cajas.Cod_Con   =   Conceptos.Cod_Con")
-            loComandoSeleccionar.AppendLine("WHERE		 Movimientos_Cajas.Cod_Caj       = " & lcParametro0Desde)
-            loComandoSeleccionar.AppendLine("		   And Movimientos_Cajas.Fec_Ini       = " & lcParametro1Desde)
-            loComandoSeleccionar.AppendLine("           And Movimientos_Cajas.Status        IN  (" & lcParametro2Desde & ")")
+            loComandoSeleccionar.AppendLine("WHERE Movimientos_Cajas.Cod_Caj       BETWEEN " & lcParametro0Desde)
+            loComandoSeleccionar.AppendLine("   AND " & lcParametro0Hasta)
+            loComandoSeleccionar.AppendLine("   AND Movimientos_Cajas.Fec_Ini       Between " & lcParametro1Desde)
+            loComandoSeleccionar.AppendLine("   AND " & lcParametro1Hasta)
+            loComandoSeleccionar.AppendLine("   AND Movimientos_Cajas.Status        IN  (" & lcParametro2Desde & ")")
 
             'Me.mEscribirConsulta(loComandoSeleccionar.ToString)
 
