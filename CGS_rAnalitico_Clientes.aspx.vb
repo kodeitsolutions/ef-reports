@@ -70,6 +70,7 @@ Partial Class CGS_rAnalitico_Clientes
             loComandoSeleccionar.AppendLine("	JOIN	Renglones_Cobros ON Cobros.Documento = Renglones_Cobros.Documento		")
             loComandoSeleccionar.AppendLine("	JOIN	Clientes ON Clientes.Cod_Cli = Cobros.Cod_Cli")
             loComandoSeleccionar.AppendLine("WHERE	Cobros.Status IN ('Confirmado')")
+            loComandoSeleccionar.AppendLine("       AND Cobros.Automatico = 0")
             loComandoSeleccionar.AppendLine("		AND Cobros.Cod_Cli BETWEEN @sp_CodCli_Desde AND @sp_CodCli_Hasta")
             loComandoSeleccionar.AppendLine("		AND	Cobros.Fec_Ini < @sp_FecIni")
             loComandoSeleccionar.AppendLine("		AND Cobros.Cod_Cli BETWEEN @sp_CodCli_Desde AND @sp_CodCli_Hasta")
