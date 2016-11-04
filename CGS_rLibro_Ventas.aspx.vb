@@ -17,7 +17,7 @@ Partial Class CGS_rLibro_Ventas
             Dim lcParametro0Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(0), goServicios.enuOpcionesRedondeo.KN_FechaInicioDelDia)
             Dim lcParametro0Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(0), goServicios.enuOpcionesRedondeo.KN_FechaFinDelDia)
             
-            Dim Empresa As String = goServicios.mObtenerCampoFormatoSQL(goEmpresa.pcCodigo)
+            'Dim Empresa As String = goServicios.mObtenerCampoFormatoSQL(goEmpresa.pcCodigo)
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
             Dim loComandoSeleccionar As New StringBuilder()
@@ -28,7 +28,7 @@ Partial Class CGS_rLibro_Ventas
             loComandoSeleccionar.AppendLine("SET	@sp_FecIni          = " & lcParametro0Desde)
             loComandoSeleccionar.AppendLine("SET	@sp_FecFin          = " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("SELECT	ROW_NUMBER() OVER (ORDER BY CAST(Registros.Fec_Ini AS DATE), Registros.Documento ASC) AS Num," & Empresa & " AS Empresa,*")
+            loComandoSeleccionar.AppendLine("SELECT	ROW_NUMBER() OVER (ORDER BY CAST(Registros.Fec_Ini AS DATE), Registros.Documento ASC) AS Num,*")
             loComandoSeleccionar.AppendLine("FROM(")
             loComandoSeleccionar.AppendLine("		/*Facturas*/")
             loComandoSeleccionar.AppendLine("		SELECT		CASE WHEN Cuentas_Cobrar.Cod_Mon = 'VEB'")
@@ -236,12 +236,7 @@ Partial Class CGS_rLibro_Ventas
             loComandoSeleccionar.AppendLine("			WHERE       Cuentas_Cobrar.Cod_Tip      =   'RETIVA' ")
             loComandoSeleccionar.AppendLine("						AND Retenciones_Documentos.Tip_Ori = 'Cuentas_Cobrar'")
             loComandoSeleccionar.AppendLine("						AND Retenciones_Documentos.Clase = 'IMPUESTO'")
-
-            If Empresa = "'Cegasa'" Then
-                loComandoSeleccionar.AppendLine("						AND Cuentas_Cobrar.Fec_Reg BETWEEN @sp_FecIni AND @sp_FecFin")
-            Else
-                loComandoSeleccionar.AppendLine("						AND Cuentas_Cobrar.Fec_Ini BETWEEN @sp_FecIni AND @sp_FecFin")
-            End If
+            loComandoSeleccionar.AppendLine("						AND Cuentas_Cobrar.Fec_Reg BETWEEN @sp_FecIni AND @sp_FecFin")
             loComandoSeleccionar.AppendLine(")Registros")
             loComandoSeleccionar.AppendLine("")
 

@@ -41,7 +41,6 @@
               <xs:element name="Impuestos"		type="xs:string" minOccurs="0" />
               <xs:element name="Mes"    			type="xs:string" minOccurs="0" />
               <xs:element name="Anio"   			type="xs:int" minOccurs="0" />
-              <xs:element name="Empresa"    			type="xs:string" minOccurs="0" />
               <xs:element name="LogoEmpresa"  type="xs:base64Binary" minOccurs="0" />
 						</xs:sequence>
 					</xs:complexType>
