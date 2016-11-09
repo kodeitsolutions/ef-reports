@@ -19,7 +19,7 @@
             <xs:sequence>
               <xs:element name="Cod_Tip" type="xs:string" minOccurs="0" />
               <xs:element name="Num" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Empresa" type="xs:string" minOccurs="0" />
+              <!--<xs:element name="Empresa" type="xs:string" minOccurs="0" />-->
               <xs:element name="Fecha_Doc" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Rif" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Pro" type="xs:string" minOccurs="0" />
@@ -32,13 +32,12 @@
               <xs:element name="Base_Imponible" type="xs:decimal" minOccurs="0" />
               <xs:element name="Impuesto" type="xs:decimal" minOccurs="0" />
               <xs:element name="Monto_Imp" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Base_Imponible2" type="xs:decimal" minOccurs="0" />
+              <!--<xs:element name="Base_Imponible2" type="xs:decimal" minOccurs="0" />
               <xs:element name="Impuesto2" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Monto_Imp2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Monto_Imp2" type="xs:decimal" minOccurs="0" />-->
               <xs:element name="Monto_Ret" type="xs:decimal" minOccurs="0" />
               <xs:element name="Planilla" type="xs:string" minOccurs="0" />
               <xs:element name="Expediente" type="xs:string" minOccurs="0" />
-              <!--<xs:element name="Fecha_Comp" type="xs:dateTime" minOccurs="0" />-->
               <xs:element name="Fecha_De" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Fecha_Hasta" type="xs:dateTime" minOccurs="0" />
               <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
