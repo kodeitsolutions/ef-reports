@@ -41,6 +41,7 @@
 				      <xs:element name="Neto" type="xs:decimal" minOccurs="0" />
 				      <xs:element name="Impuesto" type="xs:decimal" minOccurs="0" />
 				      <xs:element name="Por_Imp" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Observacion" type="xs:string" minOccurs="0" />
 				      <xs:element name="Comentario" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
