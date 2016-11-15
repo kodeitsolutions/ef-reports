@@ -18,7 +18,7 @@
 				<xs:element name="curReportes">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="Numero_Comprobante" type="xs:string" minOccurs="0" />
+              <xs:element name="Numero_Comprobante" type="xs:string" minOccurs="0" />
               <xs:element name="Numero_ControlDoc" type="xs:string" />
               <xs:element name="Numero_FacturaDoc" type="xs:string" />
               <xs:element name="Monto_Documento" type="xs:decimal" minOccurs="0" />
