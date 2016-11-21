@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TRF_rResumenRetencion_IVAProveedores" targetNamespace="http://tempuri.org/TRF_rResumenRetencion_IVAProveedores.xsd" xmlns:mstns="http://tempuri.org/TRF_rResumenRetencion_IVAProveedores.xsd" xmlns="http://tempuri.org/TRF_rResumenRetencion_IVAProveedores.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:NameSpace1="urn:schemas-microsoft-com:xml-msdatasource" attributeFormDefault="qualified" elementFormDefault="qualified">
+	<xs:annotation>
+		<xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+			<DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+				<Connections>
+				</Connections>
+				<Tables>
+				</Tables>
+				<Sources>
+				</Sources>
+			</DataSource>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:element name="TRF_rResumenRetencion_IVAProveedores" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+		<xs:complexType>
+			<xs:choice minOccurs="0" maxOccurs="unbounded">
+				<xs:element name="curReportes">
+					<xs:complexType>
+						<xs:sequence>
+              <xs:element name="Numero_Comprobante" type="xs:string" minOccurs="0" />
+              <xs:element name="Numero_ControlDoc" type="xs:string" />
+              <xs:element name="Numero_FacturaDoc" type="xs:string" />
+              <xs:element name="Monto_Documento" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Monto_ExentoDoc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Monto_BaseDoc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Porcentaje_ImpuestoDoc" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Fecha_Factura" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Base_Retencion" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Porcentaje_Retenido" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Monto_Retenido" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Nom_Pro" type="xs:string" minOccurs="0" />
+              <xs:element name="Rif" type="xs:string" minOccurs="0" />
+              <xs:element name="Fecha_De" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fecha_Hasta" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
