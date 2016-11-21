@@ -34,6 +34,7 @@ Partial Class TRF_rProveedores_dBasicos
             loComandoSeleccionar.AppendLine("WHERE Proveedores.Cod_Pro BETWEEN @lcCodPro_Desde AND @lcCodPro_Hasta")
             loComandoSeleccionar.AppendLine(" AND Proveedores.Status IN (" & lcParametro1Desde & ")")
             loComandoSeleccionar.AppendLine(" AND Zonas.Cod_Zon BETWEEN @lcCodZon_Desde AND @lcCodZon_Hasta")
+            loComandoSeleccionar.AppendLine(" AND Proveedores.Telefonos <> ''")
             loComandoSeleccionar.AppendLine("ORDER BY Cod_Pro, Nom_Pro")
 
             'Me.mEscribirConsulta(loComandoSeleccionar.ToString())
