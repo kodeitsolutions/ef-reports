@@ -123,7 +123,7 @@ Partial Class PAS_rResumenRetencion_ISLRProveedores
             loComandoSeleccionar.AppendLine("       AND Renglones_Recibos.cod_con IN ('R005', 'R405')")
             loComandoSeleccionar.AppendLine("   JOIN Nominas ON Recibos.Doc_Ori = Nominas.Documento")
             loComandoSeleccionar.AppendLine("JOIN Trabajadores ON Recibos.cod_tra = Trabajadores.cod_tra")
-            loComandoSeleccionar.AppendLine("WHERE     Nominas.Fec_Ini BETWEEN " & lcParametro0Desde)
+            loComandoSeleccionar.AppendLine("WHERE     Renglones_Recibos.Fec_Ini BETWEEN " & lcParametro0Desde)
             loComandoSeleccionar.AppendLine("                AND " & lcParametro0Hasta)
 
 
