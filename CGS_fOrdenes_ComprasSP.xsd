@@ -25,10 +25,7 @@
               <xs:element name="Correo" type="xs:string" minOccurs="0" />
               <xs:element name="Documento" type="xs:string" minOccurs="0" />
               <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="Fec_Fin" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="Nom_For" type="xs:string" minOccurs="0" />
-              <xs:element name="Cod_Ven" type="xs:string" minOccurs="0" />
-              <xs:element name="Nom_Ven" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" type="xs:string" minOccurs="0" />
               <xs:element name="Cod_Art" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Art" type="xs:string" minOccurs="0" />
               <xs:element name="Renglon" type="xs:int" minOccurs="0" />
@@ -37,7 +34,6 @@
               <xs:element name="Comentario_Renglon" msdata:Caption="Comentario" type="xs:string" minOccurs="0" />
               <xs:element name="Comentario" type="xs:string" minOccurs="0" />
               <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
-              <xs:element name="Status" type="xs:string" minOccurs="0" />
               <xs:element name="Generico" type="xs:boolean" minOccurs="0" />
               <xs:element name="Notas" type="xs:string" minOccurs="0" />
             </xs:sequence>
