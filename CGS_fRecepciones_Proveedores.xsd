@@ -18,17 +18,14 @@
         <xs:element name="curReportes">
           <xs:complexType>
             <xs:sequence>
-				      <xs:element name="Cod_Cli" type="xs:string" minOccurs="0" />
-				      <xs:element name="Nom_Cli" type="xs:string" minOccurs="0" />
+				      <xs:element name="Cod_Pro" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Pro" type="xs:string" minOccurs="0" />
 				      <xs:element name="Rif" type="xs:string" minOccurs="0" />
-				      <xs:element name="Nit" type="xs:string" minOccurs="0" />
 				      <xs:element name="Dir_Fis" type="xs:string" minOccurs="0" />
 				      <xs:element name="Telefonos" type="xs:string" minOccurs="0" />
-				      <xs:element name="Fax" type="xs:string" minOccurs="0" />
       				<xs:element name="Documento" type="xs:string" minOccurs="0" />
+              <xs:element name="Status" type="xs:string" minOccurs="0" />
 				      <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
-      				<xs:element name="Cod_Ven" type="xs:string" minOccurs="0" />
-				      <xs:element name="Nom_Ven" type="xs:string" minOccurs="0" />
 				      <xs:element name="Cod_Art" type="xs:string" minOccurs="0" />
 				      <xs:element name="Nom_Art" type="xs:string" minOccurs="0" />
               <xs:element name="Generico" type="xs:boolean" minOccurs="0" />
@@ -36,6 +33,10 @@
       				<xs:element name="Cantidad" type="xs:decimal" minOccurs="0" />
 				      <xs:element name="Cod_Uni" type="xs:string" minOccurs="0" />
       				<xs:element name="Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Lote" type="xs:string" minOccurs="0" />
+              <xs:element name="Cantidad_Lote" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Porc_Desperdicio" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cant_Desperdicio" type="xs:decimal" minOccurs="0" />
 				      <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
