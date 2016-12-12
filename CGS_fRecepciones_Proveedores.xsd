@@ -25,16 +25,19 @@
 				      <xs:element name="Telefonos" type="xs:string" minOccurs="0" />
       				<xs:element name="Documento" type="xs:string" minOccurs="0" />
               <xs:element name="Status" type="xs:string" minOccurs="0" />
-				      <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Renglon" type="xs:int" minOccurs="0" />
 				      <xs:element name="Cod_Art" type="xs:string" minOccurs="0" />
 				      <xs:element name="Nom_Art" type="xs:string" minOccurs="0" />
               <xs:element name="Generico" type="xs:boolean" minOccurs="0" />
               <xs:element name="Notas" type="xs:string" minOccurs="0" />
-      				<xs:element name="Cantidad" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Datos" type="xs:string" minOccurs="0" />
+              <xs:element name="Cantidad" type="xs:decimal" minOccurs="0" />
 				      <xs:element name="Cod_Uni" type="xs:string" minOccurs="0" />
       				<xs:element name="Comentario" type="xs:string" minOccurs="0" />
               <xs:element name="Lote" type="xs:string" minOccurs="0" />
               <xs:element name="Cantidad_Lote" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Peso" type="xs:string" minOccurs="0" />
               <xs:element name="Porc_Desperdicio" type="xs:decimal" minOccurs="0" />
               <xs:element name="Cant_Desperdicio" type="xs:decimal" minOccurs="0" />
 				      <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
