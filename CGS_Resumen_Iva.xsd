@@ -18,8 +18,10 @@
           <xs:complexType>
             <xs:sequence>
               <xs:element name="TotalExentoC" type="xs:decimal" minOccurs="0" />
-              <xs:element name="TotalBaseC" type="xs:decimal" minOccurs="0" />
-              <xs:element name="TotalImpuestoC" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalBaseC12" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalImpuestoC12" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalBaseC8" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalImpuestoC8" type="xs:decimal" minOccurs="0" />
               <xs:element name="BaseCFacturaImp" type="xs:decimal" minOccurs="0" />
               <xs:element name="ImpuestoCFacturaImp" type="xs:decimal" minOccurs="0" />
               <xs:element name="TotalRetenidoC" type="xs:decimal" minOccurs="0" />
