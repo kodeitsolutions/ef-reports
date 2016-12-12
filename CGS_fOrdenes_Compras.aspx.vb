@@ -11,7 +11,7 @@ Partial Class CGS_fOrdenes_Compras
             Dim loComandoSeleccionar1 As New StringBuilder()
 
             loComandoSeleccionar1.AppendLine(" SELECT  Ordenes_Compras.Usu_Cre ")
-            loComandoSeleccionar1.AppendLine("FROM      Ordenes_Compras")
+            loComandoSeleccionar1.AppendLine("FROM  Ordenes_Compras")
             loComandoSeleccionar1.AppendLine("	JOIN Renglones_OCompras")
             loComandoSeleccionar1.AppendLine("		ON Ordenes_Compras.Documento = Renglones_OCompras.Documento")
             loComandoSeleccionar1.AppendLine("    JOIN Proveedores")
@@ -31,10 +31,10 @@ Partial Class CGS_fOrdenes_Compras
 
             Dim loComandoSeleccionar2 As New StringBuilder()
 
-            loComandoSeleccionar2.AppendLine(" SELECT    Nom_Usu ")
-            loComandoSeleccionar2.AppendLine(" FROM      Usuarios ")
-            loComandoSeleccionar2.AppendLine(" WHERE     Cod_Usu = '" & aString & "'")
-            loComandoSeleccionar2.AppendLine("		    AND Cod_Cli  = " & goServicios.mObtenerCampoFormatoSQL(goCliente.pcCodigo))
+            loComandoSeleccionar2.AppendLine(" SELECT   Nom_Usu ")
+            loComandoSeleccionar2.AppendLine(" FROM Usuarios ")
+            loComandoSeleccionar2.AppendLine(" WHERE Cod_Usu = '" & aString & "'")
+            loComandoSeleccionar2.AppendLine("  AND Cod_Cli  = " & goServicios.mObtenerCampoFormatoSQL(goCliente.pcCodigo))
 
             Dim loServicios2 As New cusDatos.goDatos
 
