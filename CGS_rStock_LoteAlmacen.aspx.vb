@@ -59,7 +59,7 @@ Partial Class CGS_rStock_LoteAlmacen
             loComandoSeleccionar.AppendLine("FROM Lotes ")
             loComandoSeleccionar.AppendLine("	JOIN Renglones_Lotes ON Renglones_Lotes.Cod_Lot = Lotes.Cod_Lot")
             loComandoSeleccionar.AppendLine("	JOIN Almacenes ON Renglones_Lotes.Cod_Alm = Almacenes.Cod_Alm ")
-            loComandoSeleccionar.AppendLine("	JOIN Articulos ON Articulos.Cod_Art = Lotes.Cod_Art ")
+            loComandoSeleccionar.AppendLine("	JOIN Articulos ON Articulos.Cod_Art = Renglones_Lotes.Cod_Art ")
             loComandoSeleccionar.AppendLine("	JOIN Departamentos ON Articulos.Cod_Dep = Departamentos.Cod_Dep")
             loComandoSeleccionar.AppendLine("	JOIN Secciones ON Secciones.Cod_Sec = Articulos.Cod_Sec")
             loComandoSeleccionar.AppendLine("	    AND Secciones.Cod_Dep = Departamentos.Cod_Dep")
