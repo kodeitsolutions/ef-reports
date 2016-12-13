@@ -24,7 +24,6 @@
               <xs:element name="Dir_Fis" type="xs:string" minOccurs="0" />
               <xs:element name="Telefonos" type="xs:string" minOccurs="0" />
               <xs:element name="Correo" type="xs:string" minOccurs="0" />
-              <xs:element name="Documento" type="xs:string" minOccurs="0" />
               <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Fec_Fin" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Mon_Bru" type="xs:decimal" minOccurs="0" />
