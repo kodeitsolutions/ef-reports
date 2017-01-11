@@ -89,6 +89,7 @@ Partial Class TRF_rRConciliacion_Bancaria
             loComandoSeleccionar.AppendLine("WHERE		Movimientos_Cuentas.Doc_Cil = 1 ")
             loComandoSeleccionar.AppendLine("		AND Movimientos_Cuentas.Status = 'Confirmado'")
             loComandoSeleccionar.AppendLine("		AND Movimientos_Cuentas.Fec_Ini BETWEEN @ldFechaInicio AND @ldFechaFin")
+            loComandoSeleccionar.AppendLine("		AND Movimientos_Cuentas.Fec_Cil BETWEEN @ldFechaInicio AND @ldFechaFin")
             loComandoSeleccionar.AppendLine("		AND Movimientos_Cuentas.Cod_Cue = @lcCuenta")
             loComandoSeleccionar.AppendLine("GROUP BY	Movimientos_Cuentas.Cod_Cue,")
             loComandoSeleccionar.AppendLine("			#tmpSaldoInicialConciliado.Mon_Deb_Ini, #tmpSaldoInicialConciliado.Mon_Hab_Ini, #tmpSaldoInicialConciliado.Mon_Sal_Ini")
