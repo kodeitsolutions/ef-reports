@@ -29,6 +29,7 @@ Partial Class CGS_fRecepciones_Proveedores_AUTO
         loComandoSeleccionar.AppendLine("       Renglones_Recepciones.Comentario        AS Peso, ")
         loComandoSeleccionar.AppendLine("	    Renglones_Recepciones.Can_Art1          AS Cantidad,")
         loComandoSeleccionar.AppendLine("	    Renglones_Recepciones.Cod_Uni			AS Cod_Uni,")
+        loComandoSeleccionar.AppendLine("	    Renglones_Recepciones.Doc_Ori			AS Doc_Ori,")
         loComandoSeleccionar.AppendLine("       COALESCE(Operaciones_Lotes.Cod_Lot,'')	AS Lote,")
         loComandoSeleccionar.AppendLine("       COALESCE(Operaciones_Lotes.Cantidad,0)	AS Cantidad_Lote,")
         loComandoSeleccionar.AppendLine("		COALESCE(Piezas.Res_Num, 0)				AS Piezas,")
