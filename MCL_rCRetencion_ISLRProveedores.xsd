@@ -18,12 +18,7 @@
 				<xs:element name="curReportes">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element name="Tipo_Origen" type="xs:string" minOccurs="0" />
-							<xs:element name="Fecha_Retencion" type="xs:dateTime" minOccurs="0" />
-							<xs:element name="Numero_Pago" type="xs:string" minOccurs="0" />
-							<xs:element name="Tipo_Documento" type="xs:string" minOccurs="0" />
-							<xs:element name="Rif_Pro" type="xs:string" minOccurs="0" />
-              <xs:element name="Numero_Documento" type="xs:string" minOccurs="0" />
+							<xs:element name="Fecha_Retencion" type="xs:dateTime" minOccurs="0" />	
               <xs:element name="Control_Documento" type="xs:string" minOccurs="0" />
               <xs:element name="Factura_Documento" type="xs:string" minOccurs="0" />
               <xs:element name="Fecha_Factura" type="xs:dateTime" minOccurs="0" />
