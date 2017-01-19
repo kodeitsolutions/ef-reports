@@ -31,15 +31,14 @@ Partial Class CGS_rOCompras_cRenglonesCP
         Dim lcParametro6Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(6))
         Dim lcParametro7Desde As String = goServicios.mObtenerListaFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(7))
         Dim lcParametro8Desde As String = goServicios.mObtenerListaFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(8))
-
+        
         Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
         Dim lcComandoSeleccionar As New StringBuilder()
 
-        '~\Administrativo\Reportes\CVEVAL0150\Cegasa\CGS_rNRecepcion_ADM.rpt
         Try
             lcComandoSeleccionar.AppendLine("DECLARE @ldFecha_Desde AS DATETIME = " & lcParametro0Desde)
-            lcComandoSeleccionar.AppendLine("DECLARE @ldFecha_Hasta AS VARCHAR(8) = " & lcParametro0Hasta)
+            lcComandoSeleccionar.AppendLine("DECLARE @ldFecha_Hasta AS DATETIME = " & lcParametro0Hasta)
             lcComandoSeleccionar.AppendLine("DECLARE @lcCodArt_Desde AS VARCHAR(8) = " & lcParametro1Desde)
             lcComandoSeleccionar.AppendLine("DECLARE @lcCodArt_Hasta AS VARCHAR(8) = " & lcParametro1Hasta)
             lcComandoSeleccionar.AppendLine("DECLARE @lcCodDep_Desde AS VARCHAR(8) = " & lcParametro2Desde)
@@ -74,8 +73,43 @@ Partial Class CGS_rOCompras_cRenglonesCP
             lcComandoSeleccionar.AppendLine("       Renglones_OCompras.Precio1      AS Precio,")
             lcComandoSeleccionar.AppendLine("		Renglones_OCompras.Can_Art1, ")
             lcComandoSeleccionar.AppendLine("       Renglones_OCompras.Mon_Bru      AS Monto,")
-            lcComandoSeleccionar.AppendLine("       @ldFecha_Desde					AS Desde,")
-            lcComandoSeleccionar.AppendLine("       @ldFecha_Hasta					AS Hasta")
+            lcComandoSeleccionar.AppendLine("		CONCAT(CONVERT(VARCHAR(12),CAST(@ldFecha_Desde AS DATE),103), ' - ',  CONVERT(VARCHAR(12),CAST(@ldFecha_Hasta AS DATE),103))	AS Fecha,")
+            lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodArt_Desde <> ''")
+            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Art FROM Articulos WHERE Cod_Art = @lcCodArt_Desde)")
+            lcComandoSeleccionar.AppendLine("			 ELSE '' END				AS Art_Desde,")
+            lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodArt_Hasta <> 'zzzzzzz'")
+            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Art FROM Articulos WHERE Cod_Art = @lcCodArt_Hasta)")
+            lcComandoSeleccionar.AppendLine("			 ELSE '' END				AS Art_Hasta,")
+            lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodDep_Desde <> ''")
+            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Dep FROM Departamentos WHERE Cod_Dep = @lcCodDep_Desde)")
+            lcComandoSeleccionar.AppendLine("			 ELSE '' END				AS Dep_Desde,")
+            lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodDep_Hasta <> 'zzzzzzz'")
+            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Dep FROM Departamentos WHERE Cod_Dep = @lcCodDep_Hasta)")
+            lcComandoSeleccionar.AppendLine("			 ELSE '' END				AS Dep_Hasta,")
+            lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodSec_Desde <> ''")
+            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Sec FROM Secciones WHERE Cod_Sec = @lcCodSec_Desde)")
+            lcComandoSeleccionar.AppendLine("			 ELSE '' END				AS Sec_Desde,")
+            lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodSec_Hasta <> 'zzzzzzz'")
+            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Sec FROM Secciones WHERE Cod_Sec = @lcCodSec_Hasta)")
+            lcComandoSeleccionar.AppendLine("			 ELSE '' END				AS Sec_Hasta,")
+            lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodPro_Desde <> ''")
+            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Pro FROM Proveedores  WHERE Cod_Pro = @lcCodPro_Desde)")
+            lcComandoSeleccionar.AppendLine("			 ELSE '' END				AS Pro_Desde,")
+            lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodPro_Hasta <> 'zzzzzzz'")
+            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Pro  FROM Proveedores  WHERE Cod_Pro = @lcCodPro_Hasta)")
+            lcComandoSeleccionar.AppendLine("			 ELSE '' END				AS Pro_Hasta,")
+            lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodAlm_Desde <> ''")
+            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Alm FROM Almacenes WHERE Cod_Alm = @lcCodAlm_Desde)")
+            lcComandoSeleccionar.AppendLine("			 ELSE '' END				AS Alm_Desde,")
+            lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodAlm_Hasta <> 'zzzzzzz'")
+            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Alm FROM Almacenes WHERE Cod_Alm = @lcCodAlm_Hasta)")
+            lcComandoSeleccionar.AppendLine("			 ELSE '' END				AS Alm_Hasta,")
+            lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodSuc_Desde <> ''")
+            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Suc FROM Sucursales WHERE Cod_Suc = @lcCodSuc_Desde)")
+            lcComandoSeleccionar.AppendLine("			 ELSE '' END				AS Suc_Desde,")
+            lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodSuc_Hasta <> 'zzzzzzz'")
+            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Suc FROM Sucursales WHERE Cod_Suc = @lcCodSuc_Hasta)")
+            lcComandoSeleccionar.AppendLine("			 ELSE '' END				AS Suc_Hasta")
             lcComandoSeleccionar.AppendLine("FROM	Ordenes_Compras ")
             lcComandoSeleccionar.AppendLine("	JOIN Renglones_OCompras ON Ordenes_Compras.Documento = Renglones_OCompras.Documento ")
             lcComandoSeleccionar.AppendLine("	JOIN Proveedores ON Ordenes_Compras.Cod_Pro = Proveedores.Cod_Pro")
@@ -152,22 +186,4 @@ Partial Class CGS_rOCompras_cRenglonesCP
         End Try
     End Sub
 End Class
-'-------------------------------------------------------------------------------------------'
-' JJD: 14/10/08: Programacion inicial
-'-------------------------------------------------------------------------------------------'
-' CMS: 20/04/09: se agregaron las condiciones: Ordenes_Compras.Fec_Ini, Proveedores.nom_pro y Ordenes_Compras.status
-'-------------------------------------------------------------------------------------------'
-' YJP: 14/05/09: Agregar filtro revisión
-'-------------------------------------------------------------------------------------------'
-' CMS: 18/06/09: Metodo de ordenamiento
-'-------------------------------------------------------------------------------------------'
-' AAP:  01/07/09: Filtro "Sucursal:"
-'-------------------------------------------------------------------------------------------'
-' CMS: 22/07/09: Filtro BackOrder, lo conllevo al anexo del campo Can_Pen1,
-'                 verificacion de registros
-'-------------------------------------------------------------------------------------------'
-' CMS:  13/08/09: Se Agrego la restricción Renglones_Pedidos.Can_Pen1 <> 0 cuando el filtro 
-'                   BackOrder = BackOrder
-'-------------------------------------------------------------------------------------------'
-' CMS: 19/03/10: se agrego el filtro cod_art
 '-------------------------------------------------------------------------------------------'
