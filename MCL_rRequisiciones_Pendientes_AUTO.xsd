@@ -29,6 +29,7 @@
               <xs:element name="Com_Renglon" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Art" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Pro" type="xs:string" minOccurs="0" />
+              <xs:element name="Dia" type="xs:dateTime" minOccurs="0" />
               <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
 				    </xs:sequence>
           </xs:complexType>

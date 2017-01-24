@@ -17,14 +17,13 @@ Partial Class MCL_rRequisiciones_Pendientes_AUTO
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         'Try
+        Dim lcParametro0Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(0), goServicios.enuOpcionesRedondeo.KN_FechaInicioDelDia)
+        Dim lcParametro0Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(0), goServicios.enuOpcionesRedondeo.KN_FechaFinDelDia)
 
         Dim loComandoSeleccionar As New StringBuilder()
 
-        loComandoSeleccionar.AppendLine("DECLARE @ldAnterior AS DATE = DATEADD(dd,DATEDIFF(dd,0,GETDATE()),-1)")
-        loComandoSeleccionar.AppendLine("DECLARE @ldFecha AS DATE = CASE DATEPART(dw, @ldAnterior)  WHEN 7 THEN DATEADD(d,-2,@ldAnterior)")
-        loComandoSeleccionar.AppendLine("                               WHEN 7 THEN DATEADD(d,-2,@ldAnterior)")
-        loComandoSeleccionar.AppendLine("                               WHEN 6 THEN DATEADD(d,-1, @ldAnterior) ")
-        loComandoSeleccionar.AppendLine("                           ELSE @ldAnterior END")
+        loComandoSeleccionar.AppendLine("DECLARE @ldFecha_Desde AS DATETIME = " & lcParametro0Desde)
+        loComandoSeleccionar.AppendLine("DECLARE @ldFecha_Hasta AS DATETIME = " & lcParametro0Hasta)
         loComandoSeleccionar.AppendLine("")
         loComandoSeleccionar.AppendLine("SELECT Requisiciones.Documento 			AS Documento,")
         loComandoSeleccionar.AppendLine("		Requisiciones.Fec_Ini				AS Fecha,")
@@ -36,12 +35,13 @@ Partial Class MCL_rRequisiciones_Pendientes_AUTO
         loComandoSeleccionar.AppendLine("		Renglones_Requisiciones.Notas		AS Notas,")
         loComandoSeleccionar.AppendLine("		Renglones_Requisiciones.Comentario	AS Com_Renglon,")
         loComandoSeleccionar.AppendLine("		Articulos.Nom_Art					AS Nom_Art,")
-        loComandoSeleccionar.AppendLine("		Proveedores.Nom_Pro					AS Nom_Pro")
+        loComandoSeleccionar.AppendLine("		Proveedores.Nom_Pro					AS Nom_Pro,")
+        loComandoSeleccionar.AppendLine("		@ldFecha_Desde					    AS Dia")
         loComandoSeleccionar.AppendLine("FROM Requisiciones")
         loComandoSeleccionar.AppendLine("	JOIN Renglones_Requisiciones ON Requisiciones.Documento = Renglones_Requisiciones.Documento")
         loComandoSeleccionar.AppendLine("	JOIN Articulos ON Renglones_Requisiciones.Cod_Art = Articulos.Cod_Art")
         loComandoSeleccionar.AppendLine("	JOIN Proveedores ON Requisiciones.Cod_Pro = Proveedores.Cod_Pro")
-        loComandoSeleccionar.AppendLine("WHERE Requisiciones.Fec_Ini = @ldFecha")
+        loComandoSeleccionar.AppendLine("WHERE Requisiciones.Fec_Ini BETWEEN @ldFecha_Desde AND @ldFecha_Hasta")
 
         'Me.mEscribirConsulta(loComandoSeleccionar.ToString())
 
