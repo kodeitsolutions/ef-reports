@@ -66,6 +66,7 @@ Partial Class CGS_rOCompras_cRenglonesCP
             lcComandoSeleccionar.AppendLine("		Articulos.Nom_Art,")
             lcComandoSeleccionar.AppendLine("		Articulos.Generico,")
             lcComandoSeleccionar.AppendLine("		Renglones_OCompras.Cod_Alm, ")
+            lcComandoSeleccionar.AppendLine("		Ordenes_Compras.Prioridad       AS Tipo, ")
             lcComandoSeleccionar.AppendLine("       COALESCE ((SELECT SUM(Renglones_Recepciones.Can_Art1)")
             lcComandoSeleccionar.AppendLine("                   FROM Renglones_Recepciones")
             lcComandoSeleccionar.AppendLine("                   WHERE Renglones_Recepciones.Doc_Ori = Renglones_OCompras.Documento")
