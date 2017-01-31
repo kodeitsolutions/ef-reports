@@ -35,6 +35,7 @@
               <xs:element name="Cant_Recibida" type="xs:double" minOccurs="0" />
               <xs:element name="Status" type="xs:string" minOccurs="0" />
               <xs:element name="Fecha" type="xs:string" minOccurs="0" />
+              <xs:element name="Tipo" type="xs:string" minOccurs="0" />
               <xs:element name="Art_Desde" type="xs:string" minOccurs="0" />
               <xs:element name="Art_Hasta" type="xs:string" minOccurs="0" />
               <xs:element name="Pro_Desde" type="xs:string" minOccurs="0" />
