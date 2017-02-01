@@ -37,6 +37,7 @@ Partial Class CGS_rNRecepcion_ADM
             lcComandoSeleccionar.AppendLine("		Recepciones.Fec_Ini,")
             lcComandoSeleccionar.AppendLine("		Recepciones.Status,")
             lcComandoSeleccionar.AppendLine("		Recepciones.Comentario,")
+            lcComandoSeleccionar.AppendLine("		Recepciones.Ord_Com                         AS Tipo,")
             lcComandoSeleccionar.AppendLine("       Renglones_Recepciones.Renglon,")
             lcComandoSeleccionar.AppendLine("		Renglones_Recepciones.Cod_Art, ")
             lcComandoSeleccionar.AppendLine("       Articulos.Nom_Art,")

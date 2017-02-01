@@ -25,6 +25,7 @@
               <xs:element name="Notas" type="xs:string" minOccurs="0" />
               <xs:element name="Doc_Ori" type="xs:boolean" minOccurs="0" />
               <xs:element name="Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Tipo" type="xs:string" minOccurs="0" />
               <xs:element name="Com_Ren" type="xs:string" minOccurs="0" />
               <xs:element name="Cod_Alm" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Pro" type="xs:string" minOccurs="0" />
