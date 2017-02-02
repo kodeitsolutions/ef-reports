@@ -54,17 +54,28 @@ Partial Class CGS_rStock_LoteAlmacen
             loComandoSeleccionar.AppendLine("		Secciones.Nom_Sec							AS Nom_Sec,")
             loComandoSeleccionar.AppendLine(" 		Renglones_Lotes.Exi_Act1					AS Existencia, ")
             loComandoSeleccionar.AppendLine(" 		Renglones_Lotes.Cod_Lot						AS Lote,")
-            loComandoSeleccionar.AppendLine("		COALESCE(Piezas.Res_Num, 0)	AS Piezas,")
-            loComandoSeleccionar.AppendLine("		COALESCE(Desperdicio.Res_Num, 0)	AS Porc_Desperdicio,")
-            'loComandoSeleccionar.AppendLine("       COALESCE(CASE WHEN Renglones_Mediciones.Cod_Var IN ('AINV-NPIEZ', 'NREC-NPIEZ')")
-            'loComandoSeleccionar.AppendLine("                   THEN	Renglones_Mediciones.Res_Num")
-            'loComandoSeleccionar.AppendLine("                   ELSE 0")
-            'loComandoSeleccionar.AppendLine("               END, 0)								AS Piezas,")
-            'loComandoSeleccionar.AppendLine("       COALESCE(CASE WHEN Renglones_Mediciones.Cod_Var IN ('AINV-PDESP', 'NREC-PDESP')")
-            'loComandoSeleccionar.AppendLine("                   THEN	Renglones_Mediciones.Res_Num")
-            'loComandoSeleccionar.AppendLine("                   ELSE 0")
-            'loComandoSeleccionar.AppendLine("               END, 0)								AS Porc_Desperdicio,")
-            loComandoSeleccionar.AppendLine("		COALESCE(Mediciones.Origen, '')				AS Origen 		")
+            loComandoSeleccionar.AppendLine("		COALESCE((SELECT TOP 1 Piezas.Res_Num ")
+            loComandoSeleccionar.AppendLine("				FROM Mediciones ")
+            loComandoSeleccionar.AppendLine("					LEFT JOIN Renglones_Mediciones AS Piezas ON Mediciones.Documento = Piezas.Documento")
+            loComandoSeleccionar.AppendLine("						AND Piezas.Cod_Var  IN ('AINV-NPIEZ', 'NREC-NPIEZ', 'TA-NPIEZ')")
+            loComandoSeleccionar.AppendLine("				WHERE Mediciones.Cod_Art = Articulos.Cod_Art")
+            loComandoSeleccionar.AppendLine("					AND Mediciones.Origen IN ('Ajustes_Inventarios', 'Recepciones', 'Traslados', 'Encabezados')")
+            loComandoSeleccionar.AppendLine("					AND Mediciones.Adicional LIKE ('%'+RTRIM(Renglones_Lotes.Cod_Lot)+'%')")
+            loComandoSeleccionar.AppendLine("				ORDER BY Mediciones.Fecha DESC),0) AS Piezas,")
+            loComandoSeleccionar.AppendLine("		COALESCE((SELECT TOP 1 Desperdicio.Res_Num ")
+            loComandoSeleccionar.AppendLine("				 FROM Mediciones ")
+            loComandoSeleccionar.AppendLine("					LEFT JOIN Renglones_Mediciones AS Desperdicio ON Mediciones.Documento = Desperdicio.Documento")
+            loComandoSeleccionar.AppendLine("						AND Desperdicio.Cod_Var  IN ('AINV-PDESP', 'NREC-PDESP', 'TA-PDESP')")
+            loComandoSeleccionar.AppendLine("				WHERE Mediciones.Cod_Art = Articulos.Cod_Art")
+            loComandoSeleccionar.AppendLine("					AND Mediciones.Origen IN ('Ajustes_Inventarios', 'Recepciones', 'Traslados', 'Encabezados')")
+            loComandoSeleccionar.AppendLine("					AND Mediciones.Adicional LIKE ('%'+RTRIM(Renglones_Lotes.Cod_Lot)+'%')")
+            loComandoSeleccionar.AppendLine("				ORDER BY Mediciones.Fecha DESC),0) AS Porc_Desperdicio,")
+            loComandoSeleccionar.AppendLine("		COALESCE((SELECT TOP 1 Mediciones.Origen")
+            loComandoSeleccionar.AppendLine("				FROM Mediciones ")
+            loComandoSeleccionar.AppendLine("				WHERE Mediciones.Cod_Art = Articulos.Cod_Art")
+            loComandoSeleccionar.AppendLine("					AND Mediciones.Origen IN ('Ajustes_Inventarios', 'Recepciones', 'Traslados', 'Encabezados')")
+            loComandoSeleccionar.AppendLine("					AND Mediciones.Adicional LIKE ('%'+RTRIM(Renglones_Lotes.Cod_Lot)+'%')")
+            loComandoSeleccionar.AppendLine("				ORDER BY Mediciones.Fecha DESC),'') AS Origen")
             loComandoSeleccionar.AppendLine("FROM Lotes")
             loComandoSeleccionar.AppendLine("	JOIN Renglones_Lotes ON Renglones_Lotes.Cod_Lot = Lotes.Cod_Lot ")
             loComandoSeleccionar.AppendLine("	JOIN Almacenes ON Renglones_Lotes.Cod_Alm = Almacenes.Cod_Alm ")
@@ -72,13 +83,6 @@ Partial Class CGS_rStock_LoteAlmacen
             loComandoSeleccionar.AppendLine("	JOIN Departamentos ON Articulos.Cod_Dep = Departamentos.Cod_Dep")
             loComandoSeleccionar.AppendLine("	JOIN Secciones ON Secciones.Cod_Sec = Articulos.Cod_Sec")
             loComandoSeleccionar.AppendLine("	    AND Secciones.Cod_Dep = Departamentos.Cod_Dep")
-            loComandoSeleccionar.AppendLine("	LEFT JOIN Mediciones ON Mediciones.Cod_Art = Articulos.Cod_Art")
-            loComandoSeleccionar.AppendLine("		AND Mediciones.Origen IN ('Ajustes_Inventarios', 'Recepciones', 'Traslados', 'Encabezados')")
-            loComandoSeleccionar.AppendLine("		AND Mediciones.Adicional LIKE ('%'+RTRIM(Renglones_Lotes.Cod_Lot)+'%')")
-            loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Piezas ON Mediciones.Documento = Piezas.Documento")
-            loComandoSeleccionar.AppendLine("		AND Piezas.Cod_Var IN ('AINV-NPIEZ', 'NREC-NPIEZ')")
-            loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Desperdicio ON Mediciones.Documento = Desperdicio.Documento")
-            loComandoSeleccionar.AppendLine("		AND Desperdicio.Cod_Var IN ('AINV-PDESP', 'NREC-PDESP')")
             loComandoSeleccionar.AppendLine("WHERE Renglones_Lotes.Exi_Act1 > 0")
             loComandoSeleccionar.AppendLine("	AND Articulos.Usa_Lot = 1")
             loComandoSeleccionar.AppendLine("	AND Almacenes.Cod_Alm BETWEEN @lcAlm_Desde AND @lcAlm_Hasta")
@@ -168,8 +172,10 @@ Partial Class CGS_rStock_LoteAlmacen
     End Sub
 
 End Class
-'-------------------------------------------------------------------------------------------'
+'---------------------------------------------------------------------------------------------------------------'
 ' Fin del codigo
-'-------------------------------------------------------------------------------------------'
+'---------------------------------------------------------------------------------------------------------------'
 ' CMS: 28/08/08: Codigo inicial
-'-------------------------------------------------------------------------------------------'
+'---------------------------------------------------------------------------------------------------------------'
+' GS: 02/02/17: Las mediciones solo se realizan desde Ajustes de Inventario, Recepciones y Órdenes de Trabajo
+'---------------------------------------------------------------------------------------------------------------'
