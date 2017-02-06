@@ -239,7 +239,8 @@ Partial Class TRF_rRDetallada_ISLRRProveedoresXML
 
                 'Numero de Control con formato: "00000000" (8 caracteres, relleno con ceros a la izquierda)
                 Dim lcNumeroControl As String = Regex.Replace(Strings.Trim(loRenglon("Control_Origen")), "[^0-9]", "")
-                lcNumeroControl = IIf(String.IsNullOrEmpty(lcNumeroControl), "NA      ", Strings.Right(KC_08Ceros & lcNumeroControl, 8))
+                'lcNumeroControl = IIf(String.IsNullOrEmpty(lcNumeroControl), "NA      ", Strings.Right(KC_08Ceros & lcNumeroControl, 8))
+                lcNumeroControl = IIf(String.IsNullOrEmpty(lcNumeroControl), Strings.Right(KC_08Ceros & lcNumeroFactura, 8), Strings.Right(KC_08Ceros & lcNumeroControl, 8))
 
                 'Fecha de la Operación con formato: dd/mm/aaaa (10 caracteres)
                 Dim ldFechaOperacion As Date = CDate(loRenglon("Fecha_Retencion"))
