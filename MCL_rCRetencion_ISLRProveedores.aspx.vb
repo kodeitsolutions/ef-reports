@@ -166,6 +166,8 @@ Partial Class MCL_rCRetencion_ISLRProveedores
 
             Dim laDatosReporte As DataSet = loServicios.mObtenerTodosSinEsquema(loComandoSeleccionar.ToString(), "curReportes")
 
+            Me.mCargarLogoEmpresa(laDatosReporte.Tables(0), "LogoEmpresa")
+
             '-------------------------------------------------------------------------------------------------------
             ' Verificando si el select (tabla nº 0) trae registros
             '-------------------------------------------------------------------------------------------------------
