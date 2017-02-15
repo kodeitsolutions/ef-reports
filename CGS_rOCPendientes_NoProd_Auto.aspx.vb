@@ -24,6 +24,7 @@ Partial Class CGS_rOCPendientes_NoProd_Auto
         loComandoSeleccionar.AppendLine("SELECT Ordenes_Compras.Documento 			AS Documento,")
         loComandoSeleccionar.AppendLine("		Ordenes_Compras.Fec_Ini				AS Fecha,")
         loComandoSeleccionar.AppendLine("		Ordenes_Compras.Comentario			AS Comentario,")
+        loComandoSeleccionar.AppendLine("		Ordenes_Compras.Cod_Suc			    AS Cod_Suc,")
         loComandoSeleccionar.AppendLine("		Renglones_OCompras.Cod_Art			AS Cod_Art,")
         loComandoSeleccionar.AppendLine("		Renglones_OCompras.Cod_Alm			AS Cod_Alm,")
         loComandoSeleccionar.AppendLine("		Renglones_OCompras.Cod_Uni			AS Cod_Uni,")
@@ -40,10 +41,9 @@ Partial Class CGS_rOCPendientes_NoProd_Auto
         loComandoSeleccionar.AppendLine("	JOIN Articulos ON Renglones_OCompras.Cod_Art = Articulos.Cod_Art")
         loComandoSeleccionar.AppendLine("	JOIN Proveedores ON 	Ordenes_Compras.Cod_Pro = Proveedores.Cod_Pro")
         loComandoSeleccionar.AppendLine("WHERE Ordenes_Compras.Status = 'Pendiente'")
-        loComandoSeleccionar.AppendLine("	AND LEFT(Ordenes_Compras.Documento, 1) = '1'	")
         loComandoSeleccionar.AppendLine("	AND Ordenes_Compras.Fec_Ini >= '01/01/2017'")
         loComandoSeleccionar.AppendLine("	AND Renglones_OCompras.Caracter1 <> 'Ordenes_Produccion'")
-        loComandoSeleccionar.AppendLine("	AND LEFT(Renglones_OCompras.Cod_Art, 2) NOT IN ('MP','PS','IP','PC')")
+        loComandoSeleccionar.AppendLine("	AND Ordenes_Compras.Prioridad <> 'PDC'")
 
 
         'Me.mEscribirConsulta(loComandoSeleccionar.ToString())

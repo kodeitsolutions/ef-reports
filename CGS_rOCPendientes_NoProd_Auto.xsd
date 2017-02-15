@@ -21,6 +21,7 @@
               <xs:element name="Documento" type="xs:string" minOccurs="0" />
               <xs:element name="Fecha" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Suc" type="xs:string" minOccurs="0" />
               <xs:element name="Cod_Art" type="xs:string" minOccurs="0" />
               <xs:element name="Cod_Alm" type="xs:string" minOccurs="0" />
               <xs:element name="Cod_Uni" type="xs:string" minOccurs="0" />
