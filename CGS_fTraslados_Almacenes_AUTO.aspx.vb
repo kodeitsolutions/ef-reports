@@ -24,12 +24,13 @@ Partial Class CGS_fTraslados_Almacenes_AUTO
         loComandoSeleccionar.AppendLine("        Renglones_Traslados.Can_Art1, ")
         loComandoSeleccionar.AppendLine("        Renglones_Traslados.Notas,")
         loComandoSeleccionar.AppendLine("        Origen.Nom_Alm						AS Nom_Ori, ")
-        loComandoSeleccionar.AppendLine("		  Destino.Nom_Alm						AS Nom_Des,")
+        loComandoSeleccionar.AppendLine("		 Destino.Nom_Alm						AS Nom_Des,")
         loComandoSeleccionar.AppendLine("        COALESCE(Lotes_Traslados.Cod_Lot,'')	AS Lote,")
         loComandoSeleccionar.AppendLine("        COALESCE(Lotes_Traslados.Cantidad,0)	AS Cant_Lote,")
-        loComandoSeleccionar.AppendLine("		  COALESCE(Desperdicio.Res_Num,0)		AS Porc_Desperdicio,")
-        loComandoSeleccionar.AppendLine("		  COALESCE((Desperdicio.Res_Num * Renglones_Traslados.Can_Art1)/100,0) AS Cant_Desperdicio,")
-        loComandoSeleccionar.AppendLine("		  COALESCE(Piezas.Res_Num, 0)			AS Piezas")
+        loComandoSeleccionar.AppendLine("		 COALESCE(Desperdicio.Res_Num,0)		AS Porc_Desperdicio,")
+        loComandoSeleccionar.AppendLine("		 COALESCE((Desperdicio.Res_Num * Lotes_Traslados.Cantidad)/100, ")
+        loComandoSeleccionar.AppendLine("		 (Desperdicio.Res_Num * Renglones_Traslados.Can_Art1)/100,0) AS Cant_Desperdicio,")
+        loComandoSeleccionar.AppendLine("		 COALESCE(Piezas.Res_Num, 0)			AS Piezas")
         loComandoSeleccionar.AppendLine("FROM Traslados ")
         loComandoSeleccionar.AppendLine("  JOIN Renglones_Traslados ON Traslados.Documento = Renglones_Traslados.Documento")
         loComandoSeleccionar.AppendLine("	JOIN Articulos ON Articulos.Cod_Art = Renglones_Traslados.Cod_Art")
@@ -58,8 +59,8 @@ Partial Class CGS_fTraslados_Almacenes_AUTO
 
         'Me.mEscribirConsulta(loComandoSeleccionar.ToString)
 
-        Dim loServicios3 As New cusDatos.goDatos
-        Dim laDatosReporte As DataSet = loServicios3.mObtenerTodosSinEsquema(loComandoSeleccionar.ToString, "curReportes")
+        Dim loServicios As New cusDatos.goDatos
+        Dim laDatosReporte As DataSet = loServicios.mObtenerTodosSinEsquema(loComandoSeleccionar.ToString, "curReportes")
 
 
 
