@@ -50,7 +50,6 @@ Partial Class CGS_rGastos_Trabajadores
             lcComandoSeleccionar.AppendLine("	AND Recibos.Fecha BETWEEN @ldFechaIni AND @ldFechaFin")
             lcComandoSeleccionar.AppendLine("	AND Trabajadores.Cod_Tra BETWEEN @lcTrabIni AND @lcTrabFin")
             lcComandoSeleccionar.AppendLine("	AND Departamentos_Nomina.Cod_Dep BETWEEN @lcDepIni AND @lcDepFin")
-            lcComandoSeleccionar.AppendLine("	AND Recibos.Cod_Con BETWEEN @lcContIni AND @lcContFin")
             If lcParametro4Desde = "'A'" Then
                 lcComandoSeleccionar.AppendLine("   AND Trabajadores.Status = " & lcParametro4Desde)
             Else
@@ -71,12 +70,10 @@ Partial Class CGS_rGastos_Trabajadores
             lcComandoSeleccionar.AppendLine("	JOIN Departamentos_Nomina ON Departamentos_Nomina.Cod_Dep = Trabajadores.Cod_Dep")
             lcComandoSeleccionar.AppendLine("WHERE Renglones_Recibos.Cod_Con IN ('U001','U002','U003','U004','U301','U302','U303','U403','U404')")
             lcComandoSeleccionar.AppendLine("	AND	Conceptos_Nomina.Status = 'A'")
-            lcComandoSeleccionar.AppendLine("	AND	Conceptos_Nomina.Integrar = 1")
             lcComandoSeleccionar.AppendLine("	AND Recibos.Cod_Con IN ('01', '02', '03','08')")
             lcComandoSeleccionar.AppendLine("	AND Recibos.Fecha BETWEEN @ldFechaIni AND @ldFechaFin")
             lcComandoSeleccionar.AppendLine("	AND Trabajadores.Cod_Tra BETWEEN @lcTrabIni AND @lcTrabFin")
             lcComandoSeleccionar.AppendLine("	AND Departamentos_Nomina.Cod_Dep BETWEEN @lcDepIni AND @lcDepFin")
-            lcComandoSeleccionar.AppendLine("	AND Recibos.Cod_Con BETWEEN @lcContIni AND @lcContFin")
             If lcParametro4Desde = "'A'" Then
                 lcComandoSeleccionar.AppendLine("   AND Trabajadores.Status = " & lcParametro4Desde)
             Else
@@ -98,12 +95,10 @@ Partial Class CGS_rGastos_Trabajadores
             lcComandoSeleccionar.AppendLine("	JOIN Departamentos_Nomina ON Departamentos_Nomina.Cod_Dep = Trabajadores.Cod_Dep")
             lcComandoSeleccionar.AppendLine("WHERE Renglones_Recibos.Cod_Con IN ('A300','A301','A302','A303','A304','A305','A403','A404','A405','A405', 'A406')")
             lcComandoSeleccionar.AppendLine("	AND	Conceptos_Nomina.Status = 'A'")
-            lcComandoSeleccionar.AppendLine("	AND	Conceptos_Nomina.Integrar = 1")
             lcComandoSeleccionar.AppendLine("	AND Recibos.Cod_Con IN ('91')")
             'lcComandoSeleccionar.AppendLine("	AND Recibos.Fecha BETWEEN @ldFechaIni AND @ldFechaFin")
             lcComandoSeleccionar.AppendLine("	AND Trabajadores.Cod_Tra BETWEEN @lcTrabIni AND @lcTrabFin")
             lcComandoSeleccionar.AppendLine("	AND Departamentos_Nomina.Cod_Dep BETWEEN @lcDepIni AND @lcDepFin")
-            lcComandoSeleccionar.AppendLine("	AND Recibos.Cod_Con BETWEEN @lcContIni AND @lcContFin")
             If lcParametro4Desde = "'A'" Then
                 lcComandoSeleccionar.AppendLine("   AND Trabajadores.Status = " & lcParametro4Desde)
             Else
@@ -125,12 +120,10 @@ Partial Class CGS_rGastos_Trabajadores
             lcComandoSeleccionar.AppendLine("	JOIN Departamentos_Nomina ON Departamentos_Nomina.Cod_Dep = Trabajadores.Cod_Dep")
             lcComandoSeleccionar.AppendLine("WHERE Renglones_Recibos.Cod_Con IN ('A200','A402')")
             lcComandoSeleccionar.AppendLine("	AND	Conceptos_Nomina.Status = 'A'")
-            lcComandoSeleccionar.AppendLine("	AND	Conceptos_Nomina.Integrar = 1")
             lcComandoSeleccionar.AppendLine("	AND Recibos.Cod_Con IN ('90')")
             'lcComandoSeleccionar.AppendLine("	AND Recibos.Fecha BETWEEN @ldFechaIni AND @ldFechaFin")
             lcComandoSeleccionar.AppendLine("	AND Trabajadores.Cod_Tra BETWEEN @lcTrabIni AND @lcTrabFin")
             lcComandoSeleccionar.AppendLine("	AND Departamentos_Nomina.Cod_Dep BETWEEN @lcDepIni AND @lcDepFin")
-            lcComandoSeleccionar.AppendLine("	AND Recibos.Cod_Con BETWEEN @lcContIni AND @lcContFin")
             If lcParametro4Desde = "'A'" Then
                 lcComandoSeleccionar.AppendLine("   AND Trabajadores.Status = " & lcParametro4Desde)
             Else
@@ -164,7 +157,7 @@ Partial Class CGS_rGastos_Trabajadores
             lcComandoSeleccionar.AppendLine("	JOIN Proveedores ON Cuentas_Pagar.Cod_Pro = Proveedores.Cod_Pro")
             lcComandoSeleccionar.AppendLine("WHERE Cuentas_Pagar.Cod_Tip = 'FACT'")
             lcComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Cod_Pro IN ('J003274445', 'J298405635')")
-            lcComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Fec_Reg BETWEEN @ldFechaIni AND @ldFechaFin")
+            lcComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Fec_Ini BETWEEN @ldFechaIni AND @ldFechaFin")
             lcComandoSeleccionar.AppendLine("GROUP BY Proveedores.Cod_Pro, Proveedores.Nom_Pro")
             lcComandoSeleccionar.AppendLine("")
             lcComandoSeleccionar.AppendLine("ORDER BY Nom_Tra")
