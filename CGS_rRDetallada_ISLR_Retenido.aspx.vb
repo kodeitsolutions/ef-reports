@@ -24,6 +24,8 @@ Partial Class CGS_rRDetallada_ISLR_Retenido
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
+            Dim Empresa As String = cusAplicacion.goEmpresa.pcNombre
+
             Dim loComandoSeleccionar As New StringBuilder()
 
             loComandoSeleccionar.AppendLine("DECLARE @ldFecha_Desde AS DATETIME = " & lcParametro0Desde)
@@ -56,12 +58,43 @@ Partial Class CGS_rRDetallada_ISLR_Retenido
             loComandoSeleccionar.AppendLine("	LEFT JOIN Retenciones ON Retenciones.Cod_Ret = Retenciones_Documentos.Cod_Ret")
             loComandoSeleccionar.AppendLine("WHERE Cuentas_Pagar.Cod_Tip = 'ISLR'")
             loComandoSeleccionar.AppendLine("	AND	Cuentas_Pagar.Status <> 'Anulado'")
+            'loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Automatico = 1")
             loComandoSeleccionar.AppendLine("	AND	Cuentas_Pagar.Tip_Ori = 'cuentas_pagar'")
             loComandoSeleccionar.AppendLine("   AND Cuentas_Pagar.Fec_Ini BETWEEN @ldFecha_Desde AND @ldFecha_Hasta")
             loComandoSeleccionar.AppendLine("   AND Cuentas_Pagar.Cod_Pro BETWEEN @lcCodPro_Desde AND @lcCodPro_Hasta")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("UNION ALL")
             loComandoSeleccionar.AppendLine("")
+
+            If Empresa <> "Industrias Cegasa, C.A." Then
+                loComandoSeleccionar.AppendLine("SELECT	Cuentas_Pagar.Factura			AS Factura_Documento,")
+                loComandoSeleccionar.AppendLine("       Cuentas_Pagar.Control			AS Control,")
+                loComandoSeleccionar.AppendLine("       0								AS Monto_Documento,")
+                loComandoSeleccionar.AppendLine("       Cuentas_Pagar.Fec_Ini			AS Fecha_Retencion,")
+                loComandoSeleccionar.AppendLine("       0								AS Monto_Abonado,")
+                loComandoSeleccionar.AppendLine("       0								AS Base_Retencion,")
+                loComandoSeleccionar.AppendLine("       0								AS Porcentaje_Retenido,")
+                loComandoSeleccionar.AppendLine("       ''								AS Codigo_Concepto,")
+                loComandoSeleccionar.AppendLine("       ''								AS Concepto,")
+                loComandoSeleccionar.AppendLine("       Cuentas_Pagar.Mon_net			AS Monto_Retenido,")
+                loComandoSeleccionar.AppendLine("       Cuentas_Pagar.Cod_Pro			AS Cod_Pro,")
+                loComandoSeleccionar.AppendLine("       Proveedores.Nom_Pro				AS Nom_Pro,")
+                loComandoSeleccionar.AppendLine("       Proveedores.Rif					AS Rif,")
+                loComandoSeleccionar.AppendLine("       Proveedores.Dir_Fis				AS Direccion,")
+                loComandoSeleccionar.AppendLine("       @ldFecha_Desde					AS Desde,")
+                loComandoSeleccionar.AppendLine("       @ldFecha_Hasta					AS Hasta")
+                loComandoSeleccionar.AppendLine("FROM Cuentas_Pagar")
+                loComandoSeleccionar.AppendLine("    JOIN Proveedores ON Proveedores.Cod_Pro = Cuentas_Pagar.Cod_Pro")
+                loComandoSeleccionar.AppendLine("WHERE Cuentas_Pagar.Cod_Tip = 'ISLR'")
+                loComandoSeleccionar.AppendLine("	AND	Cuentas_Pagar.Status <> 'Anulado'")
+                loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Automatico = 0")
+                loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Fec_Ini BETWEEN @ldFecha_Desde AND @ldFecha_Hasta")
+                loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Cod_Pro BETWEEN @lcCodPro_Desde AND @lcCodPro_Hasta")
+                loComandoSeleccionar.AppendLine("")
+                loComandoSeleccionar.AppendLine("UNION ALL")
+                loComandoSeleccionar.AppendLine("")
+            End If
+
             loComandoSeleccionar.AppendLine("SELECT	Facturas.Factura					AS Factura_Documento,")
             loComandoSeleccionar.AppendLine("		Facturas.Control					AS Control,")
             loComandoSeleccionar.AppendLine("		Facturas.Mon_Net					AS Monto_Documento,	")
