@@ -35,6 +35,8 @@
               <xs:element name="Lote" type="xs:string" minOccurs="0" />
               <xs:element name="Cant_Lote" type="xs:double" minOccurs="0" />
               <xs:element name="Usuario" type="xs:string" minOccurs="0" />
+              <xs:element name="Dep_Usuario" type="xs:string" minOccurs="0" />
+              <xs:element name="Empresa_Usuario" type="xs:string" minOccurs="0" />
               <xs:element name="Porc_Desperdicio" type="xs:decimal" minOccurs="0" />
               <xs:element name="Cant_Desperdicio" type="xs:decimal" minOccurs="0" />
               <xs:element name="Piezas" type="xs:decimal" minOccurs="0" />
