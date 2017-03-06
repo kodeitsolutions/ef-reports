@@ -33,7 +33,7 @@
               <xs:element name="Porc_Desperdicio" type="xs:decimal" minOccurs="0" />
               <xs:element name="Origen" type="xs:string" minOccurs="0" />
               <xs:element name="Doc_Origen" type="xs:string" minOccurs="0" />
-              <xs:element name="Fecha" type="xs:string" minOccurs="0" />
+              <!--<xs:element name="Fecha" type="xs:string" minOccurs="0" />-->
               <xs:element name="Art_Desde" type="xs:string" minOccurs="0" />
               <xs:element name="Art_Hasta" type="xs:string" minOccurs="0" />
               <xs:element name="Dep_Desde" type="xs:string" minOccurs="0" />
