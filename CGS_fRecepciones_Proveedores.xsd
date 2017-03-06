@@ -35,6 +35,7 @@
               <xs:element name="Cantidad" type="xs:decimal" minOccurs="0" />
 				      <xs:element name="Cod_Uni" type="xs:string" minOccurs="0" />
       				<xs:element name="Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Ori" type="xs:string" minOccurs="0" />
               <xs:element name="Lote" type="xs:string" minOccurs="0" />
               <xs:element name="Cantidad_Lote" type="xs:decimal" minOccurs="0" />
               <xs:element name="Peso" type="xs:string" minOccurs="0" />
