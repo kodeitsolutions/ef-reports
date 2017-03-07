@@ -23,7 +23,6 @@ Partial Class CGS_rNRecepcion_ADM
         Dim lcParametro6Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(6))
         Dim lcParametro7Desde As String = goServicios.mObtenerListaFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(7))
         Dim lcParametro8Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(8))
-        Dim lcParametro8Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(8))
 
         Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
@@ -44,8 +43,7 @@ Partial Class CGS_rNRecepcion_ADM
             lcComandoSeleccionar.AppendLine("DECLARE @lcCodAlm_Hasta	AS VARCHAR(10) = " & lcParametro5Hasta)
             lcComandoSeleccionar.AppendLine("DECLARE @lcCodSuc_Desde	AS VARCHAR(10) = " & lcParametro6Desde)
             lcComandoSeleccionar.AppendLine("DECLARE @lcCodSuc_Hasta	AS VARCHAR(10) = " & lcParametro6Hasta)
-            lcComandoSeleccionar.AppendLine("DECLARE @lcDocOri_Desde	AS VARCHAR(10) = " & lcParametro8Desde)
-            lcComandoSeleccionar.AppendLine("DECLARE @lcDocOri_Hasta	AS VARCHAR(10) = " & lcParametro8Hasta)
+            lcComandoSeleccionar.AppendLine("DECLARE @lcDocOri	        AS VARCHAR(10) = " & lcParametro8Desde)
             lcComandoSeleccionar.AppendLine("")
             lcComandoSeleccionar.AppendLine("SELECT Recepciones.Documento, ")
             lcComandoSeleccionar.AppendLine("       Recepciones.Cod_Pro, ")
@@ -131,7 +129,7 @@ Partial Class CGS_rNRecepcion_ADM
             lcComandoSeleccionar.AppendLine("	AND Renglones_Recepciones.Cod_Alm BETWEEN @lcCodAlm_Desde AND @lcCodAlm_Hasta")
             lcComandoSeleccionar.AppendLine("	AND Recepciones.Cod_Suc	BETWEEN	@lcCodSuc_Desde AND @lcCodSuc_Hasta")
             lcComandoSeleccionar.AppendLine("   AND Recepciones.Status IN ( " & lcParametro7Desde & ")")
-            lcComandoSeleccionar.AppendLine("	AND Renglones_Recepciones.Doc_Ori	BETWEEN	@lcDocOri_Desde AND @lcDocOri_Hasta")
+            lcComandoSeleccionar.AppendLine("	AND Renglones_Recepciones.Doc_Ori LIKE '%'+RTRIM(@lcDocOri)+'%'")
             
             'Me.mEscribirConsulta(lcComandoSeleccionar.ToString())
 
