@@ -33,6 +33,7 @@ Partial Class KDE_fNota_Entrega
             loComandoSeleccionar.AppendLine("        Articulos.Nom_Art,")
             loComandoSeleccionar.AppendLine("        Renglones_Entregas.Renglon, ")
             loComandoSeleccionar.AppendLine("        Renglones_Entregas.Notas, ")
+            loComandoSeleccionar.AppendLine("        Renglones_Entregas.Comentario  AS Comentario_Renglon, ")
             loComandoSeleccionar.AppendLine("        Renglones_Entregas.Can_Art1, ")
             loComandoSeleccionar.AppendLine("        Renglones_Entregas.Cod_Uni, ")
             loComandoSeleccionar.AppendLine("        Renglones_Entregas.Doc_Ori     AS Cotizacion,")

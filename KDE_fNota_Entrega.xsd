@@ -34,6 +34,7 @@
 				      <xs:element name="Neto" type="xs:double" minOccurs="0" />
 				      <xs:element name="Comentario" type="xs:string" minOccurs="0" />
               <xs:element name="Notas" type="xs:string" minOccurs="0" />
+              <xs:element name="Comentario_Renglon" type="xs:string" minOccurs="0" />
               <xs:element name="Cotizacion" type="xs:string" minOccurs="0" />
               <xs:element name="Orden_Compra" type="xs:string" minOccurs="0" />
 				      <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
