@@ -37,6 +37,7 @@
               <xs:element name="Status" type="xs:string" minOccurs="0" />
               <xs:element name="Cantidad_Lote" type="xs:double" minOccurs="0" />
               <xs:element name="Lote" type="xs:string" minOccurs="0" />
+              <xs:element name="Piezas" type="xs:int" minOccurs="0" />
               <xs:element name="Porc_Desperdicio" type="xs:decimal" minOccurs="0" />
               <xs:element name="Cant_Desperdicio" type="xs:double" minOccurs="0" />
               <xs:element name="Fecha" type="xs:string" minOccurs="0" />
