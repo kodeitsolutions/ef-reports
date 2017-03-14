@@ -19,8 +19,7 @@ Partial Class KDE_fFacturas_Ventas
             Dim loConsulta As New StringBuilder()
 
             loConsulta.AppendLine("")
-            loConsulta.AppendLine("SELECT   Facturas.Cod_Cli                            AS Cod_Cli, ")
-            loConsulta.AppendLine("         Clientes.Nom_Cli                            AS Nom_Cli, ")
+            loConsulta.AppendLine("SELECT   Clientes.Nom_Cli                            AS Nom_Cli, ")
             loConsulta.AppendLine("         Clientes.Rif                                AS Rif, ")
             loConsulta.AppendLine("         Clientes.Dir_Fis                            AS Dir_Fis, ")
             loConsulta.AppendLine("         Clientes.Telefonos                          AS Telefonos, ")
@@ -37,16 +36,11 @@ Partial Class KDE_fFacturas_Ventas
             loConsulta.AppendLine("         Renglones_Facturas.Cod_Art                  AS Cod_Art, ")
             loConsulta.AppendLine("         Articulos.Nom_Art                           AS Nom_Art,")
             loConsulta.AppendLine("		    Renglones_Facturas.Notas                    AS Notas,  ")
+            loConsulta.AppendLine("		    Renglones_Facturas.Comentario               AS Comentario_Renglon,  ")
             loConsulta.AppendLine("         Renglones_Facturas.Renglon                  AS Renglon, ")
-            loConsulta.AppendLine("         CASE WHEN (Renglones_Facturas.Cod_Uni2='') ")
-            loConsulta.AppendLine("              THEN Renglones_Facturas.Can_Art1")
-            loConsulta.AppendLine("		    ELSE Renglones_Facturas.Can_Art2 END        AS Can_Art1, ")
-            loConsulta.AppendLine("         CASE WHEN (Renglones_Facturas.Cod_Uni2='') ")
-            loConsulta.AppendLine("              THEN Renglones_Facturas.Cod_Uni")
-            loConsulta.AppendLine("		    ELSE Renglones_Facturas.Cod_Uni2 END       AS Cod_Uni, ")
-            loConsulta.AppendLine("         CASE WHEN (Renglones_Facturas.Cod_Uni2='') ")
-            loConsulta.AppendLine("              THEN Renglones_Facturas.Precio1")
-            loConsulta.AppendLine("		    ELSE Renglones_Facturas.Precio1*Renglones_Facturas.Can_Uni2 END AS Precio1,")
+            loConsulta.AppendLine("         Renglones_Facturas.Can_Art1                 AS Can_Art1, ")
+            loConsulta.AppendLine("         Renglones_Facturas.Cod_Uni                  AS Cod_Uni, ")
+            loConsulta.AppendLine("         Renglones_Facturas.Precio1                  AS Precio1,")
             loConsulta.AppendLine("         Renglones_Facturas.Mon_Net                  AS Neto, ")
             loConsulta.AppendLine("         (SELECT TOP 1 Ord_Com")
             loConsulta.AppendLine("          FROM Entregas")
@@ -63,36 +57,6 @@ Partial Class KDE_fFacturas_Ventas
             'Me.mEscribirConsulta(loConsulta.ToString())
 
             Dim laDatosReporte As DataSet = loServicios.mObtenerTodosSinEsquema(loConsulta.ToString(), "curReportes")
-
-            'Dim lcXml As String = "<impuesto></impuesto>"
-            'Dim lcPorcentajesImpueto As String
-            'Dim loImpuestos As New System.Xml.XmlDocument()
-
-            'lcPorcentajesImpueto = "("
-
-            'Recorre cada renglon de la tabla
-            'For lnNumeroFila As Integer = 0 To laDatosReporte.Tables(0).Rows.Count - 1
-            '    lcXml = laDatosReporte.Tables(0).Rows(lnNumeroFila).Item("dis_imp")
-
-            '    If String.IsNullOrEmpty(lcXml.Trim()) Then
-            '        Continue For
-            '    End If
-
-            '    loImpuestos.LoadXml(lcXml)
-
-            '    'En cada renglón lee el contenido de la distribució de impuestos
-            '    For Each loImpuesto As System.Xml.XmlNode In loImpuestos.SelectNodes("impuestos/impuesto")
-            '        If lnNumeroFila = laDatosReporte.Tables(0).Rows.Count - 1 Then
-            '            If CDec(loImpuesto.SelectSingleNode("porcentaje").InnerText) <> 0 Then
-            '                lcPorcentajesImpueto = lcPorcentajesImpueto & ", " & CDec(loImpuesto.SelectSingleNode("porcentaje").InnerText) & "%"
-            '            End If
-            '        End If
-            '    Next loImpuesto
-            'Next lnNumeroFila
-
-            'lcPorcentajesImpueto = lcPorcentajesImpueto & ")"
-            'lcPorcentajesImpueto = lcPorcentajesImpueto.Replace("(,", "(")
-
 
             '--------------------------------------------------'
             ' Carga la imagen del logo en cusReportes            '
@@ -113,9 +77,7 @@ Partial Class KDE_fFacturas_Ventas
 
 
             loObjetoReporte = cusAplicacion.goFormatos.mCargarInforme("KDE_fFacturas_Ventas", laDatosReporte)
-            'lcPorcentajesImpueto = lcPorcentajesImpueto.Replace(".", ",")
-            'CType(loObjetoReporte.ReportDefinition.ReportObjects("Text1"), CrystalDecisions.CrystalReports.Engine.TextObject).Text = lcPorcentajesImpueto.ToString
-
+            
             Me.mTraducirReporte(loObjetoReporte)
 
             Me.mFormatearCamposReporte(loObjetoReporte)
