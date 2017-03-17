@@ -35,11 +35,24 @@
               <xs:element name="Can_Art1" type="xs:double" minOccurs="0" />
               <xs:element name="Precio" type="xs:double" minOccurs="0" />
               <xs:element name="Monto" type="xs:double" minOccurs="0" />
-              <xs:element name="Cant_Recibida" type="xs:double" minOccurs="0" />
+              <!--<xs:element name="Cant_Recibida" type="xs:double" minOccurs="0" />-->
               <xs:element name="Fecha_Recibido" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Monto_Recibido" type="xs:double" minOccurs="0" />
               <xs:element name="Status" type="xs:string" minOccurs="0" />
               <xs:element name="Doc_Ori" type="xs:string" minOccurs="0" />
+
+              <xs:element name="Recepcion" type="xs:string" minOccurs="0" />
+              <xs:element name="Fecha_R" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Status_R" type="xs:string" minOccurs="0" />
+              <xs:element name="Renglon_R" type="xs:int" minOccurs="0" />
+              <xs:element name="Cantidad_R" type="xs:double" minOccurs="0" />
+              <xs:element name="Peso_R" type="xs:string" minOccurs="0" />
+              <xs:element name="Lote" type="xs:string" minOccurs="0" />
+              <xs:element name="Cantidad_Lote" type="xs:double" minOccurs="0" />
+              <xs:element name="Piezas" type="xs:int" minOccurs="0" />
+              <xs:element name="Porc_Desperdicio" type="xs:double" minOccurs="0" />
+              <xs:element name="Cant_Desperdicio" type="xs:double" minOccurs="0" />              
+              
               <xs:element name="Fecha" type="xs:string" minOccurs="0" />
               <xs:element name="Art_Desde" type="xs:string" minOccurs="0" />
               <xs:element name="Art_Hasta" type="xs:string" minOccurs="0" />
