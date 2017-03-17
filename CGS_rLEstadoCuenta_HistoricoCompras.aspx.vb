@@ -53,7 +53,11 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             loComandoSeleccionar.AppendLine("INTO	#tmpSaldos_Iniciales")
             loComandoSeleccionar.AppendLine("FROM	Cuentas_Pagar")
             loComandoSeleccionar.AppendLine("JOIN	Proveedores  ON Cuentas_Pagar.Cod_Pro = Proveedores.Cod_Pro")
-            loComandoSeleccionar.AppendLine("WHERE	Cuentas_Pagar.Cod_Tip = 'FACT'")
+            If Empresa = "'Cegasa'" Then
+                loComandoSeleccionar.AppendLine("WHERE	Cuentas_Pagar.Cod_Tip = 'FACT'")
+            Else
+                loComandoSeleccionar.AppendLine("WHERE	Cuentas_Pagar.Cod_Tip IN ('FACT','N/CR')")
+            End If
             loComandoSeleccionar.AppendLine("		AND Cuentas_Pagar.Fec_Reg < @sp_FecIni")
             loComandoSeleccionar.AppendLine("		AND Cuentas_Pagar.Status <> 'Anulado'")
             loComandoSeleccionar.AppendLine("			AND Cuentas_Pagar.Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
@@ -67,7 +71,11 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             loComandoSeleccionar.AppendLine("			END) AS Sal_Ini")
             loComandoSeleccionar.AppendLine("FROM	Cuentas_Pagar")
             loComandoSeleccionar.AppendLine("JOIN	Proveedores  ON Cuentas_Pagar.Cod_Pro = Proveedores.Cod_Pro")
-            loComandoSeleccionar.AppendLine("WHERE	Cuentas_Pagar.Cod_Tip <> 'FACT'")
+            If Empresa = "'Cegasa'" Then
+                loComandoSeleccionar.AppendLine("WHERE	Cuentas_Pagar.Cod_Tip <> 'FACT'")
+            Else
+                loComandoSeleccionar.AppendLine("WHERE	Cuentas_Pagar.Cod_Tip NOT IN ('FACT','N/CR')")
+            End If
             loComandoSeleccionar.AppendLine("		AND Cuentas_Pagar.Fec_Ini < @sp_FecIni")
             loComandoSeleccionar.AppendLine("		AND Cuentas_Pagar.Status <> 'Anulado'")
             loComandoSeleccionar.AppendLine("			AND Cuentas_Pagar.Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
@@ -138,7 +146,7 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             loComandoSeleccionar.AppendLine("            FROM Detalles_Pagos")
             loComandoSeleccionar.AppendLine("            WHERE Documento = Cuentas_Pagar.Doc_Ori")
             loComandoSeleccionar.AppendLine("            ) ")
-            loComandoSeleccionar.AppendLine("            ELSE SUBSTRING(Cuentas_Pagar.Comentario,0,40)")
+            loComandoSeleccionar.AppendLine("            ELSE SUBSTRING(Cuentas_Pagar.Comentario,0,50)")
             loComandoSeleccionar.AppendLine("        END											AS Referencia,")
             loComandoSeleccionar.AppendLine("		@lnCero											AS Sal_Ini,")
             loComandoSeleccionar.AppendLine("		(CASE WHEN Cuentas_Pagar.Tip_Doc = 'Debito'")
