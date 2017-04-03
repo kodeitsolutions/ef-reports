@@ -72,7 +72,11 @@ Partial Class CGS_rOCompras_cRenglonesCP
             lcComandoSeleccionar.AppendLine("		COALESCE(Renglones_Recepciones.Renglon,0)								AS Renglon_R,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Renglones_Recepciones.Cod_Art,'')								AS CodArt_R,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Renglones_Recepciones.Can_Art1,0)								AS Cantidad_R,")
-            lcComandoSeleccionar.AppendLine("		COALESCE(CONVERT(NUMERIC(18,2), REPLACE(REPLACE(Renglones_Recepciones.Comentario,'.',''), ',','.' ) ),0) AS Peso_R,")
+            lcComandoSeleccionar.AppendLine("		COALESCE((CASE WHEN Renglones_Recepciones.Comentario <> ''")
+            lcComandoSeleccionar.AppendLine("                      THEN CONVERT(NUMERIC(18,2), REPLACE(REPLACE(Renglones_Recepciones.Comentario,'.',''), ',','.' ) )")
+            lcComandoSeleccionar.AppendLine("                      ELSE 0")
+            lcComandoSeleccionar.AppendLine("                 END) ,0)                                                        AS Peso_R,")
+            'lcComandoSeleccionar.AppendLine("       CONVERT(NUMERIC(18,2), REPLACE(REPLACE(Renglones_Recepciones.Comentario,'.',''), ',','.' ) )  AS Peso_R,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Operaciones_Lotes.Cod_Lot,'')									AS Lote,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Operaciones_Lotes.Cantidad,0)									AS Cantidad_Lote,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Piezas.Res_Num, 0)												AS Piezas,")
@@ -156,6 +160,7 @@ Partial Class CGS_rOCompras_cRenglonesCP
                 lcComandoSeleccionar.AppendLine("            WHERE Renglones_Recepciones.Doc_Ori = Renglones_OCompras.Documento")
                 lcComandoSeleccionar.AppendLine("	             AND Renglones_Recepciones.Ren_Ori = Renglones_OCompras.Renglon),0) < Renglones_OCompras.Can_Art1))")
             End If
+            lcComandoSeleccionar.AppendLine("ORDER BY Ordenes_Compras.Documento, Renglones_OCompras.Cod_Art, Renglones_OCompras.Renglon")
 
             'Me.mEscribirConsulta(lcComandoSeleccionar.ToString())
 
