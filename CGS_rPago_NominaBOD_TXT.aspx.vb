@@ -139,7 +139,7 @@ Partial Class CGS_rPago_NominaBOD_TXT
             ' Envia la salida a pantalla en un archivo descargable.
             '-------------------------------------------------------------------------------------------------------
             Me.Response.Clear()
-            Me.Response.ContentEncoding = System.Text.Encoding.UTF8
+            Me.Response.ContentEncoding = System.Text.Encoding.GetEncoding(1252)
             Me.Response.AppendHeader("content-disposition", "attachment; filename=NominaBOD_" & lcFechaNomina & ".txt")
             Me.Response.ContentType = "text/plain"
             Me.Response.Write(loSalida.ToString())
