@@ -24,6 +24,7 @@ Partial Class KDE_fFacturas_Ventas_Digital
             loConsulta.AppendLine("         Clientes.Dir_Fis                AS Dir_Fis, ")
             loConsulta.AppendLine("         Clientes.Telefonos              AS Telefonos, ")
             loConsulta.AppendLine("         Facturas.Documento              AS Documento, ")
+            loConsulta.AppendLine("         Facturas.Control                AS Control, ")
             loConsulta.AppendLine("         Facturas.Fec_Ini                AS Fec_Ini, ")
             loConsulta.AppendLine("         Facturas.Mon_Bru                AS Mon_Bru, ")
             loConsulta.AppendLine("         Facturas.Mon_Imp1               AS Mon_Imp1, ")
