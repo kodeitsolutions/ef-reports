@@ -4,8 +4,8 @@ CodeFile="CGS_rCRetencion_IVAProveedores.aspx.vb" %>
 <%@ Register Assembly="vis3Controles" Namespace="vis3Controles" TagPrefix="vis3Controles" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
-<%@ Register Assembly="CrystalDecisions.Web, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
-    Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+
+    
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -21,7 +21,7 @@ CodeFile="CGS_rCRetencion_IVAProveedores.aspx.vb" %>
     <div>
         <CR:CrystalReportViewer ID="crvrCGS_rCRetencion_IVAProveedores" runat="server" AutoDataBind="true" EnableDatabaseLogonPrompt="False"
             EnableParameterPrompt="False" HasCrystalLogo="False" 
-            HasPrintButton="False" HasViewList="False" DisplayGroupTree="False" />
+            HasPrintButton="False"   />
             <asp:ScriptManager ID="ScriptManager1" runat="server"><Scripts></Scripts></asp:ScriptManager>            
             <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                 <ContentTemplate>

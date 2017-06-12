@@ -5,8 +5,8 @@
 <%@ Register Assembly="vis3Controles" Namespace="vis3Controles" TagPrefix="vis3Controles" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
-<%@ Register Assembly="CrystalDecisions.Web, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
-    Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+
+    
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -22,7 +22,7 @@
     <form id="form1" runat="server">
     <div>
         <CR:CrystalReportViewer ID="crvTRF_fRequisiciones_Internas" runat="server" AutoDataBind="true"
-            EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" HasCrystalLogo="False" DisplayGroupTree="False" HasPrintButton="False" />
+            EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" HasCrystalLogo="False"  HasPrintButton="False" />
       <asp:ScriptManager ID="ScriptManager1" runat="server">
             <Scripts>
             </Scripts>
