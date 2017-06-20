@@ -165,11 +165,11 @@ Partial Class CGS_rOCompras_cRenglonesCP
             End If
             lcComandoSeleccionar.AppendLine("ORDER BY Ordenes_Compras.Documento, Renglones_OCompras.Cod_Art, Renglones_OCompras.Renglon;")
 
-            lcComandoSeleccionar.AppendLine("WITH Sumatorias (CodArt_R, Lote, Cantidad_R, Cantidad_Lote) AS")
+            lcComandoSeleccionar.AppendLine("WITH Sumatorias (CodArt_R, Lote, Recepcion, Cantidad_R, Cantidad_Lote) AS")
             lcComandoSeleccionar.AppendLine("(")
-            lcComandoSeleccionar.AppendLine("   SELECT CodArt_R, Lote, SUM(Cantidad_R) AS Cantidad_R, SUM(Cantidad_Lote) AS Cantidad_Lote")
+            lcComandoSeleccionar.AppendLine("   SELECT CodArt_R, Lote, Recepcion, SUM(Cantidad_R) AS Cantidad_R, SUM(Cantidad_Lote) AS Cantidad_Lote")
             lcComandoSeleccionar.AppendLine("   FROM #tmpOrdenes")
-            lcComandoSeleccionar.AppendLine("   GROUP BY CodArt_R, Lote")
+            lcComandoSeleccionar.AppendLine("   GROUP BY CodArt_R, Lote, Recepcion")
             lcComandoSeleccionar.AppendLine(")")
             lcComandoSeleccionar.AppendLine("UPDATE #tmpOrdenes ")
             lcComandoSeleccionar.AppendLine("SET #tmpOrdenes.Cantidad_R = Sumatorias.Cantidad_R, ")
