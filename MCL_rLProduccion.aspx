@@ -3,10 +3,7 @@
 <%@ Register Assembly="vis2Controles" Namespace="vis2Controles" TagPrefix="vis2Controles" %>
 <%@ Register Assembly="vis1Controles" Namespace="vis1Controles" TagPrefix="vis1Controles" %>
 <%@ Register Assembly="vis3Controles" Namespace="vis3Controles" TagPrefix="vis3Controles" %>
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
-
-<%@ Register Assembly="CrystalDecisions.Web, Version=10.2.3600.0, Culture=neutral, PublicKeyToken=692fbea5521e1304"
-    Namespace="CrystalDecisions.Web" TagPrefix="CR" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>    
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -30,8 +27,7 @@
     <form id="form1" runat="server">
     <div>
         <CR:CrystalReportViewer ID="crvMCL_rLProduccion" runat="server" AutoDataBind="true" EnableDatabaseLogonPrompt="False"
-            EnableParameterPrompt="False" HasCrystalLogo="False" 
-            HasPrintButton="False" HasViewList="False" DisplayGroupTree="False" />
+            EnableParameterPrompt="False" HasCrystalLogo="False" HasPrintButton="False"   />
             <asp:ScriptManager ID="ScriptManager1" runat="server">
                 <Scripts>
                     
