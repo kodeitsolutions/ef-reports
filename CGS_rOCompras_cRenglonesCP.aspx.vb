@@ -178,6 +178,8 @@ Partial Class CGS_rOCompras_cRenglonesCP
             lcComandoSeleccionar.AppendLine("	INNER JOIN Sumatorias ON Sumatorias.CodArt_R = #tmpOrdenes.CodArt_R")
             lcComandoSeleccionar.AppendLine("		AND Sumatorias.Lote = #tmpOrdenes.Lote")
             lcComandoSeleccionar.AppendLine("WHERE Adicional <> 'DECLARADO'")
+            lcComandoSeleccionar.AppendLine("   AND #tmpOrdenes.Lote = Sumatorias.Lote")
+            lcComandoSeleccionar.AppendLine("   AND #tmpOrdenes.CodArt_R = Sumatorias.CodArt_R")
             lcComandoSeleccionar.AppendLine("")
             lcComandoSeleccionar.AppendLine("UPDATE #tmpOrdenes SET Cant_Desperdicio = (Cantidad_Lote * Porc_Desperdicio)/ 100 WHERE Adicional <> 'DECLARADO'")
             lcComandoSeleccionar.AppendLine("")
