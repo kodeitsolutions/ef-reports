@@ -42,6 +42,9 @@
               <xs:element name="Piezas" type="xs:decimal" minOccurs="0" />
               <xs:element name="Porc_Desperdicio" type="xs:decimal" minOccurs="0" />
               <xs:element name="Cant_Desperdicio" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Ajuste" type="xs:string" minOccurs="0" />
+              <xs:element name="Tipo_Ajuste" type="xs:string" minOccurs="0" />
+              <xs:element name="Cantidad_Ajuste" type="xs:decimal" minOccurs="0" />
 				      <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
