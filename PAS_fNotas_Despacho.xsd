@@ -22,6 +22,7 @@
               <xs:element name="Estatus" type="xs:string" minOccurs="0" />
               <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Observaciones" type="xs:string" minOccurs="0" />
               <xs:element name="Renglon" type="xs:double" minOccurs="0" />
               <xs:element name="Cod_Art" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Art" type="xs:string" minOccurs="0" />
@@ -35,7 +36,10 @@
               <xs:element name="Usuario" type="xs:string" minOccurs="0" />
               <xs:element name="Dep_Usuario" type="xs:string" minOccurs="0" />
               <xs:element name="Empresa_Usuario" type="xs:string" minOccurs="0" />
+              <xs:element name="Empresa" type="xs:string" minOccurs="0" />
               <xs:element name="Piezas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Longitud" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Uni_Long" type="xs:string" minOccurs="0" />
       				<xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
