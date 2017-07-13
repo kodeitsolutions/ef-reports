@@ -22,6 +22,7 @@
               <xs:element name="Documento" type="xs:string" minOccurs="0" />
               <xs:element name="Cod_Art" type="xs:string" minOccurs="0" />
               <xs:element name="Lote" type="xs:string" minOccurs="0" />
+              <xs:element name="Piezas" type="xs:int" minOccurs="0" />
               <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Renglon" type="xs:short" minOccurs="0" />
               <xs:element name="Cod_Alm" type="xs:string" minOccurs="0" />
