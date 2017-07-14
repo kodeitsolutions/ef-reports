@@ -21,6 +21,8 @@ Partial Class PAS_MCL_rNRecepcion_ProduccionSP
         Dim lcParametro5Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(5))
         Dim lcParametro6Desde As String = goServicios.mObtenerListaFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(6))
 
+        Dim lcEmpresa As String = cusAplicacion.goEmpresa.pcCodigo
+
         Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
         Dim lcComandoSeleccionar As New StringBuilder()
@@ -53,6 +55,11 @@ Partial Class PAS_MCL_rNRecepcion_ProduccionSP
             lcComandoSeleccionar.AppendLine("		COALESCE(Operaciones_Lotes.Cod_Lot,'')	    AS Lote,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Operaciones_Lotes.Cantidad,0)	    AS Cantidad_Lote,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Piezas.Res_Num, 0)				    AS Piezas,")
+            If lcEmpresa.Trim() = "PAS" Then
+                lcComandoSeleccionar.AppendLine("		COALESCE(Longitud.Res_Num, 0)				AS Longitud,")
+            Else
+                lcComandoSeleccionar.AppendLine("		0                           				AS Longitud,")
+            End If
             lcComandoSeleccionar.AppendLine("		COALESCE(Desperdicio.Res_Num, 0)		    AS Porc_Desperdicio,")
             lcComandoSeleccionar.AppendLine("		COALESCE((Desperdicio.Res_Num*Operaciones_Lotes.Cantidad)/100, ")
             lcComandoSeleccionar.AppendLine("		(Desperdicio.Res_Num*Renglones_Ajustes.Can_Art1)/100, 0)	        AS Cant_Desperdicio,")
@@ -75,17 +82,18 @@ Partial Class PAS_MCL_rNRecepcion_ProduccionSP
             lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Dep FROM Departamentos WHERE Cod_Dep = @lcCodDep_Hasta)")
             lcComandoSeleccionar.AppendLine("			 ELSE '' END				            AS Dep_Hasta,")
             lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodSec_Desde <> ''")
-            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Sec FROM Secciones WHERE Cod_Sec = @lcCodSec_Desde)")
+            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Sec FROM Secciones WHERE Cod_Sec = @lcCodSec_Desde AND Cod_Dep = @lcCodDep_Desde)")
             lcComandoSeleccionar.AppendLine("			 ELSE '' END				            AS Sec_Desde,")
             lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodSec_Hasta <> 'zzzzzzz'")
-            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Sec FROM Secciones WHERE Cod_Sec = @lcCodSec_Hasta)")
+            lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Sec FROM Secciones WHERE Cod_Sec = @lcCodSec_Hasta AND Cod_Dep = @lcCodDep_Hasta)")
             lcComandoSeleccionar.AppendLine("			 ELSE '' END				            AS Sec_Hasta,")
             lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodAlm_Desde <> ''")
             lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Alm FROM Almacenes  WHERE Cod_Alm = @lcCodAlm_Desde)")
             lcComandoSeleccionar.AppendLine("			 ELSE '' END				            AS Alm_Desde,")
             lcComandoSeleccionar.AppendLine("		CASE WHEN @lcCodAlm_Hasta <> 'zzzzzzz'")
             lcComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Alm  FROM Almacenes  WHERE Cod_Alm = @lcCodAlm_Hasta)")
-            lcComandoSeleccionar.AppendLine("			 ELSE '' END				            AS Alm_Hasta")
+            lcComandoSeleccionar.AppendLine("			 ELSE '' END				            AS Alm_Hasta,")
+            lcComandoSeleccionar.AppendLine("			 '" & lcEmpresa & "'                              AS Empresa")
             lcComandoSeleccionar.AppendLine("FROM Ajustes ")
             lcComandoSeleccionar.AppendLine("	JOIN Renglones_Ajustes ON Ajustes.Documento = Renglones_Ajustes.Documento")
             lcComandoSeleccionar.AppendLine("	JOIN Articulos ON Renglones_Ajustes.Cod_Art = Articulos.Cod_Art")
@@ -101,6 +109,10 @@ Partial Class PAS_MCL_rNRecepcion_ProduccionSP
             lcComandoSeleccionar.AppendLine("		AND Piezas.Cod_Var = 'AINV-NPIEZ'")
             lcComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Desperdicio ON Mediciones.Documento = Desperdicio.Documento")
             lcComandoSeleccionar.AppendLine("		AND Desperdicio.Cod_Var = 'AINV-PDESP'")
+            If lcEmpresa.Trim() = "PAS" Then
+                lcComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Longitud ON Mediciones.Documento = Longitud.Documento")
+            End If
+            lcComandoSeleccionar.AppendLine("		AND Longitud.Cod_Var = 'AINV-LARG'")
             lcComandoSeleccionar.AppendLine("WHERE Renglones_Ajustes.Cod_Tip = 'E02'")
             lcComandoSeleccionar.AppendLine("	AND Ajustes.Fec_Ini BETWEEN @ldFecha_Desde AND @ldFecha_Hasta")
             lcComandoSeleccionar.AppendLine("	AND Ajustes.Documento BETWEEN @lcDcto_Desde AND @lcDcto_Hasta")
