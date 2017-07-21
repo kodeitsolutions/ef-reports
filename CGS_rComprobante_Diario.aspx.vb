@@ -55,6 +55,10 @@ Partial Class CGS_rComprobante_Diario
             loComandoSeleccionar.AppendLine("										  FROM Renglones_Comprobantes AS RC")
             loComandoSeleccionar.AppendLine("										  WHERE RC.Cod_Aux BETWEEN @lcCodAux_Desde AND @lcCodAux_Hasta")
             loComandoSeleccionar.AppendLine("											AND RC.Tip_Ori = Renglones_Comprobantes.Tip_Ori)")
+            loComandoSeleccionar.AppendLine("ORDER BY Comprobantes.Documento, Renglones_Comprobantes.Renglon")
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("")
 
             'Me.mEscribirConsulta(loComandoSeleccionar.ToString())
 
