@@ -37,6 +37,7 @@
               <xs:element name="Porc_Desperdicio" type="xs:decimal" minOccurs="0" />
               <xs:element name="Cant_Desperdicio" type="xs:decimal" minOccurs="0" />
               <xs:element name="Piezas" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Longitud" type="xs:decimal" minOccurs="0" />
       				<xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
