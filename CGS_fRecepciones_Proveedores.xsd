@@ -45,6 +45,7 @@
               <xs:element name="Ajuste" type="xs:string" minOccurs="0" />
               <xs:element name="Tipo_Ajuste" type="xs:string" minOccurs="0" />
               <xs:element name="Cantidad_Ajuste" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Nom_Alm" type="xs:string" minOccurs="0" />
 				      <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
