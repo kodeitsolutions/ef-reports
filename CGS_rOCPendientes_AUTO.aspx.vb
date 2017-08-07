@@ -10,15 +10,15 @@ Imports System.Data
 '-------------------------------------------------------------------------------------------'
 Partial Class CGS_rOCPendientes_AUTO
 
-    Inherits vis2formularios.frmReporte 'Automatico
+    Inherits vis2formularios.frmReporteAutomatico
 
     Dim loObjetoReporte As CrystalDecisions.CrystalReports.Engine.ReportDocument
 
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
-        Try
+        'Try
 
-            Dim loComandoSeleccionar As New StringBuilder()
+        Dim loComandoSeleccionar As New StringBuilder()
 
 
             loComandoSeleccionar.AppendLine("SELECT Ordenes_Compras.Documento 			AS Documento,")
@@ -72,15 +72,15 @@ Partial Class CGS_rOCPendientes_AUTO
             Me.mFormatearCamposReporte(loObjetoReporte)
             Me.crvCGS_rOCPendientes_AUTO.ReportSource = loObjetoReporte
 
-        Catch loExcepcion As Exception
+        'Catch loExcepcion As Exception
 
-            Me.WbcAdministradorMensajeModal.mMostrarMensajeModal("Error", _
-                      "No se pudo Completar el Proceso: " & loExcepcion.Message, _
-                       vis3Controles.wbcAdministradorMensajeModal.enumTipoMensaje.KN_Error, _
-                       "auto", _
-                       "auto")
+        '    Me.WbcAdministradorMensajeModal.mMostrarMensajeModal("Error", _
+        '              "No se pudo Completar el Proceso: " & loExcepcion.Message, _
+        '               vis3Controles.wbcAdministradorMensajeModal.enumTipoMensaje.KN_Error, _
+        '               "auto", _
+        '               "auto")
 
-        End Try
+        'End Try
 
     End Sub
 
