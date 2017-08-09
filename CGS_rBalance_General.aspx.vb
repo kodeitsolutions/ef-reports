@@ -182,7 +182,7 @@ Partial Class CGS_rBalance_General
             loComandoSeleccionar.AppendLine("INTO	#tmpEjercicio")
             loComandoSeleccionar.AppendLine("FROM	Cuentas_Contables ")
             loComandoSeleccionar.AppendLine("	LEFT OUTER JOIN Renglones_Comprobantes ON Cuentas_Contables.Cod_Cue = Renglones_Comprobantes.Cod_Cue ")
-            loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.fec_ini <= @lcFechaHasta)")
+            loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.Fec_Ini BETWEEN @lcFechaDesde AND  @lcFechaHasta)")
             loComandoSeleccionar.AppendLine("WHERE	Cuentas_Contables.Movimiento=1")
             loComandoSeleccionar.AppendLine("	AND Cuentas_Contables.Categoria NOT IN ('Activos', 'Pasivos', 'Capital')")
             loComandoSeleccionar.AppendLine("")
@@ -221,6 +221,7 @@ Partial Class CGS_rBalance_General
             loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.fec_ini <= @lcFechaHasta)")
             loComandoSeleccionar.AppendLine("WHERE	Cuentas_Contables.Movimiento=1")
             loComandoSeleccionar.AppendLine("	AND Cuentas_Contables.Categoria = 'Capital'")
+            loComandoSeleccionar.AppendLine("")
             If lnNivelMax = 5 Then
                 loComandoSeleccionar.AppendLine("SELECT DISTINCT *, @lcFechaHasta AS Hasta,")
                 loComandoSeleccionar.AppendLine("	(SELECT Total FROM #tmpEjercicio) AS Resultado_Ejercicio, ")
