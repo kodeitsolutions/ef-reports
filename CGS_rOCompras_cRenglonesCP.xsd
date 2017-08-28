@@ -42,7 +42,12 @@
               <xs:element name="Cantidad_Lote" type="xs:double" minOccurs="0" />
               <xs:element name="Piezas" type="xs:int" minOccurs="0" />
               <xs:element name="Porc_Desperdicio" type="xs:double" minOccurs="0" />
-              <xs:element name="Cant_Desperdicio" type="xs:double" minOccurs="0" />              
+              <xs:element name="Cant_Desperdicio" type="xs:double" minOccurs="0" />   
+              
+              <xs:element name="Ajuste" type="xs:string" minOccurs="0" />
+              <xs:element name="Cantidad_Ajuste" type="xs:double" minOccurs="0" />
+              <xs:element name="Lote_Ajuste" type="xs:string" minOccurs="0" />
+              <xs:element name="Tipo_Ajuste" type="xs:string" minOccurs="0" />
               
               <xs:element name="Fecha" type="xs:string" minOccurs="0" />
               <xs:element name="Art_Desde" type="xs:string" minOccurs="0" />
