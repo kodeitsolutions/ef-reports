@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CGS_rNRecepcionProveedor_MONO" targetNamespace="http://tempuri.org/CGS_rNRecepcionProveedor_MONO.xsd" xmlns:mstns="http://tempuri.org/CGS_rNRecepcionProveedor_MONO.xsd" xmlns="http://tempuri.org/CGS_rNRecepcionProveedor_MONO.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+        </Connections>
+        <Tables>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CGS_rNRecepcionProveedor_MONO" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="curReportes">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Documento" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Pro" type="xs:string" minOccurs="0" />
+              <xs:element name="Renglon" type="xs:short" minOccurs="0" />
+              <xs:element name="Cod_Uni" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Ori" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Comentario" type="xs:string" minOccurs="0" />
+              <xs:element name="Com_Ren" type="xs:string" minOccurs="0" />
+              <xs:element name="Cod_Alm" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Pro" type="xs:string" minOccurs="0" />
+              <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Cod_Art" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Art" type="xs:string" minOccurs="0" />
+              <xs:element name="Precio" type="xs:double" minOccurs="0" />
+              <xs:element name="Monto" type="xs:double" minOccurs="0" />
+              <xs:element name="Can_Art1" type="xs:double" minOccurs="0" />
+              <xs:element name="Status" type="xs:string" minOccurs="0" />
+              <xs:element name="Cantidad_Lote" type="xs:double" minOccurs="0" />
+              <xs:element name="Lote" type="xs:string" minOccurs="0" />
+              <!--<xs:element name="Piezas" type="xs:int" minOccurs="0" />
+              <xs:element name="Porc_Desperdicio" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Cant_Desperdicio" type="xs:double" minOccurs="0" />-->
+              <!--<xs:element name="Ajuste" type="xs:string" minOccurs="0" />
+              <xs:element name="Cantidad_Ajuste" type="xs:double" minOccurs="0" />
+              <xs:element name="Lote_Ajuste" type="xs:string" minOccurs="0" />
+              <xs:element name="Tipo_Ajuste" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Alm" type="xs:string" minOccurs="0" />-->
+              <xs:element name="Fecha" type="xs:string" minOccurs="0" />
+              <xs:element name="Art_Desde" type="xs:string" minOccurs="0" />
+              <xs:element name="Art_Hasta" type="xs:string" minOccurs="0" />
+              <xs:element name="Dep_Desde" type="xs:string" minOccurs="0" />
+              <xs:element name="Dep_Hasta" type="xs:string" minOccurs="0" />
+              <xs:element name="Sec_Desde" type="xs:string" minOccurs="0" />
+              <xs:element name="Sec_Hasta" type="xs:string" minOccurs="0" />
+              <xs:element name="Pro_Desde" type="xs:string" minOccurs="0" />
+              <xs:element name="Pro_Hasta" type="xs:string" minOccurs="0" />
+              <xs:element name="Alm_Desde" type="xs:string" minOccurs="0" />
+              <xs:element name="Alm_Hasta" type="xs:string" minOccurs="0" />
+              <xs:element name="Suc_Desde" type="xs:string" minOccurs="0" />
+              <xs:element name="Suc_Hasta" type="xs:string" minOccurs="0" />
+              <xs:element name="Orden_Compra" type="xs:string" minOccurs="0" />
+              <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
