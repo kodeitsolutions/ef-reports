@@ -30,8 +30,8 @@ Partial Class CGS_rOCompras_cRenglonesCP
         Dim lcParametro6Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(6))
         Dim lcParametro6Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(6))
         Dim lcParametro7Desde As String = goServicios.mObtenerListaFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(7))
-        Dim lcParametro8Desde As String = goServicios.mObtenerListaFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(8))
-        
+        Dim lcParametro8Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(8))
+
         Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
         Dim lcComandoSeleccionar As New StringBuilder()
@@ -51,6 +51,7 @@ Partial Class CGS_rOCompras_cRenglonesCP
             lcComandoSeleccionar.AppendLine("DECLARE @lcCodAlm_Hasta AS VARCHAR(10) = " & lcParametro5Hasta)
             lcComandoSeleccionar.AppendLine("DECLARE @lcCodSuc_Desde AS VARCHAR(10) = " & lcParametro6Desde)
             lcComandoSeleccionar.AppendLine("DECLARE @lcCodSuc_Hasta AS VARCHAR(10) = " & lcParametro6Hasta)
+            lcComandoSeleccionar.AppendLine("DECLARE @lcOrden AS VARCHAR(10) = " & lcParametro8Desde)
             lcComandoSeleccionar.AppendLine("")
             lcComandoSeleccionar.AppendLine("SELECT	Ordenes_Compras.Documento, ")
             lcComandoSeleccionar.AppendLine("		Ordenes_Compras.Cod_Pro, ")
@@ -68,7 +69,6 @@ Partial Class CGS_rOCompras_cRenglonesCP
             lcComandoSeleccionar.AppendLine("       Renglones_OCompras.Mon_Bru                                              AS Monto,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Recepciones.Documento, '')										AS Recepcion,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Recepciones.Fec_Ini, '')										AS Fecha_R,")
-            'lcComandoSeleccionar.AppendLine("		COALESCE(Recepciones.Status,'')											AS Status_R,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Renglones_Recepciones.Renglon,0)								AS Renglon_R,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Renglones_Recepciones.Cod_Art,'')								AS CodArt_R,")
             'lcComandoSeleccionar.AppendLine("		COALESCE(Renglones_Recepciones.Can_Art1,0)								AS Cantidad_R,")
@@ -91,8 +91,12 @@ Partial Class CGS_rOCompras_cRenglonesCP
             lcComandoSeleccionar.AppendLine("		COALESCE(Operaciones_Lotes.Cantidad,0)									AS Cantidad_Lote,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Piezas.Res_Num, 0)												AS Piezas,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Desperdicio.Res_Num, 0)										AS Porc_Desperdicio,")
-            lcComandoSeleccionar.AppendLine("		COALESCE((Desperdicio.Res_Num*Operaciones_Lotes.Cantidad)/100,")
-            lcComandoSeleccionar.AppendLine("		(Desperdicio.Res_Num*Renglones_Recepciones.Can_Art1)/100, 0)	        AS Cant_Desperdicio,")
+            lcComandoSeleccionar.AppendLine("		COALESCE((Desperdicio.Res_Num*(Operaciones_Lotes.Cantidad+Renglones_Ajustes.Can_Art1))/100,")
+            lcComandoSeleccionar.AppendLine("		(Desperdicio.Res_Num*(Renglones_Recepciones.Can_Art1++Renglones_Ajustes.Can_Art1))/100, 0)	        AS Cant_Desperdicio,")
+            lcComandoSeleccionar.AppendLine("       ")
+            lcComandoSeleccionar.AppendLine("       ")
+            lcComandoSeleccionar.AppendLine("       ")
+            lcComandoSeleccionar.AppendLine("       ")
             lcComandoSeleccionar.AppendLine("       COALESCE(Renglones_Recepciones.Caracter1,'')							AS Adicional,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Ajustes.Documento,'')			                                AS Ajuste,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Lotes_Ajustes.Cod_Lot,'')		                                AS Lote_Ajuste,")
@@ -175,26 +179,28 @@ Partial Class CGS_rOCompras_cRenglonesCP
             lcComandoSeleccionar.AppendLine("   AND Proveedores.Cod_Pro BETWEEN @lcCodPro_Desde AND @lcCodPro_Hasta")
             lcComandoSeleccionar.AppendLine("	AND Renglones_OCompras.Cod_Alm BETWEEN @lcCodAlm_Desde AND @lcCodAlm_Hasta")
             lcComandoSeleccionar.AppendLine("	AND Ordenes_Compras.Cod_Suc	BETWEEN	@lcCodSuc_Desde AND @lcCodSuc_Hasta")
+            lcComandoSeleccionar.AppendLine("   AND Ordenes_Compras.Documento LIKE '%'+@lcOrden+'%'")
 
-            If lcParametro8Desde = "'No'" Then
-                lcComandoSeleccionar.AppendLine("   AND Ordenes_Compras.Status IN ( " & lcParametro7Desde & ")")
-            Else
-                lcComandoSeleccionar.AppendLine("   AND Ordenes_Compras.Status IN ('Afectado','Confirmado','Anulado')")
-                lcComandoSeleccionar.AppendLine("   AND (Ordenes_Compras.Documento NOT IN (SELECT Doc_Ori FROM Renglones_Recepciones)")
-                lcComandoSeleccionar.AppendLine("   OR")
-                lcComandoSeleccionar.AppendLine("   (ISNULL((SELECT SUM(Renglones_Recepciones.Can_Art1)")
-                lcComandoSeleccionar.AppendLine("            FROM Renglones_Recepciones")
-                lcComandoSeleccionar.AppendLine("            WHERE Renglones_Recepciones.Doc_Ori = Renglones_OCompras.Documento")
-                lcComandoSeleccionar.AppendLine("	             AND Renglones_Recepciones.Ren_Ori = Renglones_OCompras.Renglon),0) < Renglones_OCompras.Can_Art1))")
-            End If
+            'If lcParametro8Desde = "'No'" Then
+            lcComandoSeleccionar.AppendLine("   AND Ordenes_Compras.Status IN ( " & lcParametro7Desde & ")")
+            'Else
+            '    lcComandoSeleccionar.AppendLine("   AND Ordenes_Compras.Status IN ('Afectado','Confirmado','Anulado')")
+            '    lcComandoSeleccionar.AppendLine("   AND (Ordenes_Compras.Documento NOT IN (SELECT Doc_Ori FROM Renglones_Recepciones)")
+            '    lcComandoSeleccionar.AppendLine("   OR")
+            '    lcComandoSeleccionar.AppendLine("   (ISNULL((SELECT SUM(Renglones_Recepciones.Can_Art1)")
+            '    lcComandoSeleccionar.AppendLine("            FROM Renglones_Recepciones")
+            '    lcComandoSeleccionar.AppendLine("            WHERE Renglones_Recepciones.Doc_Ori = Renglones_OCompras.Documento")
+            '    lcComandoSeleccionar.AppendLine("	             AND Renglones_Recepciones.Ren_Ori = Renglones_OCompras.Renglon),0) < Renglones_OCompras.Can_Art1))")
+            'End If
             lcComandoSeleccionar.AppendLine("ORDER BY Ordenes_Compras.Documento, Renglones_OCompras.Cod_Art, Renglones_OCompras.Renglon;")
-
+            lcComandoSeleccionar.AppendLine("")
             lcComandoSeleccionar.AppendLine("WITH Sumatorias (CodArt_R, Lote, Recepcion, Cantidad_R, Cantidad_Lote) AS")
             lcComandoSeleccionar.AppendLine("(")
             lcComandoSeleccionar.AppendLine("   SELECT CodArt_R, Lote, Recepcion, SUM(Cantidad_R) AS Cantidad_R, SUM(Cantidad_Lote) AS Cantidad_Lote")
             lcComandoSeleccionar.AppendLine("   FROM #tmpOrdenes")
             lcComandoSeleccionar.AppendLine("   GROUP BY Recepcion,CodArt_R,Lote")
             lcComandoSeleccionar.AppendLine(")")
+            lcComandoSeleccionar.AppendLine("")
             lcComandoSeleccionar.AppendLine("UPDATE #tmpOrdenes ")
             lcComandoSeleccionar.AppendLine("SET #tmpOrdenes.Cantidad_R = Sumatorias.Cantidad_R, ")
             lcComandoSeleccionar.AppendLine("    #tmpOrdenes.Cantidad_Lote = Sumatorias.Cantidad_Lote")
@@ -206,7 +212,7 @@ Partial Class CGS_rOCompras_cRenglonesCP
             lcComandoSeleccionar.AppendLine("   AND #tmpOrdenes.CodArt_R = Sumatorias.CodArt_R")
             lcComandoSeleccionar.AppendLine("   AND #tmpOrdenes.Recepcion = Sumatorias.Recepcion")
             lcComandoSeleccionar.AppendLine("")
-            lcComandoSeleccionar.AppendLine("UPDATE #tmpOrdenes SET Cant_Desperdicio = (Cantidad_Lote * Porc_Desperdicio)/ 100 WHERE Adicional <> 'DECLARADO'")
+            lcComandoSeleccionar.AppendLine("UPDATE #tmpOrdenes SET Cant_Desperdicio = ((Cantidad_Lote + Cantidad_Ajuste) * Porc_Desperdicio)/ 100 WHERE Adicional <> 'DECLARADO'")
             lcComandoSeleccionar.AppendLine("")
             lcComandoSeleccionar.AppendLine("SELECT * FROM #tmpOrdenes WHERE Adicional <> 'DECLARADO'")
             lcComandoSeleccionar.AppendLine("")
