@@ -55,6 +55,7 @@ Partial Class CGS_fRecepciones_Produccion
             loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Desperdicio ON Mediciones.Documento = Desperdicio.Documento")
             loComandoSeleccionar.AppendLine("		AND Desperdicio.Cod_Var = 'AINV-PDESP'")
             loComandoSeleccionar.AppendLine(" WHERE " & cusAplicacion.goFormatos.pcCondicionPrincipal)
+            loComandoSeleccionar.AppendLine("   AND Renglones_Ajustes.Cod_Tip IN ('E02','S02')")
             loComandoSeleccionar.AppendLine("")
 
             'Me.mEscribirConsulta(loComandoSeleccionar.ToString)
