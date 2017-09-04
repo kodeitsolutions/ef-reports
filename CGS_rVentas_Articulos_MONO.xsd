@@ -26,6 +26,8 @@
               <xs:element name="Nom_Sec" type="xs:string" minOccurs="0" />
               <xs:element name="CC_Sec" type="xs:string" minOccurs="0" />
               <xs:element name="CCNom_Sec" type="xs:string" minOccurs="0" />
+              <xs:element name="CC_Dep" type="xs:string" minOccurs="0" />
+              <xs:element name="CCNom_Dep" type="xs:string" minOccurs="0" />
               <xs:element name="Documento" type="xs:string" minOccurs="0" />
               <xs:element name="Cod_Cli" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Cli" type="xs:string" minOccurs="0" />
