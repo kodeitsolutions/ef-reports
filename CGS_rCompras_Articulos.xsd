@@ -24,6 +24,8 @@
               <xs:element name="CCNom_Art" type="xs:string" minOccurs="0" />
               <xs:element name="Cod_Dep" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Dep" type="xs:string" minOccurs="0" />
+              <xs:element name="CC_Dep" type="xs:string" minOccurs="0" />
+              <xs:element name="CCNom_Dep" type="xs:string" minOccurs="0" />
               <xs:element name="Cod_Sec" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Sec" type="xs:string" minOccurs="0" />
               <xs:element name="CC_Sec" type="xs:string" minOccurs="0" />
