@@ -1,5 +1,6 @@
 ﻿Imports System.Data
 Partial Class CGS_fOrdenes_Compras_AUTO
+
     Inherits vis2formularios.frmReporteAutomatico
 
     Dim loObjetoReporte As CrystalDecisions.CrystalReports.Engine.ReportDocument
@@ -24,6 +25,8 @@ Partial Class CGS_fOrdenes_Compras_AUTO
         loComandoSeleccionar.AppendLine("           Ordenes_Compras.Status          AS Status, ")
         loComandoSeleccionar.AppendLine("           Renglones_OCompras.Cod_Art      AS Cod_Art, ")
         loComandoSeleccionar.AppendLine("           Articulos.Nom_Art               AS Nom_Art, ")
+        loComandoSeleccionar.AppendLine("           Articulos.Generico              AS Generico, ")
+        loComandoSeleccionar.AppendLine("           Renglones_OCompras.Notas        AS Notas, ")
         loComandoSeleccionar.AppendLine("           Renglones_OCompras.Can_Art1     AS Can_Art1, ")
         loComandoSeleccionar.AppendLine("           Renglones_OCompras.Precio1      AS Precio, ")
         loComandoSeleccionar.AppendLine("           Renglones_OCompras.Mon_Imp1     AS Impuesto, ")

@@ -23,6 +23,7 @@
     <div>
         <CR:CrystalReportViewer ID="crvCGS_fOrdenes_Compras_AUTO" runat="server" AutoDataBind="true"
             EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" HasCrystalLogo="False"  HasPrintButton="False" />
+        
         <asp:ScriptManager ID="ScriptManager1" runat="server">
             <Scripts>
             </Scripts>
