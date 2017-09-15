@@ -20,19 +20,8 @@
             <xs:sequence>
               <xs:element name="Cod_Pro" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Pro" type="xs:string" minOccurs="0" />
-              <xs:element name="Rif" type="xs:string" minOccurs="0" />
-              <xs:element name="Nit" type="xs:string" minOccurs="0" />
-              <xs:element name="Dir_Fis" type="xs:string" minOccurs="0" />
-              <xs:element name="Telefonos" type="xs:string" minOccurs="0" />
-              <xs:element name="Fax" type="xs:string" minOccurs="0" />
-              <xs:element name="Nombre_Generico" type="xs:string" minOccurs="0" />
-              <xs:element name="Rif_Generico" type="xs:string" minOccurs="0" />
-              <xs:element name="Nit_Generico" type="xs:string" minOccurs="0" />
-              <xs:element name="Dir_Fis_Generico" type="xs:string" minOccurs="0" />
-              <xs:element name="Telefonos_Generico" type="xs:string" minOccurs="0" />
               <xs:element name="Documento" type="xs:string" minOccurs="0" />
               <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="Fec_Fin" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Mon_Bru_Enc" type="xs:double" minOccurs="0" />
               <xs:element name="Mon_Imp1_Enc" type="xs:double" minOccurs="0" />
               <xs:element name="Mon_Net_Enc" type="xs:double" minOccurs="0" />
@@ -46,15 +35,12 @@
               <xs:element name="Mon_Net_Ren" type="xs:double" minOccurs="0" />
               <xs:element name="Cod_Imp_Ren" type="xs:string" minOccurs="0" />
               <xs:element name="Mon_Imp_Ren" type="xs:double" minOccurs="0" />
-              <xs:element name="Por_Imp_Ren" type="xs:double" minOccurs="0" />
-              <xs:element name="Comentario_Ren" type="xs:string" minOccurs="0" />
               <xs:element name="Mon_Let" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Cob" type="xs:string" minOccurs="0" />
               <xs:element name="Renglon_Cheque" type="xs:short" minOccurs="0" />
               <xs:element name="Referencia" type="xs:string" minOccurs="0" />
               <xs:element name="Fec_ini_Cheque" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Mon_Net_Cheque" type="xs:decimal" minOccurs="0" />
-              <xs:element name="Cod_Cue_Che" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Cue_Cheque" type="xs:string" minOccurs="0" />
               <xs:element name="Num_Cue_Cheque" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Ban_Che" type="xs:string" minOccurs="0" />
