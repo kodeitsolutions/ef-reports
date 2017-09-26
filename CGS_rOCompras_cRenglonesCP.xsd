@@ -36,6 +36,7 @@
               <xs:element name="Fecha_R" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Renglon_R" type="xs:int" minOccurs="0" />
               <xs:element name="CodArt_R" type="xs:string" minOccurs="0" />
+              <xs:element name="NomArt_R" type="xs:string" minOccurs="0" />
               <xs:element name="Cantidad_R" type="xs:double" minOccurs="0" />
               <xs:element name="Peso_R" type="xs:double" minOccurs="0" />
               <xs:element name="Lote" type="xs:string" minOccurs="0" />
