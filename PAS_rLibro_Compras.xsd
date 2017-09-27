@@ -34,6 +34,8 @@
               <xs:element name="Base_Imponible2" type="xs:decimal" minOccurs="0" />
               <xs:element name="Impuesto2" type="xs:decimal" minOccurs="0" />
               <xs:element name="Monto_Imp2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Por_Des" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Por_Rec" type="xs:decimal" minOccurs="0" />
               <xs:element name="Monto_Ret" type="xs:decimal" minOccurs="0" />
               <xs:element name="Fecha_De" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Fecha_Hasta" type="xs:dateTime" minOccurs="0" />
