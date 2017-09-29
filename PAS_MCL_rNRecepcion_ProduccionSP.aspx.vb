@@ -111,8 +111,8 @@ Partial Class PAS_MCL_rNRecepcion_ProduccionSP
             lcComandoSeleccionar.AppendLine("		AND Desperdicio.Cod_Var = 'AINV-PDESP'")
             If lcEmpresa.Trim() = "PAS" Then
                 lcComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Longitud ON Mediciones.Documento = Longitud.Documento")
+                lcComandoSeleccionar.AppendLine("		AND Longitud.Cod_Var = 'AINV-LARG'")
             End If
-            lcComandoSeleccionar.AppendLine("		AND Longitud.Cod_Var = 'AINV-LARG'")
             lcComandoSeleccionar.AppendLine("WHERE Renglones_Ajustes.Cod_Tip = 'E02'")
             lcComandoSeleccionar.AppendLine("	AND Ajustes.Fec_Ini BETWEEN @ldFecha_Desde AND @ldFecha_Hasta")
             lcComandoSeleccionar.AppendLine("	AND Ajustes.Documento BETWEEN @lcDcto_Desde AND @lcDcto_Hasta")
