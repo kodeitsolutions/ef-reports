@@ -27,10 +27,12 @@
               <xs:element name="Nom_Etapa" type="xs:string" minOccurs="0" />
               <xs:element name="Renglon" type="xs:string" minOccurs="0" />
               <xs:element name="Art_Base" type="xs:string" minOccurs="0" />
-              <xs:element name="Nom_Art_Base" type="xs:string" minOccurs="0" />
-              <xs:element name="Cantidad_Art" type="xs:double" minOccurs="0" />              
+              <xs:element name="Nom_Art_Base" type="xs:string" minOccurs="0" />            
               <xs:element name="Uni_Base" type="xs:string" minOccurs="0" />
-              <xs:element name="Desperdicio" type="xs:double" minOccurs="0" />
+              <xs:element name="Doc_Desde" type="xs:string" minOccurs="0" />
+              <xs:element name="Doc_Hasta" type="xs:string" minOccurs="0" />
+              <xs:element name="Art_Desde" type="xs:string" minOccurs="0" />
+              <xs:element name="Art_Hasta" type="xs:string" minOccurs="0" />
               <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
