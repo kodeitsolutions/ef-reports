@@ -37,6 +37,7 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("DECLARE @sp_FecFin	AS DATETIME = " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("")
+            '-------------------------------COMPRAS EXENTO
             loComandoSeleccionar.AppendLine("SELECT ISNULL(SUM(Mon_Exe),0) AS TotalExentoC")
             loComandoSeleccionar.AppendLine("INTO #tmpExentoC")
             loComandoSeleccionar.AppendLine("FROM Cuentas_Pagar")
@@ -44,6 +45,7 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("	AND Cod_Tip = 'FACT'")
             loComandoSeleccionar.AppendLine("	AND Fec_Reg BETWEEN @sp_FecIni AND @sp_FecFin")
             loComandoSeleccionar.AppendLine("")
+            '-------------------------------COMPRAS IVA 12
             loComandoSeleccionar.AppendLine("SELECT SUM(Cuentas_Pagar.Mon_Bas1) AS BaseCFactura12,")
             loComandoSeleccionar.AppendLine("		SUM(Cuentas_Pagar.Mon_Imp1) AS ImpuestoCFactura12")
             loComandoSeleccionar.AppendLine("INTO #tmpBaseCFactura12")
@@ -55,6 +57,7 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Status <> 'Anulado'")
             loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Fec_Reg BETWEEN @sp_FecIni AND @sp_FecFin")
             loComandoSeleccionar.AppendLine("")
+            '-------------------------------COMPRAS IVA /
             loComandoSeleccionar.AppendLine("SELECT ISNULL(SUM(Cuentas_Pagar.Mon_Bas1),0) AS BaseCFactura8,")
             loComandoSeleccionar.AppendLine("		ISNULL(SUM(Cuentas_Pagar.Mon_Imp1),0) AS ImpuestoCFactura8")
             loComandoSeleccionar.AppendLine("INTO #tmpBaseCFactura8")
@@ -66,6 +69,31 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Status <> 'Anulado'")
             loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Fec_Reg BETWEEN @sp_FecIni AND @sp_FecFin")
             loComandoSeleccionar.AppendLine("")
+            '-------------------------------COMPRAS IVA 7
+            loComandoSeleccionar.AppendLine("SELECT ISNULL(SUM(Cuentas_Pagar.Mon_Bas1),0) AS BaseCFactura7,")
+            loComandoSeleccionar.AppendLine("		ISNULL(SUM(Cuentas_Pagar.Mon_Imp1),0) AS ImpuestoCFactura7")
+            loComandoSeleccionar.AppendLine("INTO #tmpBaseCFactura7")
+            loComandoSeleccionar.AppendLine("FROM Cuentas_Pagar")
+            loComandoSeleccionar.AppendLine("	LEFT JOIN Compras ON Compras.Documento = Cuentas_Pagar.Documento")
+            loComandoSeleccionar.AppendLine("	    AND Compras.Referencia = ''")
+            loComandoSeleccionar.AppendLine("WHERE Cuentas_Pagar.Cod_Tip = 'FACT'")
+            loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Cod_Imp = '7' ")
+            loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Status <> 'Anulado'")
+            loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Fec_Reg BETWEEN @sp_FecIni AND @sp_FecFin")
+            loComandoSeleccionar.AppendLine("")
+            '-------------------------------COMPRAS IVA 9
+            loComandoSeleccionar.AppendLine("SELECT ISNULL(SUM(Cuentas_Pagar.Mon_Bas1),0) AS BaseCFactura9,")
+            loComandoSeleccionar.AppendLine("		ISNULL(SUM(Cuentas_Pagar.Mon_Imp1),0) AS ImpuestoCFactura9")
+            loComandoSeleccionar.AppendLine("INTO #tmpBaseCFactura9")
+            loComandoSeleccionar.AppendLine("FROM Cuentas_Pagar")
+            loComandoSeleccionar.AppendLine("	LEFT JOIN Compras ON Compras.Documento = Cuentas_Pagar.Documento")
+            loComandoSeleccionar.AppendLine("	    AND Compras.Referencia = ''")
+            loComandoSeleccionar.AppendLine("WHERE Cuentas_Pagar.Cod_Tip = 'FACT'")
+            loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Cod_Imp = '9' ")
+            loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Status <> 'Anulado'")
+            loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Fec_Reg BETWEEN @sp_FecIni AND @sp_FecFin")
+            loComandoSeleccionar.AppendLine("")
+            '-------------------------------IMPORTACIONES
             loComandoSeleccionar.AppendLine("SELECT ISNULL(SUM(Cuentas_Pagar.Mon_Bas1),0) AS BaseCFacturaImp,")
             loComandoSeleccionar.AppendLine("		ISNULL(SUM(Cuentas_Pagar.Mon_Imp1),0) AS ImpuestoCFacturaImp")
             loComandoSeleccionar.AppendLine("INTO #tmpBaseCFacturaImp")
@@ -76,6 +104,7 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("	AND Compras.Referencia <> ''")
             loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Fec_Reg BETWEEN @sp_FecIni AND @sp_FecFin")
             loComandoSeleccionar.AppendLine("")
+            '-------------------------------NOTAS DE CRÉDITO PROVEEDORES
             loComandoSeleccionar.AppendLine("SELECT ISNULL(SUM(Mon_Bru)*-1,0) AS BaseCNotaCre,")
             loComandoSeleccionar.AppendLine("		ISNULL(SUM(Mon_Imp1)*-1,0) AS ImpuestoCNotaCre")
             loComandoSeleccionar.AppendLine("INTO #tmpBaseCNotaCre")
@@ -85,6 +114,7 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("	AND Control <> 'NO'")
             loComandoSeleccionar.AppendLine("	AND Fec_Reg BETWEEN @sp_FecIni AND @sp_FecFin")
             loComandoSeleccionar.AppendLine("")
+            '-------------------------------NOTAS DE DÉBITO PROVEEDORES
             loComandoSeleccionar.AppendLine("SELECT ISNULL(SUM(Mon_Bru),0) AS BaseCNotaDeb,")
             loComandoSeleccionar.AppendLine("		ISNULL(SUM(Mon_Imp1),0) AS ImpuestoCNotaDeb")
             loComandoSeleccionar.AppendLine("INTO #tmpBaseCNotaDeb")
@@ -94,6 +124,7 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("	AND Control <> 'NO'")
             loComandoSeleccionar.AppendLine("	AND Fec_Reg BETWEEN @sp_FecIni AND @sp_FecFin")
             loComandoSeleccionar.AppendLine("")
+            '-------------------------------RETENCIONES DE IVA COMPRAS
             loComandoSeleccionar.AppendLine("SELECT ISNULL(SUM(Retenciones_Documentos.Mon_Ret),0) AS TotalRetenidoC")
             loComandoSeleccionar.AppendLine("INTO #tmpRetenidoC")
             loComandoSeleccionar.AppendLine("FROM Retenciones_Documentos")
@@ -105,6 +136,7 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("	AND	Cuentas_Pagar.Tip_Ori = 'cuentas_pagar'")
             loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Fec_Ini BETWEEN @sp_FecIni AND @sp_FecFin")
             loComandoSeleccionar.AppendLine("")
+            '-------------------------------EXENTO VENTAS
             loComandoSeleccionar.AppendLine("SELECT ISNULL(SUM(Mon_Exe),0) AS TotalExentoV")
             loComandoSeleccionar.AppendLine("INTO #tmpExentoV")
             loComandoSeleccionar.AppendLine("FROM Cuentas_Cobrar")
@@ -112,6 +144,7 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("	AND Cod_Tip = 'FACT'")
             loComandoSeleccionar.AppendLine("	AND Fec_Ini BETWEEN @sp_FecIni AND @sp_FecFin")
             loComandoSeleccionar.AppendLine("")
+            '-------------------------------FACTURAS DE VENTAS
             loComandoSeleccionar.AppendLine("SELECT SUM(Mon_Bas1) AS BaseVFactura,")
             loComandoSeleccionar.AppendLine("		SUM(Mon_Imp1) AS ImpuestoVFactura")
             loComandoSeleccionar.AppendLine("INTO #tmpBaseVFactura")
@@ -121,6 +154,7 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("	AND Cod_Mon = 'VEB'")
             loComandoSeleccionar.AppendLine("	AND Fec_Ini BETWEEN @sp_FecIni AND @sp_FecFin")
             loComandoSeleccionar.AppendLine("")
+            '-------------------------------EXPORTACIONES
             loComandoSeleccionar.AppendLine("SELECT ISNULL(SUM(Mon_Otr1),0) AS BaseVFacturaExp")
             loComandoSeleccionar.AppendLine("INTO #tmpBaseVFacturaExp")
             loComandoSeleccionar.AppendLine("FROM Cuentas_Cobrar")
@@ -129,6 +163,7 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("	AND Cod_Mon = 'USD'")
             loComandoSeleccionar.AppendLine("	AND Fec_Ini BETWEEN @sp_FecIni AND @sp_FecFin")
             loComandoSeleccionar.AppendLine("")
+            '-------------------------------NOTAS DE CRÉDITO CLIENTES
             loComandoSeleccionar.AppendLine("SELECT ISNULL(SUM(Mon_Bru*-1),0) AS BaseVNotaCre,")
             loComandoSeleccionar.AppendLine("		ISNULL(SUM(Mon_Imp1*-1),0) AS ImpuestoVNotaCre")
             loComandoSeleccionar.AppendLine("INTO #tmpBaseVNotaCre")
@@ -137,6 +172,7 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("	AND Status <> 'Anulado'")
             loComandoSeleccionar.AppendLine("	AND Fec_Ini BETWEEN @sp_FecIni AND @sp_FecFin")
             loComandoSeleccionar.AppendLine("")
+            '-------------------------------RETENCIONES DE IVA VENTAS
             loComandoSeleccionar.AppendLine("SELECT ISNULL(SUM(Retenciones_Documentos.Mon_Ret),0) AS TotalRetenidoV")
             loComandoSeleccionar.AppendLine("INTO #tmpRetenidoV")
             loComandoSeleccionar.AppendLine("FROM Retenciones_Documentos")
@@ -153,6 +189,10 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("		#tmpBaseCFactura12.ImpuestoCFactura12 + #tmpBaseCNotaCre.ImpuestoCNotaCre + #tmpBaseCNotaDeb.ImpuestoCNotaDeb AS TotalImpuestoC12,")
             loComandoSeleccionar.AppendLine("		#tmpBaseCFactura8.BaseCFactura8 AS TotalBaseC8,")
             loComandoSeleccionar.AppendLine("		#tmpBaseCFactura8.ImpuestoCFactura8 AS TotalImpuestoC8,")
+            loComandoSeleccionar.AppendLine("		#tmpBaseCFactura7.BaseCFactura7 AS TotalBaseC7,")
+            loComandoSeleccionar.AppendLine("		#tmpBaseCFactura7.ImpuestoCFactura7 AS TotalImpuestoC7,")
+            loComandoSeleccionar.AppendLine("		#tmpBaseCFactura9.BaseCFactura9 AS TotalBaseC9,")
+            loComandoSeleccionar.AppendLine("		#tmpBaseCFactura9.ImpuestoCFactura9 AS TotalImpuestoC9,")
             loComandoSeleccionar.AppendLine("		#tmpBaseCFacturaImp.BaseCFacturaImp,")
             loComandoSeleccionar.AppendLine("		#tmpBaseCFacturaImp.ImpuestoCFacturaImp,")
             loComandoSeleccionar.AppendLine("		#tmpRetenidoC.TotalRetenidoC,")
@@ -167,6 +207,8 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("FROM #tmpExentoC,")
             loComandoSeleccionar.AppendLine("	#tmpBaseCFactura12,")
             loComandoSeleccionar.AppendLine("	#tmpBaseCFactura8,")
+            loComandoSeleccionar.AppendLine("	#tmpBaseCFactura7,")
+            loComandoSeleccionar.AppendLine("	#tmpBaseCFactura9,")
             loComandoSeleccionar.AppendLine("	#tmpBaseCNotaCre,")
             loComandoSeleccionar.AppendLine("	#tmpBaseCNotaDeb,")
             loComandoSeleccionar.AppendLine(" 	#tmpBaseCFacturaImp,")
@@ -179,6 +221,8 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("DROP TABLE #tmpBaseCFactura12")
             loComandoSeleccionar.AppendLine("DROP TABLE #tmpBaseCFactura8")
+            loComandoSeleccionar.AppendLine("DROP TABLE #tmpBaseCFactura7")
+            loComandoSeleccionar.AppendLine("DROP TABLE #tmpBaseCFactura9")
             loComandoSeleccionar.AppendLine("DROP TABLE #tmpBaseCNotaCre")
             loComandoSeleccionar.AppendLine("DROP TABLE #tmpBaseCNotaDeb")
             loComandoSeleccionar.AppendLine("DROP TABLE #tmpBaseCFacturaImp")
