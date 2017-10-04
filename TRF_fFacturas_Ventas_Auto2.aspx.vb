@@ -10,72 +10,101 @@ Partial Class TRF_fFacturas_Ventas_Auto2
 
         Dim loConsulta As New StringBuilder()
 
-        loConsulta.AppendLine("SELECT      Facturas.Cod_Cli                     AS Cod_Cli,")
-        loConsulta.AppendLine("            Clientes.Nom_Cli						AS Nom_Cli, ")
-        loConsulta.AppendLine("            Clientes.Rif							AS Rif, ")
-        loConsulta.AppendLine("            SUBSTRING(Clientes.Dir_Fis,1, 200)	AS Dir_Fis, ")
-        loConsulta.AppendLine("            Clientes.Telefonos					AS Telefonos, ")
-        loConsulta.AppendLine("            Facturas.Documento                   AS Documento, ")
-        loConsulta.AppendLine("            Facturas.Control                     AS Control, ")
-        loConsulta.AppendLine("            Facturas.Fec_Ini                     AS Fec_Ini, ")
-        loConsulta.AppendLine("            Facturas.Fec_Fin                     AS Fec_Fin, ")
-        loConsulta.AppendLine("            Facturas.Mon_Bru                     AS Mon_Bru, ")
-        loConsulta.AppendLine("            Facturas.Mon_Exe                     AS Mon_Exe, ")
-        loConsulta.AppendLine("            Facturas.Mon_Imp1                    AS Mon_Imp1, ")
-        loConsulta.AppendLine("            Facturas.Por_Imp1                    AS Por_Imp1, ")
-        loConsulta.AppendLine("            Facturas.Mon_Net                     AS Mon_Net, ")
-        loConsulta.AppendLine("            Facturas.Cod_For                     AS Cod_For, ")
-        loConsulta.AppendLine("            SUBSTRING(Formas_Pagos.Nom_For,1,25) AS Nom_For, ")
-        loConsulta.AppendLine("            Facturas.Comentario                  AS Comentario,")
-        loConsulta.AppendLine("            Renglones_Facturas.Cod_Art           AS Cod_Art, ")
-        loConsulta.AppendLine("            CASE WHEN Articulos.Generico = 0 ")
-        loConsulta.AppendLine("                THEN Articulos.Nom_Art ")
-        loConsulta.AppendLine("		        ELSE Renglones_Facturas.Notas END   AS Nom_Art, ")
-        loConsulta.AppendLine("            Renglones_Facturas.Can_Art1			AS Can_Art1, ")
-        loConsulta.AppendLine("            Renglones_Facturas.Cod_Uni			AS Cod_Uni, ")
-        loConsulta.AppendLine("            Renglones_Facturas.Precio1			AS Precio1,")
-        loConsulta.AppendLine("            Renglones_Facturas.Mon_Net           AS Neto, ")
-        loConsulta.AppendLine("            Renglones_Facturas.Por_Imp1          AS Por_Imp, ")
-        loConsulta.AppendLine("            Renglones_Facturas.Cod_Imp           AS Cod_Imp, ")
-        loConsulta.AppendLine("            Renglones_Facturas.Mon_Imp1          AS Impuesto ")
-        loConsulta.AppendLine("FROM Facturas ")
-        loConsulta.AppendLine("    JOIN Renglones_Facturas ON Facturas.Documento = Renglones_Facturas.Documento")
-        loConsulta.AppendLine("    JOIN Clientes ON  Facturas.Cod_Cli = Clientes.Cod_Cli")
-        loConsulta.AppendLine("    JOIN Formas_Pagos ON  Facturas.Cod_For = Formas_Pagos.Cod_For")
-        loConsulta.AppendLine("    JOIN Articulos ON  Articulos.Cod_Art = Renglones_Facturas.Cod_Art")
-        loConsulta.AppendLine("WHERE       " & cusAplicacion.goFormatos.pcCondicionPrincipal)
+            loConsulta.AppendLine("SELECT   Facturas.Cod_Cli                    AS Cod_Cli,")
+            loConsulta.AppendLine("         Clientes.Nom_Cli					AS Nom_Cli, ")
+            loConsulta.AppendLine("         Clientes.Rif						AS Rif, ")
+            loConsulta.AppendLine("         Clientes.Dir_Fis                    AS Dir_Fis, ")
+            loConsulta.AppendLine("         Clientes.Telefonos					AS Telefonos, ")
+            loConsulta.AppendLine("         Facturas.Documento                  AS Documento, ")
+            loConsulta.AppendLine("         Facturas.Control                    AS Control, ")
+            loConsulta.AppendLine("         Facturas.Fec_Ini                    AS Fec_Ini, ")
+            loConsulta.AppendLine("         Facturas.Fec_Fin                    AS Fec_Fin, ")
+            loConsulta.AppendLine("         Facturas.Mon_Bru                    AS Mon_Bru, ")
+            loConsulta.AppendLine("         Facturas.Mon_Exe                    AS Mon_Exe, ")
+            loConsulta.AppendLine("         Facturas.Mon_Imp1                   AS Mon_Imp1, ")
+            loConsulta.AppendLine("         Facturas.Por_Imp1                   AS Por_Imp1, ")
+            loConsulta.AppendLine("         Facturas.Dis_Imp                    AS Dis_Imp, ")
+            loConsulta.AppendLine("         Facturas.Mon_Net                    AS Mon_Net, ")
+            loConsulta.AppendLine("         Formas_Pagos.Nom_For                AS Nom_For, ")
+            loConsulta.AppendLine("         Facturas.Comentario                 AS Comentario,")
+            loConsulta.AppendLine("         Renglones_Facturas.Cod_Art          AS Cod_Art, ")
+            loConsulta.AppendLine("         CASE WHEN Articulos.Generico = 0 ")
+            loConsulta.AppendLine("             THEN Articulos.Nom_Art ")
+            loConsulta.AppendLine("		     ELSE Renglones_Facturas.Notas END  AS Nom_Art, ")
+            loConsulta.AppendLine("         Renglones_Facturas.Can_Art1			AS Can_Art1, ")
+            loConsulta.AppendLine("         Renglones_Facturas.Cod_Uni			AS Cod_Uni, ")
+            loConsulta.AppendLine("         Renglones_Facturas.Precio1			AS Precio1,")
+            loConsulta.AppendLine("         Renglones_Facturas.Mon_Net          AS Neto, ")
+            loConsulta.AppendLine("         Renglones_Facturas.Por_Imp1         AS Por_Imp ")
+            loConsulta.AppendLine("FROM Facturas ")
+            loConsulta.AppendLine("    JOIN Renglones_Facturas ON Facturas.Documento = Renglones_Facturas.Documento")
+            loConsulta.AppendLine("    JOIN Clientes ON  Facturas.Cod_Cli = Clientes.Cod_Cli")
+            loConsulta.AppendLine("    JOIN Formas_Pagos ON  Facturas.Cod_For = Formas_Pagos.Cod_For")
+            loConsulta.AppendLine("    JOIN Articulos ON  Articulos.Cod_Art = Renglones_Facturas.Cod_Art")
+            loConsulta.AppendLine("WHERE       " & cusAplicacion.goFormatos.pcCondicionPrincipal)
 
-        'Me.mEscribirConsulta(loComandoSeleccionar.ToString())
+            'Me.mEscribirConsulta(loComandoSeleccionar.ToString())
 
-        Dim loServicios As New cusDatos.goDatos
+            Dim loServicios As New cusDatos.goDatos
 
-        Dim laDatosReporte As DataSet = loServicios.mObtenerTodosSinEsquema(loConsulta.ToString(), "curReportes")
+            Dim laDatosReporte As DataSet = loServicios.mObtenerTodosSinEsquema(loConsulta.ToString(), "curReportes")
 
-        '--------------------------------------------------'
-        ' Carga la imagen del logo en cusReportes            '
-        '--------------------------------------------------'
-        Me.mCargarLogoEmpresa(laDatosReporte.Tables(0), "LogoEmpresa")
+            Dim lcXml As String = "<impuesto></impuesto>"
+            Dim lcPorcentajesImpuesto As String
+            Dim loImpuestos As New System.Xml.XmlDocument()
 
-        '-------------------------------------------------------------------------------------------------------
-        ' Verificando si el select (tabla nº0) trae registros
-        '-------------------------------------------------------------------------------------------------------
+            lcPorcentajesImpuesto = "("
 
-        If (laDatosReporte.Tables(0).Rows.Count <= 0) Then
-            Me.WbcAdministradorMensajeModal.mMostrarMensajeModal("Información", _
-                                      "No se Encontraron Registros para los Parámetros Especificados. ", _
-                                       vis3Controles.wbcAdministradorMensajeModal.enumTipoMensaje.KN_Informacion, _
-                                       "350px", _
-                                       "200px")
-        End If
+            'Recorre cada renglon de la tabla
+            For lnNumeroFila As Integer = 0 To laDatosReporte.Tables(0).Rows.Count - 1
+                lcXml = laDatosReporte.Tables(0).Rows(lnNumeroFila).Item("dis_imp")
+
+                If String.IsNullOrEmpty(lcXml.Trim()) Then
+                    Continue For
+                End If
+
+                loImpuestos.LoadXml(lcXml)
+
+                'En cada renglón lee el contenido de la distribució de impuestos
+                For Each loImpuesto As System.Xml.XmlNode In loImpuestos.SelectNodes("impuestos/impuesto")
+                    If lnNumeroFila = laDatosReporte.Tables(0).Rows.Count - 1 Then
+                        If CDec(loImpuesto.SelectSingleNode("porcentaje").InnerText) <> 0 Then
+                            lcPorcentajesImpuesto = lcPorcentajesImpuesto & ", " & CDec(loImpuesto.SelectSingleNode("porcentaje").InnerText) & "%"
+                        End If
+                    End If
+                Next loImpuesto
+            Next lnNumeroFila
+
+            lcPorcentajesImpuesto = lcPorcentajesImpuesto & ")"
+            lcPorcentajesImpuesto = lcPorcentajesImpuesto.Replace("(,", "(")
+
+            '--------------------------------------------------'
+            ' Carga la imagen del logo en cusReportes            '
+            '--------------------------------------------------'
+            Me.mCargarLogoEmpresa(laDatosReporte.Tables(0), "LogoEmpresa")
+
+            '-------------------------------------------------------------------------------------------------------
+            ' Verificando si el select (tabla nº0) trae registros
+            '-------------------------------------------------------------------------------------------------------
+
+            If (laDatosReporte.Tables(0).Rows.Count <= 0) Then
+                Me.WbcAdministradorMensajeModal.mMostrarMensajeModal("Información", _
+                                          "No se Encontraron Registros para los Parámetros Especificados. ", _
+                                           vis3Controles.wbcAdministradorMensajeModal.enumTipoMensaje.KN_Informacion, _
+                                           "350px", _
+                                           "200px")
+            End If
 
 
-        loObjetoReporte = cusAplicacion.goFormatos.mCargarInforme("TRF_fFacturas_Ventas_Auto2", laDatosReporte)
+            loObjetoReporte = cusAplicacion.goFormatos.mCargarInforme("TRF_fFacturas_Ventas_Auto2", laDatosReporte)
+            lcPorcentajesImpuesto = lcPorcentajesImpuesto.Replace(".", ",")
+            CType(loObjetoReporte.ReportDefinition.ReportObjects("Text1"), CrystalDecisions.CrystalReports.Engine.TextObject).Text = lcPorcentajesImpuesto.ToString
 
-        Me.mTraducirReporte(loObjetoReporte)
+            Me.mTraducirReporte(loObjetoReporte)
 
-        Me.mFormatearCamposReporte(loObjetoReporte)
+            Me.mFormatearCamposReporte(loObjetoReporte)
 
-        Me.crvTRF_fFacturas_Ventas_Auto2.ReportSource = loObjetoReporte
+            Me.crvTRF_fFacturas_Ventas_Auto2.ReportSource = loObjetoReporte
 
         'Catch loExcepcion As Exception
 
