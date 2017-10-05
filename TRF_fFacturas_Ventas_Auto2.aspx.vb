@@ -55,27 +55,27 @@ Partial Class TRF_fFacturas_Ventas_Auto2
 
             lcPorcentajesImpuesto = "("
 
-            'Recorre cada renglon de la tabla
-            For lnNumeroFila As Integer = 0 To laDatosReporte.Tables(0).Rows.Count - 1
-                lcXml = laDatosReporte.Tables(0).Rows(lnNumeroFila).Item("dis_imp")
+        'Recorre cada renglon de la tabla
+        For lnNumeroFila As Integer = 0 To laDatosReporte.Tables(0).Rows.Count - 1
+            lcXml = laDatosReporte.Tables(0).Rows(lnNumeroFila).Item("dis_imp")
 
-                If String.IsNullOrEmpty(lcXml.Trim()) Then
-                    Continue For
-                End If
+            If String.IsNullOrEmpty(lcXml.Trim()) Then
+                Continue For
+            End If
 
-                loImpuestos.LoadXml(lcXml)
+            loImpuestos.LoadXml(lcXml)
 
-                'En cada renglón lee el contenido de la distribució de impuestos
-                For Each loImpuesto As System.Xml.XmlNode In loImpuestos.SelectNodes("impuestos/impuesto")
-                    If lnNumeroFila = laDatosReporte.Tables(0).Rows.Count - 1 Then
-                        If CDec(loImpuesto.SelectSingleNode("porcentaje").InnerText) <> 0 Then
-                            lcPorcentajesImpuesto = lcPorcentajesImpuesto & ", " & CDec(loImpuesto.SelectSingleNode("porcentaje").InnerText) & "%"
-                        End If
+            'En cada renglón lee el contenido de la distribució de impuestos
+            For Each loImpuesto As System.Xml.XmlNode In loImpuestos.SelectNodes("impuestos/impuesto")
+                If lnNumeroFila = laDatosReporte.Tables(0).Rows.Count - 1 Then
+                    If CDec(loImpuesto.SelectSingleNode("porcentaje").InnerText) <> 0 Then
+                        lcPorcentajesImpuesto = lcPorcentajesImpuesto & ", " & CDec(loImpuesto.SelectSingleNode("porcentaje").InnerText) & "%"
                     End If
-                Next loImpuesto
-            Next lnNumeroFila
+                End If
+            Next loImpuesto
+        Next lnNumeroFila
 
-            lcPorcentajesImpuesto = lcPorcentajesImpuesto & ")"
+        lcPorcentajesImpuesto = lcPorcentajesImpuesto & ")"
             lcPorcentajesImpuesto = lcPorcentajesImpuesto.Replace("(,", "(")
 
             '--------------------------------------------------'

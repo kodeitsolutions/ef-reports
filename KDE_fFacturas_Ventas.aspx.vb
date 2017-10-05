@@ -58,6 +58,35 @@ Partial Class KDE_fFacturas_Ventas
 
             Dim laDatosReporte As DataSet = loServicios.mObtenerTodosSinEsquema(loConsulta.ToString(), "curReportes")
 
+            Dim lcXml As String = "<impuesto></impuesto>"
+            Dim lcPorcentajesImpuesto As String = ""
+            Dim loImpuestos As New System.Xml.XmlDocument()
+
+            'lcPorcentajesImpuesto = "("
+
+            'Recorre cada renglon de la tabla
+            For lnNumeroFila As Integer = 0 To laDatosReporte.Tables(0).Rows.Count - 1
+                lcXml = laDatosReporte.Tables(0).Rows(lnNumeroFila).Item("dis_imp")
+
+                If String.IsNullOrEmpty(lcXml.Trim()) Then
+                    Continue For
+                End If
+
+                loImpuestos.LoadXml(lcXml)
+
+                'En cada renglón lee el contenido de la distribució de impuestos
+                For Each loImpuesto As System.Xml.XmlNode In loImpuestos.SelectNodes("impuestos/impuesto")
+                    If lnNumeroFila = laDatosReporte.Tables(0).Rows.Count - 1 Then
+                        If CDec(loImpuesto.SelectSingleNode("porcentaje").InnerText) <> 0 Then
+                            lcPorcentajesImpuesto = lcPorcentajesImpuesto & CDec(loImpuesto.SelectSingleNode("porcentaje").InnerText) & "%"
+                        End If
+                    End If
+                Next loImpuesto
+            Next lnNumeroFila
+
+            'lcPorcentajesImpuesto = lcPorcentajesImpuesto & ")"
+            'lcPorcentajesImpuesto = lcPorcentajesImpuesto.Replace("(,", "(")
+
             '--------------------------------------------------'
             ' Carga la imagen del logo en cusReportes            '
             '--------------------------------------------------'
@@ -77,7 +106,10 @@ Partial Class KDE_fFacturas_Ventas
 
 
             loObjetoReporte = cusAplicacion.goFormatos.mCargarInforme("KDE_fFacturas_Ventas", laDatosReporte)
-            
+            lcPorcentajesImpuesto = lcPorcentajesImpuesto.Replace(".", ",")
+            lcPorcentajesImpuesto = "I.V.A.: " & lcPorcentajesImpuesto
+            CType(loObjetoReporte.ReportDefinition.ReportObjects("Text8"), CrystalDecisions.CrystalReports.Engine.TextObject).Text = lcPorcentajesImpuesto.ToString
+
             Me.mTraducirReporte(loObjetoReporte)
 
             Me.mFormatearCamposReporte(loObjetoReporte)
