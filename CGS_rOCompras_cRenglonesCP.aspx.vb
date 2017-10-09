@@ -69,6 +69,7 @@ Partial Class CGS_rOCompras_cRenglonesCP
             lcComandoSeleccionar.AppendLine("       Renglones_OCompras.Mon_Bru                                              AS Monto,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Recepciones.Documento, '')										AS Recepcion,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Recepciones.Fec_Ini, '')										AS Fecha_R,")
+            lcComandoSeleccionar.AppendLine("		COALESCE(Recepciones.Referencia, '')									AS Referencia,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Renglones_Recepciones.Renglon,0)								AS Renglon_R,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Renglones_Recepciones.Cod_Art,'')								AS CodArt_R,")
             lcComandoSeleccionar.AppendLine("		COALESCE(Recibido.Nom_Art,'')								            AS NomArt_R,")
