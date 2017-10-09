@@ -1,4 +1,4 @@
-<%@ page language="VB" autoeventwireup="false" inherits="TRF_fFacturas_Ventas_AutoTMP" CodeFile="TRF_fFacturas_Ventas_AutoTMP.aspx.vb" %>
+<%@ page language="VB" autoeventwireup="false" inherits="TRF_fFacturas_Ventas_Digital" CodeFile="TRF_fFacturas_Ventas_Digital.aspx.vb" %>
 
 <%@ Register Assembly="vis2Controles" Namespace="vis2Controles" TagPrefix="vis2Controles" %>
 <%@ Register Assembly="vis1Controles" Namespace="vis1Controles" TagPrefix="vis1Controles" %>
@@ -12,7 +12,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>Facturas de Ventas AutomáticoTMP(TRF)</title>
+    <title>Copia Digital de Facturas de Ventas (TRF)</title>
     <link href="~/Framework/cssEstilosFramework.css" rel="stylesheet" type="text/css" />
     <link href="~/Administrativo/cssEstilosAdministrativo.css" rel="stylesheet" type="text/css" />
     <link href="/aspnet_client/System_Web/2_0_50727/CrystalReportWebFormViewer3/css/default.css"
@@ -21,7 +21,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <CR:CrystalReportViewer ID="crvTRF_fFacturas_Ventas_AutoTMP" runat="server" AutoDataBind="true"
+        <CR:CrystalReportViewer ID="crvTRF_fFacturas_Ventas_Digital" runat="server" AutoDataBind="true"
             EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" HasCrystalLogo="False" 
             HasPrintButton="False"   />
 
