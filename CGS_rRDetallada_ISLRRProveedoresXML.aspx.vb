@@ -168,7 +168,7 @@ Partial Class CGS_rRDetallada_ISLRRProveedoresXML
             Dim ldFecha As Date = CDate(cusAplicacion.goReportes.paParametrosIniciales(0))
             Dim lcPeriodo As String = Strings.Format(ldFecha, "yyyy") & Strings.Format(ldFecha, "MM")
 
-            loSalida.AppendLine("<?xml version=""1.0"" encoding=""utf-8"" ?>")
+            loSalida.AppendLine("<?xml version=""1.0"" encoding=""ISO-8859-1"" ?>")
             loSalida.Append("<RelacionRetencionesISLR RifAgente=""").Append(lcRifEmpresa).Append(""" Periodo=""").Append(lcPeriodo).AppendLine(""" >")
 
             Const KC_10Ceros As String = "0000000000"
@@ -208,13 +208,21 @@ Partial Class CGS_rRDetallada_ISLRRProveedoresXML
                 Dim lcPorcentajeRetenido As String = Strings.Right(KC_06Espacios & Strings.Format(lnPorcentajeRetenido, "0.00"), 6)
 
                 loSalida.Append("<DetalleRetencion>")
+                loSalida.AppendLine()
                 loSalida.Append("<RifRetenido>").Append(lcRifRetenido).Append("</RifRetenido>")
+                loSalida.AppendLine()
                 loSalida.Append("<NumeroFactura>").Append(lcNumeroFactura).Append("</NumeroFactura>")
+                loSalida.AppendLine()
                 loSalida.Append("<NumeroControl>").Append(lcNumeroControl).Append("</NumeroControl>")
+                loSalida.AppendLine()
                 loSalida.Append("<FechaOperacion>").Append(lcFechaOperacion).Append("</FechaOperacion>")
+                loSalida.AppendLine()
                 loSalida.Append("<CodigoConcepto>").Append(lcCodigoConcepto).Append("</CodigoConcepto>")
+                loSalida.AppendLine()
                 loSalida.Append("<MontoOperacion>").Append(lcMontoOperacion).Append("</MontoOperacion>")
+                loSalida.AppendLine()
                 loSalida.Append("<PorcentajeRetencion>").Append(lcPorcentajeRetenido).Append("</PorcentajeRetencion>")
+                loSalida.AppendLine()
                 loSalida.Append("</DetalleRetencion>")
                 loSalida.AppendLine()
 
