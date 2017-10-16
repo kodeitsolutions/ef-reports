@@ -127,7 +127,7 @@ Partial Class MCL_rLProduccion
             'loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Desperdicio ON Entrada.Documento = Desperdicio.Documento")
             'loComandoSeleccionar.AppendLine("		AND Desperdicio.Cod_Var IN ('AINV-PDESP','TA-PDESP')")
             loComandoSeleccionar.AppendLine("WHERE Proyectos.Status IN ('Confirmado', 'Procesado')")
-            loComandoSeleccionar.AppendLine("   AND Proyectos.Fec_Ini BETWEEN @ldFechaDesde AND @ldFechaHasta")
+            loComandoSeleccionar.AppendLine("   AND Proyectos.Fec_Fin BETWEEN @ldFechaDesde AND @ldFechaHasta")
             loComandoSeleccionar.AppendLine("   AND Formulas.Cod_Art BETWEEN @lcArtDesde AND @lcArtHasta")
             loComandoSeleccionar.AppendLine("	AND Lote_Obtenido.Cod_Lot BETWEEN @lcLoteDesde AND @lcLoteHasta")
 
