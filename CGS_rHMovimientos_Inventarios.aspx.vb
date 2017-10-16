@@ -29,6 +29,7 @@ Partial Class CGS_rHMovimientos_Inventarios
             Dim lcParametro4Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(4))
             Dim lcParametro5Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(5))
             Dim lcParametro5Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(5))
+            Dim lcParametro6Desde As String = goServicios.mObtenerListaFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(6))
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
@@ -62,16 +63,15 @@ Partial Class CGS_rHMovimientos_Inventarios
             loComandoSeleccionar.AppendLine("		Ajustes.Documento						AS	Documento,")
             loComandoSeleccionar.AppendLine("		Renglones_Ajustes.Cod_Art				AS	Cod_Art,")
             loComandoSeleccionar.AppendLine("		Operaciones_Lotes.Cod_Lot				AS	Lote, 	")
-            loComandoSeleccionar.AppendLine("       COALESCE(Piezas.Res_Num, 0)				AS	Piezas,")
+            loComandoSeleccionar.AppendLine("       (CASE WHEN Renglones_Ajustes.Tipo = 'Entrada'  THEN COALESCE(Piezas.Res_Num, 0) ELSE 0.0 END)	AS	Piezas_Ent,")
+            loComandoSeleccionar.AppendLine("       (CASE WHEN Renglones_Ajustes.Tipo = 'Salida' THEN COALESCE(Piezas.Res_Num, 0) ELSE 0.0 END)		AS	Piezas_Sal,")
+            loComandoSeleccionar.AppendLine("		COALESCE(Longitud.Res_Num, 0)           AS  Longitud,")
             loComandoSeleccionar.AppendLine("		Ajustes.Fec_Ini							AS	Fec_Ini, 	")
-            loComandoSeleccionar.AppendLine("		Renglones_Ajustes.Renglon				AS	Renglon,  	")
             loComandoSeleccionar.AppendLine("		Renglones_Ajustes.Cod_Alm				AS	Cod_Alm, 	")
             loComandoSeleccionar.AppendLine("		Almacenes.Nom_Alm				        AS  Nom_Alm, 	")
-            'loComandoSeleccionar.AppendLine("		(CASE WHEN Renglones_Ajustes.Tipo = 'Salida' THEN Renglones_Ajustes.Can_Art1 ELSE 0.0 END)		AS	CanRng_Sal, ")
-            'loComandoSeleccionar.AppendLine("		(CASE WHEN Renglones_Ajustes.Tipo = 'Entrada'  THEN Renglones_Ajustes.Can_Art1 ELSE 0.0 END)		AS	CanRng_Ent, ")
             loComandoSeleccionar.AppendLine("		(CASE WHEN Renglones_Ajustes.Tipo = 'Salida' THEN Operaciones_Lotes.Cantidad ELSE 0.0 END)		AS	CanLte_Sal, ")
             loComandoSeleccionar.AppendLine("		(CASE WHEN Renglones_Ajustes.Tipo = 'Entrada'  THEN Operaciones_Lotes.Cantidad ELSE 0.0 END)		AS	CanLte_Ent, ")
-            loComandoSeleccionar.AppendLine("		Renglones_Ajustes.Tipo					AS	Tipo,		")
+            loComandoSeleccionar.AppendLine("       0.0										AS	Saldo_Piezas,")
             loComandoSeleccionar.AppendLine(" 		Articulos.Saldo				            AS	Saldo		")
             loComandoSeleccionar.AppendLine("INTO #curTemporal ")
             loComandoSeleccionar.AppendLine("FROM Ajustes")
@@ -85,10 +85,14 @@ Partial Class CGS_rHMovimientos_Inventarios
             loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Cod_Art = Renglones_Ajustes.Cod_Art")
             loComandoSeleccionar.AppendLine("	LEFT JOIN Mediciones ON Mediciones.Cod_Reg = Ajustes.Documento")
             loComandoSeleccionar.AppendLine("		AND Mediciones.Origen = 'Ajustes_Inventarios'")
+            loComandoSeleccionar.AppendLine("       AND Mediciones.Cod_Art = Articulos.Cod_Art")
+            loComandoSeleccionar.AppendLine("	    AND Mediciones.Cod_Alm = Almacenes.Cod_Alm")
             loComandoSeleccionar.AppendLine("		AND Mediciones.Adicional LIKE ('%'+RTRIM(Operaciones_Lotes.Cod_Lot)+'%')")
             loComandoSeleccionar.AppendLine("		AND Renglones_Ajustes.Renglon = SUBSTRING(Mediciones.Adicional, LEN(Mediciones.Adicional), 1)")
             loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Piezas ON Mediciones.Documento = Piezas.Documento")
             loComandoSeleccionar.AppendLine("		AND Piezas.Cod_Var = 'AINV-NPIEZ'")
+            loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Longitud ON Mediciones.Documento = Longitud.Documento")
+            loComandoSeleccionar.AppendLine("		AND Longitud.Cod_Var = 'AINV-LARG'")
             loComandoSeleccionar.AppendLine("WHERE Ajustes.Status = 'Confirmado' ")
             loComandoSeleccionar.AppendLine(" 	AND	Renglones_Ajustes.Tipo IN ('Entrada', 'Salida') ")
             loComandoSeleccionar.AppendLine(" 	AND	Ajustes.Fec_Ini <= @ldFecha_Hasta")
@@ -102,20 +106,18 @@ Partial Class CGS_rHMovimientos_Inventarios
             loComandoSeleccionar.AppendLine(" 		Traslados.Documento						AS	Documento,	")
             loComandoSeleccionar.AppendLine(" 		Renglones_Traslados.Cod_Art				AS	Cod_Art,")
             loComandoSeleccionar.AppendLine("		Operaciones_Lotes.Cod_Lot				AS	Lote, 	")
-            loComandoSeleccionar.AppendLine("       COALESCE(Piezas.Res_Num, 0)				AS	Piezas,")
-            loComandoSeleccionar.AppendLine(" 		Traslados.Fec_Ini						AS	Fec_Ini, 	")
-            loComandoSeleccionar.AppendLine(" 		Renglones_Traslados.Renglon				AS	Renglon,  	")
-            loComandoSeleccionar.AppendLine(" 		Traslados.Alm_Ori						AS	Cod_Alm, 	")
-            loComandoSeleccionar.AppendLine("		Almacenes.Nom_Alm				        AS  Nom_Alm, 	")
-            'loComandoSeleccionar.AppendLine(" 		Renglones_Traslados.Can_Art1			AS	CanRng_Sal, ")
-            'loComandoSeleccionar.AppendLine(" 		0.0										AS	CanRng_Ent, ")
+            loComandoSeleccionar.AppendLine("       0.0										AS	Piezas_Ent,")
+            loComandoSeleccionar.AppendLine("       COALESCE(Piezas.Res_Num, 0)				AS	Piezas_Sal,")
+            loComandoSeleccionar.AppendLine("		COALESCE(Longitud.Res_Num, 0)           AS  Longitud,")
+            loComandoSeleccionar.AppendLine(" 		Traslados.Fec_Ini						AS	Fec_Ini, ")
+            loComandoSeleccionar.AppendLine(" 		Traslados.Alm_Ori						AS	Cod_Alm, ")
+            loComandoSeleccionar.AppendLine("		Almacenes.Nom_Alm				        AS  Nom_Alm, ")
             loComandoSeleccionar.AppendLine("		Operaciones_Lotes.Cantidad				AS	CanLte_Sal, ")
-            loComandoSeleccionar.AppendLine(" 		0.0										AS	CanLte_Ent,	")
-            loComandoSeleccionar.AppendLine(" 		'Salida'								AS	Tipo,	")
+            loComandoSeleccionar.AppendLine(" 		0.0										AS	CanLte_Ent, ")
+            loComandoSeleccionar.AppendLine("       0.0										AS	Saldo_Piezas,")
             loComandoSeleccionar.AppendLine(" 		Articulos.Saldo				            AS	Saldo		")
             loComandoSeleccionar.AppendLine("FROM Traslados")
             loComandoSeleccionar.AppendLine("   JOIN Renglones_Traslados ON Renglones_Traslados.Documento = Traslados.Documento")
-            'loComandoSeleccionar.AppendLine(" 	JOIN Almacenes ON Renglones_Traslados.Cod_Alm = Almacenes.Cod_Alm")
             loComandoSeleccionar.AppendLine(" 	JOIN Almacenes ON Traslados.Alm_Ori = Almacenes.Cod_Alm")
             loComandoSeleccionar.AppendLine("	JOIN @tmpArticulos AS Articulos ON Articulos.Cod_Art = Renglones_Traslados.Cod_Art")
             loComandoSeleccionar.AppendLine("	JOIN Operaciones_Lotes ON Operaciones_Lotes.Num_Doc = Traslados.Documento")
@@ -125,10 +127,14 @@ Partial Class CGS_rHMovimientos_Inventarios
             loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Cod_Art = Renglones_Traslados.Cod_Art ")
             loComandoSeleccionar.AppendLine("	LEFT JOIN Mediciones ON Mediciones.Cod_Reg = Traslados.Documento")
             loComandoSeleccionar.AppendLine("		AND Mediciones.Origen = 'Traslados'")
+            loComandoSeleccionar.AppendLine("       AND Mediciones.Cod_Art = Articulos.Cod_Art")
+            loComandoSeleccionar.AppendLine("	    AND Mediciones.Cod_Alm = Almacenes.Cod_Alm")
             loComandoSeleccionar.AppendLine("		AND Mediciones.Adicional LIKE ('%'+RTRIM(Operaciones_Lotes.Cod_Lot)+'%')")
             loComandoSeleccionar.AppendLine("		AND Renglones_Traslados.Renglon = SUBSTRING(Mediciones.Adicional, LEN(Mediciones.Adicional), 1)")
             loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Piezas ON Mediciones.Documento = Piezas.Documento")
             loComandoSeleccionar.AppendLine("		AND Piezas.Cod_Var IN ('TA-NPIEZ', 'TALM-NPIEZ')")
+            loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Longitud ON Mediciones.Documento = Longitud.Documento")
+            loComandoSeleccionar.AppendLine("		AND Longitud.Cod_Var = 'TA-LARG'")
             loComandoSeleccionar.AppendLine("WHERE Traslados.Status IN ('Confirmado', 'Procesado')	")
             loComandoSeleccionar.AppendLine(" 	AND Traslados.Fec_Ini <= @ldFecha_Hasta")
             loComandoSeleccionar.AppendLine(" 	AND Traslados.Alm_Ori BETWEEN @lcCodAlm_Desde AND @lcCodAlm_Hasta")
@@ -141,19 +147,18 @@ Partial Class CGS_rHMovimientos_Inventarios
             loComandoSeleccionar.AppendLine(" 		Traslados.Documento						AS	Documento,")
             loComandoSeleccionar.AppendLine(" 		Renglones_Traslados.Cod_Art				AS	Cod_Art,")
             loComandoSeleccionar.AppendLine("		Operaciones_Lotes.Cod_Lot				AS	Lote,  	")
-            loComandoSeleccionar.AppendLine("       COALESCE(Piezas.Res_Num, 0)				AS	Piezas,")
+            loComandoSeleccionar.AppendLine("       COALESCE(Piezas.Res_Num, 0)				AS	Piezas_Ent,")
+            loComandoSeleccionar.AppendLine("       0.0										AS	Piezas_Sal,")
+            loComandoSeleccionar.AppendLine("		COALESCE(Longitud.Res_Num, 0)           AS  Longitud,")
             loComandoSeleccionar.AppendLine(" 		Traslados.Fec_Ini						AS	Fec_Ini, 	")
-            loComandoSeleccionar.AppendLine(" 		Renglones_Traslados.Renglon				AS	Renglon, 	 	")
             loComandoSeleccionar.AppendLine(" 		CASE Traslados.Status					")
             loComandoSeleccionar.AppendLine(" 		    WHEN 'Confirmado'	THEN 'TRANSITO'")
             loComandoSeleccionar.AppendLine(" 		    WHEN 'Procesado'	THEN Traslados.Alm_Des")
             loComandoSeleccionar.AppendLine(" 		END										AS	Cod_Alm, 	")
             loComandoSeleccionar.AppendLine("		Almacenes.Nom_Alm				        AS  Nom_Alm, 	")
-            'loComandoSeleccionar.AppendLine(" 		0.0										AS	CanRng_Sal, ")
-            'loComandoSeleccionar.AppendLine(" 		Renglones_Traslados.Can_Art1			AS	CanRng_Ent,")
             loComandoSeleccionar.AppendLine("		0.0										AS	CanLte_Sal, 	")
             loComandoSeleccionar.AppendLine(" 		Operaciones_Lotes.Cantidad				AS	CanLte_Ent, 	")
-            loComandoSeleccionar.AppendLine(" 		'Entrada'								AS	Tipo,	")
+            loComandoSeleccionar.AppendLine("       0.0										AS	Saldo_Piezas,")
             loComandoSeleccionar.AppendLine(" 		Articulos.Saldo				            AS	Saldo		")
             loComandoSeleccionar.AppendLine("FROM   Traslados")
             loComandoSeleccionar.AppendLine("	JOIN Renglones_Traslados ON Renglones_Traslados.Documento = Traslados.Documento")
@@ -166,10 +171,14 @@ Partial Class CGS_rHMovimientos_Inventarios
             loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Cod_Art = Renglones_Traslados.Cod_Art")
             loComandoSeleccionar.AppendLine("	LEFT JOIN Mediciones ON Mediciones.Cod_Reg = Traslados.Documento")
             loComandoSeleccionar.AppendLine("		AND Mediciones.Origen = 'Traslados'")
+            loComandoSeleccionar.AppendLine("       AND Mediciones.Cod_Art = Articulos.Cod_Art")
+            loComandoSeleccionar.AppendLine("	    AND Mediciones.Cod_Alm = Almacenes.Cod_Alm")
             loComandoSeleccionar.AppendLine("		AND Mediciones.Adicional LIKE ('%'+RTRIM(Operaciones_Lotes.Cod_Lot)+'%')")
             loComandoSeleccionar.AppendLine("		AND Renglones_Traslados.Renglon = SUBSTRING(Mediciones.Adicional, LEN(Mediciones.Adicional), 1)")
             loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Piezas ON Mediciones.Documento = Piezas.Documento")
             loComandoSeleccionar.AppendLine("		AND Piezas.Cod_Var IN ('TA-NPIEZ', 'TALM-NPIEZ')")
+            loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Longitud ON Mediciones.Documento = Longitud.Documento")
+            loComandoSeleccionar.AppendLine("		AND Longitud.Cod_Var = 'TA-LARG'")
             loComandoSeleccionar.AppendLine("WHERE Traslados.Status IN ('Confirmado', 'Procesado')	")
             loComandoSeleccionar.AppendLine("   AND Traslados.Fec_Ini <= @ldFecha_Hasta")
             loComandoSeleccionar.AppendLine(" 	AND (CASE Traslados.Status					")
@@ -177,7 +186,7 @@ Partial Class CGS_rHMovimientos_Inventarios
             loComandoSeleccionar.AppendLine(" 		    WHEN 'Procesado' THEN Traslados.Alm_Des")
             loComandoSeleccionar.AppendLine(" 		END) BETWEEN @lcCodAlm_Desde AND @lcCodAlm_Hasta")
             loComandoSeleccionar.AppendLine("   AND Operaciones_Lotes.Cod_Lot BETWEEN @lcCodLot_Desde AND @lcCodLot_Hasta")
-            loComandoSeleccionar.AppendLine("	")
+            loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("UNION ALL ")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("SELECT	'Recepciones'						    AS	Operacion,	")
@@ -185,16 +194,15 @@ Partial Class CGS_rHMovimientos_Inventarios
             loComandoSeleccionar.AppendLine(" 		Recepciones.Documento				    AS	Documento,")
             loComandoSeleccionar.AppendLine(" 		Renglones_Recepciones.Cod_Art		    AS	Cod_Art,")
             loComandoSeleccionar.AppendLine("		Operaciones_Lotes.Cod_Lot				AS	Lote, 	")
-            loComandoSeleccionar.AppendLine("       COALESCE(Piezas.Res_Num, 0)				AS	Piezas,")
+            loComandoSeleccionar.AppendLine("       COALESCE(Piezas.Res_Num, 0)				AS	Piezas_Ent,")
+            loComandoSeleccionar.AppendLine("       0.0										AS	Piezas_Sal,")
+            loComandoSeleccionar.AppendLine("		0.0                                     AS  Longitud,")
             loComandoSeleccionar.AppendLine(" 		Recepciones.Fec_Ini					    AS	Fec_Ini, 	")
-            loComandoSeleccionar.AppendLine(" 		Renglones_Recepciones.Renglon		    AS	Renglon, 	 ")
             loComandoSeleccionar.AppendLine(" 		Renglones_Recepciones.Cod_Alm		    AS	Cod_Alm, 	")
             loComandoSeleccionar.AppendLine("		Almacenes.Nom_Alm				        AS  Nom_Alm, 	")
-            'loComandoSeleccionar.AppendLine(" 		0.0									    AS	CanRng_Sal, ")
-            'loComandoSeleccionar.AppendLine(" 		Renglones_Recepciones.Can_Art1		    AS	CanRng_Ent, ")
             loComandoSeleccionar.AppendLine("		0.0									    AS	CanLte_Sal, ")
             loComandoSeleccionar.AppendLine(" 		Operaciones_Lotes.Cantidad			    AS	CanLte_Ent,	")
-            loComandoSeleccionar.AppendLine(" 		'Entrada'							    AS	Tipo,")
+            loComandoSeleccionar.AppendLine("       0.0										AS	Saldo_Piezas,")
             loComandoSeleccionar.AppendLine(" 		Articulos.Saldo				            AS	Saldo ")
             loComandoSeleccionar.AppendLine("FROM Recepciones")
             loComandoSeleccionar.AppendLine("	JOIN Renglones_Recepciones ON Renglones_Recepciones.Documento = Recepciones.Documento")
@@ -207,6 +215,8 @@ Partial Class CGS_rHMovimientos_Inventarios
             loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Cod_Art = Renglones_Recepciones.Cod_Art")
             loComandoSeleccionar.AppendLine("	LEFT JOIN Mediciones ON Mediciones.Cod_Reg = Recepciones.Documento")
             loComandoSeleccionar.AppendLine("		AND Mediciones.Origen = 'Recepciones'")
+            loComandoSeleccionar.AppendLine("       AND Mediciones.Cod_Art = Articulos.Cod_Art")
+            loComandoSeleccionar.AppendLine("	    AND Mediciones.Cod_Alm = Almacenes.Cod_Alm")
             loComandoSeleccionar.AppendLine("		AND Mediciones.Adicional LIKE ('%'+RTRIM(Operaciones_Lotes.Cod_Lot)+'%')")
             loComandoSeleccionar.AppendLine("		AND Renglones_Recepciones.Renglon = SUBSTRING(Mediciones.Adicional, LEN(Mediciones.Adicional), 1)")
             loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Piezas ON Mediciones.Documento = Piezas.Documento")
@@ -216,40 +226,114 @@ Partial Class CGS_rHMovimientos_Inventarios
             loComandoSeleccionar.AppendLine("	AND Renglones_Recepciones.Cod_Alm BETWEEN @lcCodAlm_Desde AND @lcCodAlm_Hasta")
             loComandoSeleccionar.AppendLine("   AND Operaciones_Lotes.Cod_Lot BETWEEN @lcCodLot_Desde AND @lcCodLot_Hasta")
             loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("---- Crea un índice para acelerar las siguientes operaciones")
+            loComandoSeleccionar.AppendLine("UNION ALL ")
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("SELECT	'Ordenes_Trabajo'						AS	Operacion,	")
+            loComandoSeleccionar.AppendLine("		1										AS	Orden,")
+            loComandoSeleccionar.AppendLine(" 		Encabezados.Documento					AS	Documento,	")
+            loComandoSeleccionar.AppendLine(" 		Formulas.Cod_Art						AS	Cod_Art,")
+            loComandoSeleccionar.AppendLine("		Operaciones_Lotes.Cod_Lot				AS	Lote, 	")
+            loComandoSeleccionar.AppendLine("       COALESCE(Piezas.Res_Num, 0)				AS	Piezas_Ent,")
+            loComandoSeleccionar.AppendLine("       0.0										AS	Piezas_Sal,")
+            loComandoSeleccionar.AppendLine("		COALESCE(Longitud.Res_Num, 0)           AS  Longitud,")
+            loComandoSeleccionar.AppendLine(" 		Encabezados.Fec_Ini						AS	Fec_Ini, 	")
+            loComandoSeleccionar.AppendLine(" 		Encabezados.Cod_Alm						AS	Cod_Alm, ")
+            loComandoSeleccionar.AppendLine("		Almacenes.Nom_Alm						AS 	Nom_Alm,	")
+            loComandoSeleccionar.AppendLine("		0.0										AS	CanLte_Sal, 	")
+            loComandoSeleccionar.AppendLine(" 		Operaciones_Lotes.Cantidad				AS	CanLte_Ent,	")
+            loComandoSeleccionar.AppendLine("       0.0										AS	Saldo_Piezas,")
+            loComandoSeleccionar.AppendLine("		Articulos.Saldo							AS	Saldo ")
+            loComandoSeleccionar.AppendLine("FROM Encabezados")
+            loComandoSeleccionar.AppendLine("	JOIN Renglones ON Encabezados.Documento = Renglones.Documento ")
+            loComandoSeleccionar.AppendLine("		AND Renglones.Origen = 'Ordenes de Trabajo'")
+            loComandoSeleccionar.AppendLine("	JOIN Almacenes ON Encabezados.Cod_Alm = Almacenes.Cod_Alm	")
+            loComandoSeleccionar.AppendLine("	JOIN Formulas ON Renglones.Cod_Reg = Formulas.Documento")
+            loComandoSeleccionar.AppendLine("	JOIN @tmpArticulos AS Articulos ON Articulos.Cod_Art = Formulas.Cod_Art ")
+            loComandoSeleccionar.AppendLine("	JOIN Operaciones_Lotes ON Operaciones_Lotes.Num_Doc = Encabezados.Documento")
+            loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Tip_Doc = 'Encabezados'")
+            loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Adicional = 'Ordenes de Trabajo'")
+            loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Tip_Ope = 'Entrada'")
+            loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Ren_Ori = Renglones.Renglon")
+            loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Cod_Art = Articulos.Cod_Art")
+            loComandoSeleccionar.AppendLine("	LEFT JOIN Mediciones ON Mediciones.Cod_Reg = Encabezados.Documento")
+            loComandoSeleccionar.AppendLine("		AND Mediciones.Origen = 'Encabezados'")
+            loComandoSeleccionar.AppendLine("       AND Mediciones.Cod_Art = Articulos.Cod_Art")
+            loComandoSeleccionar.AppendLine("	    AND Mediciones.Cod_Alm = Almacenes.Cod_Alm")
+            loComandoSeleccionar.AppendLine("		AND Mediciones.Adicional LIKE ('%'+RTRIM(Operaciones_Lotes.Cod_Lot)+'%')")
+            loComandoSeleccionar.AppendLine("		AND Renglones.Renglon = SUBSTRING(Mediciones.Adicional, LEN(Mediciones.Adicional), 1)")
+            loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Piezas ON Mediciones.Documento = Piezas.Documento")
+            loComandoSeleccionar.AppendLine("		AND Piezas.Cod_Var = 'OTRA-NPIEZ'")
+            loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Longitud ON Mediciones.Documento = Longitud.Documento")
+            loComandoSeleccionar.AppendLine("		AND Longitud.Cod_Var = 'OTRA-LARG'")
+            loComandoSeleccionar.AppendLine("WHERE Encabezados.Status IN ('Confirmado', 'Procesado') ")
+            loComandoSeleccionar.AppendLine("	AND Encabezados.Origen = 'Ordenes de Trabajo'")
+            loComandoSeleccionar.AppendLine("		AND Encabezados.Fec_Ini <= @ldFecha_Hasta")
+            loComandoSeleccionar.AppendLine("		AND Encabezados.Cod_Alm BETWEEN @lcCodAlm_Desde AND @lcCodAlm_Hasta")
+            loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Cod_Lot BETWEEN @lcCodLot_Desde AND @lcCodLot_Hasta")
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("UNION ALL ")
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("SELECT	'Consumos_Produccion'					AS	Operacion,	")
+            loComandoSeleccionar.AppendLine("		2										AS	Orden,")
+            loComandoSeleccionar.AppendLine(" 		Encabezados.Documento					AS	Documento,	")
+            loComandoSeleccionar.AppendLine(" 		Renglones.Cod_Art						AS	Cod_Art,")
+            loComandoSeleccionar.AppendLine("		Operaciones_Lotes.Cod_Lot				AS	Lote, 	")
+            loComandoSeleccionar.AppendLine("       0.0										AS	Piezas_Ent,")
+            loComandoSeleccionar.AppendLine("       COALESCE(Piezas.Res_Num, 0)				AS	Piezas_Sal,")
+            loComandoSeleccionar.AppendLine("		COALESCE(Longitud.Res_Num, 0)           AS  Longitud,")
+            loComandoSeleccionar.AppendLine(" 		Encabezados.Fec_Ini						AS	Fec_Ini, 	")
+            loComandoSeleccionar.AppendLine(" 		Encabezados.Cod_Alm						AS	Cod_Alm, ")
+            loComandoSeleccionar.AppendLine("		Almacenes.Nom_Alm						AS 	Nom_Alm,	")
+            loComandoSeleccionar.AppendLine("		Operaciones_Lotes.Cantidad				AS	CanLte_Sal, 	")
+            loComandoSeleccionar.AppendLine(" 		0.0				                        AS	CanLte_Ent,	")
+            loComandoSeleccionar.AppendLine("       0.0										AS	Saldo_Piezas,")
+            loComandoSeleccionar.AppendLine("		Articulos.Saldo							AS	Saldo ")
+            loComandoSeleccionar.AppendLine("FROM Encabezados")
+            loComandoSeleccionar.AppendLine("	JOIN Renglones ON Encabezados.Documento = Renglones.Documento ")
+            loComandoSeleccionar.AppendLine("		AND Renglones.Origen = 'Consumos Produccion'")
+            loComandoSeleccionar.AppendLine("	JOIN Almacenes ON Encabezados.Cod_Alm = Almacenes.Cod_Alm	")
+            loComandoSeleccionar.AppendLine("	JOIN @tmpArticulos AS Articulos ON Articulos.Cod_Art = Renglones.Cod_Art ")
+            loComandoSeleccionar.AppendLine("	JOIN Operaciones_Lotes ON Operaciones_Lotes.Num_Doc = Encabezados.Documento")
+            loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Tip_Doc = 'Encabezados'")
+            loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Adicional = 'Consumos Produccion'")
+            loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Tip_Ope = 'Salida'")
+            loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Ren_Ori = Renglones.Renglon")
+            loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Cod_Art = Articulos.Cod_Art")
+            loComandoSeleccionar.AppendLine("	LEFT JOIN Mediciones ON Mediciones.Cod_Reg = Encabezados.Documento")
+            loComandoSeleccionar.AppendLine("		AND Mediciones.Origen = 'Encabezados'")
+            loComandoSeleccionar.AppendLine("       AND Mediciones.Cod_Art = Articulos.Cod_Art")
+            loComandoSeleccionar.AppendLine("	    AND Mediciones.Cod_Alm = Almacenes.Cod_Alm")
+            loComandoSeleccionar.AppendLine("		AND Mediciones.Adicional LIKE ('%'+RTRIM(Operaciones_Lotes.Cod_Lot)+'%')")
+            loComandoSeleccionar.AppendLine("		AND Renglones.Renglon = SUBSTRING(Mediciones.Adicional, LEN(Mediciones.Adicional), 1)")
+            loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Piezas ON Mediciones.Documento = Piezas.Documento")
+            loComandoSeleccionar.AppendLine("		AND Piezas.Cod_Var = 'CPRO-NPIEZ'")
+            loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Longitud ON Mediciones.Documento = Longitud.Documento")
+            loComandoSeleccionar.AppendLine("		AND Longitud.Cod_Var = 'CPRO-LARG'")
+            loComandoSeleccionar.AppendLine("WHERE Encabezados.Status IN ('Confirmado', 'Procesado') ")
+            loComandoSeleccionar.AppendLine("	AND Encabezados.Origen = 'Consumos Produccion'")
+            loComandoSeleccionar.AppendLine("		AND Encabezados.Fec_Ini <= @ldFecha_Hasta")
+            loComandoSeleccionar.AppendLine("		AND Encabezados.Cod_Alm BETWEEN @lcCodAlm_Desde AND @lcCodAlm_Hasta")
+            loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Cod_Lot BETWEEN @lcCodLot_Desde AND @lcCodLot_Hasta")
+            loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("CREATE CLUSTERED INDEX PK_Fecha ON #curTemporal(Fec_Ini)")
             loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("---- Calcula los saldos iniciales")
-            loComandoSeleccionar.AppendLine("UPDATE #curTemporal")
-            loComandoSeleccionar.AppendLine("SET Saldo = S.Saldo")
-            loComandoSeleccionar.AppendLine("FROM (	SELECT	Cod_Art, Cod_Alm, Lote,")
-            loComandoSeleccionar.AppendLine("			SUM(CanLte_Ent - CanLte_Sal) AS Saldo		")
-            loComandoSeleccionar.AppendLine("		FROM	#curTemporal")
-            loComandoSeleccionar.AppendLine("		WHERE	#curTemporal.Fec_Ini < @ldFecha_Desde")
-            loComandoSeleccionar.AppendLine("		GROUP BY Cod_Art, Cod_Alm, Lote) AS S")
-            loComandoSeleccionar.AppendLine("WHERE #curTemporal.Fec_Ini >= @ldFecha_Desde")
-            loComandoSeleccionar.AppendLine("	AND	#curTemporal.Cod_Art = S.Cod_Art ")
-            loComandoSeleccionar.AppendLine("	AND	#curTemporal.Lote = S.Lote ")
-            loComandoSeleccionar.AppendLine("	AND	#curTemporal.Cod_Alm = S.Cod_Alm ")
-            loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("SELECT	#curTemporal.Saldo					AS Inicial,		")
-            loComandoSeleccionar.AppendLine("		#curTemporal.Saldo					AS Saldo,		")
+            loComandoSeleccionar.AppendLine("SELECT	#curTemporal.Saldo					AS Saldo,		")
             loComandoSeleccionar.AppendLine("		#curTemporal.Operacion				AS Operacion,	")
             loComandoSeleccionar.AppendLine("		#curTemporal.Orden					AS Orden,")
             loComandoSeleccionar.AppendLine("		#curTemporal.Documento				AS Documento,")
             loComandoSeleccionar.AppendLine("		#curTemporal.Cod_Art				AS Cod_Art,")
             loComandoSeleccionar.AppendLine("		#curTemporal.Lote					AS Lote, 	")
-            loComandoSeleccionar.AppendLine("       #curTemporal.Piezas					AS Piezas,")
+            loComandoSeleccionar.AppendLine("		#curTemporal.Piezas_Ent				AS Piezas_Ent,")
+            loComandoSeleccionar.AppendLine("		#curTemporal.Piezas_Sal				AS Piezas_Sal, 	")
+            loComandoSeleccionar.AppendLine("		#curTemporal.Longitud				AS Longitud, 	")
+            loComandoSeleccionar.AppendLine("		#curTemporal.Saldo_Piezas			AS Saldo_Piezas,")
             loComandoSeleccionar.AppendLine("		#curTemporal.Fec_Ini				AS Fec_Ini, 	")
-            loComandoSeleccionar.AppendLine("		#curTemporal.Renglon				AS Renglon, 	")
             loComandoSeleccionar.AppendLine("		#curTemporal.Cod_Alm				AS Cod_Alm, 	")
             loComandoSeleccionar.AppendLine("		#curTemporal.Nom_Alm				AS Nom_Alm, 	")
-            'loComandoSeleccionar.AppendLine("		#curTemporal.CanRng_Sal				AS CanRng_Sal, 	")
-            'loComandoSeleccionar.AppendLine("		#curTemporal.CanRng_Ent				AS CanRng_Ent, 	")
             loComandoSeleccionar.AppendLine("		#curTemporal.CanLte_Sal				AS Can_Sal, 	")
             loComandoSeleccionar.AppendLine("		#curTemporal.CanLte_Ent				AS Can_Ent, 	")
-            loComandoSeleccionar.AppendLine("		#curTemporal.Tipo					AS Tipo,")
             loComandoSeleccionar.AppendLine("		Articulos.Nom_Art					AS Nom_Art,		")
+            loComandoSeleccionar.AppendLine("       " & lcParametro6Desde & "           AS Mostrar,")
             loComandoSeleccionar.AppendLine("		CONCAT(CONVERT(VARCHAR(12),CAST(@ldFecha_Desde AS DATE),103), ' - ',  CONVERT(VARCHAR(12),CAST(@ldFecha_Hasta AS DATE),103))	AS Fecha,")
             loComandoSeleccionar.AppendLine("		CASE WHEN @lcCodArt_Desde <> ''")
             loComandoSeleccionar.AppendLine("			 THEN (SELECT Nom_Art FROM Articulos WHERE Cod_Art = @lcCodArt_Desde)")
@@ -294,16 +378,42 @@ Partial Class CGS_rHMovimientos_Inventarios
             ' Calcula el saldo de cada movimiento por artículo
             '-------------------------------------------------------------------------------------------------------
             Dim lcArticulo As String = ""
+            Dim lcDocumento As String = ""
+            Dim lcOperacion As String = ""
+            Dim lcAlmacen As String = ""
+            Dim lcLote As String = ""
             Dim lnSaldo As Decimal = 0D
+            Dim lnSaldo_Piezas As Decimal = 0D
             For Each loRenglon As DataRow In laDatosReporte.Tables(0).Rows
 
-                If Trim(loRenglon("Cod_Art")).ToLower() <> lcArticulo Then
-                    lcArticulo = Trim(loRenglon("Cod_Art")).ToLower()
-                    lnSaldo = CDec(loRenglon("Inicial"))
+                If Trim(loRenglon("Cod_Art")).ToLower() <> lcArticulo Or Trim(loRenglon("Cod_Alm")).ToLower() <> lcAlmacen Then
+                    If Trim(loRenglon("Cod_Art")).ToLower() <> lcArticulo Then
+                        lcArticulo = Trim(loRenglon("Cod_Art")).ToLower()
+                    End If
+                    If Trim(loRenglon("Cod_Alm")).ToLower() <> lcAlmacen Then
+                        lcAlmacen = Trim(loRenglon("Cod_Alm")).ToLower()
+                    End If
+                    lnSaldo = 0D
+                    lnSaldo_Piezas = 0D
+                    lcOperacion = ""
+                    lcDocumento = ""
+                    lcLote = ""
                 End If
 
-                lnSaldo = lnSaldo + CDec(loRenglon("Can_Ent")) - CDec(loRenglon("Can_Sal"))
+                If (loRenglon("Documento") <> lcDocumento And loRenglon("Operacion") <> lcOperacion) Or (loRenglon("Documento") <> lcDocumento And loRenglon("Operacion") = lcOperacion) Or (loRenglon("Documento") = lcDocumento And loRenglon("Operacion") = lcOperacion And loRenglon("Lote") <> lcLote) Then
+                    lcDocumento = loRenglon("Documento")
+                    lcOperacion = loRenglon("Operacion")
+                    lcLote = loRenglon("Lote")
+                    lnSaldo = lnSaldo + CDec(loRenglon("Can_Ent")) - CDec(loRenglon("Can_Sal"))
+                Else
+                    loRenglon("Can_Ent") = 0D
+                    loRenglon("Can_Sal") = 0D
+
+                End If
+
+                lnSaldo_Piezas = lnSaldo_Piezas + CDec(loRenglon("Piezas_Ent")) - CDec(loRenglon("Piezas_Sal"))
                 loRenglon("Saldo") = lnSaldo
+                loRenglon("Saldo_Piezas") = lnSaldo_Piezas
 
             Next loRenglon
 
@@ -357,25 +467,4 @@ End Class
 '-------------------------------------------------------------------------------------------'
 ' Fin del codigo
 '-------------------------------------------------------------------------------------------'
-' JJD: 30/09/08: Codigo inicial
-'-------------------------------------------------------------------------------------------'
-' CMS: 12/05/09: Ordenamiento 
-'-------------------------------------------------------------------------------------------'
-' AAP: 29/06/09: Filtro "Sucursal"
-'-------------------------------------------------------------------------------------------'
-' JJD: 24/07/09: Se desgloso por origen. Ajuste, Traslados, Devoluciones Clientes, etc.
-'-------------------------------------------------------------------------------------------'
-' CMS: 19/08/09: Verificacion de registros y filtro cod_ubi
-'-------------------------------------------------------------------------------------------'
-' RJG: 14/03/10: Corecciones varias: no mostraba todos los documentos, corrección en		'
-'				 Traslados, Compras, Entregas. Ajustados Status de documentos de Compra y	'
-'				 Venta (agregados los Afectados y Procesados).								'
-'-------------------------------------------------------------------------------------------'
-' RJG: 08/12/10: Ajustado Estatus de Facturas de Venta: Ahora omite las facturas de venta	'
-'				 pendientes e incluye las confirmadas.										'
-'-------------------------------------------------------------------------------------------'
-' RJG: 15/05/12: Se cambió el SP y el SELECT de movimientos para que aplique correctamente	'
-'				 los filtros de almacen y sucursal (los cálculos no eran correctos).		'
-'-------------------------------------------------------------------------------------------'
-' RJG: 14/06/12: Se cambió SELECT de movimientos para que no use el SP.						'
-'-------------------------------------------------------------------------------------------'
+
