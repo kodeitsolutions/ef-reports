@@ -27,6 +27,7 @@ Partial Class CGS_rCompras_Articulos_ADM
             Dim lcParametro3Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(3))
             Dim lcParametro4Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(4))
             Dim lcParametro4Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(4))
+            Dim lcParametro5Desde As String = goServicios.mObtenerListaFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(5))
 
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
@@ -98,7 +99,10 @@ Partial Class CGS_rCompras_Articulos_ADM
             loComandoSeleccionar.AppendLine("	AND Compras.Fec_Ini BETWEEN @ldFecha_Desde AND @ldFecha_Hasta")
             loComandoSeleccionar.AppendLine("	AND Compras.Cod_Pro BETWEEN @lcCodPro_Desde AND @lcCodPro_Hasta")
             loComandoSeleccionar.AppendLine("	AND Articulos.Cod_Dep BETWEEN @lcCodDep_Desde AND @lcCodDep_Hasta")
-            loComandoSeleccionar.AppendLine("	AND Articulos.Cod_Sec BETWEEN @lcCodSec_Desde AND @lcCodSec_Hasta")
+            loComandoSeleccionar.AppendLine("   AND Articulos.Cod_Sec BETWEEN @lcCodSec_Desde AND @lcCodSec_Hasta")
+            If lcParametro5Desde = "GEN" Then
+                loComandoSeleccionar.AppendLine("   AND Articulos.Generico = 1")
+            End If
             loComandoSeleccionar.AppendLine("ORDER BY Renglones_Compras.Cod_Art")
 
             'Me.mEscribirConsulta(loComandoSeleccionar.ToString())
