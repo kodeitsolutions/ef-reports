@@ -18,6 +18,7 @@
         <xs:element name="curReportes">
           <xs:complexType>
             <xs:sequence>
+              <xs:element name="Cod_Tra" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Tra" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Car" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Dep" type="xs:string" minOccurs="0" />
