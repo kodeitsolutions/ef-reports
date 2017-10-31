@@ -184,7 +184,8 @@ Partial Class TRF_rBalance_General
             loComandoSeleccionar.AppendLine("	LEFT OUTER JOIN Renglones_Comprobantes ON Cuentas_Contables.Cod_Cue = Renglones_Comprobantes.Cod_Cue ")
             loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.fec_ini <= @lcFechaHasta)")
             loComandoSeleccionar.AppendLine("WHERE	Cuentas_Contables.Movimiento=1")
-            loComandoSeleccionar.AppendLine("	AND Cuentas_Contables.Categoria NOT IN ('Activos', 'Pasivos', 'Capital')")
+            loComandoSeleccionar.AppendLine("	AND (Cuentas_Contables.Categoria NOT IN ('Activos', 'Pasivos', 'Capital')")
+            loComandoSeleccionar.AppendLine("   OR Cuentas_Contables.Cod_Cue = '3.1.1.04.001')")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("SELECT SUM(CASE	WHEN (Renglones_Comprobantes.Fec_Ini < @lcFechaDesde)")
             loComandoSeleccionar.AppendLine("					THEN ISNULL(Renglones_Comprobantes.Mon_Deb - Renglones_Comprobantes.Mon_Hab, @lnCero)")
@@ -221,6 +222,7 @@ Partial Class TRF_rBalance_General
             loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.fec_ini <= @lcFechaHasta)")
             loComandoSeleccionar.AppendLine("WHERE	Cuentas_Contables.Movimiento=1")
             loComandoSeleccionar.AppendLine("	AND Cuentas_Contables.Categoria = 'Capital'")
+            loComandoSeleccionar.AppendLine("   AND Cuentas_Contables.Cod_Cue <> '3.1.1.04.001'")
             If lnNivelMax = 5 Then
                 loComandoSeleccionar.AppendLine("SELECT DISTINCT *, @lcFechaHasta AS Hasta,")
                 loComandoSeleccionar.AppendLine("	(SELECT Total FROM #tmpEjercicio) AS Resultado_Ejercicio, ")
