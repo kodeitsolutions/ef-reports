@@ -27,7 +27,6 @@
 				      <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
 				      <xs:element name="Mon_Bru" type="xs:decimal" minOccurs="0" />
 				      <xs:element name="Mon_Imp1" type="xs:decimal" minOccurs="0" />
-				      <xs:element name="Por_Imp1" type="xs:decimal" minOccurs="0" />
 				      <xs:element name="Mon_Net" type="xs:decimal" minOccurs="0" />
 				      <xs:element name="Nom_For" type="xs:string" minOccurs="0" />
 				      <xs:element name="Cod_Art" type="xs:string" minOccurs="0" />
