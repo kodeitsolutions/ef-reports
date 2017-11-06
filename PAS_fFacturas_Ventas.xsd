@@ -23,26 +23,17 @@
 				      <xs:element name="Rif" type="xs:string" minOccurs="0" />
 				      <xs:element name="Dir_Fis" type="xs:string" minOccurs="0" />
 				      <xs:element name="Telefonos" type="xs:string" minOccurs="0" />
-              <xs:element name="Documento" type="xs:string" minOccurs="0" />
-              <xs:element name="Control" type="xs:string" minOccurs="0" />
 				      <xs:element name="Fec_Ini" type="xs:dateTime" minOccurs="0" />
 				      <xs:element name="Mon_Bru" type="xs:decimal" minOccurs="0" />
 				      <xs:element name="Mon_Imp1" type="xs:decimal" minOccurs="0" />
-				      <xs:element name="Por_Imp1" type="xs:decimal" minOccurs="0" />
-				      <xs:element name="Mon_Net" type="xs:decimal" minOccurs="0" />
-				      <xs:element name="Nom_For" type="xs:string" minOccurs="0" />
-				      <xs:element name="Cod_Art" type="xs:string" minOccurs="0" />
+				      <xs:element name="Mon_Net" type="xs:decimal" minOccurs="0" />   
 				      <xs:element name="Nom_Art" type="xs:string" minOccurs="0" />
-              <xs:element name="Notas" type="xs:string" minOccurs="0" />
               <xs:element name="Renglon" type="xs:int" minOccurs="0" />
 				      <xs:element name="Can_Art1" type="xs:decimal" minOccurs="0" />
 				      <xs:element name="Cod_Uni" type="xs:string" minOccurs="0" />
 				      <xs:element name="Precio1" type="xs:decimal" minOccurs="0" />
 				      <xs:element name="Neto" type="xs:decimal" minOccurs="0" />
-				      <xs:element name="Impuesto" type="xs:decimal" minOccurs="0" />
-				      <xs:element name="Por_Imp" type="xs:decimal" minOccurs="0" />
               <xs:element name="Observacion" type="xs:string" minOccurs="0" />
-				      <xs:element name="Comentario" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
