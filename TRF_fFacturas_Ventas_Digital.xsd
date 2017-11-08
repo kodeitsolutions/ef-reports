@@ -18,7 +18,8 @@
         <xs:element name="curReportes">
           <xs:complexType>
             <xs:sequence>
-				      <xs:element name="Nom_Cli" type="xs:string" minOccurs="0" />
+				      <xs:element name="Cod_Cli" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_Cli" type="xs:string" minOccurs="0" />
 				      <xs:element name="Rif" type="xs:string" minOccurs="0" />
 				      <xs:element name="Dir_Fis" type="xs:string" minOccurs="0" />
 				      <xs:element name="Telefonos" type="xs:string" minOccurs="0" />
