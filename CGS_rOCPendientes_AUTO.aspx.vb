@@ -50,9 +50,15 @@ Partial Class CGS_rOCPendientes_AUTO
             loComandoSeleccionar.AppendLine("      Ordenes_Compras.Logico4              AS yreina,")
             loComandoSeleccionar.AppendLine("      Ordenes_Compras.Fecha1               AS Faut_mgentili,")
             loComandoSeleccionar.AppendLine("      Ordenes_Compras.Fecha2               AS Faut_ssimanca,")
-            loComandoSeleccionar.AppendLine("      Ordenes_Compras.Fecha4               AS Faut_yreina   ")
+            loComandoSeleccionar.AppendLine("      Ordenes_Compras.Fecha4               AS Faut_yreina,   ")
+            loComandoSeleccionar.AppendLine("      COALESCE(Requisiciones.Caracter1,'') AS Solicitante1,")
+            loComandoSeleccionar.AppendLine("      COALESCE(Requisiciones.Caracter2,'') AS Solicitante2,")
+            loComandoSeleccionar.AppendLine("      COALESCE(Requisiciones.Caracter3,'') AS Solicitante3,")
+            loComandoSeleccionar.AppendLine("      COALESCE(Requisiciones.Caracter4,'') AS Otros,")
+            loComandoSeleccionar.AppendLine("      COALESCE(Requisiciones.Documento,'') AS Requisicion")
             loComandoSeleccionar.AppendLine("FROM Ordenes_Compras")
             loComandoSeleccionar.AppendLine("	JOIN Renglones_OCompras ON Ordenes_Compras.Documento = Renglones_OCompras.Documento")
+            loComandoSeleccionar.AppendLine("	LEFT JOIN Requisiciones ON Renglones_OCompras.Doc_Ori = Requisiciones.Documento")
             loComandoSeleccionar.AppendLine("	JOIN Articulos ON Renglones_OCompras.Cod_Art = Articulos.Cod_Art")
             loComandoSeleccionar.AppendLine("	JOIN Proveedores ON 	Ordenes_Compras.Cod_Pro = Proveedores.Cod_Pro")
             loComandoSeleccionar.AppendLine("WHERE Ordenes_Compras.Status = 'Pendiente'")
@@ -90,10 +96,10 @@ Partial Class CGS_rOCPendientes_AUTO
 
         'Catch loExcepcion As Exception
 
-        '    Me.WbcAdministradorMensajeModal.mMostrarMensajeModal("Error", _
-        '              "No se pudo Completar el Proceso: " & loExcepcion.Message, _
-        '               vis3Controles.wbcAdministradorMensajeModal.enumTipoMensaje.KN_Error, _
-        '               "auto", _
+        '    Me.WbcAdministradorMensajeModal.mMostrarMensajeModal("Error",
+        '              "No se pudo Completar el Proceso: " & loExcepcion.Message,
+        '               vis3Controles.wbcAdministradorMensajeModal.enumTipoMensaje.KN_Error,
+        '               "auto",
         '               "auto")
 
         'End Try

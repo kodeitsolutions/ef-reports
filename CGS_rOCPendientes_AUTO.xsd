@@ -39,6 +39,11 @@
               <xs:element name="Faut_mgentili" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Faut_ssimanca" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Faut_yreina" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Solicitante1" type="xs:string" minOccurs="0" />
+              <xs:element name="Solicitante2" type="xs:string" minOccurs="0" />
+              <xs:element name="Solicitante3" type="xs:string" minOccurs="0" />
+              <xs:element name="Otros" type="xs:string" minOccurs="0" />
+              <xs:element name="Requisicion" type="xs:string" minOccurs="0" />
               <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
 				    </xs:sequence>
           </xs:complexType>
