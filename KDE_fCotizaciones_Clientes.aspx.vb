@@ -42,7 +42,10 @@ Partial Class KDE_fCotizaciones_Clientes
             loComandoSeleccionar.AppendLine("        Renglones_Cotizaciones.Comentario  AS Comentario_Renglon, ")
             loComandoSeleccionar.AppendLine("        Renglones_Cotizaciones.Notas, ")
             loComandoSeleccionar.AppendLine("        Renglones_Cotizaciones.Can_Art1, ")
-            loComandoSeleccionar.AppendLine("        Renglones_Cotizaciones.Cod_Uni, ")
+            loComandoSeleccionar.AppendLine("        CASE WHEN Renglones_Cotizaciones.Cod_Uni = Renglones_Cotizaciones.Cod_Uni2 ")
+            loComandoSeleccionar.AppendLine("             THEN Renglones_Cotizaciones.Cod_Uni")
+            loComandoSeleccionar.AppendLine("             ELSE Renglones_Cotizaciones.Cod_Uni2")
+            loComandoSeleccionar.AppendLine("        END                                AS Cod_Uni,")
             loComandoSeleccionar.AppendLine("        Renglones_Cotizaciones.Precio1,")
             loComandoSeleccionar.AppendLine("        Renglones_Cotizaciones.Mon_Net     AS  Neto ")
             loComandoSeleccionar.AppendLine("FROM Cotizaciones ")
@@ -50,6 +53,8 @@ Partial Class KDE_fCotizaciones_Clientes
             loComandoSeleccionar.AppendLine("	JOIN Clientes ON Cotizaciones.Cod_Cli = Clientes.Cod_Cli")
             loComandoSeleccionar.AppendLine("   JOIN Articulos ON Articulos.Cod_Art = Renglones_Cotizaciones.Cod_Art")
             loComandoSeleccionar.AppendLine("WHERE " & cusAplicacion.goFormatos.pcCondicionPrincipal)
+
+            'Me.mEscribirConsulta(loComandoSeleccionar.ToString())
 
             Dim loServicios As New cusDatos.goDatos
             Dim laDatosReporte As DataSet = loServicios.mObtenerTodos(loComandoSeleccionar.ToString, "curReportes")
