@@ -41,6 +41,7 @@ Partial Class KDE_fOrdenes_Compras
             loComandoSeleccionar.AppendLine("      Articulos.Nom_Art               AS Nom_Art, ")
             loComandoSeleccionar.AppendLine("      Articulos.Generico              AS Generico,")
             loComandoSeleccionar.AppendLine("      Renglones_OCompras.Notas        AS Notas,")
+            loComandoSeleccionar.AppendLine("      Renglones_OCompras.Comentario   AS Com_Ren,")
             loComandoSeleccionar.AppendLine("      Renglones_OCompras.Can_Art1, ")
             loComandoSeleccionar.AppendLine("      Renglones_OCompras.Precio1      As Precio1, ")
             loComandoSeleccionar.AppendLine("      Renglones_OCompras.Mon_Net      As Neto, ")
