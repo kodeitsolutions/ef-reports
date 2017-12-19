@@ -54,11 +54,11 @@
               <xs:element name="Tipo" type="xs:string" minOccurs="0" />
               <xs:element name="mgentili" type="xs:boolean" minOccurs="0" />
               <xs:element name="ssimanca" type="xs:boolean" minOccurs="0" />
-              <xs:element name="dmatheus" type="xs:boolean" minOccurs="0" />
+              <xs:element name="lcarrizal" type="xs:boolean" minOccurs="0" />
               <xs:element name="yreina" type="xs:boolean" minOccurs="0" />
               <xs:element name="Faut_mgentili" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Faut_ssimanca" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="Faut_dmatheus" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Faut_lcarrizal" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Faut_yreina" type="xs:dateTime" minOccurs="0" />
             <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
