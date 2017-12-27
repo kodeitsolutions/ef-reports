@@ -39,12 +39,7 @@ Partial Class CGS_fRecepciones_Proveedores_AUTO
             loComandoSeleccionar.AppendLine("		COALESCE(Piezas.Res_Num, 0)			    AS Piezas,")
             loComandoSeleccionar.AppendLine("		COALESCE(Desperdicio.Res_Num, 0)		AS Porc_Desperdicio,")
             loComandoSeleccionar.AppendLine("		COALESCE((Desperdicio.Res_Num*Operaciones_Lotes.Cantidad)/100, ")
-            loComandoSeleccionar.AppendLine("		(Desperdicio.Res_Num*Renglones_Recepciones.Can_Art1)/100, 0)	AS Cant_Desperdicio,")
-            loComandoSeleccionar.AppendLine("       COALESCE(Ajustes.Documento,'')			AS Ajuste,")
-            loComandoSeleccionar.AppendLine("       COALESCE(Lotes_Ajustes.Cod_Lot,'')		AS Lote_Ajuste,")
-            loComandoSeleccionar.AppendLine("       COALESCE(Renglones_Ajustes.Can_Art1,0)	AS Cantidad_Ajuste,")
-            loComandoSeleccionar.AppendLine("       CONCAT(COALESCE(RTRIM(Renglones_Ajustes.Cod_Tip),''),' - ', COALESCE(Tipos_Ajustes.Nom_Tip,''))	AS Tipo_Ajuste,")
-            loComandoSeleccionar.AppendLine("		CONCAT(COALESCE(RTRIM(Renglones_Recepciones.Cod_Alm),''),' - ',COALESCE(Almacenes.Nom_Alm,''))		AS Nom_Alm")
+            loComandoSeleccionar.AppendLine("		(Desperdicio.Res_Num*Renglones_Recepciones.Can_Art1)/100, 0)	AS Cant_Desperdicio")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("INTO #tmpRecepcion")
             loComandoSeleccionar.AppendLine("FROM Recepciones")
@@ -63,16 +58,6 @@ Partial Class CGS_fRecepciones_Proveedores_AUTO
             loComandoSeleccionar.AppendLine("		AND Piezas.Cod_Var = 'NREC-NPIEZ'")
             loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Desperdicio ON Mediciones.Documento = Desperdicio.Documento")
             loComandoSeleccionar.AppendLine("		AND Desperdicio.Cod_Var = 'NREC-PDESP'")
-            loComandoSeleccionar.AppendLine("	LEFT JOIN Ajustes ON Ajustes.Doc_Ori = Recepciones.Documento")
-            loComandoSeleccionar.AppendLine("		AND Ajustes.Tip_Ori = 'Recepciones'")
-            loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Ajustes ON Ajustes.Documento = Renglones_Ajustes.Documento")
-            loComandoSeleccionar.AppendLine("	LEFT JOIN Almacenes ON Renglones_Ajustes.Cod_Alm = Almacenes.Cod_Alm")
-            loComandoSeleccionar.AppendLine("	LEFT JOIN Tipos_Ajustes ON Tipos_Ajustes.Cod_Tip = Renglones_Ajustes.Cod_Tip")
-            loComandoSeleccionar.AppendLine("	LEFT JOIN Operaciones_Lotes AS Lotes_Ajustes ON Lotes_Ajustes.Num_Doc = Ajustes.Documento")
-            loComandoSeleccionar.AppendLine("       AND Renglones_Ajustes.Cod_Art = Lotes_Ajustes.Cod_Art")
-            loComandoSeleccionar.AppendLine("       AND Lotes_Ajustes.Ren_Ori = Renglones_Ajustes.Renglon")
-            loComandoSeleccionar.AppendLine("	    AND Lotes_Ajustes.Tip_Doc = 'Ajustes_Inventarios' AND Lotes_Ajustes.Tip_Ope = 'Entrada'")
-            loComandoSeleccionar.AppendLine("	    AND Lotes_Ajustes.Cod_Lot = Operaciones_Lotes.Cod_Lot")
             loComandoSeleccionar.AppendLine(" WHERE " & cusAplicacion.goFormatos.pcCondicionPrincipal & ";")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("WITH Sumatorias (Cod_Art, Lote, Cantidad, Cantidad_Lote, Peso) AS")
@@ -103,25 +88,25 @@ Partial Class CGS_fRecepciones_Proveedores_AUTO
 
             Me.mCargarLogoEmpresa(laDatosReporte.Tables(0), "LogoEmpresa")
 
-        '-------------------------------------------------------------------------------------------------------
-        ' Verificando si el select (tabla nº0) trae registros
-        '-------------------------------------------------------------------------------------------------------
+            '-------------------------------------------------------------------------------------------------------
+            ' Verificando si el select (tabla nº0) trae registros
+            '-------------------------------------------------------------------------------------------------------
 
-        '      If (laDatosReporte.Tables(0).Rows.Count <= 0) Then
-        '          Me.WbcAdministradorMensajeModal.mMostrarMensajeModal("Información",
-        '                "No se Encontraron Registros para los Parámetros Especificados. ",
-        'vis3Controles.wbcAdministradorMensajeModal.enumTipoMensaje.KN_Informacion,
-        '                 "350px",
-        '                 "200px")
-        '      End If
-
-
-        '--------------------------------------------------'
-        ' Carga la imagen del logo en cusReportes            '
-        '--------------------------------------------------'
+            '      If (laDatosReporte.Tables(0).Rows.Count <= 0) Then
+            '          Me.WbcAdministradorMensajeModal.mMostrarMensajeModal("Información",
+            '                "No se Encontraron Registros para los Parámetros Especificados. ",
+            'vis3Controles.wbcAdministradorMensajeModal.enumTipoMensaje.KN_Informacion,
+            '                 "350px",
+            '                 "200px")
+            '      End If
 
 
-        loObjetoReporte = cusAplicacion.goFormatos.mCargarInforme("CGS_fRecepciones_Proveedores_AUTO", laDatosReporte)
+            '--------------------------------------------------'
+            ' Carga la imagen del logo en cusReportes            '
+            '--------------------------------------------------'
+
+
+            loObjetoReporte = cusAplicacion.goFormatos.mCargarInforme("CGS_fRecepciones_Proveedores_AUTO", laDatosReporte)
 
             Me.mTraducirReporte(loObjetoReporte)
 
@@ -131,11 +116,11 @@ Partial Class CGS_fRecepciones_Proveedores_AUTO
 
         'Catch loExcepcion As Exception
 
-        'Me.WbcAdministradorMensajeModal.mMostrarMensajeModal("Error",
-        '          "No se pudo Completar el Proceso: " & loExcepcion.Message,
-        '           vis3Controles.wbcAdministradorMensajeModal.enumTipoMensaje.KN_Error,
-        '           "auto",
-        '           "auto")
+        '    Me.WbcAdministradorMensajeModal.mMostrarMensajeModal("Error", _
+        '              "No se pudo Completar el Proceso: " & loExcepcion.Message, _
+        '               vis3Controles.wbcAdministradorMensajeModal.enumTipoMensaje.KN_Error, _
+        '               "auto", _
+        '               "auto")
 
         'End Try
 
