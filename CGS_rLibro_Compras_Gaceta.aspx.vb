@@ -7,9 +7,9 @@ Imports System.Data
 Imports cusAplicacion
 
 '-------------------------------------------------------------------------------------------'
-' Inicio de clase "PAS_rLibro_Compras"
+' Inicio de clase "CGS_rLibro_Compras_Gaceta"
 '-------------------------------------------------------------------------------------------'
-Partial Class PAS_rLibro_Compras
+Partial Class CGS_rLibro_Compras_Gaceta
     Inherits vis2formularios.frmReporte
 
     Dim loObjetoReporte As CrystalDecisions.CrystalReports.Engine.ReportDocument
@@ -20,6 +20,8 @@ Partial Class PAS_rLibro_Compras
 
             Dim lcParametro0Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(0), goServicios.enuOpcionesRedondeo.KN_FechaInicioDelDia)
             Dim lcParametro0Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(0), goServicios.enuOpcionesRedondeo.KN_FechaFinDelDia)
+
+            'Dim Empresa As String = goServicios.mObtenerCampoFormatoSQL(goEmpresa.pcCodigo)
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
             Dim loComandoSeleccionar As New StringBuilder()
@@ -47,13 +49,19 @@ Partial Class PAS_rLibro_Compras
             loComandoSeleccionar.AppendLine("                    ELSE Cuentas_Pagar.Mon_Otr3")
             loComandoSeleccionar.AppendLine("               END 									AS Total_Doc,")
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Mon_Exe			        AS Monto_Exento,")
-            loComandoSeleccionar.AppendLine("               CAST(ISNULL(CAST(Cuentas_Pagar.Dis_Imp AS XML).value('(/impuestos/impuesto/base)[1]', 'VARCHAR(MAX)'),0)AS DECIMAL (28,10)) AS Base_Imponible,")
+            loComandoSeleccionar.AppendLine("               CASE WHEN Cuentas_Pagar.Cod_Mon = 'VEB'")
+            loComandoSeleccionar.AppendLine("                    THEN CAST(ISNULL(CAST(Cuentas_Pagar.Dis_Imp AS XML).value('(/impuestos/impuesto/base)[1]', 'VARCHAR(MAX)'),0)AS DECIMAL (28,10))")
+            loComandoSeleccionar.AppendLine("                    ELSE Cuentas_Pagar.Mon_Otr1")
+            loComandoSeleccionar.AppendLine("               END										AS Base_Imponible,")
             loComandoSeleccionar.AppendLine("				CAST(ISNULL(CAST(Cuentas_Pagar.Dis_Imp AS XML).value('(/impuestos/impuesto/porcentaje)[1]', 'VARCHAR(MAX)'),0)AS DECIMAL (28,10))	AS Impuesto,")
-            loComandoSeleccionar.AppendLine("               CAST(ISNULL(CAST(Cuentas_Pagar.Dis_Imp AS XML).value('(/impuestos/impuesto/monto)[1]', 'VARCHAR(MAX)'),0)AS DECIMAL (28,10)) AS Monto_Imp,")
-            loComandoSeleccionar.AppendLine("				CAST(ISNULL(CAST(Cuentas_Pagar.Dis_Imp AS XML).value('(/impuestos/impuesto/base)[2]', 'VARCHAR(MAX)'),0)AS DECIMAL (28,10))       AS Base_Imponible2,")
-            loComandoSeleccionar.AppendLine("				CAST(ISNULL(CAST(Cuentas_Pagar.Dis_Imp AS XML).value('(/impuestos/impuesto/porcentaje)[2]', 'VARCHAR(MAX)'),0)AS DECIMAL (28,10))	AS Impuesto2,")
-            loComandoSeleccionar.AppendLine("				CAST(ISNULL(CAST(Cuentas_Pagar.Dis_Imp AS XML).value('(/impuestos/impuesto/monto)[2]', 'VARCHAR(MAX)'),0)AS DECIMAL (28,10))      AS Monto_Imp2,")
+            loComandoSeleccionar.AppendLine("               CASE WHEN Cuentas_Pagar.Cod_Mon = 'VEB'")
+            loComandoSeleccionar.AppendLine("                    THEN CAST(ISNULL(CAST(Cuentas_Pagar.Dis_Imp AS XML).value('(/impuestos/impuesto/monto)[1]', 'VARCHAR(MAX)'),0)AS DECIMAL (28,10))")
+            loComandoSeleccionar.AppendLine("                    ELSE Cuentas_Pagar.Mon_Otr2")
+            loComandoSeleccionar.AppendLine("               END										AS Monto_Imp,")
+            loComandoSeleccionar.AppendLine("               Cuentas_Pagar.Cod_Imp					AS Cod_Imp,")
             loComandoSeleccionar.AppendLine("				@lnCero									AS Monto_Ret,")
+            loComandoSeleccionar.AppendLine("				COALESCE(Compras.Referencia,'')			AS Planilla,")
+            loComandoSeleccionar.AppendLine("				COALESCE(Compras.Num_Com,'')			AS Expediente,")
             loComandoSeleccionar.AppendLine("               CAST(" & lcParametro0Desde & " AS DATE) AS Fecha_De,")
             loComandoSeleccionar.AppendLine("               CAST(" & lcParametro0Hasta & " AS DATE) AS Fecha_Hasta")
             loComandoSeleccionar.AppendLine("		FROM Cuentas_Pagar")
@@ -81,10 +89,10 @@ Partial Class PAS_rLibro_Compras
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Mon_Bas1*(-1)             AS Base_Imponible,")
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Por_Imp1			        AS Impuesto,")
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Mon_Imp1*(-1)             AS Monto_Imp,")
-            loComandoSeleccionar.AppendLine("				@lnCero			                        AS Base_Imponible2,")
-            loComandoSeleccionar.AppendLine("				@lnCero									AS Impuesto2,")
-            loComandoSeleccionar.AppendLine("				@lnCero					                AS Monto_Imp2,")
+            loComandoSeleccionar.AppendLine("               Cuentas_Pagar.Cod_Imp					AS Cod_Imp,")
             loComandoSeleccionar.AppendLine("				@lnCero                                 AS Monto_Ret,")
+            loComandoSeleccionar.AppendLine("				@lcVacio								AS Planilla,")
+            loComandoSeleccionar.AppendLine("				@lcVacio								AS Expediente,")
             loComandoSeleccionar.AppendLine("               CAST(" & lcParametro0Desde & " AS DATE) AS Fecha_De,")
             loComandoSeleccionar.AppendLine("               CAST(" & lcParametro0Hasta & " AS DATE) AS Fecha_Hasta")
             loComandoSeleccionar.AppendLine("		FROM Cuentas_Pagar")
@@ -112,10 +120,10 @@ Partial Class PAS_rLibro_Compras
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Mon_Bas1                  AS Base_Imponible,")
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Por_Imp1			        AS Impuesto,")
             loComandoSeleccionar.AppendLine("				Cuentas_Pagar.Mon_Imp1                  AS Monto_Imp,")
-            loComandoSeleccionar.AppendLine("				@lnCero			                        AS Base_Imponible2,")
-            loComandoSeleccionar.AppendLine("				@lnCero									AS Impuesto2,")
-            loComandoSeleccionar.AppendLine("				@lnCero					                AS Monto_Imp2,")
+            loComandoSeleccionar.AppendLine("               Cuentas_Pagar.Cod_Imp					AS Cod_Imp,")
             loComandoSeleccionar.AppendLine("				@lnCero                                 AS Monto_Ret,")
+            loComandoSeleccionar.AppendLine("				@lcVacio								AS Planilla,")
+            loComandoSeleccionar.AppendLine("				@lcVacio								AS Expediente,")
             loComandoSeleccionar.AppendLine("               CAST(" & lcParametro0Desde & " AS DATE) AS Fecha_De,")
             loComandoSeleccionar.AppendLine("               CAST(" & lcParametro0Hasta & " AS DATE) AS Fecha_Hasta")
             loComandoSeleccionar.AppendLine("		FROM Cuentas_Pagar")
@@ -146,13 +154,13 @@ Partial Class PAS_rLibro_Compras
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Mon_Bas		    AS Base_Imponible,")
             loComandoSeleccionar.AppendLine("				Retenciones_Documentos.Por_Ret		    AS Impuesto, ")
             loComandoSeleccionar.AppendLine("				@lnCero                     		    AS Monto_Imp,")
-            loComandoSeleccionar.AppendLine("				@lnCero			                        AS Base_Imponible2,")
-            loComandoSeleccionar.AppendLine("				@lnCero									AS Impuesto2,")
-            loComandoSeleccionar.AppendLine("				@lnCero					                AS Monto_Imp2,")
+            loComandoSeleccionar.AppendLine("               @lcVacio             					AS Cod_Imp,")
             loComandoSeleccionar.AppendLine("				CASE WHEN Documentos.Cod_Tip = 'N/CR'")
             loComandoSeleccionar.AppendLine("			 		 THEN Retenciones_Documentos.Mon_Ret * (-1)")
             loComandoSeleccionar.AppendLine("			 		 ELSE Retenciones_Documentos.Mon_Ret")
             loComandoSeleccionar.AppendLine("				END 									AS Monto_Ret,")
+            loComandoSeleccionar.AppendLine("				@lcVacio								AS Planilla,")
+            loComandoSeleccionar.AppendLine("				@lcVacio								AS Expediente,")
             loComandoSeleccionar.AppendLine("               CAST(" & lcParametro0Desde & " AS DATE) AS Fecha_De,")
             loComandoSeleccionar.AppendLine("               CAST(" & lcParametro0Hasta & " AS DATE) AS Fecha_Hasta")
             loComandoSeleccionar.AppendLine("		FROM	Cuentas_Pagar")
@@ -213,10 +221,10 @@ Partial Class PAS_rLibro_Compras
             loComandoSeleccionar.AppendLine("		#tmpLibroCompra.Base_Imponible,")
             loComandoSeleccionar.AppendLine("		#tmpLibroCompra.Impuesto,")
             loComandoSeleccionar.AppendLine("		#tmpLibroCompra.Monto_Imp,")
-            loComandoSeleccionar.AppendLine("		#tmpLibroCompra.Base_Imponible2,")
-            loComandoSeleccionar.AppendLine("		#tmpLibroCompra.Impuesto2,")
-            loComandoSeleccionar.AppendLine("		#tmpLibroCompra.Monto_Imp2,")
+            loComandoSeleccionar.AppendLine("		#tmpLibroCompra.Cod_Imp,")
             loComandoSeleccionar.AppendLine("		#tmpLibroCompra.Monto_Ret,")
+            loComandoSeleccionar.AppendLine("		#tmpLibroCompra.Planilla,")
+            loComandoSeleccionar.AppendLine("		#tmpLibroCompra.Expediente,")
             loComandoSeleccionar.AppendLine("		#tmpLibroCompra.Fecha_De,")
             loComandoSeleccionar.AppendLine("		#tmpLibroCompra.Fecha_Hasta")
             loComandoSeleccionar.AppendLine("FROM #tmpLibroCompra")
@@ -247,7 +255,7 @@ Partial Class PAS_rLibro_Compras
             '--------------------------------------------------'
             Me.mCargarLogoEmpresa(laDatosReporte.Tables(0), "LogoEmpresa")
 
-            loObjetoReporte = cusAplicacion.goReportes.mCargarReporte("PAS_rLibro_Compras", laDatosReporte)
+            loObjetoReporte = cusAplicacion.goReportes.mCargarReporte("CGS_rLibro_Compras_Gaceta", laDatosReporte)
 
             '-------------------------------------------------------------------
             ' Selección de opcion por excel (Microsoft Excel - xls):
@@ -255,7 +263,7 @@ Partial Class PAS_rLibro_Compras
             '-------------------------------------------------------------------
             'If (Me.Request.QueryString("salida").ToLower = "xls") Then
             '    ' Ruta donde se creara temporalmente el archivo
-            '    Dim lcFileName As String = Me.Server.MapPath("~\Administrativo\Temporales\PAS_rLibro_Compras_" & Guid.NewGuid().ToString("N") & ".xls")
+            '    Dim lcFileName As String = Me.Server.MapPath("~\Administrativo\Temporales\CGS_rLibro_Compras_Gaceta_" & Guid.NewGuid().ToString("N") & ".xls")
             '    ' Se exporta para crear el archivo temporal
             '    loObjetoReporte.ExportToDisk(CrystalDecisions.Shared.ExportFormatType.ExcelRecord, lcFileName)
 
@@ -265,7 +273,7 @@ Partial Class PAS_rLibro_Compras
             '    ' Se coloca en la respuesta para descargar
             '    Me.Response.Clear()
             '    'Me.Response.Buffer = True 
-            '    Me.Response.AppendHeader("content-disposition", "attachment; filename=PAS_rLibro_Compras.xls")
+            '    Me.Response.AppendHeader("content-disposition", "attachment; filename=CGS_rLibro_Compras_Gaceta.xls")
             '    Me.Response.ContentType = "application/excel"
             '    Me.Response.WriteFile(lcFileName, True)
             '    'Me.Response.Write(Space(30))
@@ -281,7 +289,7 @@ Partial Class PAS_rLibro_Compras
 
             Me.mFormatearCamposReporte(loObjetoReporte)
 
-            Me.crvrPAS_rLibro_Compras.ReportSource = loObjetoReporte
+            Me.crvrCGS_rLibro_Compras_Gaceta.ReportSource = loObjetoReporte
 
         Catch loExcepcion As Exception
 

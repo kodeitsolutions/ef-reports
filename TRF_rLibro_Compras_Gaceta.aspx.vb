@@ -7,9 +7,9 @@ Imports System.Data
 Imports cusAplicacion
 
 '-------------------------------------------------------------------------------------------'
-' Inicio de clase "KDE_rLibro_Compras"
+' Inicio de clase "TRF_rLibro_Compras_Gaceta"
 '-------------------------------------------------------------------------------------------'
-Partial Class KDE_rLibro_Compras
+Partial Class TRF_rLibro_Compras_Gaceta
     Inherits vis2formularios.frmReporte
 
     Dim loObjetoReporte As CrystalDecisions.CrystalReports.Engine.ReportDocument
@@ -25,11 +25,15 @@ Partial Class KDE_rLibro_Compras
 
             Dim loComandoSeleccionar As New StringBuilder()
 
-            loComandoSeleccionar.AppendLine("DECLARE @FecIni AS DATETIME = " & lcParametro0Desde)
-            loComandoSeleccionar.AppendLine("DECLARE @FecFin AS DATETIME = " & lcParametro0Hasta)
+            loComandoSeleccionar.AppendLine("DECLARE	@FecIni			AS DATETIME")
+            loComandoSeleccionar.AppendLine("DECLARE	@FecFin			AS DATETIME")
+            loComandoSeleccionar.AppendLine("SET	@FecIni          = " & lcParametro0Desde)
+            loComandoSeleccionar.AppendLine("SET	@FecFin          = " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("DECLARE @lnCero AS DECIMAL(28, 10) = CAST(0 AS DECIMAL(28, 10))")
-            loComandoSeleccionar.AppendLine("DECLARE @lcVacio AS NVARCHAR(30) = ''")
+            loComandoSeleccionar.AppendLine("DECLARE @lnCero AS DECIMAL(28, 10);")
+            loComandoSeleccionar.AppendLine("SET @lnCero = CAST(0 AS DECIMAL(28, 10));")
+            loComandoSeleccionar.AppendLine("DECLARE @lcVacio AS NVARCHAR(30); ")
+            loComandoSeleccionar.AppendLine("SET @lcVacio = N''; ")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("SELECT	ROW_NUMBER() OVER (ORDER BY Registros.Fecha_Doc) AS Num,*")
             loComandoSeleccionar.AppendLine("FROM(")
@@ -166,13 +170,13 @@ Partial Class KDE_rLibro_Compras
             '--------------------------------------------------'
             Me.mCargarLogoEmpresa(laDatosReporte.Tables(0), "LogoEmpresa")
 
-            loObjetoReporte = cusAplicacion.goReportes.mCargarReporte("KDE_rLibro_Compras", laDatosReporte)
+            loObjetoReporte = cusAplicacion.goReportes.mCargarReporte("TRF_rLibro_Compras_Gaceta", laDatosReporte)
 
             Me.mTraducirReporte(loObjetoReporte)
 
             Me.mFormatearCamposReporte(loObjetoReporte)
 
-            Me.crvrKDE_rLibro_Compras.ReportSource = loObjetoReporte
+            Me.crvrTRF_rLibro_Compras_Gaceta.ReportSource = loObjetoReporte
 
         Catch loExcepcion As Exception
 
