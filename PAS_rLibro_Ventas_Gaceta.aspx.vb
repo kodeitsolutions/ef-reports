@@ -3,9 +3,9 @@
 '-------------------------------------------------------------------------------------------'
 
 '-------------------------------------------------------------------------------------------'
-' Inicio de clase "PAS_rLibro_Ventas"
+' Inicio de clase "PAS_rLibro_Ventas_Gaceta"
 '-------------------------------------------------------------------------------------------'
-Partial Class PAS_rLibro_Ventas
+Partial Class PAS_rLibro_Ventas_Gaceta
     Inherits vis2formularios.frmReporte
 
     Dim loObjetoReporte As CrystalDecisions.CrystalReports.Engine.ReportDocument
@@ -208,14 +208,8 @@ Partial Class PAS_rLibro_Ventas
             loComandoSeleccionar.AppendLine("						Cuentas_Cobrar.Documento							AS Documento,")
             loComandoSeleccionar.AppendLine("						Cuentas_Cobrar.Control                              AS Control,")
             loComandoSeleccionar.AppendLine("						Cuentas_Cobrar.Fec_Ini                              AS Fec_Ini, ")
-            loComandoSeleccionar.AppendLine("						(CASE   WHEN Cuentas_Cobrar.Nom_Cli = ''")
-            loComandoSeleccionar.AppendLine("								THEN Clientes.Nom_Cli ")
-            loComandoSeleccionar.AppendLine("								ELSE Cuentas_Cobrar.Nom_Cli")
-            loComandoSeleccionar.AppendLine("						END)                                                AS Nom_Cli,")
-            loComandoSeleccionar.AppendLine("						(CASE   WHEN Cuentas_Cobrar.Rif = ''")
-            loComandoSeleccionar.AppendLine("								THEN Clientes.Rif ")
-            loComandoSeleccionar.AppendLine("								ELSE Cuentas_Cobrar.Rif")
-            loComandoSeleccionar.AppendLine("						END)                                                AS Rif,")
+            loComandoSeleccionar.AppendLine("						Clientes.Nom_Cli                                    AS Nom_Cli,")
+            loComandoSeleccionar.AppendLine("						Clientes.Rif                                        AS Rif,")
             loComandoSeleccionar.AppendLine("						Cuentas_Cobrar.Cod_Tip                              AS Cod_Tip,")
             loComandoSeleccionar.AppendLine("						Cuentas_Cobrar.Doc_Ori                              AS Doc_Ori,     ")
             loComandoSeleccionar.AppendLine("						Cuentas_Cobrar.Por_Des                              AS Por_Des,     ")
@@ -236,9 +230,9 @@ Partial Class PAS_rLibro_Ventas
             loComandoSeleccionar.AppendLine("                       MONTH(@sp_FecIni)				                    AS Mes,")
             loComandoSeleccionar.AppendLine("                       YEAR(@sp_FecFin)				                    AS Anio")
             loComandoSeleccionar.AppendLine("			FROM        Cuentas_Cobrar")
-            loComandoSeleccionar.AppendLine("				JOIN    Clientes ON Cuentas_Cobrar.Cod_Cli   =   Clientes.Cod_Cli")
-            loComandoSeleccionar.AppendLine("				JOIN    Retenciones_Documentos ON Cuentas_Cobrar.Documento = Retenciones_Documentos.Doc_Des")
-            loComandoSeleccionar.AppendLine("								AND Cuentas_Cobrar.Cod_tip = Retenciones_Documentos.Cla_Des")
+            loComandoSeleccionar.AppendLine("				JOIN    Clientes On Cuentas_Cobrar.Cod_Cli   = Clientes.Cod_Cli")
+            loComandoSeleccionar.AppendLine("				JOIN    Retenciones_Documentos On Cuentas_Cobrar.Documento = Retenciones_Documentos.Doc_Des")
+            loComandoSeleccionar.AppendLine("								And Cuentas_Cobrar.Cod_tip = Retenciones_Documentos.Cla_Des")
             loComandoSeleccionar.AppendLine("			WHERE       Cuentas_Cobrar.Cod_Tip      =   'RETIVA' ")
             loComandoSeleccionar.AppendLine("						AND Retenciones_Documentos.Tip_Ori = 'Cuentas_Cobrar'")
             loComandoSeleccionar.AppendLine("						AND Retenciones_Documentos.Clase = 'IMPUESTO'")
@@ -300,13 +294,13 @@ Partial Class PAS_rLibro_Ventas
             Me.mCargarLogoEmpresa(laDatosReporte.Tables(0), "LogoEmpresa")
 
 
-            loObjetoReporte = cusAplicacion.goReportes.mCargarReporte("PAS_rLibro_Ventas", laDatosReporte)
+            loObjetoReporte = cusAplicacion.goReportes.mCargarReporte("PAS_rLibro_Ventas_Gaceta", laDatosReporte)
 
             Me.mTraducirReporte(loObjetoReporte)
 
             Me.mFormatearCamposReporte(loObjetoReporte)
 
-            Me.crvPAS_rLibro_Ventas.ReportSource = loObjetoReporte
+            Me.crvPAS_rLibro_Ventas_Gaceta.ReportSource = loObjetoReporte
 
         Catch loExcepcion As Exception
 
