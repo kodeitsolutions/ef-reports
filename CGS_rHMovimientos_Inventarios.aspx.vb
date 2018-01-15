@@ -400,7 +400,7 @@ Partial Class CGS_rHMovimientos_Inventarios
                     lcLote = ""
                 End If
 
-                If (loRenglon("Documento") <> lcDocumento And loRenglon("Operacion") <> lcOperacion) Or (loRenglon("Documento") <> lcDocumento And loRenglon("Operacion") = lcOperacion) Or (loRenglon("Documento") = lcDocumento And loRenglon("Operacion") = lcOperacion And loRenglon("Lote") <> lcLote) Then
+                If (loRenglon("Documento") <> lcDocumento And loRenglon("Operacion") <> lcOperacion) Or (loRenglon("Documento") <> lcDocumento And loRenglon("Operacion") = lcOperacion) Or (loRenglon("Documento") = lcDocumento And loRenglon("Operacion") = lcOperacion And loRenglon("Lote") <> lcLote) Or (loRenglon("Documento") = lcDocumento And loRenglon("Operacion") = lcOperacion And loRenglon("Lote") = lcLote) Then
                     lcDocumento = loRenglon("Documento")
                     lcOperacion = loRenglon("Operacion")
                     lcLote = loRenglon("Lote")
@@ -408,7 +408,6 @@ Partial Class CGS_rHMovimientos_Inventarios
                 Else
                     loRenglon("Can_Ent") = 0D
                     loRenglon("Can_Sal") = 0D
-
                 End If
 
                 lnSaldo_Piezas = lnSaldo_Piezas + CDec(loRenglon("Piezas_Ent")) - CDec(loRenglon("Piezas_Sal"))
