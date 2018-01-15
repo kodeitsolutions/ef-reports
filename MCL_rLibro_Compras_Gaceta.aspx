@@ -1,5 +1,5 @@
-<%@ Page Language="VB" AutoEventWireup="false" CodeFile="PAS_rLibro_Compras.aspx.vb"
-    Inherits="PAS_rLibro_Compras" %>
+<%@ Page Language="VB" AutoEventWireup="false" CodeFile="MCL_rLibro_Compras_Gaceta.aspx.vb"
+    Inherits="MCL_rLibro_Compras_Gaceta" %>
 
 <%@ Register Assembly="vis2Controles" Namespace="vis2Controles" TagPrefix="vis2Controles" %>
 <%@ Register Assembly="vis1Controles" Namespace="vis1Controles" TagPrefix="vis1Controles" %>
@@ -10,7 +10,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>Libro de Compras (PAS)</title>
+    <title>Libro de Compras Gaceta N° 41.239 (MCL)</title>
     <link href="~/Framework/cssEstilosFramework.css" rel="stylesheet" type="text/css" />
     <link href="~/Administrativo/cssEstilosAdministrativo.css" rel="stylesheet" type="text/css" />
     <link href="/aspnet_client/System_Web/2_0_50727/CrystalReportWebFormViewer3/css/default.css"
@@ -19,7 +19,7 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <CR:CrystalReportViewer ID="crvrPAS_rLibro_Compras" runat="server" AutoDataBind="true"
+            <CR:CrystalReportViewer ID="crvrMCL_rLibro_Compras_Gaceta" runat="server" AutoDataBind="true"
                 EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" HasCrystalLogo="False"
                  HasPrintButton="False" />
             <asp:ScriptManager ID="ScriptManager1" runat="server">
