@@ -21,7 +21,7 @@ Partial Class CGS_fRecepciones_Proveedores
             loComandoSeleccionar.AppendLine("	    Recepciones.Fec_Ini						AS Fec_Ini,")
             loComandoSeleccionar.AppendLine("	    Recepciones.Comentario					AS Comentario,")
             loComandoSeleccionar.AppendLine("	    Recepciones.Notas					    AS Datos,")
-            'loComandoSeleccionar.AppendLine("	    Renglones_Recepciones.Renglon			AS Renglon,")
+            loComandoSeleccionar.AppendLine("	    Renglones_Recepciones.Renglon			AS Renglon,")
             loComandoSeleccionar.AppendLine("	    Renglones_Recepciones.Cod_Art			AS Cod_Art,")
             loComandoSeleccionar.AppendLine("	    Articulos.Nom_Art						AS Nom_Art,")
             loComandoSeleccionar.AppendLine("       Articulos.Generico						AS Generico,")
