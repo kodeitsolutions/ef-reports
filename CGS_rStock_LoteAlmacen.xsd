@@ -18,22 +18,20 @@
         <xs:element name="curReportes">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="Tabla" type="xs:string" minOccurs="0" />
+              <!--<xs:element name="Tabla" type="xs:string" minOccurs="0" />-->
               <xs:element name="Nom_Alm" type="xs:string" minOccurs="0" />
               <xs:element name="Cod_Alm" type="xs:string" minOccurs="0" />
               <xs:element name="Cod_Art" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Art" type="xs:string" minOccurs="0" />
               <xs:element name="Descripcion" type="xs:string" minOccurs="0" />
               <xs:element name="Cod_Uni" type="xs:string" minOccurs="0" />
+              <xs:element name="Usa_Lot" type="xs:boolean" minOccurs="0" />
               <xs:element name="Nom_Dep" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_Sec" type="xs:string" minOccurs="0" />
               <xs:element name="Lote" type="xs:string" minOccurs="0" />
               <xs:element name="Existencia" type="xs:decimal" minOccurs="0" />
               <xs:element name="Piezas" type="xs:int" minOccurs="0" />
               <xs:element name="Porc_Desperdicio" type="xs:decimal" minOccurs="0" />
-              <!--<xs:element name="Origen" type="xs:string" minOccurs="0" />
-              <xs:element name="Doc_Origen" type="xs:string" minOccurs="0" />-->
-              <!--<xs:element name="Fecha" type="xs:string" minOccurs="0" />-->
               <xs:element name="Art_Desde" type="xs:string" minOccurs="0" />
               <xs:element name="Art_Hasta" type="xs:string" minOccurs="0" />
               <xs:element name="Dep_Desde" type="xs:string" minOccurs="0" />
