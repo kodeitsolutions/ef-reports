@@ -20,29 +20,29 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             Dim lcParametro0Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(0), goServicios.enuOpcionesRedondeo.KN_FechaInicioDelDia)
             Dim lcParametro0Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(0), goServicios.enuOpcionesRedondeo.KN_FechaFinDelDia)
             Dim lcParametro1Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(1))
-            Dim lcParametro1Hasta As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosFinales(1))
-           
+            Dim lcParametro2Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(2))
+            Dim lcParametro3Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(3))
+            Dim lcParametro4Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(4))
+            Dim lcParametro5Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(5))
+            Dim lcParametro6Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(6))
+            Dim lcParametro7Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(7))
+            Dim lcParametro8Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(8))
+            Dim lcParametro9Desde As String = goServicios.mObtenerCampoFormatoSQL(cusAplicacion.goReportes.paParametrosIniciales(9))
+
+
             Dim Empresa As String = goServicios.mObtenerCampoFormatoSQL(goEmpresa.pcCodigo)
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
             Dim loComandoSeleccionar As New StringBuilder()
 
-            loComandoSeleccionar.AppendLine("DECLARE	@sp_FecIni			AS DATETIME")
-            loComandoSeleccionar.AppendLine("DECLARE	@sp_FecFin			AS DATETIME")
-            loComandoSeleccionar.AppendLine("DECLARE	@sp_CodPro_Desde	AS VARCHAR(10)")
-            loComandoSeleccionar.AppendLine("DECLARE	@sp_CodPro_Hasta	AS VARCHAR(10)")
-            loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("SET	@sp_FecIni          = " & lcParametro0Desde)
-            loComandoSeleccionar.AppendLine("SET	@sp_FecFin          = " & lcParametro0Hasta)
-            loComandoSeleccionar.AppendLine("SET	@sp_CodPro_Desde    = " & lcParametro1Desde)
-            loComandoSeleccionar.AppendLine("SET	@sp_CodPro_Hasta    = " & lcParametro1Hasta)
+            loComandoSeleccionar.AppendLine("DECLARE @ldFecha_Desde AS DATETIME = " & lcParametro0Desde)
+            loComandoSeleccionar.AppendLine("DECLARE @ldFecha_Hasta AS DATETIME = " & lcParametro0Hasta)
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("")
-            loComandoSeleccionar.AppendLine("DECLARE @lnCero	AS DECIMAL(28, 10)	;")
-            loComandoSeleccionar.AppendLine("DECLARE @lcVacio	AS VARCHAR(10)	;")
-            loComandoSeleccionar.AppendLine("SET @lnCero		= 0")
-            loComandoSeleccionar.AppendLine("SET @lcVacio		= ''")
+            loComandoSeleccionar.AppendLine("")
+            loComandoSeleccionar.AppendLine("DECLARE @lnCero AS DECIMAL(28, 10)	= 0")
+            loComandoSeleccionar.AppendLine("DECLARE @lcVacio AS VARCHAR(10) = ''")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("--Saldo Inicial")
             loComandoSeleccionar.AppendLine("SELECT	Proveedores.Cod_Pro,")
@@ -58,9 +58,34 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             Else
                 loComandoSeleccionar.AppendLine("WHERE	Cuentas_Pagar.Cod_Tip IN ('FACT','N/CR')")
             End If
-            loComandoSeleccionar.AppendLine("		AND Cuentas_Pagar.Fec_Reg < @sp_FecIni")
+            loComandoSeleccionar.AppendLine("		AND Cuentas_Pagar.Fec_Reg < @ldFecha_Desde")
             loComandoSeleccionar.AppendLine("		AND Cuentas_Pagar.Status <> 'Anulado'")
-            loComandoSeleccionar.AppendLine("			AND Cuentas_Pagar.Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
+            loComandoSeleccionar.AppendLine("		AND (Cuentas_Pagar.Cod_Pro = " & lcParametro1Desde)
+            If lcParametro2Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro2Desde)
+            End If
+            If lcParametro3Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro3Desde)
+            End If
+            If lcParametro4Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro4Desde)
+            End If
+            If lcParametro5Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro5Desde)
+            End If
+            If lcParametro6Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro6Desde)
+            End If
+            If lcParametro7Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro7Desde)
+            End If
+            If lcParametro8Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro8Desde)
+            End If
+            If lcParametro9Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro9Desde)
+            End If
+            loComandoSeleccionar.AppendLine(")")
             loComandoSeleccionar.AppendLine("GROUP BY Proveedores.Cod_Pro")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("UNION ALL")
@@ -76,9 +101,34 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             Else
                 loComandoSeleccionar.AppendLine("WHERE	Cuentas_Pagar.Cod_Tip NOT IN ('FACT','N/CR')")
             End If
-            loComandoSeleccionar.AppendLine("		AND Cuentas_Pagar.Fec_Ini < @sp_FecIni")
+            loComandoSeleccionar.AppendLine("		AND Cuentas_Pagar.Fec_Ini < @ldFecha_Desde")
             loComandoSeleccionar.AppendLine("		AND Cuentas_Pagar.Status <> 'Anulado'")
-            loComandoSeleccionar.AppendLine("			AND Cuentas_Pagar.Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
+            loComandoSeleccionar.AppendLine("		AND (Cuentas_Pagar.Cod_Pro = " & lcParametro1Desde)
+            If lcParametro2Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro2Desde)
+            End If
+            If lcParametro3Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro3Desde)
+            End If
+            If lcParametro4Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro4Desde)
+            End If
+            If lcParametro5Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro5Desde)
+            End If
+            If lcParametro6Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro6Desde)
+            End If
+            If lcParametro7Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro7Desde)
+            End If
+            If lcParametro8Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro8Desde)
+            End If
+            If lcParametro9Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro9Desde)
+            End If
+            loComandoSeleccionar.AppendLine(")")
             loComandoSeleccionar.AppendLine("GROUP BY Proveedores.Cod_Pro")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("UNION ALL")
@@ -91,12 +141,37 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             loComandoSeleccionar.AppendLine("			END) +(Pagos.Mon_Ret + Pagos.Mon_Des) AS Sal_Ini")
             loComandoSeleccionar.AppendLine("FROM	Pagos")
             loComandoSeleccionar.AppendLine("JOIN	Renglones_Pagos ON Pagos.Documento = Renglones_Pagos.Documento")
-            loComandoSeleccionar.AppendLine("		AND	Pagos.Fec_Ini < @sp_FecIni")
-            loComandoSeleccionar.AppendLine("		AND Pagos.Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
+            loComandoSeleccionar.AppendLine("		AND	Pagos.Fec_Ini < @ldFecha_Desde")
+            'loComandoSeleccionar.AppendLine("		AND Pagos.Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
             loComandoSeleccionar.AppendLine("		AND Pagos.Automatico = 0")
             loComandoSeleccionar.AppendLine("JOIN	Proveedores ON Proveedores.Cod_Pro = Pagos.Cod_Pro")
             loComandoSeleccionar.AppendLine("WHERE	Pagos.Status IN ('Confirmado')")
-            loComandoSeleccionar.AppendLine("			AND Pagos.Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
+            loComandoSeleccionar.AppendLine("		AND (Pagos.Cod_Pro = " & lcParametro1Desde)
+            If lcParametro2Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro2Desde)
+            End If
+            If lcParametro3Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro3Desde)
+            End If
+            If lcParametro4Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro4Desde)
+            End If
+            If lcParametro5Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro5Desde)
+            End If
+            If lcParametro6Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro6Desde)
+            End If
+            If lcParametro7Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro7Desde)
+            End If
+            If lcParametro8Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro8Desde)
+            End If
+            If lcParametro9Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro9Desde)
+            End If
+            loComandoSeleccionar.AppendLine(")")
             loComandoSeleccionar.AppendLine("GROUP BY Proveedores.Cod_Pro,Pagos.Mon_Ret,Pagos.Mon_Des")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("--Movimientos")
@@ -127,9 +202,34 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             Else
                 loComandoSeleccionar.AppendLine("WHERE	Cuentas_Pagar.Cod_Tip IN ('FACT','N/CR')")
             End If
-            loComandoSeleccionar.AppendLine("		AND Cuentas_Pagar.Fec_Reg BETWEEN @sp_FecIni AND @sp_FecFin")
-            loComandoSeleccionar.AppendLine("			AND Cuentas_Pagar.Status <> 'Anulado'")
-            loComandoSeleccionar.AppendLine("			AND Cuentas_Pagar.Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
+            loComandoSeleccionar.AppendLine("		AND Cuentas_Pagar.Fec_Reg BETWEEN @ldFecha_Desde AND @ldFecha_Hasta")
+            loComandoSeleccionar.AppendLine("		AND Cuentas_Pagar.Status <> 'Anulado'")
+            loComandoSeleccionar.AppendLine("		AND (Cuentas_Pagar.Cod_Pro = " & lcParametro1Desde)
+            If lcParametro2Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro2Desde)
+            End If
+            If lcParametro3Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro3Desde)
+            End If
+            If lcParametro4Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro4Desde)
+            End If
+            If lcParametro5Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro5Desde)
+            End If
+            If lcParametro6Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro6Desde)
+            End If
+            If lcParametro7Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro7Desde)
+            End If
+            If lcParametro8Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro8Desde)
+            End If
+            If lcParametro9Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro9Desde)
+            End If
+            loComandoSeleccionar.AppendLine(")")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("UNION ALL")
             loComandoSeleccionar.AppendLine("")
@@ -165,9 +265,34 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             Else
                 loComandoSeleccionar.AppendLine("WHERE	Cuentas_Pagar.Cod_Tip NOT IN ('FACT','N/CR')")
             End If
-            loComandoSeleccionar.AppendLine("		AND	Cuentas_Pagar.Fec_Ini BETWEEN @sp_FecIni AND @sp_FecFin")
+            loComandoSeleccionar.AppendLine("		AND	Cuentas_Pagar.Fec_Ini BETWEEN @ldFecha_Desde AND @ldFecha_Hasta")
             loComandoSeleccionar.AppendLine("		AND Cuentas_Pagar.Status <> 'Anulado'")
-            loComandoSeleccionar.AppendLine("		AND Cuentas_Pagar.Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
+            loComandoSeleccionar.AppendLine("		AND (Cuentas_Pagar.Cod_Pro = " & lcParametro1Desde)
+            If lcParametro2Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro2Desde)
+            End If
+            If lcParametro3Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro3Desde)
+            End If
+            If lcParametro4Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro4Desde)
+            End If
+            If lcParametro5Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro5Desde)
+            End If
+            If lcParametro6Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro6Desde)
+            End If
+            If lcParametro7Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro7Desde)
+            End If
+            If lcParametro8Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro8Desde)
+            End If
+            If lcParametro9Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cuentas_Pagar.Cod_Pro = " & lcParametro9Desde)
+            End If
+            loComandoSeleccionar.AppendLine(")")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("UNION ALL")
             loComandoSeleccionar.AppendLine("")
@@ -203,9 +328,34 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             loComandoSeleccionar.AppendLine("JOIN	Renglones_Pagos ON Pagos.Documento = Renglones_Pagos.Documento")
             loComandoSeleccionar.AppendLine("JOIN	Proveedores ON Proveedores.Cod_Pro = Pagos.Cod_Pro")
             loComandoSeleccionar.AppendLine("WHERE	Pagos.Status IN ('Confirmado')")
-            loComandoSeleccionar.AppendLine("		AND	Pagos.Fec_Ini BETWEEN @sp_FecIni AND @sp_FecFin")
-            loComandoSeleccionar.AppendLine("		AND Pagos.Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
+            loComandoSeleccionar.AppendLine("		AND	Pagos.Fec_Ini BETWEEN @ldFecha_Desde AND @ldFecha_Hasta")
             loComandoSeleccionar.AppendLine("		AND Pagos.Automatico = 0")
+            loComandoSeleccionar.AppendLine("		AND (Pagos.Cod_Pro = " & lcParametro1Desde)
+            If lcParametro2Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro2Desde)
+            End If
+            If lcParametro3Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro3Desde)
+            End If
+            If lcParametro4Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro4Desde)
+            End If
+            If lcParametro5Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro5Desde)
+            End If
+            If lcParametro6Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro6Desde)
+            End If
+            If lcParametro7Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro7Desde)
+            End If
+            If lcParametro8Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro8Desde)
+            End If
+            If lcParametro9Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Pagos.Cod_Pro = " & lcParametro9Desde)
+            End If
+            loComandoSeleccionar.AppendLine(")")
             loComandoSeleccionar.AppendLine("GROUP BY	Proveedores.Cod_Pro, Proveedores.Nom_Pro, Pagos.Cod_Ven, Pagos.Documento,")
             loComandoSeleccionar.AppendLine("			 Pagos.Fec_Ini, Pagos.Registro, Pagos.Comentario, Pagos.Mon_Ret, Pagos.Mon_Des")
             loComandoSeleccionar.AppendLine("")
@@ -215,8 +365,33 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             loComandoSeleccionar.AppendLine("INTO #tmpMovPendientesFact")
             loComandoSeleccionar.AppendLine("FROM Cuentas_Pagar")
             loComandoSeleccionar.AppendLine("WHERE Cod_Tip = 'FACT' AND Status <> 'Pagado' AND Mon_Sal > 0 ")
-            loComandoSeleccionar.AppendLine("	AND Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
-            loComandoSeleccionar.AppendLine("	AND Fec_Reg BETWEEN @sp_FecIni AND @sp_FecFin")
+            loComandoSeleccionar.AppendLine("		AND (Cod_Pro = " & lcParametro1Desde)
+            If lcParametro2Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro2Desde)
+            End If
+            If lcParametro3Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro3Desde)
+            End If
+            If lcParametro4Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro4Desde)
+            End If
+            If lcParametro5Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro5Desde)
+            End If
+            If lcParametro6Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro6Desde)
+            End If
+            If lcParametro7Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro7Desde)
+            End If
+            If lcParametro8Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro8Desde)
+            End If
+            If lcParametro9Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro9Desde)
+            End If
+            loComandoSeleccionar.AppendLine(")")
+            loComandoSeleccionar.AppendLine("	AND Fec_Reg BETWEEN @ldFecha_Desde AND @ldFecha_Hasta")
             loComandoSeleccionar.AppendLine("GROUP BY Cod_Pro")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("SELECT COUNT(Documento)								AS Pendientes,")
@@ -224,8 +399,33 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             loComandoSeleccionar.AppendLine("INTO #tmpMovPendientesAdel")
             loComandoSeleccionar.AppendLine("FROM Cuentas_Pagar")
             loComandoSeleccionar.AppendLine("WHERE Cod_Tip = 'ADEL' AND Status <> 'Pagado' AND Mon_Sal > 0 ")
-            loComandoSeleccionar.AppendLine("	AND Cod_Pro BETWEEN @sp_CodPro_Desde AND @sp_CodPro_Hasta")
-            loComandoSeleccionar.AppendLine("	AND Fec_Reg BETWEEN @sp_FecIni AND @sp_FecFin")
+            loComandoSeleccionar.AppendLine("		AND (Cod_Pro = " & lcParametro1Desde)
+            If lcParametro2Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro2Desde)
+            End If
+            If lcParametro3Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro3Desde)
+            End If
+            If lcParametro4Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro4Desde)
+            End If
+            If lcParametro5Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro5Desde)
+            End If
+            If lcParametro6Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro6Desde)
+            End If
+            If lcParametro7Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro7Desde)
+            End If
+            If lcParametro8Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro8Desde)
+            End If
+            If lcParametro9Desde <> "''" Then
+                loComandoSeleccionar.AppendLine("		OR Cod_Pro = " & lcParametro9Desde)
+            End If
+            loComandoSeleccionar.AppendLine(")")
+            loComandoSeleccionar.AppendLine("	AND Fec_Reg BETWEEN @ldFecha_Desde AND @ldFecha_Hasta")
             loComandoSeleccionar.AppendLine("GROUP BY Cod_Pro")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("UPDATE	#tmpMovimientos")
@@ -253,7 +453,7 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             loComandoSeleccionar.AppendLine("            THEN CONCAT(SUBSTRING(A.Referencia,1,50),'...')")
             loComandoSeleccionar.AppendLine("            ELSE A.Referencia")
             loComandoSeleccionar.AppendLine("       END     AS Referencia,")
-            loComandoSeleccionar.AppendLine("		SUM(B.Mon_Sal) +  A.Sal_Ini AS Sal_Doc, @sp_FecIni AS Desde, @sp_FecFin	AS Hasta,")
+            loComandoSeleccionar.AppendLine("		SUM(B.Mon_Sal) +  A.Sal_Ini AS Sal_Doc, @ldFecha_Desde AS Desde, @ldFecha_Hasta	AS Hasta,")
             loComandoSeleccionar.AppendLine("	    COALESCE(#tmpMovPendientesFact.Pendientes, @lnCero) AS PendientesFact,")
             loComandoSeleccionar.AppendLine("	    COALESCE(#tmpMovPendientesAdel.Pendientes, @lnCero) AS PendientesAdel")
             loComandoSeleccionar.AppendLine("FROM	#tmpMovimientos AS A")
@@ -271,7 +471,7 @@ Partial Class CGS_rLEstadoCuenta_HistoricoCompras
             loComandoSeleccionar.AppendLine("SELECT  0 AS Orden, 'Saldo Inicial' AS Tabla, #tmpSaldos_Iniciales.Cod_Pro, Proveedores.Nom_Pro AS Nom_Pro, 'NR' AS Cod_Tip, ")
             loComandoSeleccionar.AppendLine("		@lcVacio AS Documento, @lcVacio AS Fec_Ini, @lcVacio AS Registro, SUM(Sal_Ini) AS Sal_Ini,")
             loComandoSeleccionar.AppendLine("		@lnCero AS Mon_Deb, @lnCero AS Mon_Hab, 'SIN MOVIMIENTOS' AS Referencia, @lnCero AS Sal_Doc,")
-            loComandoSeleccionar.AppendLine("		@sp_FecIni AS Desde, @sp_FecFin	AS Hasta, ")
+            loComandoSeleccionar.AppendLine("		@ldFecha_Desde AS Desde, @ldFecha_Hasta	AS Hasta, ")
             loComandoSeleccionar.AppendLine("	    COALESCE(#tmpMovPendientesFact.Pendientes, @lnCero) AS PendientesFact,")
             loComandoSeleccionar.AppendLine("	    COALESCE(#tmpMovPendientesAdel.Pendientes, @lnCero) AS PendientesAdel")
             loComandoSeleccionar.AppendLine("FROM #tmpSaldos_Iniciales")
