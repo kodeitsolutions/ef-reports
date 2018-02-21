@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="rPAS_rLibro_Compras" targetNamespace="http://tempuri.org/rPAS_rLibro_Compras.xsd" xmlns:mstns="http://tempuri.org/rPAS_rLibro_Compras.xsd" xmlns="http://tempuri.org/rPAS_rLibro_Compras.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="PAS_rLibro_Compras" targetNamespace="http://tempuri.org/rPAS_rLibro_Compras.xsd" xmlns:mstns="http://tempuri.org/rPAS_rLibro_Compras.xsd" xmlns="http://tempuri.org/rPAS_rLibro_Compras.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" 
@@ -34,6 +34,8 @@
               <xs:element name="Base_Imponible2" type="xs:decimal" minOccurs="0" />
               <xs:element name="Impuesto2" type="xs:decimal" minOccurs="0" />
               <xs:element name="Monto_Imp2" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Por_Des" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Por_Rec" type="xs:decimal" minOccurs="0" />
               <xs:element name="Monto_Ret" type="xs:decimal" minOccurs="0" />
               <xs:element name="Fecha_De" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Fecha_Hasta" type="xs:dateTime" minOccurs="0" />
