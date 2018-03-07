@@ -10,7 +10,7 @@ Partial Class CGS_fRecepcion_Produccion_AUTO
         'Try
         Dim Empresa As String = cusAplicacion.goEmpresa.pcNombre
 
-        Dim loComandoSeleccionar As New StringBuilder()
+            Dim loComandoSeleccionar As New StringBuilder()
 
         loComandoSeleccionar.AppendLine("SELECT Ajustes.Documento						AS Documento, ")
         loComandoSeleccionar.AppendLine("		Ajustes.Status							AS Estatus, ")
@@ -32,7 +32,7 @@ Partial Class CGS_fRecepcion_Produccion_AUTO
         loComandoSeleccionar.AppendLine("		(Desperdicio.Res_Num * Renglones_Ajustes.Can_Art1)/100,0) AS Cant_Desperdicio")
         loComandoSeleccionar.AppendLine("FROM Ajustes ")
         loComandoSeleccionar.AppendLine("   JOIN Renglones_Ajustes ON Ajustes.Documento = Renglones_Ajustes.Documento")
-        loComandoSeleccionar.AppendLine("       AND Renglones_Ajustes.Cod_Tip = 'E02'")
+        loComandoSeleccionar.AppendLine("       AND Renglones_Ajustes.Cod_Alm = 'ALM3E'")
         loComandoSeleccionar.AppendLine("	JOIN Articulos ON Articulos.Cod_Art = Renglones_Ajustes.Cod_Art")
         loComandoSeleccionar.AppendLine("   JOIN Almacenes ON Renglones_Ajustes.Cod_Alm = Almacenes.Cod_Alm")
         loComandoSeleccionar.AppendLine("   LEFT JOIN Operaciones_Lotes ON Operaciones_Lotes.Num_Doc = Renglones_Ajustes.Documento")
@@ -50,6 +50,7 @@ Partial Class CGS_fRecepcion_Produccion_AUTO
         loComandoSeleccionar.AppendLine("		AND Desperdicio.Cod_Var = 'AINV-PDESP'")
         loComandoSeleccionar.AppendLine("		AND Desperdicio.Res_Num > 0")
         loComandoSeleccionar.AppendLine("WHERE " & cusAplicacion.goFormatos.pcCondicionPrincipal)
+
 
         'Me.mEscribirConsulta(loComandoSeleccionar.ToString)
 
