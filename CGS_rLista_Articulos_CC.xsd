@@ -26,6 +26,8 @@
               <xs:element name="Nom_CC_Art" type="xs:string" minOccurs="0" />
               <xs:element name="CC_Sec" type="xs:string" minOccurs="0" />
               <xs:element name="Nom_CC_Sec" type="xs:string" minOccurs="0" />
+              <xs:element name="CC_Dep" type="xs:string" minOccurs="0" />
+              <xs:element name="Nom_CC_Dep" type="xs:string" minOccurs="0" />
               <xs:element name="LogoEmpresa" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
