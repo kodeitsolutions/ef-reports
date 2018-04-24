@@ -30,6 +30,8 @@ Partial Class CGS_rEGanancias_Perdidas
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
+            Dim lcEmpresa As String = goEmpresa.pcCodigo
+
             Dim lnLongMax As Integer = 0
             Select Case lnNivelMax
                 Case 1
@@ -90,10 +92,13 @@ Partial Class CGS_rEGanancias_Perdidas
             loComandoSeleccionar.AppendLine("			ON (Renglones_Comprobantes.Adicional = Comprobantes.Adicional ")
             loComandoSeleccionar.AppendLine("				AND Renglones_Comprobantes.Documento = Comprobantes.Documento")
             loComandoSeleccionar.AppendLine("				AND Comprobantes.Status <> 'Anulado'")
-            loComandoSeleccionar.AppendLine("				AND Comprobantes.Resumen NOT LIKE '%CIERRE%'")
+            If lcEmpresa.Trim() = "Cegasa" Then
+                loComandoSeleccionar.AppendLine("			AND Comprobantes.Resumen NOT LIKE '%CIERRE%'")
+            ElseIf lcEmpresa.Trim() = "Mercalum" Or lcEmpresa = "PAS" Then
+                loComandoSeleccionar.AppendLine("				AND Comprobantes.Documento NOT IN (SELECT Documento FROM Renglones_Comprobantes WHERE Cod_Cue = '3.1.1.05.001')")
+            End If
             loComandoSeleccionar.AppendLine("			)")
             loComandoSeleccionar.AppendLine("		ON CC.Cod_Cue = Renglones_Comprobantes.Cod_Cue ")
-            loComandoSeleccionar.AppendLine("			AND Comprobantes.Resumen NOT LIKE '%CIERRE%'")
             loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.Fec_Ini BETWEEN @lcFechaDesde AND @lcFechaHasta)")
             loComandoSeleccionar.AppendLine("WHERE	CC.Movimiento=1")
             loComandoSeleccionar.AppendLine("   AND CC.Categoria NOT IN ('Activos', 'Pasivos', 'Capital')")
@@ -137,7 +142,7 @@ Partial Class CGS_rEGanancias_Perdidas
             loComandoSeleccionar.AppendLine("DROP TABLE #tmpMovimientos")
             loComandoSeleccionar.AppendLine("")
 
-           
+
 
             'Me.mEscribirConsulta(loComandoSeleccionar.ToString())
 
