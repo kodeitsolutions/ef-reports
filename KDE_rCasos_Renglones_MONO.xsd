@@ -34,6 +34,7 @@
               <xs:element name="Renglon_Hor_Ini" type="xs:string" minOccurs="0" />
               <xs:element name="Renglon_Hor_Fin" type="xs:string" minOccurs="0" />
               <xs:element name="Renglon_Duracion" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Renglon_Duracion_Min" type="xs:decimal" minOccurs="0" />
               <xs:element name="Renglon_Actividad" type="xs:string" minOccurs="0" />
               <xs:element name="Fecha" type="xs:string" minOccurs="0" />
               <xs:element name="Parametros" type="xs:string" minOccurs="0" />

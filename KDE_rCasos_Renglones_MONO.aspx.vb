@@ -64,6 +64,7 @@ Partial Class KDE_rCasos_Renglones_MONO
             loConsulta.AppendLine("         Renglones_Casos.Hor_Ini                         AS Renglon_Hor_Ini,")
             loConsulta.AppendLine("         Renglones_Casos.Hor_Fin                         AS Renglon_Hor_Fin,")
             loConsulta.AppendLine("         COALESCE(Renglones_Casos.Duracion,0)            AS Renglon_Duracion,")
+            loConsulta.AppendLine("         COALESCE(Renglones_Casos.Duracion*60,0)         AS Renglon_Duracion_Min,")
             loConsulta.AppendLine("         COALESCE(Renglones_Casos.Actividad,'')          AS Renglon_Actividad,")
             loConsulta.AppendLine("		    CONCAT(CONVERT(VARCHAR(12),CAST(@ldFecha_Desde AS DATE),103), ' - ',  CONVERT(VARCHAR(12),CAST(@ldFecha_Hasta AS DATE),103))	AS Fecha,")
             loConsulta.AppendLine("         CONCAT('Cliente: ' , COALESCE((SELECT RTRIM(Nom_Cli) FROM Clientes WHERE Cod_Cli = @lcCodCli_Desde),'')")
