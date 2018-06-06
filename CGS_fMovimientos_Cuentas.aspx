@@ -1,4 +1,4 @@
-<%@ page language="VB" autoeventwireup="false" inherits="fMovimientos_Cuentas" CodeFile="fMovimientos_Cuentas.aspx.vb" %>
+<%@ page language="VB" autoeventwireup="false" inherits="CGS_fMovimientos_Cuentas" CodeFile="CGS_fMovimientos_Cuentas.aspx.vb" %>
 
 <%@ Register Assembly="vis2Controles" Namespace="vis2Controles" TagPrefix="vis2Controles" %>
 <%@ Register Assembly="vis1Controles" Namespace="vis1Controles" TagPrefix="vis1Controles" %>
@@ -12,7 +12,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>Formato de Movimientos de Cuentas</title>
+    <title>Formato de Movimientos de Cuentas (CGS)</title>
     <link href="~/Framework/cssEstilosFramework.css" rel="stylesheet" type="text/css" />
     <link href="~/Administrativo/cssEstilosAdministrativo.css" rel="stylesheet" type="text/css" />
     <link href="/aspnet_client/System_Web/2_0_50727/CrystalReportWebFormViewer3/css/default.css"
@@ -21,7 +21,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <CR:CrystalReportViewer ID="crvfMovimientos_Cuentas" runat="server" AutoDataBind="true"
+        <CR:CrystalReportViewer ID="crvCGS_fMovimientos_Cuentas" runat="server" AutoDataBind="true"
             EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" HasCrystalLogo="False"  HasPrintButton="False" />
         <asp:ScriptManager ID="ScriptManager1" runat="server">
             <Scripts>

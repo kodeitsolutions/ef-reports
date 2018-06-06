@@ -6,9 +6,9 @@
 Imports System.Data
 
 '-------------------------------------------------------------------------------------------'
-' Inicio de clase "fMovimientos_Cuentas"
+' Inicio de clase "CGS_fMovimientos_Cuentas"
 '-------------------------------------------------------------------------------------------'
-Partial Class fMovimientos_Cuentas
+Partial Class CGS_fMovimientos_Cuentas
 
     Inherits vis2formularios.frmReporte
 
@@ -20,46 +20,27 @@ Partial Class fMovimientos_Cuentas
 
             Dim loComandoSeleccionar As New StringBuilder()
 
-            loComandoSeleccionar.AppendLine(" SELECT    Movimientos_Cuentas.Documento, ")
-            loComandoSeleccionar.AppendLine("           Movimientos_Cuentas.Cod_Cue, ")
-            loComandoSeleccionar.AppendLine("           Movimientos_Cuentas.Cod_Ban, ")
-            loComandoSeleccionar.AppendLine("           Movimientos_Cuentas.Fec_Ini, ")
-            loComandoSeleccionar.AppendLine("           Tipos_Movimientos.Nom_Tip, ")
-            loComandoSeleccionar.AppendLine("           Movimientos_Cuentas.Tip_Doc, ")
-            loComandoSeleccionar.AppendLine("           Movimientos_Cuentas.Referencia, ")
-            loComandoSeleccionar.AppendLine("           Movimientos_Cuentas.Status, ")
-            loComandoSeleccionar.AppendLine("           Movimientos_Cuentas.Cod_Con, ")
-            loComandoSeleccionar.AppendLine("           Movimientos_Cuentas.Mon_Deb, ")
-            loComandoSeleccionar.AppendLine("           Movimientos_Cuentas.Mon_Hab, ")
-            loComandoSeleccionar.AppendLine("           Movimientos_Cuentas.Cod_Mon, ")
-            loComandoSeleccionar.AppendLine("           Movimientos_Cuentas.Tasa, ")
-            loComandoSeleccionar.AppendLine("           Movimientos_Cuentas.Comentario, ")
-            loComandoSeleccionar.AppendLine("           Movimientos_Cuentas.Tip_Ori, ")
-            loComandoSeleccionar.AppendLine("           Movimientos_Cuentas.Doc_Ori, ")
-            loComandoSeleccionar.AppendLine("           Cuentas_Bancarias.Num_Cue, ")
-            loComandoSeleccionar.AppendLine("           Bancos.Nom_Ban, ")
-            loComandoSeleccionar.AppendLine("           Conceptos.Nom_Con ")
-            loComandoSeleccionar.AppendLine(" INTO      #tmpMovimientosCuentas ")
-            loComandoSeleccionar.AppendLine(" FROM      Movimientos_Cuentas LEFT JOIN Bancos ON  Movimientos_Cuentas.Cod_Ban = Bancos.Cod_Ban, ")
-            loComandoSeleccionar.AppendLine("           Cuentas_Bancarias, ")
-            loComandoSeleccionar.AppendLine("           Conceptos, ")
-            loComandoSeleccionar.AppendLine("           Tipos_Movimientos ")
-            loComandoSeleccionar.AppendLine(" WHERE     Movimientos_Cuentas.Cod_Cue         =   Cuentas_Bancarias.Cod_Cue ")
-            loComandoSeleccionar.AppendLine("           And Movimientos_Cuentas.Cod_Con     =   Conceptos.Cod_Con ")
-            loComandoSeleccionar.AppendLine("           And Movimientos_Cuentas.Cod_Tip     =   Tipos_Movimientos.Cod_Tip ")
-            loComandoSeleccionar.AppendLine("           And " & cusAplicacion.goFormatos.pcCondicionPrincipal)
-
-            loComandoSeleccionar.AppendLine(" SELECT    #tmpMovimientosCuentas.*, ")
-            loComandoSeleccionar.AppendLine("           Bancos.Nom_Ban          AS  Banco ")
-            loComandoSeleccionar.AppendLine(" FROM      #tmpMovimientosCuentas LEFT JOIN Bancos ON #tmpMovimientosCuentas.Cod_Ban = Bancos.Cod_Ban")
-
-
-            'Me.Response.Clear()
-            'Me.Response.ContentType="text/plain"
-            'Me.Response.Write(loComandoSeleccionar.ToString())
-            'Me.Response.Flush()
-            'Me.Response.End()
-            'Return 
+            loComandoSeleccionar.AppendLine("SELECT    Movimientos_Cuentas.Documento, ")
+            loComandoSeleccionar.AppendLine("          Movimientos_Cuentas.Cod_Cue, ")
+            loComandoSeleccionar.AppendLine("          Movimientos_Cuentas.Fec_Ini, ")
+            loComandoSeleccionar.AppendLine("          Tipos_Movimientos.Nom_Tip, ")
+            loComandoSeleccionar.AppendLine("          Movimientos_Cuentas.Tip_Doc, ")
+            loComandoSeleccionar.AppendLine("          Movimientos_Cuentas.Referencia, ")
+            loComandoSeleccionar.AppendLine("          Movimientos_Cuentas.Cod_Con, ")
+            loComandoSeleccionar.AppendLine("          Movimientos_Cuentas.Mon_Deb, ")
+            loComandoSeleccionar.AppendLine("          Movimientos_Cuentas.Mon_Hab, ")
+            loComandoSeleccionar.AppendLine("          Movimientos_Cuentas.Comentario, ")
+            loComandoSeleccionar.AppendLine("          Movimientos_Cuentas.Tip_Ori, ")
+            loComandoSeleccionar.AppendLine("          Movimientos_Cuentas.Doc_Ori, ")
+            loComandoSeleccionar.AppendLine("          Cuentas_Bancarias.Num_Cue, ")
+            loComandoSeleccionar.AppendLine("          Bancos.Nom_Ban       AS Banco, ")
+            loComandoSeleccionar.AppendLine("          Conceptos.Nom_Con ")
+            loComandoSeleccionar.AppendLine("FROM Movimientos_Cuentas")
+            loComandoSeleccionar.AppendLine("   JOIN Bancos ON  Movimientos_Cuentas.Cod_Ban = Bancos.Cod_Ban")
+            loComandoSeleccionar.AppendLine("   JOIN Cuentas_Bancarias ON  Movimientos_Cuentas.Cod_Cue = Cuentas_Bancarias.Cod_Cue")
+            loComandoSeleccionar.AppendLine("   JOIN Conceptos ON Movimientos_Cuentas.Cod_Con = Conceptos.Cod_Con ")
+            loComandoSeleccionar.AppendLine("   JOIN Tipos_Movimientos ON Movimientos_Cuentas.Cod_Tip = Tipos_Movimientos.Cod_Tip")
+            loComandoSeleccionar.AppendLine("WHERE " & cusAplicacion.goFormatos.pcCondicionPrincipal)
 
             Dim loServicios As New cusDatos.goDatos
 
@@ -83,13 +64,13 @@ Partial Class fMovimientos_Cuentas
                                            "200px")
             End If
 
-            loObjetoReporte = cusAplicacion.goFormatos.mCargarInforme("fMovimientos_Cuentas", laDatosReporte)
+            loObjetoReporte = cusAplicacion.goFormatos.mCargarInforme("CGS_fMovimientos_Cuentas", laDatosReporte)
 
             Me.mTraducirReporte(loObjetoReporte)
 
             Me.mFormatearCamposReporte(loObjetoReporte)
 
-            Me.crvfMovimientos_Cuentas.ReportSource = loObjetoReporte
+            Me.crvCGS_fMovimientos_Cuentas.ReportSource = loObjetoReporte
 
         Catch loExcepcion As Exception
 
@@ -116,14 +97,4 @@ Partial Class fMovimientos_Cuentas
     End Sub
 
 End Class
-'-------------------------------------------------------------------------------------------'
-' Fin del codigo
-'-------------------------------------------------------------------------------------------'
-' JJD: 24/01/09: Programacion inicial
-'-------------------------------------------------------------------------------------------'
-' JJD: 23/01/10: Ajuste a la busqueda del banco
-'-------------------------------------------------------------------------------------------'
-' CMS: 18/03/10: Se aplicaron los metodos carga de imagen y validacion de registro cero
-'-------------------------------------------------------------------------------------------'
-' MAT: 18/04/11: Mejora en la vista de Diseño
 '-------------------------------------------------------------------------------------------'
