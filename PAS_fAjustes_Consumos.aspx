@@ -1,18 +1,15 @@
-<%@ page language="VB" autoeventwireup="false" inherits="CGS_fMovimientos_Cuentas" CodeFile="CGS_fMovimientos_Cuentas.aspx.vb" %>
+<%@ page language="VB" autoeventwireup="false" inherits="PAS_fAjustes_Consumos" CodeFile="PAS_fAjustes_Consumos.aspx.vb" %>
 
 <%@ Register Assembly="vis2Controles" Namespace="vis2Controles" TagPrefix="vis2Controles" %>
 <%@ Register Assembly="vis1Controles" Namespace="vis1Controles" TagPrefix="vis1Controles" %>
 <%@ Register Assembly="vis3Controles" Namespace="vis3Controles" TagPrefix="vis3Controles" %>
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
 
-
-    
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head runat="server">
-    <title>Formato de Movimientos de Cuentas (CGS)</title>
+    <title>Formato de Consumo de Producción (PAS)</title>
     <link href="~/Framework/cssEstilosFramework.css" rel="stylesheet" type="text/css" />
     <link href="~/Administrativo/cssEstilosAdministrativo.css" rel="stylesheet" type="text/css" />
     <link href="/aspnet_client/System_Web/2_0_50727/CrystalReportWebFormViewer3/css/default.css"
@@ -21,9 +18,10 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <CR:CrystalReportViewer ID="crvCGS_fMovimientos_Cuentas" runat="server" AutoDataBind="true"
+        <CR:CrystalReportViewer ID="crvPAS_fAjustes_Consumos" runat="server" AutoDataBind="true"
             EnableDatabaseLogonPrompt="False" EnableParameterPrompt="False" HasCrystalLogo="False"  HasPrintButton="False" />
-        <asp:ScriptManager ID="ScriptManager1" runat="server">
+          
+          <asp:ScriptManager ID="ScriptManager1" runat="server">
             <Scripts>
             </Scripts>
         </asp:ScriptManager>
@@ -52,7 +50,8 @@
                       runat="server" style="left: -24px; top: 61px" />
 
     </ContentTemplate>
-    </asp:UpdatePanel>
+    </asp:UpdatePanel>     
+      
     </div>
     </form>
 </body>
