@@ -36,7 +36,6 @@
               <xs:element name="Usuario" type="xs:string" minOccurs="0" />
               <xs:element name="Dep_Usuario" type="xs:string" minOccurs="0" />
               <xs:element name="Empresa_Usuario" type="xs:string" minOccurs="0" />
-              <xs:element name="Empresa" type="xs:string" minOccurs="0" />
               <xs:element name="Piezas" type="xs:decimal" minOccurs="0" />
               <xs:element name="Longitud" type="xs:decimal" minOccurs="0" />
               <xs:element name="Uni_Long" type="xs:string" minOccurs="0" />
