@@ -1,5 +1,6 @@
 ﻿Imports System.Data
 Partial Class CGS_fOrdenes_ComprasSP_AUTO
+
     Inherits vis2formularios.frmReporteAutomatico
 
     Dim loObjetoReporte As CrystalDecisions.CrystalReports.Engine.ReportDocument
@@ -10,7 +11,7 @@ Partial Class CGS_fOrdenes_ComprasSP_AUTO
 
         Dim loComandoSeleccionar As New StringBuilder()
 
-            loComandoSeleccionar.AppendLine(" SELECT    Ordenes_Compras.Cod_Pro                     AS Cod_Pro, ")
+        loComandoSeleccionar.AppendLine(" SELECT    Ordenes_Compras.Cod_Pro                     AS Cod_Pro, ")
         loComandoSeleccionar.AppendLine("           Proveedores.Nom_Pro                         AS Nom_Pro, ")
         loComandoSeleccionar.AppendLine("           Proveedores.Rif                             AS Rif, ")
         loComandoSeleccionar.AppendLine("           Proveedores.Dir_Fis                         AS Dir_Fis, ")
@@ -22,20 +23,16 @@ Partial Class CGS_fOrdenes_ComprasSP_AUTO
         loComandoSeleccionar.AppendLine("           Ordenes_Compras.Fec_Rec                     AS Fec_Rec, ")
         loComandoSeleccionar.AppendLine("           Ordenes_Compras.Comentario                  AS Comentario, ")
         loComandoSeleccionar.AppendLine("           Ordenes_Compras.Status                      AS Status, ")
-            loComandoSeleccionar.AppendLine("           Renglones_OCompras.Renglon                  AS Renglon, ")
-            loComandoSeleccionar.AppendLine("           Renglones_OCompras.Cod_Art                  AS Cod_Art, ")
-            loComandoSeleccionar.AppendLine("           Articulos.Nom_Art                           AS Nom_Art, ")
+        loComandoSeleccionar.AppendLine("           Renglones_OCompras.Renglon                  AS Renglon, ")
+        loComandoSeleccionar.AppendLine("           Renglones_OCompras.Cod_Art                  AS Cod_Art, ")
+        loComandoSeleccionar.AppendLine("           Articulos.Nom_Art                           AS Nom_Art, ")
         loComandoSeleccionar.AppendLine("           Renglones_OCompras.Can_Art1                 AS Can_Art1, ")
         loComandoSeleccionar.AppendLine("           Renglones_OCompras.Comentario               AS Comentario_Renglon, ")
         loComandoSeleccionar.AppendLine("           Ordenes_Compras.Prioridad                   AS Tipo,")
         loComandoSeleccionar.AppendLine("           COALESCE(Renglones_OCompras.Caracter1,'')   AS Alternativo, ")
-        loComandoSeleccionar.AppendLine("           COALESCE(Alternativo.Nom_Art,'')            AS Nom_Alternativo,   ")
-        loComandoSeleccionar.AppendLine("       CONCAT(RTRIM(Requisiciones.Caracter1),CHAR(13),RTRIM(Requisiciones.Caracter2),CHAR(13),")
-        loComandoSeleccionar.AppendLine("	    RTRIM(Requisiciones.Caracter3),CHAR(13),RTRIM(Requisiciones.Caracter4)) AS Solicitante ")
+        loComandoSeleccionar.AppendLine("           COALESCE(Alternativo.Nom_Art,'')            AS Nom_Alternativo")
         loComandoSeleccionar.AppendLine(" FROM Ordenes_Compras ")
         loComandoSeleccionar.AppendLine("   JOIN Renglones_OCompras ON Ordenes_Compras.Documento = Renglones_OCompras.Documento")
-        loComandoSeleccionar.AppendLine("	JOIN Requisiciones ON Renglones_OCompras.Doc_Ori = Requisiciones.Documento")
-        loComandoSeleccionar.AppendLine("		AND Renglones_OCompras.Tip_Ori = 'Requisiciones'")
         loComandoSeleccionar.AppendLine("   JOIN Proveedores ON Ordenes_Compras.Cod_Pro = Proveedores.Cod_Pro")
         loComandoSeleccionar.AppendLine("   JOIN Articulos ON Articulos.Cod_Art = Renglones_OCompras.Cod_Art")
         loComandoSeleccionar.AppendLine("   LEFT JOIN Articulos AS Alternativo ON Alternativo.Cod_Art = Renglones_OCompras.Caracter1")
