@@ -8,9 +8,6 @@ Partial Class PAS_fNotas_Despacho
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         Try
-
-            Dim lcEmpresa As String = cusAplicacion.goEmpresa.pcCodigo
-
             Dim loComandoSeleccionar As New StringBuilder()
 
             loComandoSeleccionar.AppendLine("SELECT Ajustes.Documento						AS Documento, ")
@@ -29,12 +26,8 @@ Partial Class PAS_fNotas_Despacho
             loComandoSeleccionar.AppendLine("       COALESCE(Operaciones_Lotes.Cod_Lot,'')	AS Lote,")
             loComandoSeleccionar.AppendLine("       COALESCE(Operaciones_Lotes.Cantidad,0)	AS Cant_Lote,")
             loComandoSeleccionar.AppendLine("		COALESCE(Piezas.Res_Num, 0)				AS Piezas,")
-            If lcEmpresa.Trim() = "PAS" Then
-                loComandoSeleccionar.AppendLine("		COALESCE(Longitud.Res_Num, 0)			AS Longitud,")
-                loComandoSeleccionar.AppendLine("		COALESCE(Longitud.Cod_Uni, '')			AS Uni_Long,")
-            Else
-                loComandoSeleccionar.AppendLine("		0			                        AS Longitud,")
-            End If
+            loComandoSeleccionar.AppendLine("		COALESCE(Longitud.Res_Num, 0)			AS Longitud,")
+            loComandoSeleccionar.AppendLine("		COALESCE(Longitud.Cod_Uni, '')			AS Uni_Long,")
             loComandoSeleccionar.AppendLine("       COALESCE((SELECT Nom_Usu ")
             loComandoSeleccionar.AppendLine("                 FROM Factory_Global.dbo.Usuarios ")
             loComandoSeleccionar.AppendLine("                 WHERE Cod_Usu COLLATE DATABASE_DEFAULT = (SELECT Auditorias.Cod_Usu")
@@ -53,8 +46,6 @@ Partial Class PAS_fNotas_Despacho
             loComandoSeleccionar.AppendLine("      ,'')	                                    AS Dep_Usuario,")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("")
-            'loComandoSeleccionar.AppendLine("       (SELECT Departamento FROM Factory_Global.dbo.Usuarios WHERE Cod_Usu COLLATE DATABASE_DEFAULT = Ajustes.Usu_Cre COLLATE DATABASE_DEFAULT) AS Dep_Usuario,")
-            loComandoSeleccionar.AppendLine("       '" & lcEmpresa & "'                     AS Empresa,")
             loComandoSeleccionar.AppendLine("       '" & cusAplicacion.goEmpresa.pcNombre & "' AS Empresa_Usuario")
             loComandoSeleccionar.AppendLine("FROM Ajustes ")
             loComandoSeleccionar.AppendLine("   JOIN Renglones_Ajustes ON Ajustes.Documento = Renglones_Ajustes.Documento")
@@ -66,20 +57,17 @@ Partial Class PAS_fNotas_Despacho
             loComandoSeleccionar.AppendLine("		AND Operaciones_Lotes.Tip_Ope = 'Salida'")
             loComandoSeleccionar.AppendLine("	LEFT JOIN Mediciones ON Mediciones.Cod_Reg = Ajustes.Documento")
             loComandoSeleccionar.AppendLine("		AND Mediciones.Origen = 'Ajustes_Inventarios'")
+            loComandoSeleccionar.AppendLine("	    AND Mediciones.Cod_Art = Articulos.Cod_Art")
             loComandoSeleccionar.AppendLine("		AND Mediciones.Adicional LIKE ('%'+RTRIM(Operaciones_Lotes.Cod_Lot)+'%')")
             loComandoSeleccionar.AppendLine("		AND Renglones_Ajustes.Renglon = SUBSTRING(Mediciones.Adicional, LEN(Mediciones.Adicional), 1)")
             loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Piezas ON Mediciones.Documento = Piezas.Documento")
             loComandoSeleccionar.AppendLine("		AND Piezas.Cod_Var = 'AINV-NPIEZ'")
             loComandoSeleccionar.AppendLine("		AND Piezas.Res_Num > 0")
-            If lcEmpresa.Trim() = "PAS" Then
-                loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Longitud ON Mediciones.Documento = Longitud.Documento")
-                loComandoSeleccionar.AppendLine("		AND Longitud.Cod_Var = 'AINV-LARG'")
-                loComandoSeleccionar.AppendLine("		AND Longitud.Res_Num > 0")
-            End If
+            loComandoSeleccionar.AppendLine("	LEFT JOIN Renglones_Mediciones AS Longitud ON Mediciones.Documento = Longitud.Documento")
+            loComandoSeleccionar.AppendLine("		AND Longitud.Cod_Var = 'AINV-LARG'")
+            loComandoSeleccionar.AppendLine("		AND Longitud.Res_Num > 0")
             loComandoSeleccionar.AppendLine("WHERE " & cusAplicacion.goFormatos.pcCondicionPrincipal)
             loComandoSeleccionar.AppendLine("	AND Renglones_Ajustes.Tipo = 'Salida' ")
-
-
 
             'Me.mEscribirConsulta(loComandoSeleccionar.ToString)
 
