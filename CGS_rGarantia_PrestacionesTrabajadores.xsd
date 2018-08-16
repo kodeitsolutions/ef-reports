@@ -21,8 +21,8 @@
               <xs:element name="Estatus_Trabajador" type="xs:string" minOccurs="0" />
               <xs:element name="Cedula" type="xs:string" minOccurs="0" />
               <xs:element name="Liquidacion" type="xs:string" minOccurs="0" />
-              <xs:element name="Ingreso" type="xs:date" minOccurs="0" />
-              <xs:element name="Egreso" type="xs:date" minOccurs="0" />
+              <xs:element name="Ingreso" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Egreso" type="xs:dateTime" minOccurs="0" />
               <xs:element name="Inicial_Prestaciones" type="xs:decimal" minOccurs="0" />
               <xs:element name="Inicial_Anticipo_Prestaciones" type="xs:decimal" minOccurs="0" />
               <xs:element name="Inicial_Intereses_Prestaciones" type="xs:decimal" minOccurs="0" />
