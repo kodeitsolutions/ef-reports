@@ -27,10 +27,7 @@
 							<xs:element name="Cod_Tip"			type="xs:string" minOccurs="0" />
 							<xs:element name="Doc_Ori" 			type="xs:string" minOccurs="0" />
 							<xs:element name="Por_Rec" 			type="xs:decimal" minOccurs="0" />
-							<xs:element name="Por_Des" 			type="xs:decimal" minOccurs="0" />
-							<xs:element name="Mon_Otr1" 		type="xs:decimal" minOccurs="0" />
-							<xs:element name="Mon_Otr2" 		type="xs:decimal" minOccurs="0" />
-							<xs:element name="Mon_Otr3" 		type="xs:decimal" minOccurs="0" />
+							<xs:element name="Por_Des" 			type="xs:decimal" minOccurs="0" />							
 							<xs:element name="Mon_Net" 			type="xs:decimal" minOccurs="0" />
 							<xs:element name="Mon_Bru" 			type="xs:decimal" minOccurs="0" />
 							<xs:element name="Mon_Exe"			type="xs:decimal" minOccurs="0" />
@@ -38,8 +35,6 @@
 							<xs:element name="Mon_Imp1" 		type="xs:decimal" minOccurs="0" />
 							<xs:element name="Com_Ret"			type="xs:string" minOccurs="0" />
 							<xs:element name="Fec_Ret"			type="xs:dateTime" minOccurs="0" />
-              <xs:element name="Base_Ret" 		type="xs:decimal" minOccurs="0" />
-              <xs:element name="Por_Ret" 		type="xs:decimal" minOccurs="0" />
 							<xs:element name="Mon_Ret" 			type="xs:decimal" minOccurs="0" />
               <xs:element name="Impuestos"		type="xs:string" minOccurs="0" />
               <xs:element name="Mes"    			type="xs:string" minOccurs="0" />
