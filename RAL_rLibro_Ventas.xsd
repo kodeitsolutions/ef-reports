@@ -28,9 +28,6 @@
 							<xs:element name="Doc_Ori" 			type="xs:string" minOccurs="0" />
 							<xs:element name="Por_Rec" 			type="xs:decimal" minOccurs="0" />
 							<xs:element name="Por_Des" 			type="xs:decimal" minOccurs="0" />
-							<xs:element name="Mon_Otr1" 		type="xs:decimal" minOccurs="0" />
-							<xs:element name="Mon_Otr2" 		type="xs:decimal" minOccurs="0" />
-							<xs:element name="Mon_Otr3" 		type="xs:decimal" minOccurs="0" />
 							<xs:element name="Mon_Net" 			type="xs:decimal" minOccurs="0" />
 							<xs:element name="Mon_Bru" 			type="xs:decimal" minOccurs="0" />
 							<xs:element name="Mon_Exe"			type="xs:decimal" minOccurs="0" />
