@@ -75,7 +75,7 @@ Partial Class CGS_rPago_NominaBOD_TXT
             ' Genera el archivo de texto    
             '-------------------------------------------------------------------------------------------------------
             Dim loLimpiarRIF As New Regex("[^a-zA-Z0-9]")
-            Const Ceros As String = "000000000000"
+            Const Ceros As String = "0000000000000000000"
 
             Dim lcRif As String = loLimpiarRIF.Replace(goEmpresa.pcRifEmpresa, "")
             Dim lcFechaNomina As String = Strings.Format(CDate(cusAplicacion.goReportes.paParametrosIniciales(1)), "yyyyMMdd")
@@ -89,7 +89,7 @@ Partial Class CGS_rPago_NominaBOD_TXT
 
             Dim loSalida As New StringBuilder()
 
-            loSalida.Append("01Nómina" & Space(14))
+            loSalida.Append("01Nomina" & Space(14))
             loSalida.Append(lcRif)
             loSalida.Append(lcContrato)
             loSalida.Append("0")
