@@ -78,7 +78,7 @@ Partial Class CGS_Resumen_Iva
             loComandoSeleccionar.AppendLine("	LEFT JOIN Compras ON Compras.Documento = Cuentas_Pagar.Documento")
             loComandoSeleccionar.AppendLine("	    AND Compras.Referencia = ''")
             loComandoSeleccionar.AppendLine("WHERE Cuentas_Pagar.Cod_Tip = 'FACT' ")
-            loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Cod_Imp IN ('12','7','9') ")
+            loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Cod_Imp IN ('12','7','9','16') ")
             loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Status <> 'Anulado'")
             loComandoSeleccionar.AppendLine("	AND Cuentas_Pagar.Fec_Reg BETWEEN @ldFecha_Desde AND @ldFecha_Hasta")
             loComandoSeleccionar.AppendLine("")
