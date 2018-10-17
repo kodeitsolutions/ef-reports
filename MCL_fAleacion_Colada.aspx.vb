@@ -18,7 +18,7 @@ Partial Class MCL_fAleacion_Colada
             loComandoSeleccionar.AppendLine("   SELECT  Renglones_Ajustes.Cod_Art				            AS Cod_Art, ")
             loComandoSeleccionar.AppendLine("   		Articulos.Nom_Art						            AS Nom_Art,")
             loComandoSeleccionar.AppendLine("           COALESCE(Operaciones_Lotes.Cod_Lot,'')	            AS Lote,")
-            loComandoSeleccionar.AppendLine("           COALESCE(Operaciones_Lotes.Cantidad,0)	            AS Cant_Lote,")
+            loComandoSeleccionar.AppendLine("           COALESCE(Operaciones_Lotes.Cantidad,Renglones_Ajustes.Can_Art1,0)   AS Cant_Lote,")
             loComandoSeleccionar.AppendLine("           COALESCE(R_Produccion_Consumido.Can_Art1, 0)        AS Cant_Consumido,")
             loComandoSeleccionar.AppendLine("           COALESCE(R_Produccion_Consumido.Cod_Art,'')         AS Art_Consumido,")
             loComandoSeleccionar.AppendLine("           COALESCE(Consumido.Nom_Art,'')                      AS NomArt_Consumido")
