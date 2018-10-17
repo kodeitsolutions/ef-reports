@@ -11,17 +11,17 @@ Partial Class MCL_fNotas_Despacho
 
             Dim loComandoSeleccionar As New StringBuilder()
 
-            loComandoSeleccionar.AppendLine("SELECT Ajustes.Documento						            AS Documento, ")
-            loComandoSeleccionar.AppendLine("		Ajustes.Status							            AS Estatus, ")
-            loComandoSeleccionar.AppendLine("       Ajustes.Fec_Ini							            AS Fec_Ini, ")
-            loComandoSeleccionar.AppendLine("       Renglones_Ajustes.Renglon				            AS Renglon, ")
-            loComandoSeleccionar.AppendLine("       Renglones_Ajustes.Cod_Art				            AS Cod_Art, ")
-            loComandoSeleccionar.AppendLine("		Articulos.Nom_Art						            AS Nom_Art,")
-            loComandoSeleccionar.AppendLine("		Secciones.Nom_Sec					                AS Tipo,")
-            loComandoSeleccionar.AppendLine("       COALESCE(Operaciones_Lotes.Cod_Lot,'')	            AS Lote,")
-            loComandoSeleccionar.AppendLine("       COALESCE(Operaciones_Lotes.Cantidad,0)	            AS Cant_Lote,")
-            loComandoSeleccionar.AppendLine("		COALESCE(Piezas.Res_Num, 0)				            AS Piezas,")
-            loComandoSeleccionar.AppendLine("       COALESCE(R_Produccion_Consumido.Can_Art1, 0)        AS Cant_Consumido")
+            loComandoSeleccionar.AppendLine("SELECT Ajustes.Documento						                            AS Documento, ")
+            loComandoSeleccionar.AppendLine("		Ajustes.Status							                            AS Estatus, ")
+            loComandoSeleccionar.AppendLine("       Ajustes.Fec_Ini							                            AS Fec_Ini, ")
+            loComandoSeleccionar.AppendLine("       Renglones_Ajustes.Renglon				                            AS Renglon, ")
+            loComandoSeleccionar.AppendLine("       Renglones_Ajustes.Cod_Art				                            AS Cod_Art, ")
+            loComandoSeleccionar.AppendLine("		Articulos.Nom_Art						                            AS Nom_Art,")
+            loComandoSeleccionar.AppendLine("		Secciones.Nom_Sec					                                AS Tipo,")
+            loComandoSeleccionar.AppendLine("       COALESCE(Operaciones_Lotes.Cod_Lot,'')	                            AS Lote,")
+            loComandoSeleccionar.AppendLine("       COALESCE(Operaciones_Lotes.Cantidad,Renglones_Ajustes.Can_Art1,0)   AS Cant_Lote,")
+            loComandoSeleccionar.AppendLine("		COALESCE(Piezas.Res_Num, 0)				                            AS Piezas,")
+            loComandoSeleccionar.AppendLine("       COALESCE(R_Produccion_Consumido.Can_Art1, 0)                        AS Cant_Consumido")
             loComandoSeleccionar.AppendLine("INTO #tmpColadas")
             loComandoSeleccionar.AppendLine("FROM Ajustes ")
             loComandoSeleccionar.AppendLine("   JOIN Renglones_Ajustes ON Ajustes.Documento = Renglones_Ajustes.Documento")
@@ -52,7 +52,7 @@ Partial Class MCL_fNotas_Despacho
             loComandoSeleccionar.AppendLine("WHERE " & cusAplicacion.goFormatos.pcCondicionPrincipal)
             loComandoSeleccionar.AppendLine("	AND Renglones_Ajustes.Cod_Tip = 'S10' ")
             loComandoSeleccionar.AppendLine("ORDER BY Cod_Art ASC, Lote ASC;")
-
+            loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("WITH Totales (Cod_Art, Lote, Cant_Consumido) AS")
             loComandoSeleccionar.AppendLine("(")
             loComandoSeleccionar.AppendLine("   SELECT Cod_Art, Lote, SUM(Cant_Consumido) AS Cant_Consumido")
@@ -71,8 +71,6 @@ Partial Class MCL_fNotas_Despacho
             loComandoSeleccionar.AppendLine("SELECT DISTINCT * FROM #tmpColadas")
             loComandoSeleccionar.AppendLine("")
             loComandoSeleccionar.AppendLine("DROP TABLE #tmpColadas")
-
-
 
             'Me.mEscribirConsulta(loComandoSeleccionar.ToString)
 
@@ -134,12 +132,4 @@ Partial Class MCL_fNotas_Despacho
 End Class
 '-------------------------------------------------------------------------------------------'
 ' Fin del codigo
-'-------------------------------------------------------------------------------------------'
-' JJD: 27/12/08: Codigo inicial
-'-------------------------------------------------------------------------------------------'
-' CMS: 10/09/09: Se ajusto el nombre del articulo para los casos de aquellos articulos genericos
-'-------------------------------------------------------------------------------------------'
-' CMS: 16/09/09: Se Agrego la distribucion de impuesto
-'-------------------------------------------------------------------------------------------'
-' MAT: 01/03/11: Ajuste de la vista de diseño												'
 '-------------------------------------------------------------------------------------------'
