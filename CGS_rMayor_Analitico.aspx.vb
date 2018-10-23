@@ -54,7 +54,7 @@ Partial Class CGS_rMayor_Analitico
             loComandoSeleccionar.AppendLine("		AND Comprobantes.Tipo = 'Diario' AND Comprobantes.Status <> 'Anulado'")
             loComandoSeleccionar.AppendLine("		AND Comprobantes.Documento BETWEEN @sp_Documento_Desde AND @sp_Documento_Hasta)")
             loComandoSeleccionar.AppendLine("	JOIN Cuentas_Contables ON Renglones_Comprobantes.Cod_Cue = Cuentas_Contables.Cod_Cue")
-            loComandoSeleccionar.AppendLine("		AND Cuentas_Contables.Categoria IN ('Activos', 'Pasivos', 'Capital')")
+            'loComandoSeleccionar.AppendLine("		AND Cuentas_Contables.Categoria IN ('Activos', 'Pasivos', 'Capital')")
             loComandoSeleccionar.AppendLine("WHERE	Renglones_Comprobantes.Fec_Ini < @sp_FecIni")
             loComandoSeleccionar.AppendLine("	AND Renglones_Comprobantes.Cod_Cue BETWEEN @sp_CodCue_Desde AND @sp_CodCue_Hasta")
             loComandoSeleccionar.AppendLine("	AND Renglones_Comprobantes.Documento BETWEEN @sp_Documento_Desde AND @sp_Documento_Hasta")
