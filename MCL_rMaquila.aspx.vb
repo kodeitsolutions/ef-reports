@@ -179,7 +179,7 @@ Partial Class MCL_rMaquila
             lcComandoSeleccionar.AppendLine("		#tmpRecepciones.Inicial,")
             lcComandoSeleccionar.AppendLine("		#tmpRecepciones.Mes,")
             lcComandoSeleccionar.AppendLine("		#tmpProcesado.Cantidad                  AS Procesado,")
-            lcComandoSeleccionar.AppendLine("		#tmpProcesado.Disponible,")
+            lcComandoSeleccionar.AppendLine("		COALESCE(#tmpProcesado.Disponible,0)    AS Disponible,")
             lcComandoSeleccionar.AppendLine("       #tmpProcesado.TotalMes,")
             lcComandoSeleccionar.AppendLine("		#tmpObtenido.Piezas,")
             lcComandoSeleccionar.AppendLine("		#tmpObtenido.Cantidad					AS Obtenido,")
