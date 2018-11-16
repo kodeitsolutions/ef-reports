@@ -92,17 +92,17 @@ Partial Class CGS_rEGanancias_Perdidas
             loComandoSeleccionar.AppendLine("			ON (Renglones_Comprobantes.Adicional = Comprobantes.Adicional ")
             loComandoSeleccionar.AppendLine("				AND Renglones_Comprobantes.Documento = Comprobantes.Documento")
             loComandoSeleccionar.AppendLine("				AND Comprobantes.Status <> 'Anulado'")
-            If lcEmpresa.Trim() = "Cegasa" Then
-                loComandoSeleccionar.AppendLine("			AND Comprobantes.Resumen NOT LIKE '%CIERRE%'")
-            ElseIf lcEmpresa.Trim() = "Mercalum" Or lcEmpresa = "PAS" Then
-                loComandoSeleccionar.AppendLine("				AND Comprobantes.Documento NOT IN (SELECT Documento FROM Renglones_Comprobantes WHERE Cod_Cue = '3.1.1.05.001')")
-            End If
+            'If lcEmpresa.Trim() = "Cegasa" Then
+            '    loComandoSeleccionar.AppendLine("			AND Comprobantes.Resumen NOT LIKE '%CIERRE%'")
+            'ElseIf lcEmpresa.Trim() = "Mercalum" Or lcEmpresa = "PAS" Then
+            '    loComandoSeleccionar.AppendLine("				AND Comprobantes.Documento NOT IN (SELECT Documento FROM Renglones_Comprobantes WHERE Cod_Cue = '3.1.1.05.001')")
+            'End If
             loComandoSeleccionar.AppendLine("			)")
             loComandoSeleccionar.AppendLine("		ON CC.Cod_Cue = Renglones_Comprobantes.Cod_Cue ")
-            loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.Fec_Ini BETWEEN @lcFechaDesde AND @lcFechaHasta)")
+            loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.Fec_Ini <= @lcFechaHasta)")
             loComandoSeleccionar.AppendLine("WHERE	CC.Movimiento=1")
             loComandoSeleccionar.AppendLine("   AND CC.Categoria NOT IN ('Activos', 'Pasivos', 'Capital')")
-            loComandoSeleccionar.AppendLine("	AND	CC.Cod_Cue BETWEEN @lcCuentaDesde	AND	@lcCuentaHasta")
+            loComandoSeleccionar.AppendLine("	AND	CC.Cod_Cue BETWEEN @lcCuentaDesde AND @lcCuentaHasta")
             'loComandoSeleccionar.AppendLine("	AND Renglones_Comprobantes.Cod_Aux	BETWEEN @lcAuxDesde	AND	@lcAuxHasta")
             loComandoSeleccionar.AppendLine("GROUP BY CC.Cod_Cue")
             loComandoSeleccionar.AppendLine("")
