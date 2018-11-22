@@ -47,6 +47,7 @@ Partial Class CGS_rEGanancias_Perdidas
             End Select
 
             Dim loComandoSeleccionar As New StringBuilder()
+            'Me.mEscribirConsulta(cusAplicacion.goReportes.paParametrosIniciales(0), goServicios.enuOpcionesRedondeo.KN_FechaInicioDelDia)
 
             loComandoSeleccionar.AppendLine("DECLARE @lnCero DECIMAL(28, 10) = 0")
             loComandoSeleccionar.AppendLine("DECLARE @lcFechaDesde DATETIME = " & lcFechaDesde)
@@ -99,7 +100,15 @@ Partial Class CGS_rEGanancias_Perdidas
             'End If
             loComandoSeleccionar.AppendLine("			)")
             loComandoSeleccionar.AppendLine("		ON CC.Cod_Cue = Renglones_Comprobantes.Cod_Cue ")
-            loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.Fec_Ini <= @lcFechaHasta)")
+
+            Dim FechaDesde As Date = Date.Parse(cusAplicacion.goReportes.paParametrosIniciales(0))
+            Dim FechaHasta As Date = Date.Parse(cusAplicacion.goReportes.paParametrosFinales(0))
+            If FechaHasta < Date.Parse("8/1/2018") Or FechaDesde > Date.Parse("8/31/2018") Then
+                loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.Fec_Ini BETWEEN @lcFechaDesde AND @lcFechaHasta)")
+            Else
+                loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.Fec_Ini <= @lcFechaHasta)")
+            End If
+
             loComandoSeleccionar.AppendLine("WHERE	CC.Movimiento=1")
             loComandoSeleccionar.AppendLine("   AND CC.Categoria NOT IN ('Activos', 'Pasivos', 'Capital')")
             loComandoSeleccionar.AppendLine("	AND	CC.Cod_Cue BETWEEN @lcCuentaDesde AND @lcCuentaHasta")

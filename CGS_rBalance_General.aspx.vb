@@ -197,8 +197,13 @@ Partial Class CGS_rBalance_General
             loComandoSeleccionar.AppendLine("INTO	#tmpEjercicio")
             loComandoSeleccionar.AppendLine("FROM	Cuentas_Contables ")
             loComandoSeleccionar.AppendLine("	LEFT OUTER JOIN Renglones_Comprobantes ON Cuentas_Contables.Cod_Cue = Renglones_Comprobantes.Cod_Cue ")
-            'loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.Fec_Ini BETWEEN @lcFechaDesde AND  @lcFechaHasta)")
-            loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.Fec_Ini <= @lcFechaHasta)")
+            Dim FechaDesde As Date = Date.Parse(cusAplicacion.goReportes.paParametrosIniciales(0))
+            Dim FechaHasta As Date = Date.Parse(cusAplicacion.goReportes.paParametrosFinales(0))
+            If FechaHasta < Date.Parse("8/1/2018") Or FechaDesde > Date.Parse("8/31/2018") Then
+                loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.Fec_Ini BETWEEN @lcFechaDesde AND @lcFechaHasta)")
+            Else
+                loComandoSeleccionar.AppendLine("			AND (Renglones_Comprobantes.Fec_Ini <= @lcFechaHasta)")
+            End If
             loComandoSeleccionar.AppendLine("WHERE	Cuentas_Contables.Movimiento=1")
             loComandoSeleccionar.AppendLine("	AND Cuentas_Contables.Categoria NOT IN ('Activos', 'Pasivos', 'Capital')")
             loComandoSeleccionar.AppendLine("")
