@@ -29,6 +29,7 @@
               <xs:element name="Procesado" type="xs:double" minOccurs="0" />              
               <xs:element name="Mes" type="xs:int" minOccurs="0" />
               <xs:element name="Disponible" type="xs:double" minOccurs="0" />
+              <xs:element name="Devuelto" type="xs:double" minOccurs="0" />
               <xs:element name="TotalMes" type="xs:double" minOccurs="0" />
               <xs:element name="Piezas" type="xs:int" minOccurs="0" />
               <xs:element name="Obtenido" type="xs:double" minOccurs="0" />
