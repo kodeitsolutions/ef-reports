@@ -27,7 +27,7 @@ Partial Class CGS_fRecepciones_Proveedores
             loComandoSeleccionar.AppendLine("       Articulos.Generico						AS Generico,")
             loComandoSeleccionar.AppendLine("       Renglones_Recepciones.Notas				AS Notas, ")
             loComandoSeleccionar.AppendLine("		COALESCE((CASE WHEN Renglones_Recepciones.Comentario <> ''")
-            loComandoSeleccionar.AppendLine("                      THEN CONVERT(NUMERIC(18,2), REPLACE(REPLACE(Renglones_Recepciones.Comentario,'.',''), ',','.' ) )")
+            loComandoSeleccionar.AppendLine("                      THEN CONVERT(NUMERIC(18,2), Renglones_Recepciones.Comentario)")
             loComandoSeleccionar.AppendLine("                      ELSE 0")
             loComandoSeleccionar.AppendLine("                 END) ,0)                      AS Peso,")
             loComandoSeleccionar.AppendLine("	    Renglones_Recepciones.Can_Art1          AS Cantidad, ")
