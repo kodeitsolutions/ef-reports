@@ -30,6 +30,8 @@ Partial Class CGS_rBalance_General
 
             Dim lcOrdenamiento As String = cusAplicacion.goReportes.pcOrden
 
+            Dim lcEmpresa As String = goEmpresa.pcCodigo
+
             Dim lnLongMax As Integer = 0
             Select Case lnNivelMax
                 Case 1
@@ -246,13 +248,17 @@ Partial Class CGS_rBalance_General
             If lnNivelMax = 5 Then
                 loComandoSeleccionar.AppendLine("SELECT DISTINCT *, @lcFechaHasta AS Hasta,")
                 'loComandoSeleccionar.AppendLine("	(SELECT Total FROM #tmpEjercicio) AS Resultado_Ejercicio, ")
-                loComandoSeleccionar.AppendLine("   (SELECT Saldo + (Debe - Haber) FROM #tmpEjercicio) AS Resultado_Ejercicio,")
+                If lcEmpresa.Trim() = "Mercalum" Then
+                    loComandoSeleccionar.AppendLine("   (SELECT (Debe - Haber) FROM #tmpEjercicio) AS Resultado_Ejercicio,")
+                Else
+                    loComandoSeleccionar.AppendLine("   (SELECT Saldo + (Debe - Haber) FROM #tmpEjercicio) AS Resultado_Ejercicio,")
+                End If
                 loComandoSeleccionar.AppendLine("	(SELECT Total FROM #tmpPasivo) AS Pasivo,  ")
-                loComandoSeleccionar.AppendLine("	(SELECT Total FROM #tmpCapital) AS Capital  ")
-                loComandoSeleccionar.AppendLine("FROM #tmpBalance ")
-                loComandoSeleccionar.AppendLine("ORDER BY Cod_Cue")
-            Else
-                loComandoSeleccionar.AppendLine("SELECT DISTINCT *, '' AS Auxiliar, '' AS Nom_Auxiliar, @lcFechaHasta AS Hasta,")
+                    loComandoSeleccionar.AppendLine("	(SELECT Total FROM #tmpCapital) AS Capital  ")
+                    loComandoSeleccionar.AppendLine("FROM #tmpBalance ")
+                    loComandoSeleccionar.AppendLine("ORDER BY Cod_Cue")
+                Else
+                    loComandoSeleccionar.AppendLine("SELECT DISTINCT *, '' AS Auxiliar, '' AS Nom_Auxiliar, @lcFechaHasta AS Hasta,")
                 loComandoSeleccionar.AppendLine("	(SELECT Saldo + (Debe - Haber) FROM #tmpEjercicio) AS Resultado_Ejercicio, ")
                 loComandoSeleccionar.AppendLine("	(SELECT Total FROM #tmpPasivo) AS Pasivo,  ")
                 loComandoSeleccionar.AppendLine("	(SELECT Total FROM #tmpCapital) AS Capital  ")
