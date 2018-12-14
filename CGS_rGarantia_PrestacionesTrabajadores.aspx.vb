@@ -303,7 +303,7 @@ Partial Class CGS_rGarantia_PrestacionesTrabajadores
             loConsulta.AppendLine("         #tmpTrabajadores.Ultimo_Sueldo_Mensual,")
             loConsulta.AppendLine("         #tmpTrabajadores.Dias_Ultimo_Sueldo,")
             'loConsulta.AppendLine("         #tmpTrabajadores.Prestaciones_Ultimo_Sueldo")
-            loConsulta.AppendLine("         CASE WHEN (#tmpPrestaciones.Mes <= 9 AND YEAR(#tmpPrestaciones.Anio) <= 2018) OR (YEAR(#tmpPrestaciones.Anio) < 2018)")
+            loConsulta.AppendLine("         CASE WHEN (#tmpPrestaciones.Mes < 9 AND #tmpPrestaciones.Anio = 2018) OR (#tmpPrestaciones.Anio < 2018)")
             loConsulta.AppendLine("              THEN COALESCE(#tmpTrabajadores.Prestaciones_Ultimo_Sueldo/100000, 0)")
             loConsulta.AppendLine("              ELSE COALESCE(#tmpTrabajadores.Prestaciones_Ultimo_Sueldo, 0)")
             loConsulta.AppendLine("         END                                                     AS Prestaciones_Ultimo_Sueldo")
